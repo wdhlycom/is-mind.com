@@ -1,0 +1,55 @@
+{
+  "name": "mind",
+  "version": "1.0.0",
+  "description": "这是我的灵修网站源码",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.1",
+    "@tailwindcss/typography": "^0.5.20",
+    "gh-pages": "^6.3.0",
+    "tailwindcss": "^4.3.1"
+  },
+  "dependencies": {
+    "braces": "^3.0.3",
+    "cssesc": "^3.0.0",
+    "detect-libc": "^1.0.3",
+    "enhanced-resolve": "^5.21.6",
+    "fill-range": "^7.1.1",
+    "graceful-fs": "^4.2.11",
+    "is-extglob": "^2.1.1",
+    "is-glob": "^4.0.3",
+    "is-number": "^7.0.0",
+    "jiti": "^2.7.0",
+    "lightningcss": "^1.32.0",
+    "lightningcss-win32-x64-msvc": "^1.32.0",
+    "magic-string": "^0.30.21",
+    "micromatch": "^4.0.8",
+    "mri": "^1.2.0",
+    "node-addon-api": "^7.1.1",
+    "picocolors": "^1.1.1",
+    "picomatch": "^2.3.2",
+    "postcss-selector-parser": "^6.0.10",
+    "source-map-js": "^1.2.1",
+    "tapable": "^2.3.3",
+    "to-regex-range": "^5.0.1",
+    "util-deprecate": "^1.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdhlycom/mind.autos.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wdhlycom/mind.autos/issues"
+  },
+  "homepage": "https://github.com/wdhlycom/mind.autos#readme"
+}，
+"scripts": {
+  "deploy": "gh-pages -d public"
+}
