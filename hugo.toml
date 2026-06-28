@@ -1,4 +1,4 @@
-baseURL = 'https://wdhlycom.github.io/mind.autos/'
+baseURL = '/'
 locale = 'en-us'
 title = 'mind.autos: The engine for your mind'
 theme = 'kit'
