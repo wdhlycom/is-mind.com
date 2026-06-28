@@ -1,0 +1,81 @@
+baseURL = 'https://wdhlycom.github.io/mind.autos/'
+locale = 'en-us'
+title = 'mind.autos: The engine for your mind'
+theme = 'kit'
+
+disableKinds = ["taxonomy", "term"]
+
+buildFuture = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[build]
+  [build.buildStats]
+    enable = true
+
+[minify]
+  minifyOutput = false
+
+ignoreLogs = ['warning-goldmark-raw-html']
+
+[related]
+  includeNewer = true
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+  [[related.indices]]
+    name = "title"
+    weight = 50
+
+[params]
+  # HugoBlox Core Settings
+  [params.hugoblox]
+    [params.hugoblox.theme]
+      mode = "dark"
+    [params.hugoblox.header]
+      enable = true
+      show_title = false
+    [params.hugoblox.footer]
+      enable = false
+  
+  # SEO Settings
+  [params.seo]
+    enable = true
+  
+  # Analytics
+  [params.analytics]
+    enable = false
+
+# Main Navigation Menu
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Dreams & Mind"
+  url = "/dreams/"
+  weight = 10
+
+[[menu.main]]
+  name = "Tarot & Oracle"
+  url = "/tarot/"
+  weight = 20
+
+[[menu.main]]
+  name = "Energy & Chakras"
+  url = "/energy/"
+  weight = 30
+
+[[menu.main]]
+  name = "Astrology & Symbols"
+  url = "/astrology/"
+  weight = 40
+
+[[menu.main]]
+  name = "Reviews & Tools"
+  url = "/reviews/"
+  weight = 50

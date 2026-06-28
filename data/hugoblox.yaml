@@ -1,0 +1,35 @@
+# Hugo Blox Kit Configuration
+# This file enables essential features of the Hugo Blox Kit
+
+features:
+  # Enable SEO features
+  seo:
+    enable: true
+    
+  # Enable structured data
+  jsonld:
+    enable: true
+    
+  # Enable analytics
+  analytics:
+    enable: false
+    
+  # Enable search
+  search:
+    enable: true
+    
+# UI Settings
+ui:
+  # Enable gradient mesh backgrounds
+  gradient_mesh:
+    enable: true
+    
+  # Enable animations
+  animations:
+    enable: true
+    
+# Homepage settings
+homepage:
+  # Enable landing page features
+  landing:
+    enable: true

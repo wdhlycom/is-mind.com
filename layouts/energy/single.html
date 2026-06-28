@@ -1,0 +1,18 @@
+{{ define "main" }}
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap");
+  #galaxy-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  @keyframes starTwinkle { 0%,100%{opacity:0.12} 50%{opacity:0.35} }
+  .gstar { position:absolute; border-radius:50%; pointer-events:none; background:rgba(220,210,245,0.25); animation:starTwinkle 3s ease-in-out infinite; }
+</style>
+
+<div class="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#03020c] via-[#070616] via-[#04030e] to-[#020108]">
+  <canvas id="galaxy-canvas"></canvas>
+  <script src="/js/galaxy.js" defer></script>
+  {{ range $i := seq 80 }}
+  <div class="gstar" style="left:{{ math.Mod (mul $i 37) 96 }}%;top:{{ math.Mod (mul $i 53) 94 }}%;width:{{ add (math.Mod (mul $i 7) 3) 0.5 }}px;height:{{ add (math.Mod (mul $i 7) 3) 0.5 }}px;animation-delay:{{ math.Mod (mul $i 2.3) 5 }}s;"></div>
+  {{ end }}
+
+  {{ partial "article_body.html" . }}
+</div>
+{{ end }}

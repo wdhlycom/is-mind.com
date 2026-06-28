@@ -1,0 +1,523 @@
+{{ define "main" }}
+
+<style>
+  .mystical-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,175,55,0.8) 0%, rgba(212,175,55,0) 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .card-reveal { perspective: 1000px; }
+  .card-reveal-inner {
+    position: relative; width: 100%; height: 100%;
+    transition: transform 0.8s; transform-style: preserve-3d;
+  }
+  .card-reveal.flipped .card-reveal-inner { transform: rotateY(180deg); }
+  .card-front, .card-back {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden; border-radius: 12px;
+  }
+  .card-back { transform: rotateY(180deg); }
+  
+  .floating-element { animation: float 6s ease-in-out infinite; }
+  .pulse-glow { animation: pulse-glow 3s ease-in-out infinite alternate; }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+  @keyframes pulse-glow {
+    0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+    100% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.3); }
+  }
+  
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .mystical-border { position: relative; }
+  .mystical-border::before {
+    content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(45deg, #d4af37, #add8e6, #da70d6, #d4af37);
+    border-radius: 14px; z-index: -1; animation: border-rotate 4s linear infinite;
+  }
+  @keyframes border-rotate {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  
+  .crystal-effect { position: relative; overflow: hidden; }
+  .crystal-effect::after {
+    content: ''; position: absolute; top: -50%; left: -60%;
+    width: 20px; height: 200%; background: rgba(255, 255, 255, 0.4);
+    transform: rotate(25deg); transition: all 0.6s;
+  }
+  .crystal-effect:hover::after { left: 120%; }
+  
+  .particle {
+    position: fixed; width: 6px; height: 6px;
+    background: radial-gradient(circle, rgba(212,175,55,0.8) 0%, rgba(212,175,55,0) 70%);
+    border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: screen;
+  }
+  
+  .section-gradient-1 { background: linear-gradient(to bottom, #0f0c1b, #16122e); }
+  .section-gradient-2 { background: linear-gradient(to bottom, #16122e, #1a143c); }
+  .section-gradient-3 { background: linear-gradient(to bottom, #1a143c, #1e184a); }
+  .section-gradient-4 { background: linear-gradient(to bottom, #1e184a, #221c58); }
+  .section-gradient-5 { background: linear-gradient(to bottom, #221c58, #262066); }
+  .section-gradient-6 { background: linear-gradient(to bottom, #262066, #1a1230); }
+  
+  .portal-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.25), 0 0 30px rgba(173, 216, 230, 0.2) inset;
+  }
+  .portal-card-large { min-height: 250px; }
+
+  .foundation-glow {
+    box-shadow: 0 0 15px rgba(212,175,55,0.15), 0 0 30px rgba(212,175,55,0.08);
+  }
+  .foundation-glow:hover {
+    box-shadow: 0 0 25px rgba(212,175,55,0.3), 0 0 50px rgba(212,175,55,0.15);
+  }
+
+  /* ===== Aurora Borealis Ribbons ===== */
+  @keyframes auroraFlow1 {
+    0%   { transform: translateX(-15%) scaleY(1); }
+    50%  { transform: translateX(10%) scaleY(1.2); }
+    100% { transform: translateX(-15%) scaleY(1); }
+  }
+  @keyframes auroraFlow2 {
+    0%   { transform: translateX(10%) scaleY(1); }
+    50%  { transform: translateX(-8%) scaleY(1.15); }
+    100% { transform: translateX(10%) scaleY(1); }
+  }
+  @keyframes auroraFlow3 {
+    0%   { transform: translateX(-5%) scaleY(1); }
+    50%  { transform: translateX(12%) scaleY(1.1); }
+    100% { transform: translateX(-5%) scaleY(1); }
+  }
+
+  .aurora-ribbon {
+    position: absolute; left: -10%; width: 140%; height: 35vh;
+    pointer-events: none; filter: blur(80px); will-change: transform;
+    mix-blend-mode: screen;
+  }
+  .ar-1 {
+    top: 10%;
+    background: linear-gradient(90deg,
+      transparent 0%, rgba(210,170,220,0.15) 12%, rgba(190,150,210,0.3) 28%,
+      rgba(200,160,215,0.22) 44%, rgba(175,140,195,0.12) 60%,
+      transparent 78%);
+    animation: auroraFlow1 30s ease-in-out infinite;
+  }
+  .ar-2 {
+    top: 30%;
+    background: linear-gradient(90deg,
+      transparent 0%, rgba(200,160,180,0.12) 18%, rgba(230,190,170,0.28) 33%,
+      rgba(215,175,155,0.2) 48%, rgba(195,155,140,0.1) 68%,
+      transparent 88%);
+    animation: auroraFlow2 35s ease-in-out infinite; animation-delay: -8s;
+  }
+  .ar-3 {
+    top: 50%;
+    background: linear-gradient(90deg,
+      transparent 0%, rgba(210,190,150,0.1) 8%, rgba(250,220,160,0.25) 26%,
+      rgba(235,205,145,0.18) 40%, rgba(210,180,120,0.1) 58%,
+      transparent 82%);
+    animation: auroraFlow3 32s ease-in-out infinite; animation-delay: -15s;
+  }
+  .ar-4 {
+    top: 65%;
+    background: linear-gradient(90deg,
+      transparent 0%, rgba(200,170,210,0.14) 10%, rgba(220,190,210,0.28) 24%,
+      rgba(205,175,195,0.2) 38%, rgba(185,155,175,0.1) 55%,
+      transparent 76%);
+    animation: auroraFlow1 38s ease-in-out infinite; animation-delay: -22s;
+  }
+
+  /* 3D quote cards */
+  .quote-card {
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-radius: 1rem; padding: 2rem;
+    border: 1px solid rgba(212,175,55,0.25);
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(212,175,55,0.04) 50%, rgba(0,0,0,0.2) 100%);
+    box-shadow: 
+      0 4px 6px -1px rgba(0,0,0,0.3),
+      0 10px 15px -3px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.05),
+      0 0 20px rgba(212,175,55,0.05);
+    transition: all 0.4s ease;
+    position: relative;
+  }
+  .quote-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 8px 25px -5px rgba(0,0,0,0.4),
+      0 20px 30px -10px rgba(0,0,0,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      0 0 40px rgba(212,175,55,0.12);
+    border-color: rgba(212,175,55,0.4);
+  }
+  .quote-card::before {
+    content: ''; position: absolute; top: 0; left: 1.5rem; right: 1.5rem; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
+  }
+  .quote-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    line-height: 1.8;
+    color: #e0d8c8;
+  }
+  .quote-author {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    color: rgba(212,175,55,0.6);
+  }
+</style>
+
+<div id="mouse-trail" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;"></div>
+
+<div class="relative z-10 pt-12">
+
+  <!-- ============ HERO ============ -->
+  <section class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden section-gradient-1" style="padding-top:5rem">
+    
+    <!-- Radial gold aura layers — brighter, larger -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] opacity-35" style="background: radial-gradient(ellipse, rgba(240,208,96,0.18) 0%, rgba(212,175,55,0.06) 35%, transparent 65%);"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] opacity-25 animate-pulse" style="background: radial-gradient(ellipse, rgba(255,228,77,0.22) 0%, transparent 55%); animation-duration: 3.5s;"></div>
+    </div>
+
+    <!-- Aurora Borealis ribbons -->
+    <div class="aurora-ribbon ar-1"></div>
+    <div class="aurora-ribbon ar-2"></div>
+    <div class="aurora-ribbon ar-3"></div>
+    <div class="aurora-ribbon ar-4"></div>
+
+    <!-- Phoenix Canvas -->
+    <canvas id="phoenix-canvas" class="absolute inset-0 z-0" style="width:100%;height:100%;"></canvas>
+    
+    <!-- Animated star particles -->
+    <div id="particles-container"></div>
+    
+    <div class="text-center max-w-4xl mx-auto relative z-10">
+      <div class="floating-element mb-8">
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+          <span class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f0d060] to-[#d4af37]">
+            Decode the
+          </span>
+          <br>
+          <span class="text-4xl md:text-6xl text-white">Language of Your Soul</span>
+        </h1>
+      </div>
+      
+      <div class="floating-element" style="animation-delay: 0.5s;">
+        <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+          Where depth psychology meets symbolic wisdom. Explore the unconscious, decode your shadow, and master your inner world.
+        </p>
+      </div>
+      
+      <div class="floating-element flex flex-col sm:flex-row gap-6 justify-center items-center" style="animation-delay: 1s;">
+        <a href="#gateways" class="group bg-gradient-to-r from-[#d4af37] to-[#b8941f] hover:from-[#e6c040] hover:to-[#c4a430] text-black font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 pulse-glow shadow-lg shadow-[#d4af37]/20">
+          Begin Your Journey
+          <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+        <a href="/posts" class="bg-transparent border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black font-bold py-4 px-8 rounded-full text-lg transition-all duration-300">
+          Explore Teachings
+        </a>
+      </div>
+    </div>
+    
+    <div class="absolute top-20 left-10 text-4xl text-[#d4af37]/15 floating-element">✦</div>
+    <div class="absolute top-40 right-20 text-3xl text-cyan-300/15 floating-element" style="animation-delay: 0.5s;">✧</div>
+    <div class="absolute bottom-40 left-20 text-5xl text-fuchsia-300/15 floating-element" style="animation-delay: 1s;">✦</div>
+    <div class="absolute bottom-20 right-10 text-3xl text-emerald-300/15 floating-element" style="animation-delay: 1.5s;">✧</div>
+  </section>
+
+  <!-- ============ GATEWAYS ============ -->
+  <section id="gateways" class="py-0 relative section-gradient-2">
+    <div class="container mx-auto px-6 max-w-7xl pt-24 pb-24">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 relative inline-block">
+          <span class="relative z-10">Gateways to Transcendent Knowledge</span>
+          <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
+        </h2>
+        <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+          Traverse the multidimensional pathways of esoteric wisdom and depth psychology.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Psychology & Mind -->
+        <div class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group transition-all duration-300 relative overflow-hidden border border-[#d4af37]/30 foundation-glow">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#d4af37]/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10">
+            <div class="text-6xl mb-6 text-[#d4af37] group-hover:scale-110 transition-transform duration-300">🧠</div>
+            <h3 class="text-xl font-bold text-white mb-4">Psychology & Mind</h3>
+            <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+              Where depth psychology meets symbolic wisdom. Explore the unconscious and master your inner world.
+            </p>
+            <a href="/psych/" class="inline-block text-[#d4af37] hover:text-[#e6c040] font-medium transition-colors">
+              Explore the Psyche →
+            </a>
+          </div>
+        </div>
+        
+        <div class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group hover:border-yellow-300/50 transition-all duration-300 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10">
+            <div class="text-6xl mb-6 text-yellow-300 group-hover:scale-110 transition-transform duration-300">🃏</div>
+            <h3 class="text-xl font-bold text-white mb-4">Sacred Tarot & Oracle</h3>
+            <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+              Ancient archetypal wisdom speaks through symbolic imagery, revealing hidden truths.
+            </p>
+            <a href="/tarot/" class="inline-block text-yellow-300 hover:text-yellow-400 font-medium transition-colors">
+              Channel Insights →
+            </a>
+          </div>
+        </div>
+        
+        <div class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group hover:border-emerald-300/50 transition-all duration-300 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10">
+            <div class="text-6xl mb-6 text-emerald-300 group-hover:scale-110 transition-transform duration-300">🌀</div>
+            <h3 class="text-xl font-bold text-white mb-4">Energy & Chakras</h3>
+            <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+              Harmonize your subtle energy bodies, activating life force flow for optimal vitality.
+            </p>
+            <a href="/energy/" class="inline-block text-emerald-300 hover:text-emerald-400 font-medium transition-colors">
+              Activate Centers →
+            </a>
+          </div>
+        </div>
+        
+        <div class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group hover:border-fuchsia-300/50 transition-all duration-300 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10">
+            <div class="text-6xl mb-6 text-fuchsia-300 group-hover:scale-110 transition-transform duration-300">⭐</div>
+            <h3 class="text-xl font-bold text-white mb-4">Cosmic Astrology & Symbols</h3>
+            <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+              Decipher celestial influences and symbolic messages encoded in the fabric of consciousness.
+            </p>
+            <a href="/astrology/" class="inline-block text-fuchsia-300 hover:text-fuchsia-400 font-medium transition-colors">
+              Read Cosmic Signs →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SACRED GUIDANCE ============ -->
+  <section class="py-0 relative section-gradient-3">
+    <div class="container mx-auto px-6 max-w-5xl pt-16 pb-16">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white mb-4">Sacred Guidance</h2>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">Daily Oracle Card for Spiritual Insight</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleCard(this)" style="height: 180px;">
+          <div class="card-reveal-inner">
+            <div class="card-front p-4 flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/80 to-indigo-900/80">
+              <div class="text-4xl mb-2 text-[#d4af37] group-hover:scale-110 transition-transform">🔮</div>
+              <h3 class="text-lg font-bold text-white mb-1">Past</h3>
+              <p class="text-gray-300 text-xs">Influences</p>
+            </div>
+            <div class="card-back p-4 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/90 to-amber-100/90">
+              <div class="text-3xl mb-2 text-purple-800">🌙</div>
+              <h3 class="text-sm font-bold text-purple-800 mb-1">Hermit</h3>
+              <p class="text-purple-700 text-xs text-center">Ancient lessons illuminate your path.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleCard(this)" style="height: 180px;">
+          <div class="card-reveal-inner">
+            <div class="card-front p-4 flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/80 to-indigo-900/80">
+              <div class="text-4xl mb-2 text-cyan-300 group-hover:scale-110 transition-transform">✨</div>
+              <h3 class="text-lg font-bold text-white mb-1">Present</h3>
+              <p class="text-gray-300 text-xs">Truths</p>
+            </div>
+            <div class="card-back p-4 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/90 to-amber-100/90">
+              <div class="text-3xl mb-2 text-purple-800">💫</div>
+              <h3 class="text-sm font-bold text-purple-800 mb-1">Lovers</h3>
+              <p class="text-purple-700 text-xs text-center">Navigate with divine guidance.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleCard(this)" style="height: 180px;">
+          <div class="card-reveal-inner">
+            <div class="card-front p-4 flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/80 to-indigo-900/80">
+              <div class="text-4xl mb-2 text-fuchsia-300 group-hover:scale-110 transition-transform">🌟</div>
+              <h3 class="text-lg font-bold text-white mb-1">Future</h3>
+              <p class="text-gray-300 text-xs">Visions</p>
+            </div>
+            <div class="card-back p-4 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/90 to-amber-100/90">
+              <div class="text-3xl mb-2 text-purple-800">🌠</div>
+              <h3 class="text-sm font-bold text-purple-800 mb-1">Star</h3>
+              <p class="text-purple-700 text-xs text-center">Cosmic assurances of upcoming opportunities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="/posts/en-01-abundant-everything-empty-something" class="inline-block bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full text-base transition-all duration-300 transform hover:scale-105 pulse-glow crystal-effect">
+          Draw Your Sacred Card
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPLORE THE ARCHIVE ============ -->
+  <section class="py-0 relative section-gradient-4">
+    <div class="container mx-auto px-6 max-w-7xl pt-24 pb-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6">Explore the Archive</h2>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+          Delve into our collection of mystical teachings, depth psychology insights, and spiritual wisdom.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="grid grid-cols-2 gap-6">
+          <div class="glass-morphism p-6 rounded-xl">
+            <h4 class="text-lg font-bold text-white mb-3">Featured Article</h4>
+            <p class="text-gray-300 text-sm mb-4">Understanding the Major Arcana's Archetypal Messages</p>
+            <div class="text-[#d4af37] text-xs">Tarot • 12 min read</div>
+          </div>
+          <div class="glass-morphism p-6 rounded-xl">
+            <h4 class="text-lg font-bold text-white mb-3">Popular Guide</h4>
+            <p class="text-gray-300 text-sm mb-4">Chakra Balancing Techniques for Beginners</p>
+            <div class="text-cyan-300 text-xs">Energy • 15 min read</div>
+          </div>
+          <div class="glass-morphism p-6 rounded-xl">
+            <h4 class="text-lg font-bold text-white mb-3">Recent Post</h4>
+            <p class="text-gray-300 text-sm mb-4">Decoding Recurring Dreams: Hidden Meanings</p>
+            <div class="text-emerald-300 text-xs">Psychology • 8 min read</div>
+          </div>
+          <div class="glass-morphism p-6 rounded-xl">
+            <h4 class="text-lg font-bold text-white mb-3">Essential Reading</h4>
+            <p class="text-gray-300 text-sm mb-4">Planetary Hours and Magical Timing</p>
+            <div class="text-fuchsia-300 text-xs">Astrology • 20 min read</div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-6">Deepen Your Practice</h3>
+          <p class="text-gray-300 mb-8 leading-relaxed">
+            Each article, guide, and revelation has been crafted to deepen your understanding. Explore our categorized content to find what resonates.
+          </p>
+          <a href="/posts" class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
+            Browse All Content
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHISPERS OF THE UNCONSCIOUS ============ -->
+  <section class="py-0 relative section-gradient-5">
+    <div class="container mx-auto px-6 max-w-6xl pt-24 pb-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6">Whispers of the Unconscious</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="quote-card">
+          <p class="quote-text text-base mb-6">
+            "Until you make the unconscious conscious, it will direct your life and you will call it fate."
+          </p>
+          <p class="text-right text-sm quote-author">— Carl Jung</p>
+        </div>
+        <div class="quote-card">
+          <p class="quote-text text-base mb-6">
+            "Who looks outside, dreams; who looks inside, awakes."
+          </p>
+          <p class="text-right text-sm quote-author">— Joseph Campbell</p>
+        </div>
+        <div class="quote-card">
+          <p class="quote-text text-base mb-6">
+            "The cave you fear to enter holds the treasure you seek."
+          </p>
+          <p class="text-right text-sm quote-author">— Sigmund Freud</p>
+        </div>
+        <div class="quote-card">
+          <p class="quote-text text-base mb-6">
+            "Dreams are the royal road to the knowledge of the unconscious activities of the mind."
+          </p>
+          <p class="text-right text-sm quote-author">— Sigmund Freud</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="py-0 relative section-gradient-6">
+    <div class="container mx-auto px-6 max-w-4xl text-center pt-24 pb-24">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Meet Your True Self?</h2>
+      <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+        The blueprint of your psyche is waiting to be uncovered. Take the first step today.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/posts" class="bg-[#d4af37] text-black font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-[#d4af37]/30 hover:shadow-[#d4af37]/50">
+          Discover Your Archetype →
+        </a>
+        <a href="/posts" class="bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black font-bold py-4 px-8 rounded-full text-lg transition-all duration-300">
+          Get Free Shadow Work Guide
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="/js/phoenix.js"></script>
+<script>
+function toggleCard(card) {
+  document.querySelectorAll('.card-reveal').forEach(function(c){ if(c!==card)c.classList.remove('flipped'); });
+  card.classList.toggle('flipped');
+}
+
+var currentCardIndex = 0;
+var cards = document.querySelectorAll('.card-reveal');
+function autoRotateCards() {
+  cards.forEach(function(c){c.classList.remove('flipped')});
+  setTimeout(function(){
+    if(cards[currentCardIndex])cards[currentCardIndex].classList.add('flipped');
+    currentCardIndex=(currentCardIndex+1)%cards.length;
+  },300);
+}
+
+function initMouseTrail() {
+  var trail=[],max=20,container=document.getElementById('mouse-trail');
+  document.addEventListener('mousemove',function(e){
+    var p=document.createElement('div');p.className='particle';
+    p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';
+    var colors=['radial-gradient(circle,rgba(212,175,55,0.8),rgba(212,175,55,0))','radial-gradient(circle,rgba(240,208,96,0.8),rgba(240,208,96,0))','radial-gradient(circle,rgba(147,112,219,0.8),rgba(147,112,219,0))','radial-gradient(circle,rgba(0,255,127,0.8),rgba(0,255,127,0))'];
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    container.appendChild(p);trail.push(p);
+    if(trail.length>max){var o=trail.shift();o.style.opacity='0';setTimeout(function(){if(o.parentNode)o.parentNode.removeChild(o);},300);}
+  });
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  initMouseTrail();
+  setTimeout(function(){
+    cards = document.querySelectorAll('.card-reveal');
+    if(cards.length) {
+      setInterval(autoRotateCards,8000);
+      setTimeout(autoRotateCards,3000);
+    }
+  }, 500);
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+
+{{ end }}

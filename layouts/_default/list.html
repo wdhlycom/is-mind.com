@@ -1,0 +1,118 @@
+{{ define "main" }}
+
+<style>
+  .mystical-grid {
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .post-card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(255, 215, 0, 0.2), 0 10px 10px -5px rgba(173, 216, 230, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulse-glow {
+    0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
+    100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), 0 0 30px rgba(173, 216, 230, 0.3); }
+  }
+</style>
+
+<div class="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 py-12 px-6 relative overflow-hidden">
+  <div class="mystical-grid absolute inset-0 opacity-20"></div>
+  
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-bold text-white mb-6 tracking-tight">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-cyan-300">
+          {{ .Title }}
+        </span>
+      </h1>
+      {{ if .Content }}
+        <div class="text-xl text-gray-300 max-w-2xl mx-auto prose prose-invert">
+          {{ .Content }}
+        </div>
+      {{ else }}
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+          Discover our collection of mystical teachings and ancient wisdom in {{ .Title | lower }}.
+        </p>
+      {{ end }}
+    </div>
+
+    {{ if .Pages }}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {{ $paginator := .Paginate .Pages }}
+        {{ range $paginator.Pages }}
+          <a href="{{ .RelPermalink }}" class="post-card glass-morphism p-6 rounded-2xl group">
+            <div class="text-3xl mb-4 text-yellow-300 group-hover:scale-110 transition-transform">
+              {{ if eq .Type "posts" }}🔮{{ else if eq .Type "pages" }}🌙{{ else }}✦{{ end }}
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors">
+              {{ .Title }}
+            </h3>
+            {{ if .Params.summary }}
+              <p class="text-gray-400 mb-4">
+                {{ .Params.summary | truncate 120 }}
+              </p>
+            {{ else if .Summary }}
+              <p class="text-gray-400 mb-4">
+                {{ .Summary | truncate 120 }}
+              </p>
+            {{ end }}
+            <div class="text-sm text-gray-500">
+              {{ .Date.Format "January 2, 2006" }}
+            </div>
+          </a>
+        {{ end }}
+      </div>
+
+      {{ if $paginator.HasPrev }}
+        <div class="mt-8 text-center">
+          <a href="{{ $paginator.Prev.URL }}" class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded-full transition-all duration-300">
+            Previous
+          </a>
+        </div>
+      {{ end }}
+      
+      {{ if $paginator.HasNext }}
+        <div class="mt-8 text-center">
+          <a href="{{ $paginator.Next.URL }}" class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded-full transition-all duration-300">
+            Next
+          </a>
+        </div>
+      {{ end }}
+    {{ else }}
+      <div class="text-center py-12">
+        <div class="text-6xl mb-4 text-yellow-300">🔮</div>
+        <h3 class="text-2xl font-bold text-white mb-2">No teachings yet</h3>
+        <p class="text-gray-400">Come back soon as we expand our mystical collection</p>
+      </div>
+    {{ end }}
+
+    <div class="text-center mt-16">
+      <a href="/" class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105">
+        Return to Home
+      </a>
+    </div>
+  </div>
+</div>
+
+{{ end }}

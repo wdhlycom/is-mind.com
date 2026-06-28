@@ -1,0 +1,27 @@
+{{ define "main" }}
+<style>
+  @keyframes driftCloud1 { 0% { transform: translate(0, 0); } 33% { transform: translate(8vw, -4vh); } 66% { transform: translate(-3vw, 6vh); } 100% { transform: translate(0, 0); } }
+  @keyframes driftCloud2 { 0% { transform: translate(0, 0); } 50% { transform: translate(-6vw, -5vh); } 100% { transform: translate(0, 0); } }
+  .dream-cloud { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(60px); will-change: transform; mix-blend-mode: screen; }
+  .dc-1 { width: 45vw; height: 30vh; top: 5%; left: -5%; background: radial-gradient(ellipse, rgba(180,150,200,0.2) 0%, rgba(140,120,170,0.08) 50%, transparent 80%); animation: driftCloud1 35s ease-in-out infinite; }
+  .dc-2 { width: 35vw; height: 35vh; top: 20%; right: -8%; background: radial-gradient(ellipse, rgba(200,140,150,0.2) 0%, rgba(160,110,120,0.08) 50%, transparent 80%); animation: driftCloud2 40s ease-in-out infinite; animation-delay: -12s; }
+  .dc-3 { width: 50vw; height: 25vh; top: 50%; left: 10%; background: radial-gradient(ellipse, rgba(120,170,160,0.16) 0%, rgba(90,140,130,0.08) 60%, transparent 85%); animation: driftCloud1 45s ease-in-out infinite; animation-delay: -20s; }
+  .dc-4 { width: 40vw; height: 30vh; top: 60%; right: 5%; background: radial-gradient(ellipse, rgba(200,170,110,0.2) 0%, rgba(160,135,80,0.08) 55%, transparent 80%); animation: driftCloud2 38s ease-in-out infinite; animation-delay: -28s; }
+  .dc-5 { width: 55vw; height: 20vh; top: 75%; left: -10%; background: radial-gradient(ellipse, rgba(130,160,190,0.14) 0%, rgba(100,130,160,0.06) 60%, transparent 85%); animation: driftCloud1 50s ease-in-out infinite; animation-delay: -35s; }
+  .bg-warm-paper { background: linear-gradient(rgba(180,160,130,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(180,160,130,0.03) 1px, transparent 1px), linear-gradient(to bottom, #1c1813, #221d16, #1a1610); background-size: 48px 48px, 48px 48px, 100% 100%; }
+  @keyframes waveFlow { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+</style>
+
+<div class="min-h-screen relative overflow-hidden bg-warm-paper">
+  <div class="dream-cloud dc-1"></div>
+  <div class="dream-cloud dc-2"></div>
+  <div class="dream-cloud dc-3"></div>
+  <div class="dream-cloud dc-4"></div>
+  <div class="dream-cloud dc-5"></div>
+  <svg class="absolute bottom-0 left-0 w-full h-28 pointer-events-none opacity-25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+    <path d="M0 60 Q 40 60 80 60 T 160 60 T 240 20 T 280 60 T 360 60 T 440 60 Q 480 10 500 50 T 520 60 T 600 60 T 680 60 T 760 30 T 800 60 T 880 60 Q 920 15 940 55 T 980 60 T 1060 60 T 1140 20 T 1180 60 L 1200 60" fill="none" stroke="#b8a080" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="animation: waveFlow 30s linear infinite"/>
+  </svg>
+
+  {{ partial "article_body.html" . }}
+</div>
+{{ end }}

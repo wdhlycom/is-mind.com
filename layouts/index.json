@@ -1,0 +1,6 @@
+{
+  "title": "{{ .Title }}",
+  "date": "{{ .Date }}",
+  "description": "{{ .Description }}",
+  "content": "{{ .Content }}"
+}

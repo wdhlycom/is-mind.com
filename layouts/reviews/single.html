@@ -1,0 +1,65 @@
+{{ define "main" }}
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap");
+  @keyframes goldFall { 0% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 0.7; } 60% { opacity: 0.3; } 100% { transform: translateY(50vh) translateX(15px); opacity: 0; } }
+  @keyframes goldFall2 { 0% { transform: translateY(0) translateX(0); opacity: 0; } 15% { opacity: 0.6; } 55% { opacity: 0.25; } 100% { transform: translateY(55vh) translateX(-10px); opacity: 0; } }
+  .gold-dust { position: absolute; border-radius: 50%; pointer-events: none; will-change: transform, opacity; background: #ffe480; box-shadow: 0 0 4px 1px rgba(255,228,128,0.6), 0 0 10px 3px rgba(255,210,80,0.2); }
+  .gd-1 { width: 1.5px; height: 1.5px; } .gd-2 { width: 2px; height: 2px; } .gd-3 { width: 1px; height: 1px; background: #ffeebb; }
+  @keyframes sparkFlash { 0% { opacity: 0; transform: scale(0.2); } 8% { opacity: 0.9; transform: scale(1); } 30% { opacity: 0.6; } 100% { opacity: 0; transform: scale(0.1); } }
+  .point-spark { position: absolute; pointer-events: none; border-radius: 50%; will-change: transform, opacity; background: radial-gradient(circle, rgba(255,250,230,0.95) 0%, rgba(255,220,100,0.5) 30%, rgba(255,200,60,0) 70%); box-shadow: 0 0 6px rgba(255,240,180,0.8), 0 0 14px rgba(255,210,80,0.3); animation-fill-mode: both; }
+  @keyframes meteorLine { 0% { transform: translate(-5vw, -5vh); opacity: 0; } 5% { opacity: 0.95; } 30% { opacity: 0.15; } 100% { transform: translate(95vw, 55vh); opacity: 0; } }
+  .meteor-streak { position: absolute; pointer-events: none; will-change: transform, opacity; width: 0.8px; height: 14px; background: linear-gradient(to bottom, rgba(255,250,230,0.85), rgba(255,210,80,0.2), transparent); border-radius: 1px; animation-fill-mode: both; }
+  .meteor-head { position: absolute; pointer-events: none; will-change: transform, opacity; width: 2px; height: 2px; border-radius: 50%; background: rgba(255,255,245,0.95); box-shadow: 0 0 2px rgba(255,245,200,0.5); animation-fill-mode: both; }
+  @keyframes flowerRotate { 0% { transform: translateX(-50%) rotate(0deg); } 100% { transform: translateX(-50%) rotate(360deg); } }
+  .flower-of-life { position: absolute; top: 56%; left: 50%; width: 500px; height: 460px; max-width: 85vw; pointer-events: none; opacity: 0.22; filter: drop-shadow(0 0 6px rgba(255,228,150,0.3)); animation: flowerRotate 220s linear infinite; transform: translateX(-50%); z-index: 1; }
+</style>
+
+<div class="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#1a0a2e] via-[#120824] via-[#0e0620] to-[#080314]">
+  <div class="point-spark" style="top:8%;left:15%;width:5px;height:5px;animation:sparkFlash 2.2s ease-out infinite;animation-delay:0s;"></div>
+  <div class="point-spark" style="top:18%;left:55%;width:4px;height:4px;animation:sparkFlash 2.6s ease-out infinite;animation-delay:1.5s;"></div>
+  <div class="point-spark" style="top:12%;left:78%;width:6px;height:6px;animation:sparkFlash 1.9s ease-out infinite;animation-delay:3s;"></div>
+  <div class="point-spark" style="top:25%;left:30%;width:4px;height:4px;animation:sparkFlash 3s ease-out infinite;animation-delay:4.5s;"></div>
+  <div class="point-spark" style="top:6%;left:42%;width:3px;height:3px;animation:sparkFlash 2.4s ease-out infinite;animation-delay:6s;"></div>
+  <div class="point-spark" style="top:22%;left:90%;width:5px;height:5px;animation:sparkFlash 2.8s ease-out infinite;animation-delay:7.5s;"></div>
+  <div class="meteor-streak" style="top:6%;left:5%;transform:rotate(38deg);animation:meteorLine 2s ease-out infinite;animation-delay:0s;"></div>
+  <div class="meteor-head" style="top:6%;left:5%;animation:meteorLine 2s ease-out infinite;animation-delay:0s;"></div>
+  <div class="meteor-streak" style="top:14%;left:60%;transform:rotate(42deg);animation:meteorLine 2.4s ease-out infinite;animation-delay:6s;"></div>
+  <div class="meteor-head" style="top:14%;left:60%;animation:meteorLine 2.4s ease-out infinite;animation-delay:6s;"></div>
+
+  <svg class="flower-of-life" viewBox="-10 -20 260 250" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="120" cy="110" r="40" fill="none" stroke="rgba(255,245,220,0.6)" stroke-width="0.8"/>
+    <circle cx="160" cy="110" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+    <circle cx="140" cy="144.64" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+    <circle cx="100" cy="144.64" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+    <circle cx="80" cy="110" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+    <circle cx="100" cy="75.36" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+    <circle cx="140" cy="75.36" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+    <circle cx="200" cy="110" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="180" cy="144.64" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="160" cy="179.28" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="120" cy="179.28" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="80" cy="179.28" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="60" cy="144.64" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="40" cy="110" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="60" cy="75.36" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="80" cy="40.72" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="120" cy="40.72" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="160" cy="40.72" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="180" cy="75.36" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+    <circle cx="120" cy="110" r="80" fill="none" stroke="rgba(255,235,180,0.3)" stroke-width="0.6"/>
+    <circle cx="120" cy="110" r="125" fill="none" stroke="rgba(255,235,180,0.25)" stroke-width="0.6"/>
+  </svg>
+
+  {{ range $i := seq 20 }}
+  <div class="gold-dust gd-1" style="left:{{ math.Mod (mul $i 41) 98 }}%;top:2px;animation:goldFall {{ add (math.Mod (mul $i 3) 6) 10 }}s ease-in {{ math.Mod (mul $i 2.3) 14 }}s infinite;"></div>
+  {{ end }}
+  {{ range $i := seq 18 }}
+  <div class="gold-dust gd-2" style="left:{{ math.Mod (mul $i 59) 98 }}%;top:2px;animation:goldFall2 {{ add (math.Mod (mul $i 4) 5) 11 }}s ease-in {{ math.Mod (mul $i 3.1) 15 }}s infinite;"></div>
+  {{ end }}
+  {{ range $i := seq 15 }}
+  <div class="gold-dust gd-3" style="left:{{ math.Mod (mul $i 73) 98 }}%;top:2px;animation:goldFall {{ add (math.Mod (mul $i 5) 5) 12 }}s ease-in {{ math.Mod (mul $i 4.2) 16 }}s infinite;"></div>
+  {{ end }}
+
+  {{ partial "article_body.html" . }}
+</div>
+{{ end }}

@@ -1,0 +1,74 @@
+{{ define "main" }}
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap");
+  .star-fixed { position: absolute; border-radius: 50%; pointer-events: none; background: rgba(200,195,210,0.35); }
+  .sf-1 { width: 1px; height: 1px; } .sf-2 { width: 1.5px; height: 1.5px; background: rgba(210,200,180,0.3); } .sf-3 { width: 0.8px; height: 0.8px; }
+  @keyframes orbitSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  @keyframes orbitReverse { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+  .orbital-container { position: absolute; pointer-events: none; will-change: transform; border-radius: 50%; border: 1px solid rgba(180,170,150,0.15); box-shadow: 0 0 8px rgba(180,160,130,0.08), inset 0 0 8px rgba(180,160,130,0.04); }
+  .oc-1 { width: 75vw; height: 75vw; max-width: 700px; max-height: 700px; top: 10%; left: 50%; transform: translate(-50%, 0) rotateX(70deg); animation: orbitSlow 50s linear infinite; }
+  .oc-2 { width: 60vw; height: 60vw; max-width: 550px; max-height: 550px; top: 18%; left: 50%; transform: translate(-50%, 0) rotateX(60deg) rotateY(20deg); animation: orbitReverse 45s linear infinite; }
+  .oc-3 { width: 45vw; height: 45vw; max-width: 400px; max-height: 400px; top: 26%; left: 50%; transform: translate(-50%, 0) rotateX(55deg) rotateY(-15deg); animation: orbitSlow 40s linear infinite; }
+  .zodiac-symbol { position: absolute; pointer-events: none; will-change: transform; font-size: 0.9rem; line-height: 1; opacity: 0.22; color: rgba(210,195,165,0.8); text-shadow: 0 0 4px rgba(200,180,150,0.3); }
+  @keyframes auraPulse { 0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.12; } 50% { transform: scale(1.15) translate(1vw, -1vh); opacity: 0.18; } }
+  .aura-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(120px); will-change: transform, opacity; }
+  .av-1 { top: 5%; left: 10%; width: 40vw; height: 35vh; background: radial-gradient(ellipse, rgba(160,140,200,0.15) 0%, transparent 65%); animation: auraPulse 20s ease-in-out infinite; }
+  .av-2 { bottom: 10%; right: 5%; width: 35vw; height: 30vh; background: radial-gradient(ellipse, rgba(200,180,140,0.1) 0%, transparent 65%); animation: auraPulse 24s ease-in-out infinite; animation-delay: -10s; }
+  @keyframes mirrorOrbit { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
+  .mirror-orbital { position: absolute; pointer-events: none; will-change: transform; border-radius: 50%; border: 0.8px solid rgba(180,170,150,0.12); box-shadow: 0 0 6px rgba(180,160,130,0.06), inset 0 0 6px rgba(180,160,130,0.03); }
+  .mo-1 { bottom: 5%; left: 20%; width: 35vw; height: 35vw; max-width: 350px; max-height: 350px; transform: translate(-50%, -50%) rotateX(65deg) rotateY(-15deg); animation: mirrorOrbit 35s linear infinite; }
+  .mo-2 { bottom: 7%; left: 22%; width: 28vw; height: 28vw; max-width: 280px; max-height: 280px; transform: translate(-50%, -50%) rotateX(55deg) rotateY(10deg); animation: mirrorOrbit 30s linear infinite; border-color: rgba(180,170,150,0.09); }
+  .mo-3 { bottom: 9%; left: 23%; width: 20vw; height: 20vw; max-width: 200px; max-height: 200px; transform: translate(-50%, -50%) rotateX(50deg) rotateY(-8deg); animation: mirrorOrbit 27s linear infinite; border-color: rgba(180,170,150,0.07); }
+  .mirror-symbol { position: absolute; pointer-events: none; font-size: 0.7rem; opacity: 0.15; color: rgba(200,185,155,0.7); }
+</style>
+
+<div class="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#060a14] via-[#0a0e20] via-[#070c18] to-[#040810]">
+  {{ range $i := seq 45 }}<div class="star-fixed sf-1" style="left:{{ math.Mod (mul $i 31) 98 }}%;top:{{ math.Mod (mul $i 47) 95 }}%;"></div>{{ end }}
+  {{ range $i := seq 30 }}<div class="star-fixed sf-2" style="left:{{ math.Mod (mul $i 53) 98 }}%;top:{{ math.Mod (mul $i 67) 95 }}%;"></div>{{ end }}
+  {{ range $i := seq 25 }}<div class="star-fixed sf-3" style="left:{{ math.Mod (mul $i 71) 98 }}%;top:{{ math.Mod (mul $i 29) 95 }}%;"></div>{{ end }}
+  <div class="aura-blob av-1"></div>
+  <div class="aura-blob av-2"></div>
+  <div class="orbital-container oc-1">
+    <span class="zodiac-symbol" style="top:-8px;left:50%;transform:translateX(-50%)">♈</span>
+    <span class="zodiac-symbol" style="top:8%;right:-4px">♉</span>
+    <span class="zodiac-symbol" style="top:40%;right:-6px">♊</span>
+    <span class="zodiac-symbol" style="bottom:-2px;left:50%;transform:translateX(-50%)">♋</span>
+    <span class="zodiac-symbol" style="top:40%;left:-6px">♌</span>
+    <span class="zodiac-symbol" style="top:8%;left:-4px">♍</span>
+  </div>
+  <div class="orbital-container oc-2">
+    <span class="zodiac-symbol" style="top:-6px;left:50%;transform:translateX(-50%)">♎</span>
+    <span class="zodiac-symbol" style="top:12%;right:-3px">♏</span>
+    <span class="zodiac-symbol" style="top:45%;right:-5px">♐</span>
+    <span class="zodiac-symbol" style="bottom:0;left:50%;transform:translateX(-50%)">♑</span>
+    <span class="zodiac-symbol" style="top:45%;left:-5px">♒</span>
+    <span class="zodiac-symbol" style="top:12%;left:-3px">♓</span>
+  </div>
+  <div class="orbital-container oc-3">
+    <span class="zodiac-symbol" style="top:-5px;left:50%;transform:translateX(-50%)">☉</span>
+    <span class="zodiac-symbol" style="top:18%;right:-4px">☽</span>
+    <span class="zodiac-symbol" style="bottom:4px;left:50%;transform:translateX(-50%)">♃</span>
+    <span class="zodiac-symbol" style="top:18%;left:-4px">♄</span>
+  </div>
+  <div class="mirror-orbital mo-1">
+    <span class="mirror-symbol" style="top:-6px;left:50%;transform:translateX(-50%)">♎</span>
+    <span class="mirror-symbol" style="top:10%;right:-4px">♏</span>
+    <span class="mirror-symbol" style="top:45%;right:-6px">♐</span>
+    <span class="mirror-symbol" style="bottom:-2px;left:50%;transform:translateX(-50%)">♑</span>
+    <span class="mirror-symbol" style="top:45%;left:-6px">♒</span>
+    <span class="mirror-symbol" style="top:10%;left:-4px">♓</span>
+  </div>
+  <div class="mirror-orbital mo-2">
+    <span class="mirror-symbol" style="top:-4px;left:50%;transform:translateX(-50%)">☉</span>
+    <span class="mirror-symbol" style="top:15%;right:-4px">☽</span>
+    <span class="mirror-symbol" style="bottom:0;left:50%;transform:translateX(-50%)">♃</span>
+  </div>
+  <div class="mirror-orbital mo-3">
+    <span class="mirror-symbol" style="top:-4px;left:50%;transform:translateX(-50%)">♈</span>
+    <span class="mirror-symbol" style="top:12%;right:-4px">♌</span>
+    <span class="mirror-symbol" style="bottom:0;left:50%;transform:translateX(-50%)">♐</span>
+  </div>
+
+  {{ partial "article_body.html" . }}
+</div>
+{{ end }}

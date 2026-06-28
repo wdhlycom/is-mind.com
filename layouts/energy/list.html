@@ -1,0 +1,70 @@
+{{ define "main" }}
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap");
+
+  #galaxy-canvas {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+
+  @keyframes starTwinkle { 0%,100%{opacity:0.12} 50%{opacity:0.35} }
+  .gstar {
+    position:absolute; border-radius:50%; pointer-events:none;
+    background:rgba(220,210,245,0.25); animation:starTwinkle 3s ease-in-out infinite;
+  }
+
+  @keyframes cardIn { 0%{opacity:0;transform:translateY(16px)} 100%{opacity:1;transform:translateY(0)} }
+  .energy-card {
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: linear-gradient(160deg, rgba(30,50,80,0.4) 0%, rgba(15,30,55,0.6) 60%, rgba(10,20,40,0.7) 100%);
+    border: 1px solid rgba(130,180,220,0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; overflow: hidden; will-change: transform;
+  }
+  .energy-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(150,200,240,0.25), transparent);
+  }
+  .energy-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: rgba(150,200,240,0.35);
+    box-shadow: 0 0 35px rgba(130,180,220,0.08), 0 15px 35px -10px rgba(0,0,0,0.4);
+  }
+  .text-soft-sky { color: rgba(190, 215, 235, 0.8); font-weight: 300; }
+</style>
+
+<div class="min-h-screen py-20 px-6 relative overflow-hidden bg-gradient-to-b from-[#03020c] via-[#070616] via-[#04030e] to-[#020108]">
+
+  <!-- Galaxy Spiral Canvas -->
+  <canvas id="galaxy-canvas"></canvas>
+  <script src="/js/galaxy.js" defer></script>
+
+  {{ range $i := seq 80 }}
+  <div class="gstar" style="left:{{ math.Mod (mul $i 37) 96 }}%;top:{{ math.Mod (mul $i 53) 94 }}%;width:{{ add (math.Mod (mul $i 7) 3) 0.5 }}px;height:{{ add (math.Mod (mul $i 7) 3) 0.5 }}px;animation-delay:{{ math.Mod (mul $i 2.3) 5 }}s;"></div>
+  {{ end }}
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <header class="text-center pt-32 mb-16">
+      <h1 class="text-5xl md:text-6xl font-bold text-white mb-5 tracking-wide" style="font-family: 'Raleway', sans-serif;">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff8080] via-[#e0d060] to-[#a080e0]">{{ .Title }}</span>
+      </h1>
+      <p class="text-lg text-soft-sky max-w-2xl mx-auto leading-relaxed">{{ .Description | default "Harmonize your subtle energy bodies, activating life force flow for optimal spiritual and physical vitality." }}</p>
+      <div class="mt-6 flex justify-center"><div class="w-16 h-px bg-gradient-to-r from-transparent via-[#a0c0e0] to-transparent"></div></div>
+    </header>
+    {{ if .Pages }}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-16">
+      {{ range $i, $p := .Pages }}
+      <a href="{{ .RelPermalink }}" class="energy-card rounded-2xl p-8 group block" style="animation: cardIn {{ add (mul $i 0.2) 0.4 }}s ease-out both;">
+        <h3 class="text-xl font-light text-white mb-3 group-hover:text-[#a0d0f0] transition-colors duration-300">{{ .Title }}</h3>
+        {{ with .Params.summary }}<p class="text-soft-sky text-sm mb-4 leading-relaxed">{{ . | truncate 120 }}</p>{{ end }}
+        <span class="text-xs text-gray-500">{{ .Date.Format "Jan 2, 2006" }}</span>
+      </a>
+      {{ end }}
+    </div>
+    {{ else }}
+    <div class="text-center py-20"><h3 class="text-2xl font-light text-white mb-3">Energy Aligning</h3><p class="text-soft-sky max-w-md mx-auto">The chakras are being calibrated. Vibrational wisdom is on its way.</p></div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

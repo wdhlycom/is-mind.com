@@ -1,0 +1,38 @@
+---
+# Navigation Links
+# Add entries in the order you wish them to appear in the navigation menu.
+# The navigation menu is responsive and switches to a hamburger menu on mobile devices.
+# To create a dropdown menu, add an entry with `parent` set to the parent menu item's `identifier`.
+# For example, if you want to create a submenu for "About", you would add an identifier for "About" in the main menu,
+# then add submenu items with parent: "about".
+
+# Main menu (appears in the header navigation bar and in the sidebar of the dashboard)
+main:
+  - name: Home
+    url: /
+    identifier: home
+    weight: 3
+
+  - name: Tarot & Oracle
+    url: /tarot/
+    identifier: tarot
+    weight: 10
+
+  - name: Dreams & Shadow
+    url: /dreams/
+    identifier: dreams
+    weight: 20
+
+  - name: Energy & Chakras
+    url: /energy/
+    identifier: energy
+    weight: 30
+
+  - name: Astrology & Symbols
+    url: /astrology/
+    weight: 40
+    identifier: astrology
+
+  - name: Reviews & Tools
+    url: /reviews/
+    weight: 50

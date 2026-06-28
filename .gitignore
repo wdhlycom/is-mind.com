@@ -1,0 +1,4 @@
+public/
+resources/
+.workbuddy/
+.hugo_build.lock

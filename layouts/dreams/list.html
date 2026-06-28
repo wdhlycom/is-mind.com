@@ -1,0 +1,233 @@
+{{ define "main" }}
+<style>
+  /* ===== Study Room Aesthetic ===== */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+  /* Scroll-triggered gentle fade-up */
+  @keyframes breatheIn {
+    0%   { opacity: 0; transform: translateY(18px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Subtle geometric line animation — "thought flow" */
+  @keyframes lineFlow {
+    0%   { stroke-dashoffset: 400; opacity: 0.3; }
+    50%  { opacity: 0.6; }
+    100% { stroke-dashoffset: 0; opacity: 0.3; }
+  }
+  @keyframes arcSweep {
+    0%   { stroke-dashoffset: 300; }
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes circlePulse {
+    0%, 100% { r: 48; opacity: 0.2; }
+    50%      { r: 52; opacity: 0.35; }
+  }
+  @keyframes spiralRotate {
+    0%   { transform: rotate(0deg); opacity: 0.25; }
+    100% { transform: rotate(360deg); opacity: 0.25; }
+  }
+
+  .fade-section {
+    animation: breatheIn 1.2s ease-out both;
+  }
+  .fade-section:nth-child(2) { animation-delay: 0.2s; }
+  .fade-section:nth-child(3) { animation-delay: 0.4s; }
+  .fade-section:nth-child(4) { animation-delay: 0.6s; }
+
+  /* Card */
+  .dream-card {
+    background: linear-gradient(160deg, rgba(50,45,38,0.55) 0%, rgba(35,30,25,0.7) 60%, rgba(25,22,18,0.8) 100%);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(180,160,130,0.12);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; overflow: hidden;
+  }
+  .dream-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,180,150,0.25), transparent);
+  }
+  .dream-card::after {
+    content: ''; position: absolute; bottom: 0; left: 1.5rem; right: 1.5rem; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(160,140,110,0.15), transparent);
+  }
+  .dream-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(200,180,150,0.25);
+    box-shadow: 0 0 40px rgba(180,150,110,0.06), 0 15px 35px -10px rgba(0,0,0,0.4);
+  }
+
+  /* Tags */
+  .tag-dream {
+    display: inline-block; padding: 0.2rem 0.7rem; border-radius: 2px;
+    font-size: 0.7rem; margin-right: 0.4rem; margin-bottom: 0.35rem;
+    background: rgba(180,160,130,0.08); color: rgba(200,180,150,0.65);
+    border-left: 2px solid rgba(180,150,120,0.25); letter-spacing: 0.02em;
+  }
+
+  /* Typography */
+  .serif-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-weight: 700; letter-spacing: 0.02em;
+  }
+  .serif-body {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-weight: 400; letter-spacing: 0.01em; line-height: 1.75;
+  }
+  .sans-body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 300; letter-spacing: 0.03em; line-height: 1.7;
+  }
+
+  /* Colors */
+  .text-warm { color: rgba(210, 200, 180, 0.85); }
+  .text-amber { color: rgba(200, 170, 120, 0.8); }
+
+  /* ===== Drifting Dream Clouds ===== */
+  @keyframes driftCloud1 {
+    0%   { transform: translate(0, 0); }
+    33%  { transform: translate(8vw, -4vh); }
+    66%  { transform: translate(-3vw, 6vh); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes driftCloud2 {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(-6vw, -5vh); }
+    100% { transform: translate(0, 0); }
+  }
+  .dream-cloud {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    filter: blur(60px); will-change: transform; mix-blend-mode: screen;
+  }
+  .dc-1 {
+    width: 45vw; height: 30vh; top: 5%; left: -5%;
+    background: radial-gradient(ellipse, rgba(180,150,200,0.2) 0%, rgba(140,120,170,0.08) 50%, transparent 80%);
+    animation: driftCloud1 35s ease-in-out infinite;
+  }
+  .dc-2 {
+    width: 35vw; height: 35vh; top: 20%; right: -8%;
+    background: radial-gradient(ellipse, rgba(200,140,150,0.2) 0%, rgba(160,110,120,0.08) 50%, transparent 80%);
+    animation: driftCloud2 40s ease-in-out infinite; animation-delay: -12s;
+  }
+  .dc-3 {
+    width: 50vw; height: 25vh; top: 50%; left: 10%;
+    background: radial-gradient(ellipse, rgba(120,170,160,0.16) 0%, rgba(90,140,130,0.08) 60%, transparent 85%);
+    animation: driftCloud1 45s ease-in-out infinite; animation-delay: -20s;
+  }
+  .dc-4 {
+    width: 40vw; height: 30vh; top: 60%; right: 5%;
+    background: radial-gradient(ellipse, rgba(200,170,110,0.2) 0%, rgba(160,135,80,0.08) 55%, transparent 80%);
+    animation: driftCloud2 38s ease-in-out infinite; animation-delay: -28s;
+  }
+  .dc-5 {
+    width: 55vw; height: 20vh; top: 75%; left: -10%;
+    background: radial-gradient(ellipse, rgba(130,160,190,0.14) 0%, rgba(100,130,160,0.06) 60%, transparent 85%);
+    animation: driftCloud1 50s ease-in-out infinite; animation-delay: -35s;
+  }
+  .text-teal { color: rgba(100, 160, 155, 0.8); }
+  .bg-warm-paper {
+    background:
+      /* Subtle grid — lab + meditation */
+      linear-gradient(rgba(180,160,130,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(180,160,130,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, #1c1813, #221d16, #1a1610);
+    background-size: 48px 48px, 48px 48px, 100% 100%;
+  }
+
+  /* ===== EEG Wave Line ===== */
+  @keyframes waveFlow {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .eeg-wave {
+    position: absolute; bottom: 0; left: 0; width: 200%; height: 100px;
+    pointer-events: none; overflow: hidden; opacity: 0.25;
+  }
+</style>
+
+<div class="min-h-screen py-20 px-6 relative overflow-hidden bg-warm-paper">
+
+  <!-- Geometric SVG decorations — "flow of thought" -->
+  <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
+    <!-- Large arc right side -->
+    <path d="M 1100 100 A 400 400 0 0 1 900 600" fill="none" stroke="#c8b896" stroke-width="0.8"
+          stroke-dasharray="8 4" style="animation: lineFlow 20s linear infinite"/>
+    <!-- Concentric circles bottom-left -->
+    <circle cx="120" cy="750" r="48" fill="none" stroke="#a09070" stroke-width="0.6"
+            style="animation: circlePulse 12s ease-in-out infinite"/>
+    <circle cx="120" cy="750" r="80" fill="none" stroke="#a09070" stroke-width="0.4" opacity="0.5"/>
+    <circle cx="120" cy="750" r="120" fill="none" stroke="#a09070" stroke-width="0.3" opacity="0.3"/>
+    <!-- Spiral top-right -->
+    <path d="M 1020 180 Q 1040 160 1060 180 Q 1080 200 1060 220 Q 1040 240 1020 220 Q 1000 200 1020 180"
+          fill="none" stroke="#b8a080" stroke-width="0.7" style="animation: spiralRotate 30s linear infinite; transform-origin: 1040px 200px"/>
+    <!-- Horizontal line accents -->
+    <line x1="60" y1="300" x2="300" y2="300" stroke="#c8b896" stroke-width="0.5"
+          stroke-dasharray="4 6" style="animation: arcSweep 18s linear infinite"/>
+    <line x1="800" y1="550" x2="1050" y2="550" stroke="#c8b896" stroke-width="0.5"
+          stroke-dasharray="6 4" style="animation: arcSweep 22s linear infinite; animation-delay: -5s"/>
+    <!-- Small decorative dots -->
+    <circle cx="200" cy="500" r="2" fill="#c8b896" opacity="0.4"/>
+    <circle cx="950" cy="350" r="1.5" fill="#c8b896" opacity="0.35"/>
+    <circle cx="80" cy="200" r="1.5" fill="#c8b896" opacity="0.3"/>
+    <!-- Arc fragment -->
+    <path d="M 600 700 Q 700 650 800 720" fill="none" stroke="#a09070" stroke-width="0.7"
+          stroke-dasharray="3 5" style="animation: lineFlow 25s linear infinite; animation-delay: -8s"/>
+  </svg>
+
+  <!-- EEG heartbeat wave — bottom -->
+  <svg class="absolute bottom-0 left-0 w-full h-28 pointer-events-none opacity-25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+    <path d="M0 60 Q 40 60 80 60 T 160 60 T 240 20 T 280 60 T 360 60 T 440 60 Q 480 10 500 50 T 520 60 T 600 60 T 680 60 T 760 30 T 800 60 T 880 60 Q 920 15 940 55 T 980 60 T 1060 60 T 1140 20 T 1180 60 L 1200 60"
+          fill="none" stroke="#b8a080" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+          style="animation: waveFlow 30s linear infinite"/>
+    <path d="M0 60 Q 40 60 80 60 T 160 60 T 240 20 T 280 60 T 360 60 T 440 60 Q 480 10 500 50 T 520 60 T 600 60 T 680 60 T 760 30 T 800 60 T 880 60 Q 920 15 940 55 T 980 60 T 1060 60 T 1140 20 T 1180 60 L 1200 60"
+          fill="none" stroke="#b8a080" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"
+          style="animation: waveFlow 30s linear infinite; animation-delay: -0.8s"/>
+  </svg>
+
+  <!-- ===== Drifting Clouds (behind content) ===== -->
+  <div class="dream-cloud dc-1"></div>
+  <div class="dream-cloud dc-2"></div>
+  <div class="dream-cloud dc-3"></div>
+  <div class="dream-cloud dc-4"></div>
+  <div class="dream-cloud dc-5"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <header class="text-center pt-32 mb-16 fade-section">
+      <h1 class="serif-title text-5xl md:text-6xl mb-4 tracking-wide font-bold">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#d4c8a8] via-[#e8d8b8] to-[#c0a880]">
+          {{ .Title }}
+        </span>
+      </h1>
+      <p class="sans-body text-warm text-lg max-w-2xl mx-auto">
+        {{ .Description | default "Where depth psychology meets symbolic wisdom. Explore the unconscious, decode your shadow, and master your inner world." }}
+      </p>
+      <div class="mt-6 flex justify-center">
+        <div class="w-16 h-px bg-gradient-to-r from-transparent via-[#b8a080] to-transparent"></div>
+      </div>
+    </header>
+
+    {{ if .Pages }}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {{ range $i, $p := .Pages }}
+      <a href="{{ .RelPermalink }}" class="dream-card rounded-lg p-8 group block fade-section" style="animation-delay: {{ add (mul $i 0.25) 0.3 }}s">
+        <h3 class="serif-title text-xl text-white mb-3 group-hover:text-[#d4c8a8] transition-colors duration-300">
+          {{ .Title }}
+        </h3>
+        {{ with .Params.summary }}
+        <p class="sans-body text-warm text-sm mb-4 opacity-80">{{ . | truncate 120 }}</p>
+        {{ end }}
+        <span class="text-xs text-gray-500 sans-body">{{ .Date.Format "January 2, 2006" }}</span>
+      </a>
+      {{ end }}
+    </div>
+    {{ else }}
+    <div class="text-center py-20 fade-section" style="animation-delay: 0.5s">
+      <h3 class="serif-title text-2xl text-white mb-3">Quiet Reflections</h3>
+      <p class="sans-body text-warm max-w-md mx-auto opacity-70">
+        Content is being prepared with care — like a book laid open on a study desk, awaiting the right reader.
+      </p>
+  </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
