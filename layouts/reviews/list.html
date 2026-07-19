@@ -18,11 +18,11 @@
   .gold-dust {
     position: absolute; border-radius: 50%; pointer-events: none; will-change: transform, opacity;
     background: #ffe480;
-    box-shadow: 0 0 4px 1px rgba(255,228,128,0.6), 0 0 10px 3px rgba(255,210,80,0.2);
+    box-shadow: 0 0 6px 2px rgba(255,228,128,0.7), 0 0 14px 4px rgba(255,210,80,0.3);
   }
-  .gd-1 { width: 1.5px; height: 1.5px; }
-  .gd-2 { width: 2px;   height: 2px; }
-  .gd-3 { width: 1px;   height: 1px;   background: #ffeebb; }
+  .gd-1 { width: 2px; height: 2px; }
+  .gd-2 { width: 2.5px;   height: 2.5px; }
+  .gd-3 { width: 1.5px;   height: 1.5px;   background: #ffeebb; }
 
   /* ===== Bright Point Sparks (replaces shooting stars) ===== */
   @keyframes sparkFlash {
@@ -115,9 +115,72 @@
   /* Typography */
   .text-lavender { color: #d3c2e5; font-weight: 300; }
   .text-gold-muted { color: #ffe480; }
+
+  /* ===== Tools Directory (data-driven) ===== */
+  @keyframes toolIn {
+    0%   { opacity: 0; transform: translateY(20px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .tools-section { position: relative; z-index: 10; margin-top: 3rem; }
+  .tools-intro { text-align: center; max-width: 42rem; margin: 0 auto 2.5rem; }
+  .tools-intro h2 {
+    font-family: 'EB Garamond', Georgia, serif; font-size: 2rem; font-weight: 700;
+    color: #ffe480; margin-bottom: 0.6rem; letter-spacing: 0.01em;
+  }
+  .tools-intro p { color: #d3c2e5; font-weight: 300; font-size: 1.05rem; line-height: 1.6; }
+  .tools-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 768px) { .tools-grid { grid-template-columns: repeat(3, 1fr); } }
+  .tool-card {
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    background: linear-gradient(160deg, rgba(50,20,70,0.5) 0%, rgba(30,12,50,0.68) 100%);
+    border: 1px solid rgba(255,228,0,0.14);
+    border-radius: 1rem; padding: 1.9rem 1.5rem; text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .tool-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,228,0,0.3), transparent);
+  }
+  .tool-card:hover {
+    transform: translateY(-6px); border-color: rgba(255,228,0,0.4);
+    box-shadow: 0 0 30px rgba(255,228,0,0.14), 0 0 60px rgba(255,200,0,0.06);
+  }
+  .tool-icon { font-size: 2.4rem; line-height: 1; margin-bottom: 0.85rem; }
+  .tool-card h3 {
+    font-family: 'EB Garamond', Georgia, serif; color: #fff; font-size: 1.45rem;
+    font-weight: 700; margin-bottom: 0.5rem;
+  }
+  .tool-desc {
+    color: #d3c2e5; font-weight: 300; font-size: 0.95rem; line-height: 1.6;
+    margin-bottom: 1.1rem; min-height: 3rem;
+  }
+  .tool-tag {
+    display: inline-block; font-size: 0.7rem; letter-spacing: 0.03em; padding: 0.22rem 0.7rem;
+    border-radius: 9999px; background: rgba(255,228,0,0.1); color: #ffe480;
+    border: 1px solid rgba(255,228,0,0.25); margin-bottom: 1.2rem;
+  }
+  .tool-btn {
+    display: inline-block; padding: 0.62rem 1.5rem; border-radius: 9999px; font-weight: 700;
+    font-size: 0.9rem; background: linear-gradient(90deg, #ffe400, #ffd700); color: #2a1a00;
+    text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 14px rgba(255,215,0,0.3);
+    margin-top: auto;
+  }
+  .tool-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(255,215,0,0.45); }
+
+  /* ===== Latest Reviews divider ===== */
+  .reviews-divider { margin-top: 4rem; }
+  .reviews-divider .reviews-rule {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,228,0,0.45), transparent);
+  }
+  .reviews-divider h2 {
+    font-family: 'EB Garamond', Georgia, serif; font-size: 1.8rem; font-weight: 700;
+    color: #fff; white-space: nowrap;
+  }
 </style>
 
-<div class="min-h-screen py-20 px-6 relative overflow-hidden bg-gradient-to-b from-[#1a0a2e] via-[#120824] via-[#0e0620] to-[#080314]">
+<div class="review-page min-h-screen pt-3 px-4 pb-14 md:pt-4 md:px-6 md:pb-20 relative overflow-hidden bg-gradient-to-b from-[#221438] via-[#1a0e30] via-[#140a28] to-[#0e0620]">
 
   <!-- ===== Point Sparks ===== -->
   <div class="point-spark" style="top:8%;left:15%;width:5px;height:5px;animation:sparkFlash 2.2s ease-out infinite;animation-delay:0s;"></div>
@@ -137,7 +200,6 @@
   <svg class="flower-of-life" viewBox="-10 -20 260 250" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
     <!-- Layer 0: center circle -->
     <circle cx="120" cy="110" r="40" fill="none" stroke="rgba(255,245,220,0.6)" stroke-width="0.8"/>
-
     <!-- Layer 1: inner hexagonal ring (6 circles) -->
     <circle cx="160" cy="110" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
     <circle cx="140" cy="144.64" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
@@ -145,7 +207,6 @@
     <circle cx="80" cy="110" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
     <circle cx="100" cy="75.36" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
     <circle cx="140" cy="75.36" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
-
     <!-- Layer 2: outer hexagonal ring (12 circles) -->
     <circle cx="200" cy="110" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
     <circle cx="180" cy="144.64" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
@@ -159,11 +220,9 @@
     <circle cx="120" cy="40.72" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
     <circle cx="160" cy="40.72" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
     <circle cx="180" cy="75.36" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
-
     <!-- Inner bounding circle -->
     <circle cx="120" cy="110" r="80" fill="none" stroke="rgba(255,235,180,0.3)" stroke-width="0.6"/>
-
-    <!-- Outer enclosing circle (encloses the entire pattern) -->
+    <!-- Outer enclosing circle -->
     <circle cx="120" cy="110" r="125" fill="none" stroke="rgba(255,235,180,0.25)" stroke-width="0.6"/>
   </svg>
 
@@ -185,7 +244,7 @@
   {{ end }}
 
   <div class="max-w-6xl mx-auto relative z-10">
-    <header class="text-center pt-32 mb-16">
+    <header class="text-center pt-12 mb-6 md:pt-14 md:mb-10">
       <h1 class="text-5xl md:text-6xl font-bold text-white mb-5 tracking-tight" style="font-family: 'EB Garamond', Georgia, serif;">
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ffe400] via-[#fff080] to-[#ffd700]">
           {{ .Title }}
@@ -199,30 +258,66 @@
       </div>
     </header>
 
-    {{ if .Pages }}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-16">
-      {{ range $i, $p := .Pages }}
-      <a href="{{ .RelPermalink }}"
-         class="review-card rounded-2xl p-8 group block"
-         style="animation: cardIn {{ add (mul $i 0.2) 0.4 }}s ease-out both;">
-        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#ffe400] transition-colors duration-300">
-          {{ .Title }}
-        </h3>
-        {{ with .Params.summary }}
-        <p class="text-lavender text-sm mb-4 leading-relaxed opacity-85">{{ . | truncate 120 }}</p>
+    <!-- ===== Affiliate disclaimer (FTC compliance) ===== -->
+    <p class="text-center max-w-2xl mx-auto mb-2" style="color: #9a8fb0; font-size: 0.9rem; line-height: 1.6;">
+      🔮 <strong style="color:#d3c2e5;">Our Toolkits:</strong> We handpick and review the best mental wellness, astrology, and depth-psychology resources. To support our work, some of the links below are affiliate links.
+    </p>
+    <p class="text-center mb-8" style="color: #9a8fb0; font-size: 0.9rem;">
+      <a href="/disclosure/" style="color:#ffd700; text-decoration:underline;">Read our full Affiliate Disclosure →</a>
+    </p>
+
+    <!-- ===== SECTION 1: Tools Directory (data-driven) ===== -->
+    <section class="tools-section">
+      <div class="tools-intro">
+        <h2>🔮 The Mind's Resource Library</h2>
+        <p>We test and review spiritual, metaphysical, and depth-psychology tools to help you navigate your journey. Here are the elite resources we recommend this month:</p>
+      </div>
+      <div class="tools-grid">
+        {{ range $i, $t := .Site.Data.tools }}
+        <div class="tool-card" style="animation: toolIn {{ add (mul $i 0.15) 0.3 }}s ease-out both;">
+          <div class="tool-icon">{{ $t.icon }}</div>
+          <h3>{{ $t.name }}</h3>
+          <p class="tool-desc">{{ $t.description }}</p>
+          <span class="tool-tag">{{ $t.tag }}</span>
+          <a href="{{ $t.link }}" class="tool-btn" target="_blank" rel="noopener noreferrer">Try it Free →</a>
+        </div>
         {{ end }}
-        <span class="text-xs text-gray-500">{{ .Date.Format "Jan 2, 2006" }}</span>
-      </a>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 2: Latest Reviews ===== -->
+    <div class="reviews-divider">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="reviews-rule"></div>
+        <h2>Latest Reviews</h2>
+        <div class="reviews-rule"></div>
+      </div>
+
+      {{ if .Pages }}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 pb-16">
+        {{ range $i, $p := .Pages }}
+        <a href="{{ .RelPermalink }}"
+           class="review-card rounded-2xl p-5 md:p-8 group block"
+           style="animation: cardIn {{ add (mul $i 0.2) 0.4 }}s ease-out both;">
+          <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#ffe400] transition-colors duration-300">
+            {{ .Title }}
+          </h3>
+          {{ with .Params.summary }}
+          <p class="text-lavender text-sm mb-4 leading-relaxed opacity-85">{{ . | truncate 120 }}</p>
+          {{ end }}
+          <span class="text-xs text-gray-500">{{ .Date.Format "Jan 2, 2006" }}</span>
+        </a>
+        {{ end }}
+      </div>
+      {{ else }}
+      <div class="text-center py-20">
+        <h3 class="text-2xl font-bold text-white mb-3">Curating with Care</h3>
+        <p class="text-lavender max-w-md mx-auto opacity-70">
+          Each review is crafted with discernment — like choosing the right crystal for your altar. Honest assessments coming soon.
+        </p>
+      </div>
       {{ end }}
     </div>
-    {{ else }}
-    <div class="text-center py-20">
-      <h3 class="text-2xl font-bold text-white mb-3">Curating with Care</h3>
-      <p class="text-lavender max-w-md mx-auto opacity-70">
-        Each review is crafted with discernment — like choosing the right crystal for your altar. Honest assessments coming soon.
-      </p>
-  </div>
-    {{ end }}
   </div>
 </div>
 {{ end }}

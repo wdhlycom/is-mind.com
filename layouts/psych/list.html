@@ -1,0 +1,504 @@
+{{ define "main" }}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap');
+
+  @keyframes breatheIn {
+    0%   { opacity: 0; transform: translateY(18px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .fade-section { animation: breatheIn 1s ease-out both; }
+
+  /* ===== Force theme solid backgrounds transparent so our animated base shows through ===== */
+  html,
+  body,
+  .page-wrapper,
+  .page-body,
+  .page-header,
+  .page-footer,
+  #page-bg,
+  .psych-page {
+    background-color: transparent !important;
+  }
+
+  /* ============ PARENT PAGE: high-visibility energy rising ============ */
+  .energy-bg-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: radial-gradient(ellipse at bottom, #160a26 0%, #0b0612 60%, #06030a 100%) !important;
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .energy-strand {
+    position: absolute;
+    bottom: -30%;
+    height: 100vh;
+    /* visibly saturated violet/indigo beams */
+    background: linear-gradient(to top,
+      transparent 0%,
+      rgba(168, 85, 247, 0.35) 45%,
+      rgba(99, 102, 241, 0.22) 78%,
+      transparent 100%
+    );
+    filter: blur(30px);
+    animation: energyRise 14s infinite linear;
+    transform-origin: bottom center;
+  }
+  .strand-1 { left: 5%;  width: 18vw; animation-duration: 18s; animation-delay: 0s; }
+  .strand-2 { left: 35%; width: 30vw; animation-duration: 12s; animation-delay: -4s; }
+  .strand-3 { left: 65%; width: 22vw; animation-duration: 20s; animation-delay: -9s; }
+  .strand-4 { left: 85%; width: 14vw; animation-duration: 16s; animation-delay: -2s; }
+  @keyframes energyRise {
+    0%   { transform: translateY(0) scaleX(1); opacity: 0; }
+    12%  { opacity: 1; }
+    50%  { transform: translateY(-40vh) scaleX(1.35) skewX(5deg); }
+    88%  { opacity: 0.9; }
+    100% { transform: translateY(-110vh) scaleX(1); opacity: 0; }
+  }
+  .energy-core {
+    position: absolute; bottom: -18%; left: 50%;
+    width: 46vw; height: 46vw; border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,175,55,0.30) 0%, rgba(192,132,252,0.16) 35%, transparent 70%);
+    filter: blur(45px);
+    animation: corePulse 7s ease-in-out infinite;
+  }
+  @keyframes corePulse {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+    50% { transform: translateX(-50%) scale(1.18); opacity: 1; }
+  }
+  .psych-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(50px); pointer-events: none; opacity: 0.55;
+    will-change: transform; z-index: -1;
+  }
+  .po-1 { width: 38vw; height: 38vw; top: 6%; left: -6%; background: radial-gradient(circle, rgba(120,90,180,0.6), transparent 70%); animation: orbDrift 22s ease-in-out infinite alternate; }
+  .po-2 { width: 32vw; height: 32vw; top: 32%; right: -8%; background: radial-gradient(circle, rgba(60,120,160,0.55), transparent 70%); animation: orbDrift 28s ease-in-out infinite alternate-reverse; }
+  .po-3 { width: 30vw; height: 30vw; bottom: 4%; left: 28%; background: radial-gradient(circle, rgba(160,80,110,0.5), transparent 70%); animation: orbDrift 25s ease-in-out infinite alternate; }
+  @keyframes orbDrift {
+    0% { transform: translate(0,0) scale(1); }
+    100% { transform: translate(4vw,-3vh) scale(1.1); }
+  }
+
+  /* ============ SUBCATEGORY + ARTICLE PAGES: serene nebula (breathing, clearly visible) ============ */
+  .reading-bg-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: radial-gradient(ellipse at 50% 30%, #120a1f 0%, #0a0512 55%, #06030a 100%);
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .nebula-orb {
+    position: absolute;
+    width: 55vw; height: 55vh;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.30;
+    transition: background 0.8s ease;
+    will-change: transform, opacity;
+  }
+  .orb-left {
+    top: -18vh; left: -18vw;
+    background: #7c3aed;
+    animation: nebulaBreath 16s infinite ease-in-out alternate;
+  }
+  .orb-right {
+    bottom: -18vh; right: -18vw;
+    background: #a855f7;
+    animation: nebulaBreath 22s infinite ease-in-out alternate-reverse;
+  }
+  .orb-center {
+    top: 28%; left: 22%;
+    width: 42vw; height: 42vh;
+    background: #4c1d95;
+    animation: nebulaBreath 19s infinite ease-in-out alternate;
+  }
+  @keyframes nebulaBreath {
+    0%   { transform: scale(0.95); opacity: 0.18; }
+    50%  { transform: scale(1.25); opacity: 0.42; }
+    100% { transform: scale(1.0); opacity: 0.22; }
+  }
+  /* per-subsection theme colors */
+  .theme-shadow .orb-left { background: #7c3aed; }
+  .theme-shadow .orb-right { background: #9d174d; }
+  .theme-shadow .orb-center { background: #6d28d9; }
+  .theme-relationship .orb-left { background: #3b82f6; }
+  .theme-relationship .orb-right { background: #a855f7; }
+  .theme-relationship .orb-center { background: #1d4ed8; }
+  .theme-books .orb-left { background: #059669; }
+  .theme-books .orb-right { background: #1e40af; }
+  .theme-books .orb-center { background: #0f766e; }
+
+  /* ===== Three-column grid ===== */
+  .psych-columns { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 768px) {
+    .psych-columns { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: stretch; }
+  }
+
+  /* ===== Tall frosted card ===== */
+  .psych-card {
+    display: flex; flex-direction: column;
+    background: rgba(20, 14, 36, 0.40);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    border-radius: 1rem;
+    padding: 1.5rem 1.25rem;
+    position: relative; overflow: hidden;
+    transition: border-color .4s ease, box-shadow .4s ease;
+    animation: floaty 6s ease-in-out infinite;
+  }
+  .psych-card:nth-child(1) { animation-delay: 0s; }
+  .psych-card:nth-child(2) { animation-delay: -2s; }
+  .psych-card:nth-child(3) { animation-delay: -4s; }
+  .psych-card:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 45px rgba(212, 175, 55, 0.10);
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .psych-icon { width: 60px; height: 60px; margin-bottom: .75rem; }
+  .psych-icon svg { width: 100%; height: 100%; display: block; }
+
+  /* ===== Mystic animated icons (ref. code.txt) ===== */
+  .mystic-icon-svg {
+    width: 60px; height: 60px; fill: none;
+    stroke: #a855f7; stroke-width: 1.5;
+    stroke-linecap: round; stroke-linejoin: round;
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.5));
+    transition: all 0.5s ease;
+  }
+  .psych-card:hover .mystic-icon-svg {
+    stroke: #c084fc;
+    filter: drop-shadow(0 0 15px rgba(192, 132, 252, 0.8));
+    transform: scale(1.1);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  .anim-twinkle { transform-origin: center; animation: twinkle 3s infinite ease-in-out; }
+  @keyframes orbit-rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .anim-orbit-1 { transform-origin: center; animation: orbit-rotate 12s infinite linear; }
+  .anim-orbit-2 { transform-origin: center; animation: orbit-rotate 8s infinite linear reverse; }
+  @keyframes eclipse-glow {
+    0%, 100% { opacity: 0.4; filter: blur(1px); }
+    50% { opacity: 0.9; filter: blur(0px); }
+  }
+  .anim-eclipse { animation: eclipse-glow 4s infinite ease-in-out; }
+
+  .psych-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700; font-size: 1.5rem; line-height: 1.2;
+    color: #f1e7c9; letter-spacing: .02em; margin: 0 0 .4rem;
+  }
+  .psych-quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic; font-size: 1rem; line-height: 1.6;
+    color: rgba(223, 214, 193, 0.72); margin: .75rem 0 1.2rem;
+  }
+  .psych-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
+    margin: 0 0 1rem;
+  }
+
+  .psych-articles { display: flex; flex-direction: column; gap: .5rem; margin-bottom: .5rem; }
+  .psych-article {
+    display: block; padding: .6rem .7rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: .55rem;
+    transition: background .3s ease, border-color .3s ease;
+  }
+  .psych-article:hover {
+    background: rgba(212, 175, 55, 0.10);
+    border-color: rgba(212, 175, 55, 0.28);
+  }
+  .psych-article h4 {
+    font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1rem;
+    color: rgba(236, 230, 218, 0.92); margin: 0 0 .2rem; line-height: 1.3;
+    transition: color .3s ease;
+  }
+  .psych-article:hover h4 { color: #e8c45a; }
+  .psych-article p {
+    font-size: .78rem; line-height: 1.45; color: rgba(200, 195, 182, 0.6); margin: 0;
+  }
+
+  .psych-explore {
+    margin-top: auto; display: block; text-align: center;
+    padding: .6rem .9rem; border-radius: 9999px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #d4af37; font-size: .85rem; letter-spacing: .04em;
+    transition: all .3s ease;
+  }
+  .psych-explore:hover {
+    background: rgba(212, 175, 55, 0.14);
+    color: #f1e7c9; box-shadow: 0 0 20px rgba(212, 175, 55, 0.12);
+  }
+
+  /* ===== Full-width CTA banner below the three columns ===== */
+  .psych-cta-rule {
+    width: 100%; height: 1px; margin: 3.5rem 0 2.5rem;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.45), transparent);
+  }
+  .psych-cta {
+    position: relative; overflow: hidden;
+    border: 1px solid rgba(255, 159, 67, 0.18);
+    border-radius: 12px;
+    padding: 30px 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(25, 15, 38, 0.6), rgba(13, 10, 24, 0.8));
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+  .psych-cta::before {
+    content: ""; position: absolute; inset: 6px; border-radius: 8px;
+    border: 1px solid rgba(255, 159, 67, 0.10); pointer-events: none;
+  }
+  .psych-cta h3 {
+    position: relative; margin: 0 0 12px 0;
+    font-family: 'Cinzel', Georgia, serif; font-weight: 700;
+    font-size: clamp(1.15rem, 3vw, 1.4rem); letter-spacing: 2px;
+    color: #ff9f43; text-shadow: 0 0 10px rgba(255, 159, 67, 0.3);
+  }
+  .psych-cta p.cta-desc {
+    position: relative; margin: 0 0 20px 0;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem; line-height: 1.6; color: #b3b3b3;
+  }
+  .psych-cta a.cta-btn {
+    position: relative; display: inline-block;
+    color: #ffffff; text-decoration: none;
+    background: rgba(255, 159, 67, 0.10);
+    border: 1px solid #ff9f43;
+    padding: 8px 20px; border-radius: 6px;
+    font-family: 'Cinzel', serif; font-size: 0.9em; font-weight: 600;
+    letter-spacing: .04em; transition: all 0.3s ease;
+  }
+  .psych-cta a.cta-btn:hover { background: rgba(255, 159, 67, 0.25); }
+  html:not(.dark) .psych-cta {
+    background: linear-gradient(135deg, rgba(250, 247, 255, 0.85), rgba(244, 240, 252, 0.95));
+    border-color: rgba(255, 159, 67, 0.28);
+  }
+  html:not(.dark) .psych-cta h3 { color: #e8893a; text-shadow: 0 0 10px rgba(255, 159, 67, 0.2); }
+  html:not(.dark) .psych-cta p.cta-desc { color: #5b5470; }
+  html:not(.dark) .psych-cta a.cta-btn { color: #7c3aed; background: rgba(124, 58, 237, 0.08); border-color: #7c3aed; }
+  html:not(.dark) .psych-cta a.cta-btn:hover { background: rgba(124, 58, 237, 0.18); }
+
+  .psych-h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; }
+  .psych-sub {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: rgba(210, 200, 180, 0.8); font-weight: 300; letter-spacing: .03em;
+  }
+
+  /* ===== Subsection article cards ===== */
+  .psych-article-card {
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    background: rgba(26, 20, 44, 0.42);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all .35s ease;
+    display: flex; flex-direction: column;
+  }
+  .psych-article-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(212, 175, 55, 0.35);
+    box-shadow: 0 12px 40px -10px rgba(0,0,0,0.4), 0 0 30px rgba(212,175,55,0.08);
+  }
+  .psych-article-card h3 {
+    font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem;
+    color: #f1e7c9; margin: 0 0 .75rem; line-height: 1.3;
+    transition: color .3s ease;
+  }
+  .psych-article-card:hover h3 { color: #e8c45a; }
+  .psych-article-card p {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+    line-height: 1.6; color: rgba(220, 212, 190, 0.72); margin: 0 0 1rem;
+    flex-grow: 1;
+  }
+  .psych-article-card .meta {
+    font-size: .75rem; color: rgba(200, 190, 170, 0.5); letter-spacing: .03em;
+  }
+
+  /* ===== Smooth theme transition so the toggle feels responsive ===== */
+  body,
+  .energy-bg-container,
+  .reading-bg-container,
+  .psych-card,
+  .psych-article-card,
+  .nebula-orb,
+  .energy-strand,
+  .psych-orb {
+    transition: background-color .45s ease, background .45s ease, color .45s ease;
+  }
+
+  /* ============ LIGHT MODE ("圣洁晨曦") — toggle now visibly flips psych pages ============ */
+  /* Parent energy page → soft dawn mist */
+  html:not(.dark) .energy-bg-container {
+    background: radial-gradient(ellipse at bottom, #f3ecfb 0%, #f8f6fc 60%, #fbfaff 100%) !important;
+  }
+  html:not(.dark) .energy-strand {
+    background: linear-gradient(to top,
+      transparent 0%,
+      rgba(219, 39, 119, 0.14) 40%,
+      rgba(168, 85, 247, 0.10) 75%,
+      transparent 100%) !important;
+    filter: blur(50px) !important;
+  }
+  html:not(.dark) .energy-core {
+    background: radial-gradient(circle, rgba(217,119,242,0.22) 0%, rgba(244,114,182,0.12) 35%, transparent 70%) !important;
+  }
+  html:not(.dark) .psych-orb { opacity: 0.4; }
+  html:not(.dark) .po-1 { background: radial-gradient(circle, rgba(196,181,253,0.7), transparent 70%); }
+  html:not(.dark) .po-2 { background: radial-gradient(circle, rgba(186,230,253,0.6), transparent 70%); }
+  html:not(.dark) .po-3 { background: radial-gradient(circle, rgba(251,207,232,0.55), transparent 70%); }
+
+  /* Subcategory + article pages → serene light nebula */
+  html:not(.dark) .reading-bg-container {
+    background: radial-gradient(ellipse at 50% 30%, #efeafb 0%, #f6f3fc 55%, #fbfaff 100%) !important;
+  }
+  html:not(.dark) .nebula-orb { opacity: 0.22; }
+  html:not(.dark) .theme-shadow .orb-left { background: #c4b5fd; }
+  html:not(.dark) .theme-shadow .orb-right { background: #f0abd4; }
+  html:not(.dark) .theme-shadow .orb-center { background: #ddd6fe; }
+  html:not(.dark) .theme-relationship .orb-left { background: #93c5fd; }
+  html:not(.dark) .theme-relationship .orb-right { background: #f9a8d4; }
+  html:not(.dark) .theme-relationship .orb-center { background: #bfdbfe; }
+  html:not(.dark) .theme-books .orb-left { background: #6ee7b7; }
+  html:not(.dark) .theme-books .orb-right { background: #a5b4fc; }
+  html:not(.dark) .theme-books .orb-center { background: #99f6e4; }
+
+  /* Cards → white frosted glass in light mode */
+  html:not(.dark) .psych-card {
+    background: rgba(255, 255, 255, 0.62) !important;
+    border-color: rgba(168, 85, 247, 0.25) !important;
+  }
+  html:not(.dark) .psych-article-card {
+    background: rgba(255, 255, 255, 0.62) !important;
+    border-color: rgba(168, 85, 247, 0.25) !important;
+  }
+  html:not(.dark) .psych-article {
+    background: rgba(168, 85, 247, 0.06);
+    border-color: rgba(168, 85, 247, 0.12);
+  }
+  html:not(.dark) .psych-article:hover {
+    background: rgba(168, 85, 247, 0.12);
+    border-color: rgba(124, 58, 237, 0.3);
+  }
+
+  /* Text → dark ink for contrast on white */
+  html:not(.dark) .psych-title { color: #3b2f63 !important; }
+  html:not(.dark) .psych-quote { color: #5b5470 !important; }
+  html:not(.dark) .psych-article h4 { color: #2e2a4a !important; }
+  html:not(.dark) .psych-article p { color: #6b6580 !important; }
+  html:not(.dark) .psych-article-card h3 { color: #2e2a4a !important; }
+  html:not(.dark) .psych-article-card p { color: #5b5470 !important; }
+  html:not(.dark) .psych-article-card .meta { color: #807a92 !important; }
+  html:not(.dark) .psych-explore { color: #7c3aed !important; border-color: rgba(124,58,237,0.4) !important; }
+  html:not(.dark) .psych-explore:hover { background: rgba(124,58,237,0.10); color: #5b21b6 !important; }
+  html:not(.dark) .psych-h1 .bg-clip-text {
+    background-image: linear-gradient(to right, #6d28d9, #9d174d, #7c3aed) !important;
+  }
+  html:not(.dark) .psych-sub { color: #4b4566 !important; }
+  html:not(.dark) .mystic-icon-svg { stroke: #7c3aed; filter: drop-shadow(0 0 6px rgba(124,58,237,0.35)); }
+</style>
+
+{{ $isParent := .Sections }}
+{{ $themeClass := "" }}
+{{ if not $isParent }}{{ with .Params.theme }}{{ $themeClass = printf "theme-%s" . }}{{ end }}{{ end }}
+
+<div class="min-h-screen psych-page pt-3 px-4 pb-14 md:pt-4 md:px-6 md:pb-20 relative overflow-hidden {{ $themeClass }}">
+  {{ if $isParent }}
+  <!-- Energy rising background (parent page) -->
+  <div class="energy-bg-container">
+    <div class="energy-core"></div>
+    <div class="energy-strand strand-1"></div>
+    <div class="energy-strand strand-2"></div>
+    <div class="energy-strand strand-3"></div>
+    <div class="energy-strand strand-4"></div>
+    <div class="psych-orb po-1"></div>
+    <div class="psych-orb po-2"></div>
+    <div class="psych-orb po-3"></div>
+  </div>
+  {{ else }}
+  <!-- Serene nebula background (subcategory page) -->
+  <div class="reading-bg-container">
+    <div class="nebula-orb orb-center"></div>
+    <div class="nebula-orb orb-left"></div>
+    <div class="nebula-orb orb-right"></div>
+  </div>
+  {{ end }}
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <header class="text-center pt-12 mb-6 md:pt-14 md:mb-10 fade-section">
+      <h1 class="psych-h1 text-5xl md:text-6xl mb-4 font-bold">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#d4c8a8] via-[#e8d8b8] to-[#c0a880]">
+          {{ .Title }}
+        </span>
+      </h1>
+      <p class="psych-sub text-lg max-w-2xl mx-auto">
+        {{ .Description | default "Where depth psychology meets symbolic wisdom. Explore the unconscious, decode your shadow, and master your inner world." }}
+      </p>
+      <div class="mt-6 flex justify-center">
+        <div class="w-16 h-px bg-gradient-to-r from-transparent via-[#b8a080] to-transparent"></div>
+      </div>
+    </header>
+
+    {{ if $isParent }}
+    <!-- Parent psych page: three subcategory cards -->
+    <div class="psych-columns">
+      {{ range .Sections.ByWeight }}
+      <div class="psych-card">
+        <div class="psych-icon">{{ partial "psych-icon.html" (dict "name" .Params.icon) }}</div>
+        <h3 class="psych-title">{{ .Title }}</h3>
+        <p class="psych-quote">{{ .Params.quote }}</p>
+        <div class="psych-divider"></div>
+
+        <div class="psych-articles">
+          {{ range first 2 .RegularPages }}
+          <a href="{{ .RelPermalink }}" class="psych-article">
+            <h4>{{ .Title }}</h4>
+            {{ with .Summary }}<p>{{ . | plainify | truncate 90 }}</p>{{ end }}
+          </a>
+          {{ end }}
+        </div>
+
+        <a href="{{ .RelPermalink }}" class="psych-explore">Click to explore →</a>
+      </div>
+      {{ end }}
+    </div>
+
+    <!-- Full-width CTA below the three columns -->
+    <div class="psych-cta-rule"></div>
+    <div class="psych-cta fade-section">
+      <h3>🔮 LOOKING FOR GUIDANCE?</h3>
+      <p class="cta-desc">
+        Explore our handpicked spiritual toolkits and mental wellness resources <br>
+        to find the elite AI tools designed for your inner growth.
+      </p>
+      <a href="{{ "/reviews/" | relURL }}" class="cta-btn">Enter The Mind's Toolkit →</a>
+    </div>
+    {{ else }}
+    <!-- Subcategory page: article cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+      {{ range .Pages }}
+      <a href="{{ .RelPermalink }}" class="psych-article-card group block">
+        <h3>{{ .Title }}</h3>
+        {{ with .Summary }}<p>{{ . | plainify | truncate 140 }}</p>{{ end }}
+        <span class="meta">{{ .Date.Format "Jan 2, 2006" }}</span>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

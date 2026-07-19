@@ -1,5 +1,5 @@
 ---
-title: "mind.autos: The automatic engine for your mind"
+title: "is-mind.com: The automatic engine for your mind"
 date: 2026-06-20T09:19:05+08:00
 type: landing
 
@@ -13,29 +13,29 @@ meta_tags:
 # Schema markup
 schema:
   type: "WebSite"
-  name: "mind.autos"
+  name: "is-mind.com"
   description: "Decode the Language of Your Soul - Ancient wisdom meets modern insight"
-  url: "https://mind.autos/"
+  url: "https://is-mind.com/"
   author:
     type: "Organization"
-    name: "mind.autos"
+    name: "is-mind.com"
   publisher:
     type: "Organization"
-    name: "mind.autos"
+    name: "is-mind.com"
   inLanguage: "en-US"
 
 # Open Graph
 opengraph:
-  title: "mind.autos - Decode the Language of Your Soul"
+  title: "is-mind.com - Decode the Language of Your Soul"
   description: "Venture into the ethereal realm where ancient wisdom converges with modern insight."
   type: "website"
   image: ""
-  url: "https://mind.autos/"
+  url: "https://is-mind.com/"
 
 # Twitter Card
 twitter:
   card: "summary_large_image"
-  title: "mind.autos - Decode the Language of Your Soul"
+  title: "is-mind.com - Decode the Language of Your Soul"
   description: "Venture into the ethereal realm where ancient wisdom converges with modern insight."
 
 # Analytics

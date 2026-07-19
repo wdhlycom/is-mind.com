@@ -1,0 +1,52 @@
+<style>
+  /* Shared base (dark-mode) styles for every /tags/ page.
+     Included on both the single-term page (taxonomy.html) and the
+     keyword-index page (terms.html) so the two stay visually identical.
+     Light-mode overrides live globally in navbar.html (html:not(.dark) ...). */
+  html, body, .page-wrapper, .page-body, .page-header, .page-footer, #page-bg { background-color: transparent !important; }
+  @keyframes driftGentle { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(-3vw,-4vh) scale(1.1); } 100% { transform: translate(0,0) scale(1); } }
+  .tag-bg-blob { position:absolute; border-radius:50%; pointer-events:none; filter: blur(60px); opacity:.5; will-change: transform; }
+  .tag-bg-blob.a { top:-10%; left:-8%; width:42vw; height:42vh; background: radial-gradient(circle, rgba(160,130,210,.5), transparent 70%); animation: driftGentle 22s ease-in-out infinite; }
+  .tag-bg-blob.b { bottom:-12%; right:-6%; width:46vw; height:46vh; background: radial-gradient(circle, rgba(210,150,180,.4), transparent 70%); animation: driftGentle 28s ease-in-out infinite reverse; }
+  @keyframes cardFadeIn { 0% { opacity:0; transform: translateY(20px);} 100% { opacity:1; transform: translateY(0);} }
+
+  .tags-page .text-soft { color: rgba(215,205,225,0.8); font-weight:300; }
+  .tags-page .back-link { color:#d4af37; }
+  .tags-page .back-link:hover { text-decoration: underline; }
+
+  /* ---- single-term article cards ---- */
+  .tags-page .tag-result-card {
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: linear-gradient(160deg, rgba(80,60,120,0.35) 0%, rgba(40,25,70,0.5) 60%, rgba(30,20,55,0.6) 100%);
+    border: 1px solid rgba(200,180,220,0.2);
+    transition: all .45s cubic-bezier(.4,0,.2,1);
+    position: relative; overflow: hidden;
+  }
+  .tags-page .tag-result-card:hover {
+    transform: translateY(-8px); border-color: rgba(220,200,240,0.4);
+    box-shadow: 0 0 40px rgba(180,150,220,0.14), 0 20px 40px -15px rgba(0,0,0,0.5);
+  }
+  .tags-page .tag-result-card h3 { color:#f0e8ff; font-family: Georgia,'Songti SC',serif; }
+  .tags-page .tag-result-card p { color: rgba(215,205,225,0.75); }
+  .tags-page .tag-result-card .meta { color: rgba(200,190,220,0.5); font-size:.8rem; }
+
+  /* ---- list-of-terms pills ---- */
+  .tags-page .tag-pill {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .5rem 1rem; border-radius: 999px;
+    background: rgba(180,150,220,0.12); color: rgba(220,205,240,0.9);
+    border: 1px solid rgba(180,150,220,0.22);
+    font-family: Georgia,'Songti SC',serif; font-size: 1rem;
+    transition: all .3s ease;
+  }
+  .tags-page .tag-pill:hover {
+    background: rgba(180,150,220,0.22); color: #fff;
+    border-color: rgba(220,200,240,0.45);
+    transform: translateY(-3px);
+    box-shadow: 0 0 24px rgba(180,150,220,0.18);
+  }
+  .tags-page .tag-pill .count {
+    font-size: .72rem; padding: .05rem .45rem; border-radius: 999px;
+    background: rgba(212,175,55,0.18); color: #e8cf8a;
+  }
+</style>

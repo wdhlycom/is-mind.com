@@ -8,7 +8,7 @@ draft: false
 
 ## Privacy Policy
 
-At mind.autos, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines our practices regarding the collection, use, and disclosure of your information when you visit our website.
+At is-mind.com, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines our practices regarding the collection, use, and disclosure of your information when you visit our website.
 
 ### Information We Collect
 
@@ -63,6 +63,6 @@ When you visit our site, you may see a cookie consent banner that allows you to 
 
 If you have any questions about this Privacy Policy or our data practices, please contact us at:
 
-Email: privacy@mind.autos
+Email: privacy@is-mind.com
 
 Last updated: June 20, 2026

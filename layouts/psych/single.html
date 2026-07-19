@@ -1,0 +1,118 @@
+{{ define "main" }}
+<style>
+  /* Force theme solid backgrounds transparent so our animated base shows through */
+  html,
+  body,
+  .page-wrapper,
+  .page-body,
+  .page-header,
+  .page-footer,
+  #page-bg { background-color: transparent !important; }
+
+  /* Serene nebula background for psych article pages (ref. 11.txt) */
+  .reading-bg-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: radial-gradient(ellipse at 50% 30%, #120a1f 0%, #0a0512 55%, #06030a 100%);
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .nebula-orb {
+    position: absolute;
+    width: 55vw; height: 55vh;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.30;
+    transition: background 0.8s ease;
+    will-change: transform, opacity;
+  }
+  .orb-left {
+    top: -18vh; left: -18vw;
+    background: #7c3aed;
+    animation: nebulaBreath 16s infinite ease-in-out alternate;
+  }
+  .orb-right {
+    bottom: -18vh; right: -18vw;
+    background: #a855f7;
+    animation: nebulaBreath 22s infinite ease-in-out alternate-reverse;
+  }
+  .orb-center {
+    top: 28%; left: 22%;
+    width: 42vw; height: 42vh;
+    background: #4c1d95;
+    animation: nebulaBreath 19s infinite ease-in-out alternate;
+  }
+  @keyframes nebulaBreath {
+    0%   { transform: scale(0.95); opacity: 0.18; }
+    50%  { transform: scale(1.25); opacity: 0.42; }
+    100% { transform: scale(1.0); opacity: 0.22; }
+  }
+  /* theme color switching per subsection */
+  .theme-shadow .orb-left { background: #7c3aed; }
+  .theme-shadow .orb-right { background: #9d174d; }
+  .theme-shadow .orb-center { background: #6d28d9; }
+  .theme-relationship .orb-left { background: #3b82f6; }
+  .theme-relationship .orb-right { background: #a855f7; }
+  .theme-relationship .orb-center { background: #1d4ed8; }
+  .theme-books .orb-left { background: #059669; }
+  .theme-books .orb-right { background: #1e40af; }
+  .theme-books .orb-center { background: #0f766e; }
+
+  /* ===== Smooth theme transition so the toggle feels responsive ===== */
+  body, .reading-bg-container, .nebula-orb { transition: background-color .45s ease, background .45s ease; }
+
+  /* ============ LIGHT MODE ("圣洁晨曦") for psych article pages ============ */
+  html:not(.dark) .reading-bg-container {
+    background: radial-gradient(ellipse at 50% 30%, #efeafb 0%, #f6f3fc 55%, #fbfaff 100%) !important;
+  }
+  html:not(.dark) .nebula-orb { opacity: 0.22; }
+  html:not(.dark) .theme-shadow .orb-left { background: #c4b5fd; }
+  html:not(.dark) .theme-shadow .orb-right { background: #f0abd4; }
+  html:not(.dark) .theme-shadow .orb-center { background: #ddd6fe; }
+  html:not(.dark) .theme-relationship .orb-left { background: #93c5fd; }
+  html:not(.dark) .theme-relationship .orb-right { background: #f9a8d4; }
+  html:not(.dark) .theme-relationship .orb-center { background: #bfdbfe; }
+  html:not(.dark) .theme-books .orb-left { background: #6ee7b7; }
+  html:not(.dark) .theme-books .orb-right { background: #a5b4fc; }
+  html:not(.dark) .theme-books .orb-center { background: #99f6e4; }
+
+  /* Article body text → dark ink so it's readable on the light dawn background */
+  html:not(.dark) .article-body .content-block,
+  html:not(.dark) .article-body .content-block p { color: #2a2545 !important; }
+  html:not(.dark) .article-body .content-block h2,
+  html:not(.dark) .article-body .content-block h3 { color: #1f1b38 !important; }
+  html:not(.dark) .article-body .content-block a { color: #7c3aed !important; }
+  html:not(.dark) .article-body .content-block strong { color: #1f1b38 !important; }
+  html:not(.dark) .article-body .content-block ul li,
+  html:not(.dark) .article-body .content-block ol li { color: #2a2545 !important; }
+  html:not(.dark) .article-body .content-block ul:not(.tags-container) li:not(:has(input)) { color: #4b4566 !important; }
+  html:not(.dark) .article-body .article-summary { color: #4b4566 !important; }
+  html:not(.dark) .article-body .post-date { color: #6b6580 !important; }
+  html:not(.dark) .article-body .related-title { color: #5b5470 !important; border-color: rgba(124,58,237,0.2) !important; }
+  html:not(.dark) .article-body .related-item { color: #4b4566 !important; border-color: rgba(124,58,237,0.12) !important; }
+  html:not(.dark) .article-body .related-item:hover { color: #7c3aed !important; background: rgba(124,58,237,0.06) !important; }
+  html:not(.dark) .article-body .content-block blockquote {
+    background-color: rgba(124,58,237,0.05) !important;
+    border-color: rgba(124,58,237,0.2) !important; color: #4b4566 !important;
+  }
+</style>
+
+{{ $theme := "" }}
+{{ $dir := lower .File.Dir }}
+{{ if in $dir "book insights" }}{{ $theme = "books" }}
+{{ else if in $dir "relationship" }}{{ $theme = "relationship" }}
+{{ else if in $dir "shadow work" }}{{ $theme = "shadow" }}
+{{ else }}{{ with .CurrentSection }}{{ with .Params.theme }}{{ $theme = . }}{{ end }}{{ end }}
+{{ end }}
+
+<div class="relative theme-{{ $theme }}">
+  <div class="reading-bg-container">
+    <div class="nebula-orb orb-center"></div>
+    <div class="nebula-orb orb-left"></div>
+    <div class="nebula-orb orb-right"></div>
+  </div>
+  {{ partial "article_body.html" . }}
+</div>
+{{ end }}

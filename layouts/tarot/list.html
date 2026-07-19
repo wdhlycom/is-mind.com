@@ -1,260 +1,315 @@
 {{ define "main" }}
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap");
-  /* ===== VISIBLE Dream Clouds ===== */
+  @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap");
+
+  /* ===== Deep space nebula background ===== */
   @keyframes driftSlow { 0% { transform: translate(0, 0); } 50% { transform: translate(6vw, -3vh); } 100% { transform: translate(0, 0); } }
   @keyframes driftWide { 0% { transform: translate(0, 0); } 33% { transform: translate(-5vw, -5vh); } 66% { transform: translate(8vw, 2vh); } 100% { transform: translate(0, 0); } }
   @keyframes driftGentle { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-3vw, -4vh) scale(1.1); } 100% { transform: translate(0, 0) scale(1); } }
 
-  /* Large visible cloud blobs */
-  .cloud-blob {
-    position: absolute; border-radius: 50%; pointer-events: none;
-    filter: blur(50px); will-change: transform;
-    mix-blend-mode: screen;
-  }
-  .cloud-blob.lavender {
-    width: 50vw; height: 40vh;
-    background: radial-gradient(ellipse at center,
-      rgba(160, 140, 210, 0.45) 0%,
-      rgba(140, 120, 190, 0.25) 30%,
-      rgba(100, 80, 160, 0.08) 65%,
-      transparent 100%);
-  }
-  .cloud-blob.rose {
-    width: 40vw; height: 35vh;
-    background: radial-gradient(ellipse at center,
-      rgba(210, 160, 180, 0.35) 0%,
-      rgba(190, 140, 160, 0.18) 35%,
-      rgba(150, 100, 130, 0.05) 70%,
-      transparent 100%);
-  }
-  .cloud-blob.gold {
-    width: 35vw; height: 30vh;
-    background: radial-gradient(ellipse at center,
-      rgba(230, 200, 140, 0.30) 0%,
-      rgba(200, 170, 110, 0.15) 40%,
-      transparent 100%);
-  }
-  .cloud-blob.pearl {
-    width: 45vw; height: 38vh;
-    background: radial-gradient(ellipse at center,
-      rgba(220, 215, 230, 0.35) 0%,
-      rgba(200, 190, 210, 0.18) 40%,
-      rgba(160, 150, 180, 0.05) 70%,
-      transparent 100%);
+  .nebula-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(60px); will-change: transform; }
+  .neb-purple { width: 55vw; height: 45vh; background: radial-gradient(ellipse at center, rgba(86,52,140,0.55) 0%, rgba(60,36,100,0.25) 40%, transparent 75%); }
+  .neb-violet { width: 45vw; height: 40vh; background: radial-gradient(ellipse at center, rgba(120,70,170,0.40) 0%, rgba(90,50,140,0.18) 45%, transparent 75%); }
+  .neb-gold   { width: 38vw; height: 32vh; background: radial-gradient(ellipse at center, rgba(196,150,60,0.30) 0%, rgba(160,120,50,0.12) 45%, transparent 75%); }
+  .neb-obsidian { width: 60vw; height: 50vh; background: radial-gradient(ellipse at center, rgba(20,14,34,0.9) 0%, rgba(12,9,22,0.6) 50%, transparent 80%); }
+
+  .n1 { top: -8%;  left: -12%; animation: driftSlow 24s ease-in-out infinite; }
+  .n2 { top: 8%;   right: -15%; animation: driftWide 28s ease-in-out infinite; animation-delay: -4s; }
+  .n3 { top: 38%;  left: 3%;  animation: driftGentle 22s ease-in-out infinite; animation-delay: -9s; }
+  .n4 { top: 55%;  right: -8%; animation: driftSlow 30s ease-in-out infinite; animation-delay: -14s; }
+  .n5 { top: 70%;  left: -10%; animation: driftWide 26s ease-in-out infinite; animation-delay: -7s; }
+  .n6 { top: 82%;  right: 12%; animation: driftGentle 32s ease-in-out infinite; animation-delay: -18s; }
+
+  /* Starfield */
+  .starfield {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.55;
+    background-image:
+      radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.9), transparent),
+      radial-gradient(1px 1px at 27% 62%, rgba(255,250,230,0.8), transparent),
+      radial-gradient(1px 1px at 41% 33%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1.4px 1.4px at 58% 71%, rgba(255,245,210,0.85), transparent),
+      radial-gradient(1px 1px at 67% 22%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 78% 54%, rgba(255,250,235,0.8), transparent),
+      radial-gradient(1.2px 1.2px at 88% 80%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 8% 84%, rgba(255,250,230,0.7), transparent),
+      radial-gradient(1px 1px at 50% 12%, rgba(255,255,255,0.75), transparent),
+      radial-gradient(1.3px 1.3px at 34% 88%, rgba(255,245,215,0.8), transparent);
   }
 
-  .c1 { top: -5%;  left: -10%; animation: driftSlow  22s ease-in-out infinite; }
-  .c2 { top: 10%;  right: -15%; animation: driftWide  26s ease-in-out infinite; animation-delay: -4s; }
-  .c3 { top: 35%; left: 5%;  animation: driftGentle 20s ease-in-out infinite; animation-delay: -9s; }
-  .c4 { top: 50%; right: -5%; animation: driftSlow  28s ease-in-out infinite; animation-delay: -14s; }
-  .c5 { top: 65%; left: -8%; animation: driftWide  24s ease-in-out infinite; animation-delay: -7s; }
-  .c6 { top: 75%; right: 10%; animation: driftGentle 30s ease-in-out infinite; animation-delay: -18s; }
-
-  /* ===== Floating Sparkles / Fairy Dust ===== */
+  /* Floating sparkles */
   @keyframes sparkleFloat {
-    0%   { transform: translateY(0) translateX(0) scale(0); opacity: 0; }
-    20%  { transform: translateY(-30px) translateX(15px) scale(1); opacity: 0.8; }
-    50%  { transform: translateY(-60px) translateX(-10px) scale(0.5); opacity: 0.4; }
-    80%  { transform: translateY(-90px) translateX(5px) scale(0.2); opacity: 0.1; }
-    100% { transform: translateY(-120px) translateX(0) scale(0); opacity: 0; }
+    0% { transform: translateY(0) scale(0); opacity: 0; }
+    20% { transform: translateY(-30px) scale(1); opacity: 0.8; }
+    100% { transform: translateY(-120px) scale(0); opacity: 0; }
   }
-  @keyframes sparkleFloat2 {
-    0%   { transform: translateY(0) translateX(0) scale(0); opacity: 0; }
-    25%  { transform: translateY(-25px) translateX(-20px) scale(1); opacity: 0.7; }
-    55%  { transform: translateY(-55px) translateX(10px) scale(0.6); opacity: 0.35; }
-    100% { transform: translateY(-100px) translateX(0) scale(0); opacity: 0; }
-  }
-  @keyframes sparkleFloat3 {
-    0%   { transform: translateY(0) scale(0); opacity: 0; }
-    30%  { transform: translateY(-35px) scale(1); opacity: 0.75; }
-    70%  { transform: translateY(-70px) scale(0.4); opacity: 0.2; }
-    100% { transform: translateY(-110px) scale(0); opacity: 0; }
-  }
-
-  .sparkle {
-    position: absolute; pointer-events: none; border-radius: 50%;
-    animation-fill-mode: both;
-    box-shadow: 0 0 6px 2px rgba(230, 210, 180, 0.6), 0 0 12px 4px rgba(200, 170, 140, 0.3);
-  }
+  .sparkle { position: absolute; pointer-events: none; border-radius: 50%;
+    box-shadow: 0 0 6px 2px rgba(230,210,180,0.6), 0 0 12px 4px rgba(200,170,140,0.3); }
   .s-gold { background: #f0d78c; }
-  .s-rose { background: #e8b4c0; box-shadow: 0 0 6px 2px rgba(230,170,180,0.6), 0 0 12px 4px rgba(200,140,155,0.3); }
-  .s-lav  { background: #c8b8e8; box-shadow: 0 0 6px 2px rgba(190,170,220,0.6), 0 0 12px 4px rgba(160,140,190,0.3); }
-  .s-pearl { background: #e8e4f0; box-shadow: 0 0 6px 2px rgba(220,215,230,0.6), 0 0 12px 4px rgba(200,190,210,0.3); }
-
   .sp-1 { width: 5px; height: 5px; }
   .sp-2 { width: 3px; height: 3px; }
-  .sp-3 { width: 4px; height: 4px; }
 
-  /* ===== Floating Mystic Icons ===== */
-  @keyframes iconFloat1 {
-    0%   { transform: translateY(0) rotate(0deg); }
-    50%  { transform: translateY(-18px) rotate(180deg); }
-    100% { transform: translateY(0) rotate(360deg); }
-  }
-  @keyframes iconFloat2 {
-    0%   { transform: translateY(0) rotate(0deg); }
-    50%  { transform: translateY(-22px) rotate(-120deg); }
-    100% { transform: translateY(0) rotate(-360deg); }
-  }
-  @keyframes iconFloat3 {
-    0%   { transform: translateY(0) rotate(0deg); }
-    50%  { transform: translateY(-14px) rotate(200deg); }
-    100% { transform: translateY(0) rotate(360deg); }
-  }
+  /* Card entrance */
+  @keyframes cardFadeIn { 0% { opacity: 0; transform: translateY(22px); } 100% { opacity: 1; transform: translateY(0); } }
 
-  .mystic-icon {
-    position: absolute; pointer-events: none; will-change: transform;
-    font-size: 2rem; line-height: 1; opacity: 0.15;
-    text-shadow: 0 0 10px rgba(200,170,230,0.6), 0 0 20px rgba(180,150,210,0.3);
-    animation-fill-mode: both;
+  .tarot-h1 {
+    font-family: 'Cinzel', Georgia, serif; font-weight: 900;
+    letter-spacing: 0.04em; line-height: 1.1;
   }
-  .mi-gold {
-    color: rgba(220, 190, 130, 0.8);
-    text-shadow: 0 0 10px rgba(220,190,130,0.6), 0 0 20px rgba(200,170,110,0.3);
-  }
-  .mi-lav {
-    color: rgba(180, 150, 220, 0.8);
-    text-shadow: 0 0 10px rgba(180,150,220,0.6), 0 0 20px rgba(160,130,200,0.3);
-  }
-  .mi-lg  { font-size: 2.5rem; }
-  .mi-md  { font-size: 1.8rem; }
-  .mi-sm  { font-size: 1.4rem; }
-
-  /* Card entrance — fades up softly */
-  @keyframes cardFadeIn {
-    0%   { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+  .art-nouveau-rule {
+    width: 140px; height: 22px; margin: 0.6rem auto 0;
+    background:
+      radial-gradient(circle at 50% 50%, #e8c45a 0 3px, transparent 4px),
+      linear-gradient(90deg, transparent, #d4af37 30%, #f3d778 50%, #d4af37 70%, transparent);
+    background-repeat: no-repeat;
+    background-size: 22px 22px, 100% 1px;
+    background-position: 50% 50%, 0 50%;
+    opacity: 0.85;
   }
 
-  /* ===== Glowing floating orbs ===== */
-  @keyframes orbRise {
-    0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
-    50%      { transform: translateY(-15px) scale(1.2); opacity: 0.7; }
-  }
-  .glow-orb {
-    position: absolute; border-radius: 50%; pointer-events: none; will-change: transform, opacity;
-    filter: blur(40px);
-  }
-  .orb-a { top: 20%; left: 25%; width: 20vw; height: 20vw; background: radial-gradient(circle, rgba(180,150,210,0.4), transparent 70%); animation: orbRise 10s ease-in-out infinite; }
-  .orb-b { top: 55%; right: 20%; width: 18vw; height: 18vw; background: radial-gradient(circle, rgba(210,160,180,0.35), transparent 70%); animation: orbRise 13s ease-in-out infinite; animation-delay: -5s; }
-  .orb-c { top: 35%; left: 60%; width: 15vw; height: 15vw; background: radial-gradient(circle, rgba(230,200,150,0.3), transparent 70%); animation: orbRise 11s ease-in-out infinite; animation-delay: -3s; }
+  .text-soft { color: rgba(220, 210, 235, 0.78); font-weight: 300; }
 
-  /* ===== Card styling ===== */
-  .tarot-card {
-    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-    background: linear-gradient(160deg, rgba(80,60,120,0.35) 0%, rgba(40,25,70,0.5) 60%, rgba(30,20,55,0.6) 100%);
-    border: 1px solid rgba(200,180,220,0.2);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
+  /* ===== Section labels ===== */
+  .section-label {
+    font-family: 'Cinzel', Georgia, serif; font-weight: 700;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    font-size: 0.78rem; color: #e8c45a;
+    display: inline-flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::before, .section-label::after {
+    content: ""; width: 36px; height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37);
+  }
+  .section-label::after { background: linear-gradient(90deg, #d4af37, transparent); }
+
+  /* ===== FEATURED asymmetric grid ===== */
+  .featured-grid {
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    gap: 1.4rem;
+  }
+  .featured-card {
     position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    border-radius: 16px;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(120,80,180,0.30), transparent 60%),
+      linear-gradient(160deg, rgba(46,30,72,0.92) 0%, rgba(26,17,44,0.96) 70%, rgba(16,11,28,0.98) 100%);
+    border: 1.5px solid rgba(212,175,55,0.55);
+    box-shadow: 0 0 28px rgba(212,175,55,0.10), 0 18px 40px -20px rgba(0,0,0,0.7);
+    padding: 1.4rem 1.5rem;
+    transition: transform 0.5s cubic-bezier(.4,0,.2,1), box-shadow 0.5s, border-color 0.5s;
+    will-change: transform;
+    text-decoration: none;
   }
-  .tarot-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: inherit;
-    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%, rgba(200,170,220,0.06) 100%);
-    pointer-events: none;
+  /* inner thin gold frame */
+  .featured-card .inner-frame {
+    position: absolute; inset: 9px; border-radius: 10px;
+    border: 1px solid rgba(212,175,55,0.28); pointer-events: none;
   }
-  .tarot-card::after {
-    content: ''; position: absolute; top: -1px; left: 2rem; right: 2rem; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(220,200,240,0.3), rgba(240,220,200,0.2), transparent);
+  /* faint sacred-geometry watermark */
+  .featured-card .geo-watermark {
+    position: absolute; top: 50%; left: 50%; width: 230px; height: 230px;
+    transform: translate(-50%,-50%); opacity: 0.07; pointer-events: none;
+    color: #e8c45a;
   }
-  .tarot-card:hover {
-    transform: translateY(-8px) scale(1.03);
-    border-color: rgba(220,200,240,0.4);
-    box-shadow:
-      0 0 40px rgba(180,150,220,0.12),
-      0 0 80px rgba(200,160,180,0.08),
-      0 20px 40px -15px rgba(0,0,0,0.5);
+  /* corner flourishes (data-uri gold curl) */
+  .geo-corner {
+    position: absolute; width: 34px; height: 34px; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M3 37 L3 15 Q3 3 15 3 L37 3' fill='none' stroke='%23d4af37' stroke-width='1.5'/%3E%3Cpath d='M3 23 Q13 23 13 13' fill='none' stroke='%23d4af37' stroke-width='1' opacity='0.7'/%3E%3Ccircle cx='15' cy='15' r='2' fill='%23d4af37'/%3E%3C/svg%3E");
+    background-size: contain; background-repeat: no-repeat;
+  }
+  .geo-corner.tl { top: 8px; left: 8px; }
+  .geo-corner.tr { top: 8px; right: 8px; transform: scaleX(-1); }
+  .geo-corner.bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+  .geo-corner.br { bottom: 8px; right: 8px; transform: scale(-1,-1); }
+
+  .featured-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(243,215,120,0.85);
+    box-shadow: 0 0 46px rgba(212,175,55,0.22), 0 22px 50px -20px rgba(0,0,0,0.8);
+  }
+  .featured-card .fc-badge {
+    position: absolute; top: 14px; left: 14px; z-index: 3;
+    font-family: 'Cinzel', serif; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: #1a1228; background: linear-gradient(90deg, #e8c45a, #f3d778);
+    padding: 0.28rem 0.7rem; border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(212,175,55,0.35);
+  }
+  .featured-card .fc-title {
+    font-family: 'Cinzel', Georgia, serif; font-weight: 700; color: #f4ecff;
+    line-height: 1.2; margin: 0 0 0.5rem; position: relative; z-index: 2;
+  }
+  .featured-card .fc-summary {
+    color: rgba(222,214,236,0.82); position: relative; z-index: 2;
+    font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.02rem; line-height: 1.5;
+  }
+  .featured-card .fc-date {
+    margin-top: 0.7rem; font-size: 0.72rem; letter-spacing: 0.08em;
+    color: rgba(212,175,55,0.85); position: relative; z-index: 2;
   }
 
-  /* Tags */
-  .tag-label {
-    display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
-    font-size: 0.7rem; margin-right: 0.35rem; margin-bottom: 0.35rem;
-    background: rgba(180,150,220,0.12); color: rgba(200,180,220,0.7);
-    border: 1px solid rgba(180,150,220,0.15); transition: all 0.3s;
-  }
-  .tag-label:hover { background: rgba(180,150,220,0.2); color: rgba(220,200,240,0.9); }
+  .fc-0 { grid-column: span 7; grid-row: span 2; min-height: 320px; }
+  .fc-0 .fc-title { font-size: 1.9rem; }
+  .fc-0 .geo-watermark { width: 300px; height: 300px; }
+  .fc-1, .fc-2 { grid-column: span 5; min-height: 150px; }
+  .fc-1 .fc-title, .fc-2 .fc-title { font-size: 1.3rem; }
 
-  /* Decorative title section */
-  .title-decor {
-    position: relative; display: inline-block;
+  /* ===== WATERFALL (rest) ===== */
+  .waterfall { column-count: 3; column-gap: 1.4rem; }
+  .wf-card {
+    break-inside: avoid; display: block; width: 100%; margin-bottom: 1.4rem;
+    position: relative; border-radius: 12px; padding: 1.15rem 1.25rem;
+    text-decoration: none;
+    background: linear-gradient(155deg, rgba(34,23,56,0.7) 0%, rgba(20,13,36,0.85) 100%);
+    border: 1px solid rgba(212,175,55,0.16);
+    transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
   }
+  .wf-card::before {
+    content: ""; position: absolute; top: 10px; left: 10px; width: 18px; height: 18px;
+    border-top: 1px solid rgba(212,175,55,0.4); border-left: 1px solid rgba(212,175,55,0.4);
+    border-top-left-radius: 4px;
+  }
+  .wf-card::after {
+    content: ""; position: absolute; bottom: 10px; right: 10px; width: 18px; height: 18px;
+    border-bottom: 1px solid rgba(212,175,55,0.4); border-right: 1px solid rgba(212,175,55,0.4);
+    border-bottom-right-radius: 4px;
+  }
+  .wf-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212,175,55,0.5);
+    box-shadow: 0 0 26px rgba(212,175,55,0.10);
+  }
+  .wf-card .wf-title {
+    font-family: 'Cinzel', Georgia, serif; font-weight: 700; color: #ece2ff;
+    font-size: 1.05rem; line-height: 1.3; margin: 0 0 0.4rem;
+  }
+  .wf-card .wf-summary {
+    color: rgba(212,205,228,0.7); font-size: 0.86rem; line-height: 1.5;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .wf-card .wf-date { margin-top: 0.55rem; font-size: 0.68rem; color: rgba(212,175,55,0.7); letter-spacing: 0.06em; }
 
-  .text-soft { color: rgba(215, 205, 225, 0.8); font-weight: 300; }
+  /* ===== Light mode ===== */
+  html:not(.dark) .tarot-page {
+    background: linear-gradient(180deg, #f6f1ff 0%, #efe7fb 45%, #e9e0f5 100%) !important;
+  }
+  html:not(.dark) .nebula-blob { opacity: 0.35; }
+  html:not(.dark) .text-soft { color: #4b4470; }
+  html:not(.dark) .featured-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.9) 0%, rgba(248,243,255,0.95) 100%);
+    border-color: rgba(154,118,20,0.45);
+  }
+  html:not(.dark) .featured-card .fc-title { color: #2c1e4a; }
+  html:not(.dark) .featured-card .fc-summary { color: #514a6e; }
+  html:not(.dark) .featured-card .geo-watermark { color: #9a7614; opacity: 0.10; }
+  html:not(.dark) .wf-card {
+    background: rgba(255,255,255,0.82); border-color: rgba(154,118,20,0.25);
+  }
+  html:not(.dark) .wf-card .wf-title { color: #2c1e4a; }
+  html:not(.dark) .wf-card .wf-summary { color: #5a5478; }
+
+  @media (max-width: 1023px) {
+    .featured-grid { grid-template-columns: 1fr; }
+    .fc-0, .fc-1, .fc-2 { grid-column: span 1; grid-row: auto; min-height: 0; }
+    .fc-0 .fc-title { font-size: 1.5rem; }
+    .waterfall { column-count: 2; }
+  }
+  @media (max-width: 640px) { .waterfall { column-count: 1; } }
 </style>
 
-<div class="min-h-screen py-20 px-6 relative overflow-hidden bg-gradient-to-b from-[#241840] via-[#2e2250] via-[#261c45] to-[#1c1435]">
+<div class="tarot-page min-h-screen pt-3 px-4 pb-16 md:pt-4 md:px-6 md:pb-24 relative overflow-hidden"
+     style="background: radial-gradient(ellipse at 50% -10%, #1c1233 0%, #120c20 55%, #0b0814 100%);">
 
-  <!-- ===== Breeze Clouds (toned down) ===== -->
-  <div class="cloud-blob lavender c1" style="opacity:0.6"></div>
-  <div class="cloud-blob rose c2" style="opacity:0.5"></div>
-  <div class="cloud-blob pearl c3" style="opacity:0.45"></div>
-  <div class="cloud-blob gold c4" style="opacity:0.4"></div>
-  <div class="cloud-blob lavender c5" style="opacity:0.35"></div>
-  <div class="cloud-blob rose c6" style="opacity:0.3"></div>
-
-  <!-- ===== Floating Orbs (subdued) ===== -->
-  <div class="glow-orb orb-a" style="opacity:0.6"></div>
-  <div class="glow-orb orb-b" style="opacity:0.5"></div>
-  <div class="glow-orb orb-c" style="opacity:0.45"></div>
-
-  <!-- ===== Sparkles (reduced) ===== -->
-  {{ range $i := seq 12 }}
+  <!-- ===== Nebula background ===== -->
+  <div class="nebula-blob neb-obsidian n4" style="opacity:0.9"></div>
+  <div class="nebula-blob neb-purple n1" style="opacity:0.8"></div>
+  <div class="nebula-blob neb-violet n2" style="opacity:0.7"></div>
+  <div class="nebula-blob neb-gold n3" style="opacity:0.5"></div>
+  <div class="nebula-blob neb-violet n5" style="opacity:0.55"></div>
+  <div class="nebula-blob neb-purple n6" style="opacity:0.5"></div>
+  <div class="starfield"></div>
+  {{ range $i := seq 14 }}
   <div class="sparkle s-gold sp-1"
-    style="left:{{ math.Mod (mul $i 37) 100 }}%;top:{{ math.Mod (mul $i 53) 90 }}%;
+    style="left:{{ math.Mod (mul $i 37) 100 }}%;top:{{ math.Mod (mul $i 53) 92 }}%;
     animation:sparkleFloat {{ add (math.Mod (mul $i 3) 5) 6 }}s ease-out {{ math.Mod (mul $i 2.1) 8 }}s infinite;"></div>
   {{ end }}
-  {{ range $i := seq 12 }}
-  <div class="sparkle s-rose sp-2"
+  {{ range $i := seq 10 }}
+  <div class="sparkle s-gold sp-2"
     style="left:{{ math.Mod (mul $i 43) 100 }}%;top:{{ math.Mod (mul $i 59) 90 }}%;
-    animation:sparkleFloat2 {{ add (math.Mod (mul $i 4) 4) 7 }}s ease-out {{ math.Mod (mul $i 1.7) 10 }}s infinite;"></div>
-  {{ end }}
-  {{ range $i := seq 12 }}
-  <div class="sparkle s-lav sp-3"
-    style="left:{{ math.Mod (mul $i 47) 100 }}%;top:{{ math.Mod (mul $i 29) 90 }}%;
-    animation:sparkleFloat3 {{ add (math.Mod (mul $i 3) 4) 8 }}s ease-out {{ math.Mod (mul $i 3.5) 9 }}s infinite;"></div>
-  {{ end }}
-  {{ range $i := seq 8 }}
-  <div class="sparkle s-pearl sp-2"
-    style="left:{{ math.Mod (mul $i 51) 100 }}%;top:{{ math.Mod (mul $i 41) 90 }}%;
-    animation:sparkleFloat {{ add (math.Mod (mul $i 5) 4) 7 }}s ease-out {{ math.Mod (mul $i 4.2) 8 }}s infinite;"></div>
+    animation:sparkleFloat {{ add (math.Mod (mul $i 4) 4) 7 }}s ease-out {{ math.Mod (mul $i 1.7) 10 }}s infinite;"></div>
   {{ end }}
 
   <div class="max-w-6xl mx-auto relative z-10">
-    <header class="text-center pt-32 mb-16">
-      <h1 class="text-5xl md:text-6xl font-bold text-white mb font-family: 'Cinzel', serif;-4 tracking-wide">
-        <span class="title-decor text-transparent bg-clip-text bg-gradient-to-r from-[#d4c0e8] via-[#f0e0f0] to-[#c8b0d8]">
-          {{ .Title }}
-        </span>
+    <!-- ===== Header ===== -->
+    <header class="text-center pt-12 mb-10 md:pt-14 md:mb-14">
+      <h1 class="tarot-h1 text-4xl md:text-6xl text-white mb-2
+        bg-clip-text text-transparent bg-gradient-to-r from-[#e8c45a] via-[#f3d778] to-[#d4af37]">
+        {{ .Title }}
       </h1>
-      <p class="text-lg text-soft max-w-2xl mx-auto leading-relaxed">
+      <div class="art-nouveau-rule"></div>
+      <p class="text-soft text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-5">
         {{ .Description | default "Ancient archetypal wisdom speaks through symbolic imagery, revealing hidden truths and divine guidance." }}
       </p>
     </header>
 
-    {{ if .Pages }}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {{ range $i, $p := .Pages }}
-      <a href="{{ .RelPermalink }}"
-         class="tarot-card rounded-2xl p-8 group block"
-         style="animation: cardFadeIn {{ add (mul $i 0.2) 0.4 }}s ease-out both;">
-        <h3 class="text-xl font-bold text-white mb font-family: 'Cinzel', serif;-3 group-hover:text-[#e0d0f0] transition-colors duration-300">
-          {{ .Title }}
-        </h3>
-        {{ with .Params.summary }}
-        <p class="text-soft text-sm mb-4 leading-relaxed">{{ . | truncate 120 }}</p>
+    {{ $featuredSlugs := slice "better-tarot-questions" "tarot-for-beginners" "major-vs-minor-arcana" }}
+    {{ $featured := slice }}
+    {{ range $featuredSlugs }}
+      {{ with $.Site.GetPage (printf "/tarot/%s" .) }}
+        {{ $featured = $featured | append . }}
+      {{ end }}
+    {{ end }}
+    {{ $rest := .Pages | complement $featured }}
+
+    <!-- ===== FEATURED ===== -->
+    {{ if $featured }}
+    <div class="mb-6 text-center">
+      <span class="section-label">Featured</span>
+    </div>
+    <div class="featured-grid mb-16">
+      {{ range $i, $p := $featured }}
+      <a href="{{ $p.RelPermalink }}" class="featured-card fc-{{ $i }}"
+         style="animation: cardFadeIn {{ add (mul $i 0.15) 0.3 }}s ease-out both;">
+        <span class="fc-badge">Featured</span>
+        <span class="inner-frame"></span>
+        <svg class="geo-watermark" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="100" cy="100" r="78"/>
+          <circle cx="100" cy="100" r="58"/>
+          <polygon points="100,28 162,138 38,138"/>
+          <rect x="44" y="44" width="112" height="112" transform="rotate(45 100 100)"/>
+          <polygon points="100,52 148,124 52,124" opacity="0.6"/>
+        </svg>
+        <span class="geo-corner tl"></span>
+        <span class="geo-corner tr"></span>
+        <span class="geo-corner bl"></span>
+        <span class="geo-corner br"></span>
+        <h3 class="fc-title">{{ $p.Title }}</h3>
+        {{ with $p.Params.summary }}
+        <p class="fc-summary">{{ . }}</p>
         {{ end }}
-        <span class="text-xs text-gray-500">{{ .Date.Format "Jan 2, 2006" }}</span>
+        <div class="fc-date">{{ $p.Date.Format "January 2, 2006" }}</div>
       </a>
       {{ end }}
     </div>
-    {{ else }}
-    <div class="text-center py-20">
-      <h3 class="text-2xl font-bold text-white mb font-family: 'Cinzel', serif;-3">The Cards Are Shuffling</h3>
-      <p class="text-soft max-w-md mx-auto">Sacred knowledge is being inscribed. The oracle awaits your return.</p>
-  </div>
+    {{ end }}
+
+    <!-- ===== WATERFALL (rest) ===== -->
+    {{ if $rest }}
+    <div class="mb-6 text-center">
+      <span class="section-label">All Tarot Readings</span>
+    </div>
+    <div class="waterfall">
+      {{ range $i, $p := $rest }}
+      <a href="{{ $p.RelPermalink }}" class="wf-card"
+         style="animation: cardFadeIn {{ add (mul $i 0.08) 0.4 }}s ease-out both;">
+        <h3 class="wf-title">{{ $p.Title }}</h3>
+        {{ with $p.Params.summary }}
+        <p class="wf-summary">{{ . }}</p>
+        {{ end }}
+        <div class="wf-date">{{ $p.Date.Format "January 2, 2006" }}</div>
+      </a>
+      {{ end }}
+    </div>
     {{ end }}
   </div>
 </div>

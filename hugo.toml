@@ -1,9 +1,15 @@
-baseURL = '/'
+baseURL = 'https://is-mind.com/'
 locale = 'en-us'
-title = 'mind.autos: The engine for your mind'
+title = 'is-mind.com: The engine for your mind'
 theme = 'kit'
 
-disableKinds = ["taxonomy", "term"]
+# Multilingual: each language reads from its own content directory.
+# English is the default (served at the root); zh/es get a /zh/ and /es/ prefix.
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = false
+
+# Taxonomy/term pages (Tags closed-loop) are intentionally enabled.
+disableKinds = []
 
 buildFuture = true
 
@@ -56,8 +62,9 @@ ignoreLogs = ['warning-goldmark-raw-html']
   weight = 1
 
 [[menu.main]]
-  name = "Dreams & Mind"
-  url = "/dreams/"
+  name = "Mind & Psych"
+  url = "/psych/"
+  identifier = "psych"
   weight = 10
 
 [[menu.main]]
@@ -79,3 +86,21 @@ ignoreLogs = ['warning-goldmark-raw-html']
   name = "Reviews & Tools"
   url = "/reviews/"
   weight = 50
+
+# Languages
+[languages]
+  [languages.en]
+    locale = "en-us"
+    label = "English"
+    weight = 1
+    contentDir = "content"
+  [languages.zh]
+    locale = "zh"
+    label = "中文"
+    weight = 2
+    contentDir = "content/zh"
+  [languages.es]
+    locale = "es"
+    label = "Español"
+    weight = 3
+    contentDir = "content/es"

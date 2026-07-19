@@ -1,0 +1,17 @@
+# Tools Directory — data-driven. Add an entry here and it auto-renders a new card.
+# Replace the `link` values with your real affiliate URLs when ready.
+- name: "WordNum"
+  description: "Our favorite tool for digitizing dreams and analyzing the subconscious shadow. Free trial available."
+  link: "https://wordnum.com/?ref=ismind"
+  tag: "Free Trial"
+  icon: "🔮"
+- name: "Oranum"
+  description: "Live tarot, astrology, and dream analysis from certified readers — real-time, on demand."
+  link: "https://oranum.com/?ref=ismind"
+  tag: "First Session Offer"
+  icon: "✨"
+- name: "mymind"
+  description: "The visual second brain for collecting inspirations, images, and notes — effortless recall."
+  link: "https://mymind.com/?ref=ismind"
+  tag: "Highly Recommended"
+  icon: "🌟"

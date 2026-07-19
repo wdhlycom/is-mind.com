@@ -43,12 +43,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wdhlycom/mind.autos.git"
+    "url": "git+https://github.com/wdhlycom/is-mind.com.git"
   },
   "bugs": {
-    "url": "https://github.com/wdhlycom/mind.autos/issues"
+    "url": "https://github.com/wdhlycom/is-mind.com/issues"
   },
-  "homepage": "https://github.com/wdhlycom/mind.autos#readme"
+  "homepage": "https://github.com/wdhlycom/is-mind.com#readme"
 }，
 "scripts": {
   "deploy": "gh-pages -d public"

@@ -1,0 +1,72 @@
+{{/*
+  Global inline tag-linker.
+  Any element with class "content-block" and a "data-tagmap" attribute
+  (a JSON map of lowercased-tag -> tag page URL) gets its occurrences of
+  those tag keywords wrapped in <a class="tag-link"> pointing at the tag list page.
+  Skips headings, links, code and preformatted blocks. Declarative + auto-growing:
+  as soon as a tag appears in any page's Front Matter, both the inline links and
+  the /tags/<slug>/ list page exist automatically.
+*/}}
+<script>
+(function () {
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function linkOne(block) {
+    var raw = block.getAttribute("data-tagmap");
+    if (!raw) return;
+    var map;
+    try { map = JSON.parse(raw); } catch (e) { return; }
+    var keys = Object.keys(map);
+    if (!keys.length) return;
+    // longest first so multi-word tags win over their substrings
+    keys.sort(function (a, b) { return b.length - a.length; });
+    var re = new RegExp("\\b(" + keys.map(escapeRegExp).join("|") + ")\\b", "gi");
+
+    var walker = document.createTreeWalker(
+      block,
+      NodeFilter.SHOW_TEXT,
+      function (n) {
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        if (p.closest("a, script, style, code, pre, h1, h2, h3, h4, h5, h6, .article-disclosure, .toolkit-disclosure, figure"))
+          return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      },
+      false
+    );
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (tn) {
+      var text = tn.textContent;
+      if (!re.test(text)) return;
+      re.lastIndex = 0;
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      while ((m = re.exec(text)) !== null) {
+        var idx = m.index, matched = m[0];
+        if (idx > last) frag.appendChild(document.createTextNode(text.slice(last, idx)));
+        var a = document.createElement("a");
+        a.href = map[matched.toLowerCase()] || "#";
+        a.className = "tag-link";
+        a.textContent = matched;
+        frag.appendChild(a);
+        last = idx + matched.length;
+        if (m.index === re.lastIndex) re.lastIndex++; // guard against zero-length
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      tn.parentNode.replaceChild(frag, tn);
+    });
+  }
+
+  function run() {
+    document.querySelectorAll(".content-block[data-tagmap]").forEach(linkOne);
+  }
+
+  if (document.readyState !== "loading") run();
+  else document.addEventListener("DOMContentLoaded", run);
+})();
+</script>

@@ -65,23 +65,23 @@
         var x = Math.cos(finalAngle) * finalR;
         var y = Math.sin(finalAngle) * finalR;
 
-        // Color zones — arms are BRIGHTER than before to stand out
+        // Color zones — enhanced alpha for visibility on brightened background
         var rc, gc, bc, alpha;
         if (t < 0.05) {
           rc = 255; gc = 245; bc = 210;
-          alpha = 0.4 - t * 4;
+          alpha = 0.52 - t * 4;
         } else if (t < 0.18) {
           rc = 255; gc = 200; bc = 135;
-          alpha = 0.3 - (t - 0.05) * 0.9;
+          alpha = 0.4 - (t - 0.05) * 0.9;
         } else if (t < 0.4) {
           rc = 200; gc = 145; bc = 225;
-          alpha = 0.22 - (t - 0.18) * 0.4;
+          alpha = 0.3 - (t - 0.18) * 0.4;
         } else if (t < 0.65) {
           rc = 130; gc = 125; bc = 210;
-          alpha = 0.14 - (t - 0.4) * 0.2;
+          alpha = 0.2 - (t - 0.4) * 0.2;
         } else {
           rc = 85; gc = 100; bc = 175;
-          alpha = 0.08 - (t - 0.65) * 0.08;
+          alpha = 0.12 - (t - 0.65) * 0.08;
         }
 
         var size = Math.random() * 1.3 + 0.25;
@@ -140,18 +140,18 @@
 
     rotation += 0.0002;   // slightly faster — more visible rotation
 
-    // Core glow
-    var coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxR * 0.22);
-    coreGrad.addColorStop(0, 'rgba(255,235,180,0.1)');
-    coreGrad.addColorStop(0.4, 'rgba(255,190,110,0.03)');
+    // Core glow — brighter for enhanced visibility
+    var coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxR * 0.25);
+    coreGrad.addColorStop(0, 'rgba(255,235,180,0.18)');
+    coreGrad.addColorStop(0.4, 'rgba(255,190,110,0.06)');
     coreGrad.addColorStop(1, 'rgba(255,160,80,0)');
     ctx.fillStyle = coreGrad;
     ctx.fillRect(0, 0, W, H);
 
-    // Outer halo
+    // Outer halo — slightly brighter
     var haloGrad = ctx.createRadialGradient(cx, cy, maxR * 0.15, cx, cy, maxR * 0.78);
-    haloGrad.addColorStop(0, 'rgba(130,95,180,0.02)');
-    haloGrad.addColorStop(0.5, 'rgba(75,60,130,0.01)');
+    haloGrad.addColorStop(0, 'rgba(130,95,180,0.04)');
+    haloGrad.addColorStop(0.5, 'rgba(75,60,130,0.02)');
     haloGrad.addColorStop(1, 'rgba(45,35,90,0)');
     ctx.fillStyle = haloGrad;
     ctx.fillRect(0, 0, W, H);

@@ -1,39 +1,392 @@
-<!-- Unified navbar override — logo left, menu right, slim -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-6 py-1.5">
-    <div class="flex justify-between items-center">
-      <a href="{{ site.Home.RelPermalink }}" class="flex-shrink-0 rounded-full overflow-hidden border border-[#d4af37]/30 w-10 h-10">
-        <img src="/img/logo.png" alt="{{ site.Title }}" class="w-full h-full object-cover">
-      </a>
-      <div class="hidden md:flex items-center space-x-6 flex-nowrap">
-        {{ range site.Menus.main }}
-        <a href="{{ .URL }}" class="text-white/85 hover:text-[#d4af37] font-bold text-sm whitespace-nowrap transition-colors duration-300">{{ .Name }}</a>
+<!-- Unified navbar override — left-aligned nav, right utilities -->
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md" style="background: rgba(18, 14, 35, 0.92);">
+  <div class="w-full px-6 lg:px-10 py-2">
+    <div class="flex items-center justify-between gap-4">
+      <!-- Left: logo + main menu -->
+      <div class="flex items-center gap-5 lg:gap-8 overflow-hidden">
+        {{ $music := site.Home.Resources.Get "gongyin.mp3" }}
+        <button id="logo-music-toggle" class="flex-shrink-0 rounded-full overflow-hidden border border-[#d4af37]/30 w-10 h-10 p-0 bg-transparent cursor-pointer" aria-label="Toggle music">
+          <img id="logo-img" src="/img/logo.png" alt="{{ site.Title }}" class="w-full h-full object-cover transition-transform duration-700">
+        </button>
+        {{ with $music }}
+        <audio id="site-music" loop preload="metadata">
+          <source src="{{ .RelPermalink }}" type="audio/mpeg">
+        </audio>
         {{ end }}
+        <div class="hidden md:flex items-center gap-4 lg:gap-6 flex-nowrap">
+          {{ range site.Menus.main }}
+          <a href="{{ .URL | relLangURL }}" class="text-white/85 hover:text-[#d4af37] font-bold text-sm whitespace-nowrap transition-colors duration-300">{{ .Name }}</a>
+          {{ end }}
+        </div>
       </div>
-      <button id="mobile-menu-btn" class="md:hidden text-white" aria-label="Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+
+      <!-- Right: About us, search, theme toggle, language switch -->
+      <div class="flex items-center gap-1 lg:gap-2">
+        <a href="{{ "/about/" | relLangURL }}" class="hidden md:inline-block text-white/85 hover:text-[#d4af37] font-bold text-sm whitespace-nowrap transition-colors duration-300 px-2">About us</a>
+        <span class="hidden md:inline-block text-white/20 px-1">|</span>
+
+        <!-- Search: icon expands into input -->
+        <div class="relative flex items-center" id="nav-search-wrap">
+          <button id="nav-search-btn" class="p-2 text-white/80 hover:text-[#d4af37] transition-colors" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+          <form id="nav-search-form" action="{{ "/" | relLangURL }}" method="get" class="absolute right-0 top-1/2 -translate-y-1/2 flex items-center overflow-hidden transition-all duration-300 ease-out w-0 opacity-0 pointer-events-none">
+            <input type="text" name="search" placeholder="Search..." class="w-40 lg:w-56 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#d4af37]">
+            <button type="submit" class="ml-2 p-1.5 text-white/70 hover:text-[#d4af37] transition-colors" aria-label="Submit search">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- Theme toggle -->
+        <button id="theme-toggle" class="p-2 text-white/80 hover:text-[#d4af37] transition-colors" aria-label="Toggle dark mode">
+          <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </button>
+
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-white" aria-label="Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </nav>
-<div id="mobile-menu-panel" class="fixed top-12 left-0 right-0 z-40 bg-gray-900/95 backdrop-blur-md hidden">
+
+<!-- Mobile menu panel -->
+<div id="mobile-menu-panel" class="fixed top-12 left-0 right-0 z-40 backdrop-blur-md hidden" style="background: rgba(18, 14, 35, 0.95);">
   <div class="px-6 py-4 flex flex-col space-y-4">
     {{ range site.Menus.main }}
-    <a href="{{ .URL }}" class="text-white font-bold py-2 border-b border-gray-700/50">{{ .Name }}</a>
+    <a href="{{ .URL | relLangURL }}" class="text-white font-bold py-2 border-b border-gray-700/50">{{ .Name }}</a>
     {{ end }}
+    <a href="{{ "/about/" | relLangURL }}" class="text-white font-bold py-2 border-b border-gray-700/50">About us</a>
+    <form action="{{ "/" | relLangURL }}" method="get" class="pt-2">
+      <div class="flex items-center bg-white/10 border border-white/20 rounded-full px-4 py-2">
+        <input type="text" name="search" placeholder="Search..." class="bg-transparent text-sm text-white placeholder-white/50 focus:outline-none flex-1">
+        <button type="submit" class="text-white/70 hover:text-[#d4af37]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+      </div>
+    </form>
+    <div class="flex items-center justify-between pt-2">
+      <button id="mobile-theme-toggle" class="flex items-center gap-2 text-white/80 hover:text-[#d4af37]">
+        <svg class="moon-icon h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+        <svg class="sun-icon h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+        <span class="text-sm font-bold">Theme</span>
+      </button>
+    </div>
   </div>
 </div>
+
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
+(function(){
+  function updateThemeIcon(isDark){
+    var moon = document.getElementById('theme-icon-moon');
+    var sun = document.getElementById('theme-icon-sun');
+    if(moon) moon.classList.toggle('hidden', !isDark);
+    if(sun) sun.classList.toggle('hidden', isDark);
+    var mobileMoon = document.querySelector('#mobile-theme-toggle .moon-icon');
+    var mobileSun = document.querySelector('#mobile-theme-toggle .sun-icon');
+    if(mobileMoon) mobileMoon.classList.toggle('hidden', !isDark);
+    if(mobileSun) mobileSun.classList.toggle('hidden', isDark);
+  }
+  function applyStoredTheme(){
+    var stored = localStorage.getItem('theme');
+    var isDark = stored ? stored === 'dark' : document.documentElement.classList.contains('dark');
+    if(window.hbb){
+      isDark ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+    } else {
+      isDark ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark');
+    }
+    updateThemeIcon(isDark);
+  }
+  function toggleTheme(){
+    var isDark = document.documentElement.classList.contains('dark');
+    var makeDark = !isDark;
+    if(window.hbb){
+      makeDark ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+    } else {
+      document.documentElement.classList.toggle('dark', makeDark);
+    }
+    localStorage.setItem('theme', makeDark ? 'dark' : 'light');
+    updateThemeIcon(makeDark);
+  }
+
+  function initSearch(){
+    var btn = document.getElementById('nav-search-btn');
+    var form = document.getElementById('nav-search-form');
+    var input = form ? form.querySelector('input') : null;
+    if(!btn || !form) return;
+    function open(){ form.classList.add('open'); form.classList.remove('w-0','opacity-0','pointer-events-none'); }
+    function close(){ form.classList.remove('open'); form.classList.add('w-0','opacity-0','pointer-events-none'); }
+    btn.addEventListener('click', function(e){ e.stopPropagation(); form.classList.contains('open') ? close() : open(); if(form.classList.contains('open') && input) setTimeout(function(){ input.focus(); }, 50); });
+    document.addEventListener('click', function(e){ if(!btn.contains(e.target) && !form.contains(e.target)) close(); });
+  }
+
+  function initMobileMenu(){
     var btn = document.getElementById('mobile-menu-btn');
     var panel = document.getElementById('mobile-menu-panel');
     if(btn && panel){
-      btn.addEventListener('click', function(){ panel.classList.toggle('hidden'); });
-      document.addEventListener('click', function(e){
-        if(!btn.contains(e.target) && !panel.contains(e.target)) panel.classList.add('hidden');
-      });
+      btn.addEventListener('click', function(e){ e.stopPropagation(); panel.classList.toggle('hidden'); });
+      document.addEventListener('click', function(e){ if(!btn.contains(e.target) && !panel.contains(e.target)) panel.classList.add('hidden'); });
     }
+    var mobileTheme = document.getElementById('mobile-theme-toggle');
+    if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+  }
+
+  function initMusicToggle(){
+    var btn = document.getElementById('logo-music-toggle');
+    var audio = document.getElementById('site-music');
+    var img = document.getElementById('logo-img');
+    if(!btn || !audio || !img) return;
+    btn.addEventListener('click', function(){
+      if(audio.paused){
+        audio.play().then(function(){ img.classList.add('logo-spin'); }).catch(function(err){ console.error('Audio play failed:', err); });
+      } else {
+        audio.pause();
+        img.classList.remove('logo-spin');
+      }
+    });
+    audio.addEventListener('ended', function(){ img.classList.remove('logo-spin'); });
+    audio.addEventListener('pause', function(){ img.classList.remove('logo-spin'); });
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    applyStoredTheme();
+    var t = document.getElementById('theme-toggle');
+    if(t) t.addEventListener('click', toggleTheme);
+    initSearch();
+    initMobileMenu();
+    initMusicToggle();
   });
+})();
 </script>
+
+<style>
+  #nav-search-form.open { width: 208px; opacity: 1; pointer-events: auto; }
+  @media (min-width: 1024px) {
+    #nav-search-form.open { width: 288px; }
+  }
+  #theme-toggle svg:not(.hidden), #mobile-theme-toggle svg:not(.hidden) { display: block; }
+  #theme-toggle svg.hidden, #mobile-theme-toggle svg.hidden { display: none !important; }
+  @keyframes logo-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .logo-spin { animation: logo-spin 8s linear infinite; }
+
+  /* ============================================================
+     LIGHT-MODE ("晨曦") PALETTES — applied when <html> has NO .dark
+     These override the hardcoded dark backgrounds/text on section pages
+     and the homepage so the theme toggle produces an obvious shift.
+     ============================================================ */
+  html, body { transition: background-color .45s ease, color .45s ease; }
+  .tarot-page, .energy-page, .astro-page, .review-page, .home-page,
+  .about-page, .tags-page,
+  .tarot-card, .energy-card, .astro-card, .review-card,
+  .tag-result-card, .tag-pill,
+  .glass-morphism, .quote-card, .portal-card {
+    transition: background-color .45s ease, background .45s ease, color .45s ease, border-color .45s ease;
+  }
+
+  /* ---------- TAROT — airy lilac dawn ---------- */
+  html:not(.dark) .tarot-page {
+    background: linear-gradient(180deg, #f6f0ff 0%, #f1e9fb 48%, #faf5ff 100%) !important;
+  }
+  html:not(.dark) .tarot-page h1 { color: #3a2a5a !important; }
+  html:not(.dark) .tarot-page h1 .title-decor,
+  html:not(.dark) .tarot-page h1 span.title-decor {
+    background-image: linear-gradient(90deg, #7c5fb0, #9b7fd0, #6f4fa0) !important;
+    -webkit-background-clip: text; background-clip: text;
+  }
+  html:not(.dark) .tarot-page .text-soft { color: #5a4a7a !important; }
+  html:not(.dark) .tarot-page .tarot-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.72) 0%, rgba(246,239,255,0.82) 60%, rgba(238,228,252,0.88) 100%) !important;
+    border: 1px solid rgba(140,100,180,0.32) !important;
+    box-shadow: 0 10px 30px -15px rgba(80,50,120,0.28) !important;
+  }
+  html:not(.dark) .tarot-page .tarot-card h3 { color: #3a2a5a !important; }
+  html:not(.dark) .tarot-page .tarot-card .text-soft { color: #5a4a7a !important; }
+  html:not(.dark) .tarot-page .tarot-card .text-gray-500 { color: rgba(90,74,122,0.6) !important; }
+
+  /* ---------- ENERGY — dawn sky ---------- */
+  html:not(.dark) .energy-page {
+    background: linear-gradient(180deg, #eef4ff 0%, #e6f0fb 48%, #f2f7ff 100%) !important;
+  }
+  html:not(.dark) .energy-page h1 { color: #1e3a5a !important; }
+  html:not(.dark) .energy-page h1 .text-transparent,
+  html:not(.dark) .energy-page h1 span.text-transparent {
+    background-image: linear-gradient(90deg, #c0606f, #b09030, #6a5aa0) !important;
+    -webkit-background-clip: text; background-clip: text;
+  }
+  html:not(.dark) .energy-page .text-soft-sky { color: #3a5a7a !important; }
+  html:not(.dark) .energy-page .energy-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.72) 0%, rgba(232,242,252,0.82) 60%, rgba(224,236,250,0.88) 100%) !important;
+    border: 1px solid rgba(100,160,210,0.34) !important;
+    box-shadow: 0 10px 30px -15px rgba(40,90,140,0.24) !important;
+  }
+  html:not(.dark) .energy-page .energy-card h3 { color: #1e3a5a !important; }
+  html:not(.dark) .energy-page .energy-card .text-soft-sky { color: #3a5a7a !important; }
+  html:not(.dark) .energy-page .energy-card .text-gray-500 { color: rgba(40,70,100,0.6) !important; }
+
+  /* ---------- ASTROLOGY — parchment dawn ---------- */
+  html:not(.dark) .astro-page {
+    background: linear-gradient(180deg, #f7f3ea 0%, #f3efe2 48%, #faf6ec 100%) !important;
+  }
+  html:not(.dark) .astro-page h1 { color: #2a2440 !important; }
+  html:not(.dark) .astro-page h1 .text-transparent,
+  html:not(.dark) .astro-page h1 span.text-transparent {
+    background-image: linear-gradient(90deg, #8a7a3a, #a89860, #6a5a2a) !important;
+    -webkit-background-clip: text; background-clip: text;
+  }
+  html:not(.dark) .astro-page .text-celestial { color: #5a5468 !important; }
+  html:not(.dark) .astro-page .astro-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.72) 0%, rgba(247,243,232,0.82) 60%, rgba(242,237,224,0.88) 100%) !important;
+    border: 1px solid rgba(180,150,90,0.34) !important;
+    box-shadow: 0 10px 30px -15px rgba(120,100,60,0.22) !important;
+  }
+  html:not(.dark) .astro-page .astro-card h3 { color: #2a2440 !important; }
+  html:not(.dark) .astro-page .astro-card .text-celestial { color: #5a5468 !important; }
+  html:not(.dark) .astro-page .astro-card .text-gray-500 { color: rgba(80,70,50,0.6) !important; }
+  html:not(.dark) .astro-page .orbital-container {
+    border-color: rgba(120,100,60,0.4) !important;
+    box-shadow: 0 0 12px rgba(120,100,60,0.25), inset 0 0 12px rgba(120,100,60,0.12) !important;
+  }
+  html:not(.dark) .astro-page .zodiac-symbol {
+    color: rgba(120,100,60,0.9) !important;
+    text-shadow: 0 0 6px rgba(150,120,70,0.4) !important;
+  }
+
+  /* ---------- REVIEWS — warm cream dawn ---------- */
+  html:not(.dark) .review-page {
+    background: linear-gradient(180deg, #fbf6ee 0%, #f8f0e2 48%, #fdf9f0 100%) !important;
+  }
+  html:not(.dark) .review-page h1 { color: #4a3a1a !important; }
+  html:not(.dark) .review-page h1 .text-transparent,
+  html:not(.dark) .review-page h1 span.text-transparent {
+    background-image: linear-gradient(90deg, #b8860b, #c9a227, #a8760a) !important;
+    -webkit-background-clip: text; background-clip: text;
+  }
+  html:not(.dark) .review-page .text-lavender { color: #6a5a4a !important; }
+  html:not(.dark) .review-page .review-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.72) 0%, rgba(251,246,238,0.82) 60%, rgba(247,240,228,0.88) 100%) !important;
+    border: 1px solid rgba(200,160,40,0.34) !important;
+    box-shadow: 0 10px 30px -15px rgba(150,110,30,0.22) !important;
+  }
+  html:not(.dark) .review-page .review-card h3 { color: #4a3a1a !important; }
+  html:not(.dark) .review-page .review-card .text-lavender { color: #6a5a4a !important; }
+  html:not(.dark) .review-page .review-card .text-gray-500 { color: rgba(110,90,50,0.6) !important; }
+  html:not(.dark) .review-page .tag-review {
+    background: rgba(200,160,40,0.14) !important; color: rgba(150,110,20,0.9) !important;
+    border-left-color: rgba(200,160,40,0.4) !important;
+  }
+
+  /* ---------- HOME — light dawn ---------- */
+  html:not(.dark) .home-page .section-gradient-1 { background: linear-gradient(to bottom, #f3eee2, #f5f0e6) !important; }
+  html:not(.dark) .home-page .section-gradient-2 { background: linear-gradient(to bottom, #f5f0e6, #f7f2e8) !important; }
+  html:not(.dark) .home-page .section-gradient-3 { background: linear-gradient(to bottom, #f7f2e8, #f9f4ea) !important; }
+  html:not(.dark) .home-page .section-gradient-4 { background: linear-gradient(to bottom, #f9f4ea, #f7f2e8) !important; }
+  html:not(.dark) .home-page .section-gradient-5 { background: linear-gradient(to bottom, #f7f2e8, #f5f0e6) !important; }
+  html:not(.dark) .home-page .section-gradient-6 { background: linear-gradient(to bottom, #f5f0e6, #efe9d8) !important; }
+
+  html:not(.dark) .home-page .text-white:not(a):not(button) { color: #2a2440 !important; }
+  html:not(.dark) .home-page .text-gray-300:not(a):not(button) { color: #4a4256 !important; }
+  html:not(.dark) .home-page .text-gray-200:not(a):not(button) { color: #3a3448 !important; }
+  html:not(.dark) .home-page .text-\[#d4af37\] { color: #9a7614 !important; }
+  html:not(.dark) .home-page .text-yellow-300 { color: #a8760a !important; }
+  html:not(.dark) .home-page .text-emerald-300 { color: #1f7a4d !important; }
+  html:not(.dark) .home-page .text-fuchsia-300 { color: #a23a8a !important; }
+  html:not(.dark) .home-page .text-cyan-300 { color: #1f7a9a !important; }
+
+  /* flip the oracle card fronts to light so their (now dark) text stays readable */
+  html:not(.dark) .home-page .card-front {
+    background: linear-gradient(to bottom right, #efe7f5, #e7ecf5) !important;
+  }
+
+  /* gold gradient text spans -> deeper amber for contrast on light */
+  html:not(.dark) .home-page [class*="bg-clip-text"] {
+    background-image: linear-gradient(90deg, #b8860b, #c9a227, #b8860b) !important;
+    -webkit-background-clip: text; background-clip: text;
+  }
+
+  html:not(.dark) .home-page .glass-morphism {
+    background: rgba(255,255,255,0.62) !important;
+    border-color: rgba(212,175,55,0.32) !important;
+    box-shadow: 0 10px 30px -15px rgba(120,90,30,0.22) !important;
+  }
+  html:not(.dark) .home-page .portal-card { color: #2a2440 !important; }
+  html:not(.dark) .home-page .quote-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.74) 0%, rgba(255,250,235,0.62) 50%, rgba(245,238,220,0.52) 100%) !important;
+    border-color: rgba(212,175,55,0.36) !important;
+    box-shadow: 0 10px 30px -15px rgba(150,120,40,0.22) !important;
+  }
+  html:not(.dark) .home-page .quote-text { color: #3a3020 !important; }
+  html:not(.dark) .home-page .quote-author { color: rgba(180,140,40,0.9) !important; }
+
+  /* ===== ABOUT US page ("晨曦") ===== */
+  html:not(.dark) .about-page {
+    background: linear-gradient(180deg, #f6f0ff 0%, #f3eefb 48%, #faf6ff 100%) !important;
+  }
+  html:not(.dark) .about-page h1 { color: #3a2a5a !important; }
+  html:not(.dark) .about-page h1 .title-decor,
+  html:not(.dark) .about-page h1 span.title-decor {
+    background-image: linear-gradient(90deg, #7c5fb0, #9b7fd0, #6f4fa0) !important;
+    -webkit-background-clip: text; background-clip: text;
+  }
+  html:not(.dark) .about-page .text-soft { color: #5a4a7a !important; }
+
+  /* About Us article body -> dark ink on light dawn */
+  html:not(.dark) .about-page .article-body .content-block,
+  html:not(.dark) .about-page .article-body .content-block p { color: #2a2545 !important; }
+  html:not(.dark) .about-page .article-body .content-block h2,
+  html:not(.dark) .about-page .article-body .content-block h3 { color: #1f1b38 !important; }
+  html:not(.dark) .about-page .article-body .content-block strong { color: #1f1b38 !important; }
+  html:not(.dark) .about-page .article-body .content-block ul li,
+  html:not(.dark) .about-page .article-body .content-block ol li { color: #2a2545 !important; }
+  html:not(.dark) .about-page .article-body .content-block ul:not(.tags-container) li:not(:has(input)) { color: #4b4566 !important; }
+  html:not(.dark) .about-page .article-body .article-summary { color: #4b4566 !important; }
+  html:not(.dark) .about-page .article-body .post-date { color: #6b6580 !important; }
+  html:not(.dark) .about-page .article-body .content-block blockquote {
+    background-color: rgba(124,58,237,0.05) !important; border-color: rgba(124,58,237,0.2) !important; color: #4b4566 !important;
+  }
+  html:not(.dark) .about-page .tag-link { color: #7c3aed !important; border-bottom-color: rgba(124,58,237,0.5) !important; }
+
+  /* ===== TAGS pages (term + taxonomy) ("晨曦") ===== */
+  html:not(.dark) .tags-page {
+    background: linear-gradient(180deg, #f6f0ff 0%, #f3eefb 48%, #faf6ff 100%) !important;
+  }
+  html:not(.dark) .tags-page h1 { color: #3a2a5a !important; }
+  html:not(.dark) .tags-page h1 .title-decor,
+  html:not(.dark) .tags-page h1 span.title-decor,
+  html:not(.dark) .tags-page span.title-decor {
+    background-image: linear-gradient(90deg, #7c5fb0, #9b7fd0, #6f4fa0) !important;
+    -webkit-background-clip: text; background-clip: text;
+  }
+  html:not(.dark) .tags-page .text-soft { color: #5a4a7a !important; }
+  html:not(.dark) .tags-page .tag-result-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.78) 0%, rgba(246,239,255,0.88) 100%) !important;
+    border-color: rgba(140,100,180,0.3) !important;
+    box-shadow: 0 10px 30px -15px rgba(80,50,120,0.28) !important;
+  }
+  html:not(.dark) .tags-page .tag-result-card h3 { color: #3a2a5a !important; }
+  html:not(.dark) .tags-page .tag-result-card p { color: #5a4a7a !important; }
+  html:not(.dark) .tags-page .tag-result-card .meta { color: rgba(90,74,122,0.6) !important; }
+  html:not(.dark) .tags-page .back-link { color: #6f4fa0 !important; }
+  html:not(.dark) .tags-page .tag-pill {
+    background: rgba(124,58,237,0.1) !important; color: #5b3a9a !important;
+    border-color: rgba(124,58,237,0.25) !important;
+  }
+  html:not(.dark) .tags-page .tag-pill .count { background: rgba(124,58,237,0.18) !important; color: #5b3a9a !important; }
+  html:not(.dark) .tags-page .tag-pill:hover { color: #3a2a5a !important; background: rgba(124,58,237,0.18) !important; }
+</style>
+
+{{ partial "tag_linker.html" }}

@@ -4,6 +4,15 @@
       data-wc-theme-default="{{ (lower site.Params.hugoblox.theme.mode) | default "system" }}"
       data-hbb-relurl="{{ "" | relURL }}">
   {{ partial "site_head" . }}
+
+  <!-- Google Analytics (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QGYB6GB46S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QGYB6GB46S');
+  </script>
   <body class="bg-[var(--hb-color-background)] text-[var(--hb-color-foreground)] page-wrapper" id="top">
     <div id="page-bg"></div>
 
@@ -56,6 +65,8 @@
 
     {{ partial "notification-container" . }}
     {{ partial "functions/get_hook" (dict "hook" "body-end" "context" .) }}
+
+    {{ partial "lightbox.html" . }}
 
     {{ if hugo.IsServer | and (site.Params.hugoblox.debug.enable | default false) }}
       {{ partial "hooks/body-end/hbx-debug-export.html" . }}

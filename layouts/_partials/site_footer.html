@@ -1,9 +1,11 @@
-<!-- Override theme site_footer — just copyright, no Hugo Blox attribution -->
-<footer class="py-6 bg-[#0a0812] text-center">
+<!-- Override theme site_footer — affiliate disclosure + copyright, gold palette -->
+<footer class="py-6 text-center" style="background: #16122e;">
   <div class="container mx-auto px-6">
-    <p class="text-gray-400 text-xs">
-      <span class="text-[#d4af37]">Disclosure</span>: This website contains affiliate links. We may earn commissions from purchases made through our recommendations.
+    <p class="text-xs" style="color: #d4af37;">
+      <a href="/disclosure/" style="color:#d4af37; text-decoration:underline; font-weight:600;">Disclosure</a>: This website <a href="/reviews/" style="color:#ffe400; text-decoration:underline;">contains affiliate links</a>. We may earn commissions from purchases made through our recommendations.
     </p>
-    <p class="text-gray-500 text-xs mt-1">© {{ now.Year }} mind.autos. All rights reserved.</p>
+    <p class="text-xs mt-1" style="color: #d4af37;">
+      <a href="/privacy/" style="color:#d4af37; text-decoration:underline;">Privacy Policy</a> · © {{ now.Year }} is-mind.com. All rights reserved.
+    </p>
   </div>
 </footer>

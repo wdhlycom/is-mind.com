@@ -8,6 +8,13 @@ tags:
   - spiritual awakening signs
   - numerology for beginners
 directory: /astrology/
+summary: "He started seeing 11:11 everywhere — on the microwave, on receipts, on his phone
+  at exactly the wrong moment. It wasn't magic. It wasn't coincidence. From Carl Jung's
+  synchronicity to your brain's pattern-matching machinery, here's what's really happening
+  when numbers keep showing up — and what to do when you can't stop seeing them. Which
+  number has been following you?"
+pin_a: "The numbers you keep seeing aren't random — they're breadcrumbs your unconscious is leaving."
+pin_b: "Which number has been showing up in your life over and over?"
 ---
 
 > The numbers you keep seeing aren't random — they're breadcrumbs your unconscious is leaving for you to follow.

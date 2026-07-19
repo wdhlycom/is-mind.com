@@ -18,9 +18,9 @@ main:
     identifier: tarot
     weight: 10
 
-  - name: Dreams & Shadow
-    url: /dreams/
-    identifier: dreams
+  - name: Mind & Psych
+    url: /psych/
+    identifier: psych
     weight: 20
 
   - name: Energy & Chakras
