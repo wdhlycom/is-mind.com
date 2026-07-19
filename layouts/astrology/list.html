@@ -1,6 +1,6 @@
 {{ define "main" }}
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap");
 
   /* ===== Fixed Star Chart ===== */
   .star-fixed {
@@ -152,6 +152,58 @@
     position: absolute; pointer-events: none;
     font-size: 0.7rem; opacity: 0.15; color: rgba(200,185,155,0.7);
   }
+
+  /* ===== Celestial Orbits & Constellation Nodes (方法.txt concept) ===== */
+  @keyframes astroFade {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  .astro-grid { position: relative; grid-auto-flow: dense; }
+  .constellation {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    z-index: 0; pointer-events: none; opacity: .55;
+  }
+  .astro-featured {
+    position: relative; overflow: hidden; z-index: 10;
+    border: 1px solid rgba(212,175,55,0.5);
+    box-shadow:
+      0 0 0 1px rgba(212,175,55,0.22),
+      0 0 42px rgba(212,175,55,0.16),
+      inset 0 0 34px rgba(212,175,55,0.05);
+    background: linear-gradient(155deg, rgba(54,32,96,0.5) 0%, rgba(22,12,48,0.62) 55%, rgba(15,8,35,0.72) 100%);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    transition: transform .45s cubic-bezier(.4,0,.2,1), box-shadow .45s, border-color .45s;
+  }
+  .astro-featured:hover {
+    transform: translateY(-5px);
+    border-color: rgba(243,215,120,0.78);
+    box-shadow: 0 0 0 1px rgba(243,215,120,0.35), 0 0 54px rgba(212,175,55,0.26), inset 0 0 40px rgba(212,175,55,0.08);
+  }
+  .astro-featured .af-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 700;
+    color: #f3ead0; font-size: 1.7rem; line-height: 1.2; margin: .3rem 0 .9rem;
+  }
+  .astro-featured:hover .af-title { color: #f0e4c0; }
+  .astro-featured .af-summary {
+    color: rgba(205,198,222,0.8); font-size: .96rem; line-height: 1.6; max-width: 62ch;
+  }
+  .astro-badge {
+    display: inline-block; font-family: 'Cinzel', serif; letter-spacing: .22em;
+    font-size: .66rem; color: #1a1208;
+    background: linear-gradient(120deg, #ecd9a0, #c9a94e);
+    padding: .28rem .85rem; border-radius: 2px;
+    box-shadow: 0 0 18px rgba(212,175,55,0.4);
+  }
+  .astro-featured .astrolabe {
+    position: absolute; top: -46px; right: -46px; width: 230px; height: 230px;
+    opacity: .26; pointer-events: none; animation: orbitSlow 70s linear infinite;
+  }
+  .astro-node { position: relative; z-index: 10; }
+  .astro-node::before {
+    content: ""; position: absolute; top: 12px; right: 14px; width: 5px; height: 5px;
+    border-radius: 50%; background: rgba(230,215,170,0.55);
+    box-shadow: 0 0 8px rgba(212,200,160,0.6); z-index: 2;
+  }
 </style>
 
 <div class="astro-page min-h-screen pt-3 px-4 pb-14 md:pt-4 md:px-6 md:pb-20 relative overflow-hidden bg-gradient-to-b from-[#0e1428] via-[#141c38] via-[#101830] to-[#0a1020]">
@@ -239,11 +291,60 @@
     </header>
 
     {{ if .Pages }}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 pb-16">
-      {{ range $i, $p := .Pages }}
-      <a href="{{ .RelPermalink }}"
-         class="astro-card rounded-2xl p-5 md:p-8 group block"
-         style="animation: cardIn {{ add (mul $i 0.2) 0.4 }}s ease-out both;">
+    {{ $featured := index .Pages 0 }}
+    {{ $rest := after 1 .Pages }}
+    <div class="astro-grid grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-7 pb-16">
+
+      <!-- Constellation connector lines weaving the cards into one star map -->
+      <svg class="constellation" viewBox="0 0 1000 900" preserveAspectRatio="none" aria-hidden="true">
+        <g stroke="rgba(212,200,160,0.16)" stroke-width="1.1" fill="none" stroke-linecap="round">
+          <path d="M120 90 L330 170 L520 110 L740 190" />
+          <path d="M330 170 L250 340 L470 410 L700 360 L860 250" />
+          <path d="M470 410 L380 600 L640 650 L860 540" />
+          <path d="M250 340 L180 560 L380 600" />
+          <path d="M640 650 L560 800 L820 810" />
+          <path d="M740 190 L880 300 L900 470" />
+          <path d="M180 560 L120 740 L300 800" />
+        </g>
+        <g fill="rgba(232,216,172,0.55)">
+          <circle cx="120" cy="90" r="3"/><circle cx="330" cy="170" r="3"/>
+          <circle cx="520" cy="110" r="3"/><circle cx="740" cy="190" r="3"/>
+          <circle cx="250" cy="340" r="3"/><circle cx="470" cy="410" r="3"/>
+          <circle cx="700" cy="360" r="3"/><circle cx="860" cy="250" r="3"/>
+          <circle cx="380" cy="600" r="3"/><circle cx="640" cy="650" r="3"/>
+          <circle cx="860" cy="540" r="3"/><circle cx="180" cy="560" r="3"/>
+          <circle cx="560" cy="800" r="3"/><circle cx="820" cy="810" r="3"/>
+          <circle cx="880" cy="300" r="3"/><circle cx="900" cy="470" r="3"/>
+          <circle cx="120" cy="740" r="3"/><circle cx="300" cy="800" r="3"/>
+        </g>
+      </svg>
+
+      <!-- Featured "Sun" card: prominent celestial wheel with a gold astrolabe ring -->
+      <a href="{{ $featured.RelPermalink }}" class="astro-featured rounded-3xl p-7 md:p-10 block lg:col-span-2"
+         style="animation: astroFade .5s ease-out both;">
+        <svg class="astrolabe" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(212,175,55,0.5)" stroke-width="1"/>
+          <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(212,175,55,0.85)" stroke-width="2" stroke-dasharray="1 13"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(212,175,55,0.4)" stroke-width="1"/>
+          <circle cx="100" cy="100" r="48" fill="none" stroke="rgba(212,175,55,0.35)" stroke-width="1"/>
+          <circle cx="100" cy="100" r="30" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="1" stroke-dasharray="2 8"/>
+          <line x1="100" y1="6" x2="100" y2="194" stroke="rgba(212,175,55,0.3)" stroke-width="1"/>
+          <line x1="6" y1="100" x2="194" y2="100" stroke="rgba(212,175,55,0.3)" stroke-width="1"/>
+          <circle cx="100" cy="100" r="4" fill="rgba(243,215,120,0.7)"/>
+        </svg>
+        <span class="astro-badge">FEATURED · 置顶</span>
+        <h3 class="af-title">{{ $featured.Title }}</h3>
+        {{ with $featured.Params.summary }}<p class="af-summary">{{ . }}</p>{{ end }}
+        <div class="mt-5"><span class="text-xs text-gray-500">{{ $featured.Date.Format "Jan 2, 2006" }}</span></div>
+      </a>
+
+      <!-- Remaining sections as star nodes; asymmetric spans break the rigid grid -->
+      {{ $spans := slice 1 2 1 1 1 1 2 1 }}
+      {{ range $i, $p := $rest }}
+      {{ $s := index $spans (mod $i (len $spans)) }}
+      <a href="{{ $p.RelPermalink }}"
+         class="astro-node astro-card rounded-2xl p-5 md:p-7 block group{{ if eq $s 2 }} lg:col-span-2{{ end }}"
+         style="animation: astroFade {{ add (mul $i 0.1) 0.45 }}s ease-out both;">
         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#d4c8a0] transition-colors duration-300">
           {{ .Title }}
         </h3>
@@ -258,7 +359,7 @@
     <div class="text-center py-20">
       <h3 class="text-2xl font-bold text-white mb-3">The Stars Are Aligning</h3>
       <p class="text-celestial max-w-md mx-auto opacity-70">Celestial wisdom is being charted. Cosmic revelations approach.</p>
-  </div>
+    </div>
     {{ end }}
   </div>
 </div>

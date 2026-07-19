@@ -50,6 +50,8 @@
 
   /* Card entrance */
   @keyframes cardFadeIn { 0% { opacity: 0; transform: translateY(22px); } 100% { opacity: 1; transform: translateY(0); } }
+  /* Opacity-only entrance — preserves Hugo-injected rotation/translate transforms */
+  @keyframes fadeOnly { 0% { opacity: 0; } 100% { opacity: 1; } }
 
   .tarot-h1 {
     font-family: 'Cinzel', Georgia, serif; font-weight: 900;
@@ -96,6 +98,8 @@
     border: 1.5px solid rgba(212,175,55,0.55);
     box-shadow: 0 0 28px rgba(212,175,55,0.10), 0 18px 40px -20px rgba(0,0,0,0.7);
     padding: 1.4rem 1.5rem;
+    --ftilt: 0deg; --fty: 0px;
+    transform: rotate(var(--ftilt)) translateY(var(--fty));
     transition: transform 0.5s cubic-bezier(.4,0,.2,1), box-shadow 0.5s, border-color 0.5s;
     will-change: transform;
     text-decoration: none;
@@ -123,7 +127,7 @@
   .geo-corner.br { bottom: 8px; right: 8px; transform: scale(-1,-1); }
 
   .featured-card:hover {
-    transform: translateY(-6px);
+    transform: rotate(0deg) translateY(-6px);
     border-color: rgba(243,215,120,0.85);
     box-shadow: 0 0 46px rgba(212,175,55,0.22), 0 22px 50px -20px rgba(0,0,0,0.8);
   }
@@ -160,10 +164,11 @@
     gap: 0; padding: 2.8rem 0.5rem 1rem;
   }
   .wf-card {
-    --tilt: 0deg; --ty: 0px;
-    flex: 0 0 auto; width: 220px; box-sizing: border-box;
-    margin: 0 -13px;                 /* overlap -> fanned, hand-spread feel */
-    min-height: 332px; position: relative;
+    --w: 220px; --h: 332px; --tilt: 0deg; --tx: 0px; --ty: 0px; --z: 1;
+    flex: 0 0 auto; box-sizing: border-box;
+    width: var(--w); min-height: var(--h);
+    margin: 0 -26px;                 /* heavy overlap -> a deck thrown on the table */
+    position: relative; z-index: var(--z);
     border-radius: 14px; padding: 1.5rem 1.2rem 1.3rem;
     text-decoration: none; overflow: hidden;
     background:
@@ -171,7 +176,7 @@
       linear-gradient(165deg, rgba(40,27,64,0.84) 0%, rgba(20,13,36,0.94) 100%);
     border: 1px solid rgba(212,175,55,0.32);
     box-shadow: 0 12px 26px -16px rgba(0,0,0,0.9), 0 0 22px rgba(140,90,200,0.12);
-    transform: translateY(var(--ty)) rotate(var(--tilt));
+    transform: translate(var(--tx), var(--ty)) rotate(var(--tilt));
     transition: transform 0.45s cubic-bezier(.34,1.45,.5,1), box-shadow 0.45s, border-color 0.45s;
     will-change: transform;
   }
@@ -191,7 +196,7 @@
     background: linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent);
   }
   .wf-card:hover {
-    transform: translateY(-15px) rotate(0deg) scale(1.07);
+    transform: translate(0, -8px) rotate(0deg) scale(1.06);
     z-index: 60; border-color: rgba(243,215,120,0.72);
     box-shadow: 0 20px 44px -16px rgba(0,0,0,0.92), 0 0 40px rgba(160,110,220,0.30);
   }
@@ -235,10 +240,10 @@
     .featured-grid { grid-template-columns: 1fr; }
     .fc-0, .fc-1, .fc-2 { grid-column: span 1; grid-row: auto; min-height: 0; }
     .fc-0 .fc-title { font-size: 1.5rem; }
-    .wf-card { width: 200px; margin: 0 -10px; }
+    .wf-card { --w: 200px; --h: 300px; margin: 0 -10px; }
   }
   @media (max-width: 640px) {
-    .wf-card { width: 190px; margin: 0 -6px; }
+    .wf-card { --w: 190px; --h: 286px; margin: 0 -6px; }
   }
 </style>
 
@@ -292,9 +297,11 @@
       <span class="section-label">Featured</span>
     </div>
     <div class="featured-grid mb-16">
+      {{ $ftilts := slice "-3deg" "4deg" "-5deg" }}
+      {{ $ftys   := slice "0px" "16px" "-10px" }}
       {{ range $i, $p := $featured }}
       <a href="{{ $p.RelPermalink }}" class="featured-card fc-{{ $i }}"
-         style="animation: cardFadeIn {{ add (mul $i 0.15) 0.3 }}s ease-out both;">
+         style="--ftilt:{{ index $ftilts $i }}; --fty:{{ index $ftys $i }}; animation: fadeOnly {{ add (mul $i 0.15) 0.3 }}s ease-out both;">
         <span class="fc-badge">Featured</span>
         <span class="inner-frame"></span>
         <svg class="geo-watermark" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1">
@@ -323,16 +330,33 @@
     <div class="mb-6 text-center">
       <span class="section-label">All Tarot Readings</span>
     </div>
-    {{ $tilts := slice -2.4 1.8 -1.2 2.6 -0.8 1.4 -2 0.6 2.2 -1.6 0.9 -2.2 1.2 -0.4 1.8 -2.6 0.5 -1.9 }}
-    {{ $offs  := slice 0 16 -10 24 -6 18 -14 10 -20 14 -8 16 -4 22 -12 8 18 -16 }}
+    {{ $profiles := slice
+      (dict "w" "220px" "h" "332px" "tilt" "-86deg" "tx" "-18px" "ty" "14px" "z" "3")
+      (dict "w" "300px" "h" "198px" "tilt" "82deg"  "tx" "22px"  "ty" "-10px" "z" "5")
+      (dict "w" "220px" "h" "332px" "tilt" "-45deg" "tx" "-30px" "ty" "22px" "z" "2")
+      (dict "w" "300px" "h" "198px" "tilt" "48deg"  "tx" "34px"  "ty" "8px"  "z" "6")
+      (dict "w" "220px" "h" "332px" "tilt" "-22deg" "tx" "-12px" "ty" "-16px" "z" "4")
+      (dict "w" "300px" "h" "198px" "tilt" "24deg"  "tx" "16px"  "ty" "18px" "z" "3")
+      (dict "w" "220px" "h" "332px" "tilt" "-67deg" "tx" "-26px" "ty" "10px" "z" "5")
+      (dict "w" "300px" "h" "198px" "tilt" "70deg"  "tx" "28px"  "ty" "-14px" "z" "2")
+      (dict "w" "220px" "h" "332px" "tilt" "-38deg" "tx" "-8px"  "ty" "24px" "z" "4")
+      (dict "w" "300px" "h" "198px" "tilt" "40deg"  "tx" "20px"  "ty" "-8px" "z" "6")
+      (dict "w" "220px" "h" "332px" "tilt" "-58deg" "tx" "-34px" "ty" "6px"  "z" "3")
+      (dict "w" "300px" "h" "198px" "tilt" "60deg"  "tx" "30px"  "ty" "14px" "z" "5")
+      (dict "w" "220px" "h" "332px" "tilt" "-88deg" "tx" "-16px" "ty" "-20px" "z" "2")
+      (dict "w" "300px" "h" "198px" "tilt" "84deg"  "tx" "24px"  "ty" "12px" "z" "4")
+      (dict "w" "220px" "h" "332px" "tilt" "-30deg" "tx" "-22px" "ty" "20px" "z" "6")
+      (dict "w" "300px" "h" "198px" "tilt" "28deg"  "tx" "12px"  "ty" "-12px" "z" "3")
+      (dict "w" "220px" "h" "332px" "tilt" "-76deg" "tx" "-30px" "ty" "16px" "z" "5")
+      (dict "w" "300px" "h" "198px" "tilt" "78deg"  "tx" "26px"  "ty" "-6px" "z" "4")
+    }}
     {{ $romans := slice "I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X" "XI" "XII" "XIII" "XIV" "XV" "XVI" "XVII" "XVIII" }}
     <div class="waterfall">
       {{ range $i, $p := $rest }}
-      {{ $t := index $tilts (mod $i (len $tilts)) }}
-      {{ $o := index $offs (mod $i (len $offs)) }}
+      {{ $pr := index $profiles (mod $i (len $profiles)) }}
       {{ $r := index $romans (mod $i (len $romans)) }}
       <a href="{{ $p.RelPermalink }}" class="wf-card"
-         style="--tilt:{{ $t }}deg; --ty:{{ $o }}px; animation: cardFadeIn {{ add (mul $i 0.08) 0.4 }}s ease-out both;">
+         style="--w:{{ $pr.w }}; --h:{{ $pr.h }}; --tilt:{{ $pr.tilt }}; --tx:{{ $pr.tx }}; --ty:{{ $pr.ty }}; --z:{{ $pr.z }}; animation: fadeOnly {{ add (mul $i 0.06) 0.4 }}s ease-out both;">
         <span class="wf-inner"></span>
         <span class="wf-emblem">{{ $r }}</span>
         <h3 class="wf-title">{{ $p.Title }}</h3>
