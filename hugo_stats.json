@@ -634,6 +634,8 @@
       "waterfall",
       "wf-card",
       "wf-date",
+      "wf-emblem",
+      "wf-inner",
       "wf-summary",
       "wf-title",
       "whitespace-nowrap",
