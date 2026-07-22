@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;1,400&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:{{W}}px;height:{{H}}px;overflow:hidden}
+  .canvas{
+    position:relative;width:{{W}}px;height:{{H}}px;
+    background:
+      radial-gradient(120% 90% at 50% 0%, rgba(90,120,200,0.30) 0%, rgba(90,120,200,0) 55%),
+      radial-gradient(100% 100% at 50% 110%, rgba(30,50,110,0.6) 0%, rgba(0,0,0,0) 60%),
+      #070b18;
+    font-family:'Bodoni Moda',Georgia,serif;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .stars{position:absolute;inset:0;pointer-events:none;opacity:0.55;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 70% 20%, #cdd8ff, transparent),
+      radial-gradient(1px 1px at 40% 70%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 85% 60%, #fff, transparent),
+      radial-gradient(1px 1px at 60% 85%, #cdd8ff, transparent),
+      radial-gradient(1.5px 1.5px at 30% 90%, #fff, transparent);
+  }
+  .frame{position:absolute;inset:36px;border:1px solid rgba(173,196,255,0.22);pointer-events:none;}
+  .content{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 110px;max-width:860px;}
+  .headline{font-family:'Cinzel',Georgia,serif;color:#aebfff;font-size:23px;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:40px;}
+  .rule{width:54px;height:1px;background:rgba(173,196,255,0.5);margin-bottom:40px;}
+  .quote{color:#eaf0ff;font-size:54px;font-weight:400;font-style:italic;line-height:1.32;}
+  .credit{margin-top:56px;color:rgba(174,191,255,0.6);font-size:16px;letter-spacing:0.28em;text-transform:uppercase;font-family:'Cinzel',Georgia,serif;}
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="stars"></div>
+  <div class="frame"></div>
+  <div class="content">
+    <div class="headline">{{HEADLINE}}</div>
+    <div class="rule"></div>
+    <div class="quote">{{QUOTE}}</div>
+    <div class="credit">{{CREDIT}}</div>
+  </div>
+</div>
+</body>
+</html>

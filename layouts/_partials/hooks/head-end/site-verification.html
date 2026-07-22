@@ -1,0 +1,15 @@
+{{/* Site-wide Google Analytics (gtag.js) — fires on every page */}}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QGYB6GB46S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QGYB6GB46S');
+</script>
+
+{{/* Domain ownership verification meta tags — homepage only */}}
+{{ if .IsHome }}
+<meta name="p:domain_verify" content="53eaf5de7f4734d15449b8dc2e5dbd86" />
+<meta name="google-site-verification" content="ns0M2r39q1_E6aOBb2s2AjbUenKrbQHBetEGUQFWBhM" />
+<meta name="facebook-domain-verification" content="y84dyp9vfe8ruvqf16elfk9553ivns" />
+{{ end }}
