@@ -20,6 +20,8 @@ pin_b: "You don't need the most beautiful deck. You need the most readable one."
 
 > The right first deck is the one you can't stop picking up.
 
+> 🔮 **Transparency note:** some links below are affiliate links — if you buy through them, we may earn a small commission at no extra cost to you. Our verdicts are never influenced by it. [Full disclosure →](/disclosure/)
+
 ---
 
 Jenna's first deck was a gift from a friend who meant well: a lavish, hand-painted deck with gilded edges, no guidebook, and imagery so dense and personal that nothing in it matched any online meaning she found. She shuffled it once, tried to read it, felt completely lost, and put it back in the box. It took her two years to try again — this time with a deck designed for learning.
@@ -52,6 +54,8 @@ The original, published in 1909, and still the single best learning tool in exis
 
 **Verdict:** ★★★★★ — the default recommendation, for one simple reason: everything else is easier *after* this one.
 
+**Where to find it:** [See current price on Amazon](https://www.amazon.com/s?k=rider+waite+smith+tarot) — it regularly dips below $25 during sales.
+
 ---
 
 ### 2. The Modern Witch Tarot (Lisa Sterle) — The Inclusive Upgrade
@@ -62,6 +66,8 @@ Same system, completely modern imagery: diverse figures, current fashion, real-l
 **The honest catch:** some scenes are so modern they lose the classic symbolism beginners rely on (the Emperor's mountain, the High Priestess's pillars are subtly present but easy to miss).
 
 **Verdict:** ★★★★½ — the best choice if you want to learn on a deck that looks like your life.
+
+**Where to find it:** [Check it on Amazon](https://www.amazon.com/s?k=modern+witch+tarot) or [browse the artist's shop on Etsy](https://www.etsy.com/search?q=modern+witch+tarot).
 
 ---
 
@@ -74,6 +80,8 @@ A wildly popular modern deck with soft, luminous art and a companion guidebook t
 
 **Verdict:** ★★★★ — a beautiful second deck or a journaler's first deck, provided you also grab a reference book.
 
+**Where to find it:** [See it on Amazon](https://www.amazon.com/s?k=light+seer+tarot) — the companion guidebook is worth buying alongside the deck.
+
 ---
 
 ### 4. The Wild Unknown (Kim Krans) — The Minimalist Icon
@@ -84,6 +92,8 @@ Hand-drawn, monochrome-ish, deeply atmospheric — one of the most beautiful dec
 **The honest catch:** the guidebook is poetic, not instructional. You'll love looking at it and struggle to learn on it.
 
 **Verdict:** ★★★ — buy it as your second deck, when you already know the meanings and want a deck that speaks in whispers.
+
+**Where to find it:** [Check it on Amazon](https://www.amazon.com/s?k=wild+unknown+tarot) or on the artist's site.
 
 ---
 
@@ -96,6 +106,8 @@ A sleek, gold-on-black deck that *keeps* the RWS meanings while stripping the im
 
 **Verdict:** ★★★★ — a smart modern choice that doesn't sacrifice learnability.
 
+**Where to find it:** [See it on Amazon](https://www.amazon.com/s?k=golden+thread+tarot) — the companion app is free, so you're just paying for the cards.
+
 ---
 
 ### 6. Everyday Witch Tarot (Deborah Blake) — The Budget Friend
@@ -106,6 +118,8 @@ Warm, approachable art with clear, simple scenes that stay close to RWS, plus a 
 **The honest catch:** the card stock is mid-range and the art is more charming than profound; some readers outgrow it quickly.
 
 **Verdict:** ★★★★ — the best under-$25 pick besides the original, especially if the RWS art style feels dated to you.
+
+**Where to find it:** [Check it on Amazon](https://www.amazon.com/s?k=everyday+witch+tarot) — frequently on sale for under $20.
 
 ---
 
@@ -130,7 +144,12 @@ Warm, approachable art with clear, simple scenes that stay close to RWS, plus a 
 
 ## 🛒 Where to Buy
 
-All decks on this list are widely available on **Amazon** (fast shipping, easy returns, often the best price) and many are on **Etsy** from independent shops if you want to support makers directly. Check prices across both before buying — the same deck can swing $10 between sellers.
+All decks on this list are widely available on **Amazon** (fast shipping, easy returns, often the best price) and many are on **Etsy** from independent shops if you want to support makers directly:
+
+- [All six decks — browse on Amazon](https://www.amazon.com/s?k=tarot+deck+beginner)
+- [Independent decks and handmade editions on Etsy](https://www.etsy.com/search?q=tarot+deck)
+
+Check prices across both before buying — the same deck can swing $10 between sellers. And if you're weighing a deck that isn't on this list, apply the three questions above: if you can read it, learn on it, and you'll pick it up daily, it's the right deck for you.
 
 ---
 
