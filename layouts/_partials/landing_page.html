@@ -191,6 +191,16 @@
     z-index: 5;
   }
 
+  /* ===== Subtitle typography (balanced, no orphan words) ===== */
+  .hero-subtitle,
+  .section-subtitle {
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    text-wrap: balance;
+  }
+  .section-subtitle { margin-top: 0.5rem; }
+
   /* ===== Cornerstone Guide Cards ===== */
   .cornerstones-grid {
     display: grid;
@@ -336,7 +346,7 @@
       </div>
       
       <div class="floating-element" style="animation-delay: 0.5s;">
-        <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+        <p class="hero-subtitle text-lg md:text-xl text-gray-300 mb-12 leading-relaxed">
           Where depth psychology meets symbolic wisdom. Explore the unconscious, decode your shadow, and master your inner world.
         </p>
       </div>
@@ -346,7 +356,7 @@
           Begin Your Journey
           <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
         </a>
-        <a href="/posts" class="bg-transparent border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black font-bold py-4 px-8 rounded-full text-lg transition-all duration-300">
+        <a href="#gateways" class="group bg-[#d4af37]/10 border border-[#d4af37]/50 backdrop-blur-sm text-[#d4af37] hover:bg-[#d4af37]/20 hover:border-[#d4af37]/80 font-bold py-4 px-8 rounded-full text-lg transition-all duration-300">
           Explore Teachings
         </a>
       </div>
@@ -369,7 +379,7 @@
     <div class="container mx-auto px-6 max-w-7xl pt-36 pb-24">
       <div class="text-center mb-14">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-3" style="text-wrap:balance;">Start Here: The Cornerstone Guides</h2>
-        <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed" style="text-wrap:balance;">
+        <p class="section-subtitle text-gray-400 text-sm md:text-base leading-relaxed">
           New to this world? Begin with our four foundational guides — each maps an entire field, then points you to the deeper dives.
         </p>
       </div>
@@ -418,7 +428,7 @@
           <span class="relative z-10">Gateways to Transcendent Knowledge</span>
           <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
         </h2>
-        <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+        <p class="section-subtitle text-lg md:text-xl text-gray-300">
           Traverse the multidimensional pathways of esoteric wisdom and depth psychology.
         </p>
       </div>
@@ -428,7 +438,9 @@
         <div class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group transition-all duration-300 relative overflow-hidden border border-[#d4af37]/30 foundation-glow">
           <div class="absolute inset-0 bg-gradient-to-br from-[#d4af37]/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div class="relative z-10">
-            <div class="text-6xl mb-6 text-[#d4af37] group-hover:scale-110 transition-transform duration-300">🧠</div>
+            <div class="mb-6 flex justify-center">
+              <svg class="w-12 h-12 text-[#d4af37] group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_12px_rgba(212,175,55,0.35)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+            </div>
             <h3 class="text-xl font-bold text-white mb-4">Mind & Psych</h3>
             <p class="text-gray-300 mb-6 text-sm leading-relaxed">
               Where depth psychology meets symbolic wisdom. Decode your dreams and explore the unconscious mind.
@@ -442,7 +454,9 @@
         <div class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group hover:border-yellow-300/50 transition-all duration-300 relative overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div class="relative z-10">
-            <div class="text-6xl mb-6 text-yellow-300 group-hover:scale-110 transition-transform duration-300">🃏</div>
+            <div class="mb-6 flex justify-center">
+              <svg class="w-12 h-12 text-[#d4af37] group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_12px_rgba(212,175,55,0.35)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            </div>
             <h3 class="text-xl font-bold text-white mb-4">Sacred Tarot & Oracle</h3>
             <p class="text-gray-300 mb-6 text-sm leading-relaxed">
               Ancient archetypal wisdom speaks through symbolic imagery, revealing hidden truths.
@@ -456,7 +470,9 @@
         <div class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group hover:border-emerald-300/50 transition-all duration-300 relative overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div class="relative z-10">
-            <div class="text-6xl mb-6 text-emerald-300 group-hover:scale-110 transition-transform duration-300">🌀</div>
+            <div class="mb-6 flex justify-center">
+              <svg class="w-12 h-12 text-[#d4af37] group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_12px_rgba(212,175,55,0.35)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20c-4.97 0-9-3.58-9-8 0 4.97 4.03 9 9 9s9-4.03 9-9c0 4.42-4.03 8-9 8Z"/><path d="M12 20c-3 0-6-2-6-6s3-6 6-6 6 2 6 6-3 6-6 6Z"/><path d="M12 14c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4Z"/></svg>
+            </div>
             <h3 class="text-xl font-bold text-white mb-4">Energy & Chakras</h3>
             <p class="text-gray-300 mb-6 text-sm leading-relaxed">
               Harmonize your subtle energy bodies, activating life force flow for optimal vitality.
@@ -470,7 +486,9 @@
         <div class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group hover:border-fuchsia-300/50 transition-all duration-300 relative overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div class="relative z-10">
-            <div class="text-6xl mb-6 text-fuchsia-300 group-hover:scale-110 transition-transform duration-300">⭐</div>
+            <div class="mb-6 flex justify-center">
+              <svg class="w-12 h-12 text-[#d4af37] group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_12px_rgba(212,175,55,0.35)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+            </div>
             <h3 class="text-xl font-bold text-white mb-4">Cosmic Astrology & Symbols</h3>
             <p class="text-gray-300 mb-6 text-sm leading-relaxed">
               Decipher celestial influences and symbolic messages encoded in the fabric of consciousness.
@@ -543,55 +561,6 @@
     </div>
   </section>
 
-  <!-- ============ EXPLORE THE ARCHIVE ============ -->
-  <section class="py-0 relative section-gradient-4">
-    <div class="container mx-auto px-6 max-w-7xl pt-24 pb-24">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-white mb-6">Start Here: The Cornerstone Guides</h2>
-        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-          New to this world? Begin with our four foundational guides — each one maps an entire field, then points you to the deeper dives.
-        </p>
-      </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="grid grid-cols-2 gap-6">
-          <a href="/tarot/fools-journey-complete-guide/" class="glass-morphism p-6 rounded-xl block hover:scale-[1.02] transition-transform duration-300">
-            <span class="inline-block mb-3 px-3 py-1 rounded-full text-[0.62rem] font-bold tracking-[0.18em] uppercase" style="background:linear-gradient(90deg,#e8c45a,#f3d778); color:#1a1228;">Start Here</span>
-            <h4 class="text-lg font-bold text-white mb-3">The Fool's Journey</h4>
-            <p class="text-gray-300 text-sm mb-4">All 22 Major Arcana cards, decoded card by card.</p>
-            <div class="text-[#d4af37] text-xs">Tarot · Cornerstone Guide</div>
-          </a>
-          <a href="/astrology/astrology-101-sun-moon-rising/" class="glass-morphism p-6 rounded-xl block hover:scale-[1.02] transition-transform duration-300">
-            <span class="inline-block mb-3 px-3 py-1 rounded-full text-[0.62rem] font-bold tracking-[0.18em] uppercase" style="background:linear-gradient(90deg,#e8c45a,#f3d778); color:#1a1228;">Start Here</span>
-            <h4 class="text-lg font-bold text-white mb-3">Astrology 101</h4>
-            <p class="text-gray-300 text-sm mb-4">Sun, Moon &amp; Rising signs — the map that makes charts make sense.</p>
-            <div class="text-fuchsia-300 text-xs">Astrology · Cornerstone Guide</div>
-          </a>
-          <a href="/energy/energy-body-101/" class="glass-morphism p-6 rounded-xl block hover:scale-[1.02] transition-transform duration-300">
-            <span class="inline-block mb-3 px-3 py-1 rounded-full text-[0.62rem] font-bold tracking-[0.18em] uppercase" style="background:linear-gradient(90deg,#e8c45a,#f3d778); color:#1a1228;">Start Here</span>
-            <h4 class="text-lg font-bold text-white mb-3">Your Energy Body 101</h4>
-            <p class="text-gray-300 text-sm mb-4">A beginner's map of the subtle energy system — aura, chakras, flow.</p>
-            <div class="text-cyan-300 text-xs">Energy · Cornerstone Guide</div>
-          </a>
-          <a href="/reviews/best-tarot-decks-beginners/" class="glass-morphism p-6 rounded-xl block hover:scale-[1.02] transition-transform duration-300">
-            <span class="inline-block mb-3 px-3 py-1 rounded-full text-[0.62rem] font-bold tracking-[0.18em] uppercase" style="background:linear-gradient(90deg,#e8c45a,#f3d778); color:#1a1228;">Start Here</span>
-            <h4 class="text-lg font-bold text-white mb-3">Best Tarot Decks 2026</h4>
-            <p class="text-gray-300 text-sm mb-4">Six beginner decks reviewed — what's worth your money, what to skip.</p>
-            <div class="text-yellow-300 text-xs">Reviews · Cornerstone Guide</div>
-          </a>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold text-white mb-6">Deepen Your Practice</h3>
-          <p class="text-gray-300 mb-8 leading-relaxed">
-            Each cornerstone guide ends where the next begins — every article in our archive is a deeper dive into the map you just learned. Explore the full collection to find what resonates.
-          </p>
-          <a href="/tags/" class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-            Browse All Content
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ WHISPERS OF THE UNCONSCIOUS ============ -->
   <section class="py-0 relative section-gradient-5">
     <div class="container mx-auto px-6 max-w-6xl pt-24 pb-24">
@@ -631,7 +600,7 @@
   <section class="py-0 relative section-gradient-6">
     <div class="container mx-auto px-6 max-w-4xl text-center pt-24 pb-24">
       <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Meet Your True Self?</h2>
-      <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+      <p class="section-subtitle text-lg text-gray-300 mb-10 leading-relaxed">
         The blueprint of your psyche is waiting to be uncovered. Take the first step today.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
