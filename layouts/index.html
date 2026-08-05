@@ -188,6 +188,20 @@
     color: rgba(212,175,55,0.6);
   }
 
+  /* ===== Hero → Cornerstones fade transition ===== */
+  .hero-section {
+    background-color: #000;
+  }
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 18%; /* 15–20% of hero height: soft black feather into the next section */
+    background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    pointer-events: none;
+    z-index: 5;
+  }
+
   /* ===== Cornerstone Guide Cards ===== */
   .cornerstones-grid {
     display: grid;
@@ -322,7 +336,7 @@
   </div>
 
   <!-- ============ HERO ============ -->
-  <section class="min-h-[75vh] flex items-center justify-center px-6 relative overflow-hidden section-gradient-1" style="padding-top:4rem">
+  <section class="hero-section min-h-[75vh] flex items-center justify-center px-6 relative overflow-hidden" style="padding-top:4rem">
     
     <!-- Radial gold aura layers — brighter, larger -->
     <div class="absolute inset-0 z-0">
@@ -383,9 +397,9 @@
   </section>
 
   <!-- ============ CORNERSTONES ============ -->
-  <section id="cornerstones" class="py-0 relative" style="background:#1e1a42; scroll-margin-top:4rem;">
-    <div class="container mx-auto px-6 max-w-7xl pt-10 pb-20">
-      <div class="text-center mb-10">
+  <section id="cornerstones" class="py-0 relative" style="background-color:#000; scroll-margin-top:4rem;">
+    <div class="container mx-auto px-6 max-w-7xl pt-36 pb-24">
+      <div class="text-center mb-14">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-3" style="text-wrap:balance;">Start Here: The Cornerstone Guides</h2>
         <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed" style="text-wrap:balance;">
           New to this world? Begin with our four foundational guides — each maps an entire field, then points you to the deeper dives.
