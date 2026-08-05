@@ -109,7 +109,11 @@
 
     {{ if .Pages }}
     {{ $featured := index .Pages 0 }}
-    {{ $rest := after 1 .Pages }}
+    {{ $featuredSlug := "energy-body-101" }}
+    {{ with $.Site.GetPage (printf "/energy/%s" $featuredSlug) }}
+      {{ $featured = . }}
+    {{ end }}
+    {{ $rest := .Pages | complement (slice $featured) }}
     <a href="{{ $featured.RelPermalink }}" class="energy-featured" style="animation: fadeOnly .5s ease-out both;">
       <span class="ef-badge">FEATURED · 精选</span>
       <h3 class="ef-title">{{ $featured.Title }}</h3>

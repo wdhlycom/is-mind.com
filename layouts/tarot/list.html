@@ -282,7 +282,7 @@
       </p>
     </header>
 
-    {{ $featuredSlugs := slice "better-tarot-questions" "tarot-for-beginners" "major-vs-minor-arcana" }}
+    {{ $featuredSlugs := slice "fools-journey-complete-guide" "tarot-for-beginners" "major-vs-minor-arcana" }}
     {{ $featured := slice }}
     {{ range $featuredSlugs }}
       {{ with $.Site.GetPage (printf "/tarot/%s" .) }}

@@ -157,4 +157,4 @@ The cards had been telling her the whole time. She just needed to learn the lang
 
 ---
 
-*Explore the remaining Major Arcana archetypes in our full guide to the Fool's Journey, or dive into Shadow Work to begin the descent phase of your own individuation.*
+*Explore all 22 cards card by card in our complete guide to the Fool's Journey, or dive into Shadow Work to begin the descent phase of your own individuation.*

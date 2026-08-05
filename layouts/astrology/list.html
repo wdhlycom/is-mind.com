@@ -292,7 +292,11 @@
 
     {{ if .Pages }}
     {{ $featured := index .Pages 0 }}
-    {{ $rest := after 1 .Pages }}
+    {{ $featuredSlug := "astrology-101-sun-moon-rising" }}
+    {{ with $.Site.GetPage (printf "/astrology/%s" $featuredSlug) }}
+      {{ $featured = . }}
+    {{ end }}
+    {{ $rest := .Pages | complement (slice $featured) }}
     <div class="astro-grid grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-7 pb-16">
 
       <!-- Constellation connector lines weaving the cards into one star map -->
