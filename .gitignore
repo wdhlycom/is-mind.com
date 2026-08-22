@@ -3,3 +3,6 @@ resources/
 .workbuddy/
 node_modules/
 .hugo_build.lock
+# Hugo build-verification outputs (not part of source)
+dist-*/
+tmp/

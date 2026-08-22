@@ -19,6 +19,12 @@
     backface-visibility: hidden; border-radius: 12px;
   }
   .card-back { transform: rotateY(180deg); }
+  .tool-reveal { perspective: 1000px; }
+  .tool-reveal-inner {
+    position: relative; width: 100%; height: 100%;
+    transition: transform 0.7s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d;
+  }
+  .tool-reveal.flipped .tool-reveal-inner { transform: rotateY(180deg); }
   
   .floating-element { animation: float 6s ease-in-out infinite; }
   .pulse-glow { animation: pulse-glow 3s ease-in-out infinite alternate; }
@@ -507,53 +513,73 @@
     </div>
   </section>
 
-  <!-- ============ SACRED GUIDANCE ============ -->
-  <section class="py-0 relative section-gradient-3">
+  <!-- ============ YOUR INNER WORLD (PLAYFUL INTRO) ============ -->
+  <section class="py-0 relative" style="background: linear-gradient(180deg, #0b0716 0%, #140b26 100%);">
+    <div class="container mx-auto px-6 max-w-5xl pt-20 pb-14 text-center">
+      <span class="inline-block text-[#d4af37] text-sm tracking-[0.25em] uppercase mb-4">Play first · Read later</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" style="text-wrap:balance;">Your inner world, made <span class="text-[#d4af37]">playful</span>.</h2>
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">Pull a card, ask a question, check your sign match. No expertise needed — just curiosity.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#play" class="inline-block bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full text-base transition-all duration-300 transform hover:scale-105">Start with a card draw →</a>
+        <a href="#cornerstones" class="inline-block bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black font-bold py-3 px-6 rounded-full text-base transition-all duration-300">Explore the guides</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SACRED GUIDANCE / START HERE ============ -->
+  <section id="play" class="py-0 relative section-gradient-3">
     <div class="container mx-auto px-6 max-w-5xl pt-16 pb-16">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-white mb-4">Sacred Guidance</h2>
-        <p class="text-lg text-gray-300 max-w-2xl mx-auto">Daily Oracle Card for Spiritual Insight</p>
+        <span class="inline-block text-[#d4af37] text-sm tracking-[0.25em] uppercase mb-3">Sacred Guidance</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Start here — pick a card, ask a question</h2>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">Three little games to spark intuition. Tap any card to flip it, then open the tool.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="card-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleCard(this)" style="height: 180px;">
-          <div class="card-reveal-inner">
+        <!-- Daily Oracle -->
+        <div class="tool-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleToolCard(this)" style="height: 240px;">
+          <div class="tool-reveal-inner">
             <div class="card-front p-4 flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/80 to-indigo-900/80">
-              <div class="text-4xl mb-2 text-[#d4af37] group-hover:scale-110 transition-transform">🔮</div>
-              <h3 class="text-lg font-bold text-white mb-1">Past</h3>
-              <p class="text-gray-300 text-xs">Influences</p>
+              <div class="text-4xl mb-3 text-[#d4af37] group-hover:scale-110 transition-transform">🔮</div>
+              <h3 class="text-lg font-bold text-white mb-1">Daily Oracle</h3>
+              <p class="text-gray-300 text-xs">Tap to flip</p>
             </div>
-            <div class="card-back p-4 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/90 to-amber-100/90">
-              <div class="text-3xl mb-2 text-purple-800">🌙</div>
-              <h3 class="text-sm font-bold text-purple-800 mb-1">Hermit</h3>
-              <p class="text-purple-700 text-xs text-center">Ancient lessons illuminate your path.</p>
+            <div class="card-back p-5 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/95 to-amber-100/95">
+              <div class="text-3xl mb-2 text-purple-800">🔮</div>
+              <h3 class="text-sm font-bold text-purple-800 mb-1">Daily Oracle</h3>
+              <p class="text-purple-700 text-xs text-center mb-3 leading-relaxed">Draw today's card and read its one-line guidance.</p>
+              <a href="/oracle/" class="text-purple-900 font-semibold text-xs underline decoration-2 underline-offset-2" onclick="event.stopPropagation();">Open tool →</a>
             </div>
           </div>
         </div>
-        <div class="card-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleCard(this)" style="height: 180px;">
-          <div class="card-reveal-inner">
+        <!-- Yes / No Tarot -->
+        <div class="tool-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleToolCard(this)" style="height: 240px;">
+          <div class="tool-reveal-inner">
             <div class="card-front p-4 flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/80 to-indigo-900/80">
-              <div class="text-4xl mb-2 text-cyan-300 group-hover:scale-110 transition-transform">✨</div>
-              <h3 class="text-lg font-bold text-white mb-1">Present</h3>
-              <p class="text-gray-300 text-xs">Truths</p>
+              <div class="text-4xl mb-3 text-cyan-300 group-hover:scale-110 transition-transform">✨</div>
+              <h3 class="text-lg font-bold text-white mb-1">Yes / No Tarot</h3>
+              <p class="text-gray-300 text-xs">Tap to flip</p>
             </div>
-            <div class="card-back p-4 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/90 to-amber-100/90">
-              <div class="text-3xl mb-2 text-purple-800">💫</div>
-              <h3 class="text-sm font-bold text-purple-800 mb-1">Lovers</h3>
-              <p class="text-purple-700 text-xs text-center">Navigate with divine guidance.</p>
+            <div class="card-back p-5 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/95 to-amber-100/95">
+              <div class="text-3xl mb-2 text-purple-800">✨</div>
+              <h3 class="text-sm font-bold text-purple-800 mb-1">Yes / No Tarot</h3>
+              <p class="text-purple-700 text-xs text-center mb-3 leading-relaxed">Ask anything in your head. Get a clear lean.</p>
+              <a href="/yes-no-tarot/" class="text-purple-900 font-semibold text-xs underline decoration-2 underline-offset-2" onclick="event.stopPropagation();">Open tool →</a>
             </div>
           </div>
         </div>
-        <div class="card-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleCard(this)" style="height: 180px;">
-          <div class="card-reveal-inner">
+        <!-- Sign Compatibility -->
+        <div class="tool-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleToolCard(this)" style="height: 240px;">
+          <div class="tool-reveal-inner">
             <div class="card-front p-4 flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/80 to-indigo-900/80">
-              <div class="text-4xl mb-2 text-fuchsia-300 group-hover:scale-110 transition-transform">🌟</div>
-              <h3 class="text-lg font-bold text-white mb-1">Future</h3>
-              <p class="text-gray-300 text-xs">Visions</p>
+              <div class="text-4xl mb-3 text-fuchsia-300 group-hover:scale-110 transition-transform">💞</div>
+              <h3 class="text-lg font-bold text-white mb-1">Sign Compatibility</h3>
+              <p class="text-gray-300 text-xs">Tap to flip</p>
             </div>
-            <div class="card-back p-4 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/90 to-amber-100/90">
-              <div class="text-3xl mb-2 text-purple-800">🌠</div>
-              <h3 class="text-sm font-bold text-purple-800 mb-1">Star</h3>
-              <p class="text-purple-700 text-xs text-center">Cosmic assurances of upcoming opportunities.</p>
+            <div class="card-back p-5 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/95 to-amber-100/95">
+              <div class="text-3xl mb-2 text-purple-800">💞</div>
+              <h3 class="text-sm font-bold text-purple-800 mb-1">Sign Compatibility</h3>
+              <p class="text-purple-700 text-xs text-center mb-3 leading-relaxed">Choose two signs and see how you match.</p>
+              <a href="/sign-compatibility/" class="text-purple-900 font-semibold text-xs underline decoration-2 underline-offset-2" onclick="event.stopPropagation();">Open tool →</a>
             </div>
           </div>
         </div>
@@ -562,6 +588,37 @@
         <a href="/draw-card/" class="inline-block bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full text-base transition-all duration-300 transform hover:scale-105 pulse-glow crystal-effect">
           Draw Your Sacred Card
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUSTED PLATFORMS ============ -->
+  <section class="py-0 relative section-gradient-4">
+    <div class="container mx-auto px-6 max-w-5xl pt-16 pb-16">
+      <div class="text-center mb-12">
+        <span class="inline-block text-[#d4af37] text-sm tracking-[0.25em] uppercase mb-3">Recommended</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Trusted platforms</h2>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">Hand-picked tools and services we actually like. <span class="text-[#d4af37]">(Affiliate spots — drop your links in.)</span></p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-morphism mystical-border p-6 rounded-2xl text-center">
+          <h3 class="text-xl font-bold text-white mb-3">Psychic &amp; tarot readings</h3>
+          <p class="text-gray-300 text-sm mb-5 leading-relaxed">Compare the top vetted platforms before you book a session.</p>
+          <!-- TODO: replace href="#" with your affiliate link -->
+          <a href="#" class="inline-block text-[#d4af37] hover:text-[#e6c040] font-medium text-sm">Affiliate link here →</a>
+        </div>
+        <div class="glass-morphism mystical-border p-6 rounded-2xl text-center">
+          <h3 class="text-xl font-bold text-white mb-3">Beginner tarot decks</h3>
+          <p class="text-gray-300 text-sm mb-5 leading-relaxed">Our favourite decks for first-time readers, with pros &amp; cons.</p>
+          <!-- TODO: replace href="#" with your affiliate link -->
+          <a href="#" class="inline-block text-[#d4af37] hover:text-[#e6c040] font-medium text-sm">Affiliate link here →</a>
+        </div>
+        <div class="glass-morphism mystical-border p-6 rounded-2xl text-center">
+          <h3 class="text-xl font-bold text-white mb-3">Astrology apps</h3>
+          <p class="text-gray-300 text-sm mb-5 leading-relaxed">Chart builders and daily insight apps worth your screen time.</p>
+          <!-- TODO: replace href="#" with your affiliate link -->
+          <a href="#" class="inline-block text-[#d4af37] hover:text-[#e6c040] font-medium text-sm">Affiliate link here →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -625,6 +682,10 @@
 <script>
 function toggleCard(card) {
   document.querySelectorAll('.card-reveal').forEach(function(c){ if(c!==card)c.classList.remove('flipped'); });
+  card.classList.toggle('flipped');
+}
+
+function toggleToolCard(card) {
   card.classList.toggle('flipped');
 }
 

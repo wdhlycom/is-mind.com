@@ -120,6 +120,11 @@
     font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.7rem;
     color: var(--gold-bright); margin: 0 0 .3rem;
   }
+  .dc-oneline {
+    font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+    font-size: 1.18rem; line-height: 1.5; color: rgba(243,215,120,.85);
+    max-width: 32rem; margin: 0 auto 1.4rem;
+  }
   .dc-orient {
     display: inline-block; font-family: 'Cinzel', serif; font-size: .72rem; letter-spacing: .2em;
     text-transform: uppercase; padding: .25rem .8rem; border-radius: 9999px; margin-bottom: 1rem;
@@ -190,7 +195,7 @@
   }
   html:not(.dark) .dc-sub { color: #5b5470; }
   html:not(.dark) .dc-star { background: #7c3aed; }
-  html:not(.dark) .dc-oracle { color: #3b2f63; }
+  html:not(.dark) .dc-oneline { color: #7c3aed; }
   html:not(.dark) .dc-cta { color: #5b5470; }
   html:not(.dark) .dc-cta a { color: #7c3aed; border-color: rgba(124,58,237,.4); }
   html:not(.dark) .dc-cta a:hover { color: #4c1d95; border-color: #4c1d95; }
@@ -210,8 +215,8 @@
   <div class="dc-stars" id="dcStars"></div>
 
   <div class="dc-inner">
-    <h1 class="dc-title">Draw Your Daily Card</h1>
-    <p class="dc-sub">Still your mind, hold a question, and let the Major Arcana mirror the archetype at work within you today.</p>
+    <h1 class="dc-title">Daily Oracle</h1>
+    <p class="dc-sub">Still your mind, hold a question, and let a single card mirror the energy moving through you today — then read its deeper psychological reflection.</p>
 
     <details class="dc-ritual" id="dcRitual">
       <summary><span class="dc-chev">▶</span> How to Consult the Oracle</summary>
@@ -237,10 +242,11 @@
       </div>
     </div>
 
-    <button class="dc-btn" id="dcBtn">✨ Draw Your Daily Card</button>
+    <button class="dc-btn" id="dcBtn">✨ Draw Today's Card</button>
 
     <div class="dc-result" id="dcResult">
       <h3 class="dc-result-name" id="dcResName"></h3>
+      <p class="dc-oneline" id="dcOne"></p>
       <span class="dc-orient" id="dcResOrient"></span>
       <p class="dc-oracle" id="dcOracle"></p>
       <div class="dc-divider"></div>
@@ -411,6 +417,32 @@
              reflection:"What loose end is asking you to finish, not flee?" } }
   ];
 
+  // One-line oracle (integrated from the former /oracle/ page)
+  var LINES = {
+    "The Fool": "A leap of faith opens the door you have been circling.",
+    "The Magician": "The tools are already in your hands — name what you intend.",
+    "The High Priestess": "The answer lives below the surface; trust your quiet knowing.",
+    "The Empress": "Something in you is ready to be nurtured into being.",
+    "The Emperor": "A clear boundary would give your life more freedom, not less.",
+    "The Hierophant": "Learn the rules deeply before you decide which to transcend.",
+    "The Lovers": "Choose from love, and your inner opposites reconcile.",
+    "The Chariot": "Harness two opposing drives as one, and move with direction.",
+    "Strength": "Meet your fear with patience; the wild becomes an ally.",
+    "The Hermit": "Solitude is a return — your own quiet wisdom lights the way.",
+    "Wheel of Fortune": "The cycle turns; ride the season you keep resisting.",
+    "Justice": "Own your part, speak the truth, and let balance set you free.",
+    "The Hanged Man": "Surrender the struggle and the situation shows its hidden meaning.",
+    "Death": "Let the outworn self dissolve so the next you can emerge.",
+    "Temperance": "Blend the opposites within you into a healing middle way.",
+    "The Devil": "Name the attachment that binds you; its chains are looser than they seem.",
+    "The Tower": "A false structure falls — what remains was always solid.",
+    "The Star": "After the storm, quiet hope returns. Let yourself be replenished.",
+    "The Moon": "Walk gently through uncertainty; meet the fear, don't solve it.",
+    "The Sun": "Clarity and joy are yours — let your true nature shine.",
+    "Judgement": "Review your story with honesty, forgive, and rise.",
+    "The World": "A cycle completes in wholeness — honor the journey before the next."
+  };
+
   var card = document.getElementById('dcCard');
   var btn = document.getElementById('dcBtn');
   var result = document.getElementById('dcResult');
@@ -419,6 +451,7 @@
   var nameEl = document.getElementById('dcName');
   var hintEl = document.getElementById('dcHint');
   var resName = document.getElementById('dcResName');
+  var resOne = document.getElementById('dcOne');
   var resOrient = document.getElementById('dcResOrient');
   var oracle = document.getElementById('dcOracle');
   var drawing = false;
@@ -445,7 +478,6 @@
     drawing = true;
     btn.disabled = true;
     result.classList.remove('show');
-    // reset flip so the back shows before re-flipping
     card.classList.remove('is-flipped');
     card.classList.remove('reversed');
 
@@ -462,6 +494,7 @@
       card.classList.add('is-flipped');
 
       resName.textContent = pick.name;
+      resOne.textContent = LINES[pick.name] || '';
       resOrient.textContent = reversed ? 'Reversed' : 'Upright';
       resOrient.className = 'dc-orient ' + (reversed ? 'reversed' : 'upright');
       var data = reversed ? pick.rev : pick.up;

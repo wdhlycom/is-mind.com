@@ -47,7 +47,7 @@ If you are located in the European Economic Area (EEA), you also have the right 
 
 ## Affiliate Disclosure
 
-Mind.autos participates in affiliate marketing programs, including but not limited to Amazon Associates and other third-party affiliate programs. 
+Is-Mind.com participates in affiliate marketing programs, including but not limited to Amazon Associates and other third-party affiliate programs. 
 
 This means that when you click on links to products or services on our website and make a purchase, we may receive a commission at no additional cost to you. These affiliate relationships help support the maintenance and improvement of our website.
 

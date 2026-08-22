@@ -116,6 +116,12 @@
   .text-lavender { color: #d3c2e5; font-weight: 300; }
   .text-gold-muted { color: #ffe480; }
 
+  /* Subtitle: normal paragraph. Single continuous line on desktop, wraps only on small screens. */
+  .reviews-subtitle { display: block; }
+  @media (min-width: 768px) {
+    .reviews-subtitle { white-space: nowrap; }
+  }
+
   /* ===== Tools Directory (data-driven) ===== */
   @keyframes toolIn {
     0%   { opacity: 0; transform: translateY(20px) scale(0.98); }
@@ -129,7 +135,8 @@
   }
   .tools-intro p { color: #d3c2e5; font-weight: 300; font-size: 1.05rem; line-height: 1.6; }
   .tools-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-  @media (min-width: 768px) { .tools-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 768px) { .tools-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .tools-grid { grid-template-columns: repeat(4, 1fr); } }
   .tool-card {
     backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
     background: linear-gradient(160deg, rgba(50,20,70,0.5) 0%, rgba(30,12,50,0.68) 100%);
@@ -155,11 +162,15 @@
     color: #d3c2e5; font-weight: 300; font-size: 0.95rem; line-height: 1.6;
     margin-bottom: 1.1rem; min-height: 3rem;
   }
-  .tool-tag {
-    display: inline-block; font-size: 0.7rem; letter-spacing: 0.03em; padding: 0.22rem 0.7rem;
-    border-radius: 9999px; background: rgba(255,228,0,0.1); color: #ffe480;
-    border: 1px solid rgba(255,228,0,0.25); margin-bottom: 1.2rem;
+  /* Redesigned secondary link: lightweight in-site "read full review" entry (replaces the old offer tag) */
+  .tool-badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em;
+    color: rgba(255,228,128,0.85); text-decoration: none;
+    margin-bottom: 0.85rem; position: relative; z-index: 2;
+    transition: color 0.3s ease;
   }
+  .tool-badge:hover { color: #ffe480; text-decoration: underline; }
   .tool-btn {
     display: inline-block; padding: 0.62rem 1.5rem; border-radius: 9999px; font-weight: 700;
     font-size: 0.9rem; background: linear-gradient(90deg, #ffe400, #ffd700); color: #2a1a00;
@@ -167,6 +178,45 @@
     margin-top: auto;
   }
   .tool-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(255,215,0,0.45); }
+
+  /* Stretched in-site link: covers the whole card; primary CTA sits above it.
+     This isolates the external CTA from the card's in-site jump without nested <a> or JS. */
+  .tool-card__link {
+    position: absolute; inset: 0; z-index: 1; border-radius: inherit; text-decoration: none;
+  }
+  .tool-btn { position: relative; z-index: 2; }
+
+  /* ===== Atmosphere layer: shooting stars + rising energy particles ===== */
+  .atmos-layer { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  @keyframes shootStar {
+    0%   { transform: translate(0, 0) rotate(45deg); opacity: 0; }
+    10%  { opacity: 0.4; }
+    28%  { opacity: 0.35; }
+    100% { transform: translate(-95vw, 95vh) rotate(45deg); opacity: 0; }
+  }
+  .shooting-star {
+    position: absolute; top: -6%; pointer-events: none; will-change: transform, opacity;
+    width: 2px; height: 90px; border-radius: 2px; z-index: 0; opacity: 0;
+    background: linear-gradient(to bottom, rgba(255,250,230,0.85), rgba(255,210,80,0.12), transparent);
+    filter: drop-shadow(0 0 4px rgba(255,230,150,0.55));
+    animation-name: shootStar; animation-timing-function: linear; animation-iteration-count: infinite;
+  }
+  .shooting-star::after {
+    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 4px; height: 4px; border-radius: 50%;
+    background: rgba(255,255,245,0.95); box-shadow: 0 0 6px rgba(255,240,180,0.9);
+  }
+  @keyframes riseUp {
+    0%   { transform: translateY(0); opacity: 0; }
+    18%  { opacity: 0.35; }
+    65%  { opacity: 0.28; }
+    100% { transform: translateY(-55vh); opacity: 0; }
+  }
+  .energy-particle {
+    position: absolute; bottom: -12px; pointer-events: none; border-radius: 50%; z-index: 0; opacity: 0;
+    background: radial-gradient(circle, rgba(255,230,160,0.8) 0%, rgba(255,200,80,0.3) 45%, transparent 72%);
+    box-shadow: 0 0 6px rgba(255,220,120,0.5); will-change: transform, opacity;
+  }
 
   /* ===== Latest Reviews divider ===== */
   .reviews-divider { margin-top: 4rem; }
@@ -181,6 +231,20 @@
 </style>
 
 <div class="review-page min-h-screen pt-3 px-4 pb-14 md:pt-4 md:px-6 md:pb-20 relative overflow-hidden bg-gradient-to-b from-[#221438] via-[#1a0e30] via-[#140a28] to-[#0e0620]">
+
+  <!-- ===== Atmosphere layer: shooting stars (top-right → bottom-left) + rising energy particles (bottom → middle) ===== -->
+  <div class="atmos-layer" aria-hidden="true">
+    <div class="shooting-star" style="left:84%; animation-duration:7s;   animation-delay:0s;"></div>
+    <div class="shooting-star" style="left:70%; animation-duration:9s;   animation-delay:3.5s;"></div>
+    <div class="shooting-star" style="left:92%; animation-duration:11s;  animation-delay:6s;"></div>
+    <div class="shooting-star" style="left:78%; animation-duration:8s;   animation-delay:9.5s;"></div>
+    {{ range $i := seq 44 }}
+    <div class="energy-particle"
+      style="left:{{ math.Mod (mul $i 61) 98 }}%;
+      width:{{ add (math.Mod (mul $i 3) 4) 2 }}px; height:{{ add (math.Mod (mul $i 3) 4) 2 }}px;
+      animation: riseUp {{ add (math.Mod (mul $i 7) 7) 8 }}s ease-in {{ math.Mod (mul $i 2.7) 17 }}s infinite;"></div>
+    {{ end }}
+  </div>
 
   <!-- ===== Point Sparks ===== -->
   <div class="point-spark" style="top:8%;left:15%;width:5px;height:5px;animation:sparkFlash 2.2s ease-out infinite;animation-delay:0s;"></div>
@@ -250,7 +314,7 @@
           {{ .Title }}
         </span>
       </h1>
-      <p class="text-lg text-lavender max-w-2xl mx-auto leading-relaxed">
+      <p class="text-lg text-lavender mx-auto leading-relaxed reviews-subtitle">
         {{ .Description | default "Honest reviews of spiritual tools, services, and resources to support your mystical journey." }}
       </p>
       <div class="mt-6 flex justify-center">
@@ -275,11 +339,12 @@
       <div class="tools-grid">
         {{ range $i, $t := .Site.Data.tools }}
         <div class="tool-card" style="animation: toolIn {{ add (mul $i 0.15) 0.3 }}s ease-out both;">
+          <a class="tool-card__link" href="{{ $t.link }}" aria-label="{{ $t.name }} — intro page"></a>
+          <a class="tool-badge" href="{{ $t.review }}">📖 Read Full Review →</a>
           <div class="tool-icon">{{ $t.icon }}</div>
           <h3>{{ $t.name }}</h3>
           <p class="tool-desc">{{ $t.description }}</p>
-          <span class="tool-tag">{{ $t.tag }}</span>
-          <a href="{{ $t.link }}" class="tool-btn" target="_blank" rel="noopener noreferrer">Try it Free →</a>
+          <a class="tool-btn" href="{{ $t.affiliate }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">{{ $t.cta }}</a>
         </div>
         {{ end }}
       </div>
@@ -293,14 +358,18 @@
         <div class="reviews-rule"></div>
       </div>
 
-      {{ if .Pages }}
-      <!-- ===== FEATURED REVIEW ===== -->
-      {{ $featured := index .Pages 0 }}
-      {{ $featuredSlug := "best-tarot-decks-beginners" }}
-      {{ with $.Site.GetPage (printf "/reviews/%s" $featuredSlug) }}
-        {{ $featured = . }}
+      {{ $excludedLinks := slice "/reviews/gaia/" "/reviews/oranum/" "/reviews/kasamba/" "/reviews/psychicoz/" }}
+      {{ $guides := slice }}
+      {{ range .Pages }}
+        {{ if not (in $excludedLinks .RelPermalink) }}{{ $guides = $guides | append . }}{{ end }}
       {{ end }}
-      {{ $rest := .Pages | complement (slice $featured) }}
+
+      {{ if $guides }}
+      <!-- ===== FEATURED REVIEW (general guide; product reviews excluded) ===== -->
+      {{ $featured := "" }}
+      {{ with $.Site.GetPage "/reviews/best-tarot-decks-beginners" }}{{ $featured = . }}{{ end }}
+      {{ if not $featured }}{{ $featured = index $guides 0 }}{{ end }}
+      {{ $rest := $guides | complement (slice $featured) }}
       <a href="{{ $featured.RelPermalink }}"
          class="review-card rounded-2xl p-5 md:p-8 group block mb-10"
          style="border:1px solid rgba(255,228,0,0.45); animation: cardIn .4s ease-out both;">
