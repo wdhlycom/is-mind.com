@@ -85,12 +85,24 @@ const webSiteSchema = {
       60%  { opacity: 0.55; transform: translate(-50%,-50%) scale(1.35); }
       100% { opacity: 0; transform: translate(-50%,-60%) scale(1.9); }
     }
-    .section-gradient-1 { background: linear-gradient(to bottom, #1C163D, #211B43); }
-    .section-gradient-2 { background: linear-gradient(to bottom, #211B43, #2C215C); }
-    .section-gradient-3 { background: linear-gradient(to bottom, #2C215C, #362A71); }
-    .section-gradient-4 { background: linear-gradient(to bottom, #362A71, #403485); }
-    .section-gradient-5 { background: linear-gradient(to bottom, #403485, #4A3C9A); }
-    .section-gradient-6 { background: linear-gradient(to bottom, #4A3C9A, #2F245A); }
+    /* The colour ladder lives on ONE continuous gradient on .home-page, so the
+       sections are transparent and there is no boundary of any kind. The
+       classes remain as identifiers and light-mode hooks. */
+    .section-gradient-1, .section-gradient-2, .section-gradient-3,
+    .section-gradient-4, .section-gradient-5, .section-gradient-6 {
+      background: transparent;
+    }
+    .home-page {
+      background: linear-gradient(180deg,
+        #211B43 0%,
+        #211B43 16%,
+        #2C215C 32%,
+        #362A71 48%,
+        #403485 62%,
+        #4A3C9A 76%,
+        #2F245A 88%,
+        #211B43 100%);
+    }
     .portal-card:hover {
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 25px 50px -12px rgba(232, 164, 176, 0.25), 0 0 30px rgba(173, 216, 230, 0.2) inset;
@@ -345,7 +357,7 @@ const webSiteSchema = {
     .whisper-popup-btn-ghost:hover {
       background: rgba(232,164,176,0.12); color: #fff;
     }
-    .hero-section { background-color: #211B43; position: relative; }
+    .hero-section { position: relative; }
     .hero-section::after {
       content: ''; position: absolute; left: 0; right: 0; bottom: 0;
       height: 18%;
@@ -443,12 +455,13 @@ const webSiteSchema = {
     .cornerstone-card:hover .cornerstone-cta { background: linear-gradient(90deg, #e8c45a, #F3E5AB); color: #1a1228; border-color: transparent; }
 
     /* Light mode home overrides */
-    html:not(.dark) .home-page .section-gradient-1 { background: linear-gradient(to bottom, #f3eee2, #f5f0e6) !important; }
-    html:not(.dark) .home-page .section-gradient-2 { background: linear-gradient(to bottom, #f5f0e6, #f7f2e8) !important; }
-    html:not(.dark) .home-page .section-gradient-3 { background: linear-gradient(to bottom, #f7f2e8, #f9f4ea) !important; }
-    html:not(.dark) .home-page .section-gradient-4 { background: linear-gradient(to bottom, #f9f4ea, #f7f2e8) !important; }
-    html:not(.dark) .home-page .section-gradient-5 { background: linear-gradient(to bottom, #f7f2e8, #f5f0e6) !important; }
-    html:not(.dark) .home-page .section-gradient-6 { background: linear-gradient(to bottom, #f5f0e6, #efe9d8) !important; }
+    html:not(.dark) .home-page {
+      background: linear-gradient(180deg,
+        #f3eee2 0%,
+        #f7f2e8 45%,
+        #f9f4ea 65%,
+        #efe9d8 100%) !important;
+    }
     html:not(.dark) .home-page .text-white:not(a):not(button) { color: #2a2440 !important; }
     html:not(.dark) .home-page .text-gray-300:not(a):not(button) { color: #4a4256 !important; }
     html:not(.dark) .home-page .text-gray-200:not(a):not(button) { color: #3a3448 !important; }
@@ -471,31 +484,7 @@ const webSiteSchema = {
     html:not(.dark) .cornerstone-card:hover .cornerstone-icon { color: #7a5c10; }
     html:not(.dark) .cornerstone-cta { border-color: rgba(154,118,20,0.42); color: #9a7614; }
     html:not(.dark) .cornerstone-card:hover .cornerstone-cta { background: linear-gradient(90deg, #e8c45a, #F3E5AB); color: #1a1228; }
-    html:not(.dark) .hero-section { background-color: #f3eee2 !important; }
-
-    /* Near-invisible seam. The section gradients now meet end-to-end, so the
-       boundary is already seamless; this only blurs away any banding across
-       very tall gradients. No hairline — that read as an actual divider.
-       Negative margins cancel the height, so it adds no page length. */
-    .section-seam {
-      position: relative;
-      height: 200px;
-      margin-top: -100px;
-      margin-bottom: -100px;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .section-seam::before {
-      content: '';
-      position: absolute;
-      inset: -60px 0;
-      background: linear-gradient(to bottom,
-        rgba(200,182,255,0) 0%,
-        rgba(200,182,255,0.012) 45%,
-        rgba(232,164,176,0.009) 62%,
-        rgba(200,182,255,0) 100%);
-      filter: blur(44px);
-    }
+    html:not(.dark) .hero-section { background-color: transparent !important; }
 
     /* Hero mandala. transform-box: view-box makes transform-origin resolve
        against the 400x400 viewBox, so the groups spin about their true centre. */
@@ -650,9 +639,7 @@ const webSiteSchema = {
     </section>
 
     <!-- ============ CORNERSTONES ============ -->
-    <div class="section-seam" aria-hidden="true"></div>
-
-    <section id="cornerstones" class="py-0 relative" style="background-color:#211B43; scroll-margin-top:4rem;">
+    <section id="cornerstones" class="py-0 relative" style="scroll-margin-top:4rem;">
       <div class="mx-auto px-6 max-w-7xl pt-[90px] pb-[90px]">
         <div class="text-center mb-10">
           <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" style="text-wrap:balance;">Start Here: The Cornerstone Guides</h2>
@@ -690,8 +677,6 @@ const webSiteSchema = {
     </section>
 
     <!-- ============ GATEWAYS ============ -->
-    <div class="section-seam" aria-hidden="true"></div>
-
     <section id="gateways" class="py-0 relative section-gradient-2">
       <div class="mx-auto px-6 max-w-7xl pt-24 pb-24">
         <div class="text-center mb-20">
@@ -766,9 +751,7 @@ const webSiteSchema = {
     </section>
 
     <!-- ============ YOUR INNER WORLD (PLAYFUL INTRO) ============ -->
-    <div class="section-seam" aria-hidden="true"></div>
-
-    <section class="py-0 relative" style="background: #2C215C;">
+    <section class="py-0 relative">
       <div class="mx-auto px-6 max-w-5xl pt-20 pb-14 text-center">
         <span class="inline-block text-[#E8A4B0] text-sm tracking-[0.25em] uppercase mb-4">Play first · Read later</span>
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" style="text-wrap:balance;">Your inner world, made <span class="text-[#E8A4B0]">playful</span> Curiosity.</h2>
@@ -781,8 +764,6 @@ const webSiteSchema = {
     </section>
 
     <!-- ============ SACRED GUIDANCE / START HERE ============ -->
-    <div class="section-seam" aria-hidden="true"></div>
-
     <section id="play" class="py-0 relative section-gradient-3">
       <div class="mx-auto px-6 max-w-5xl pt-16 pb-16">
         <div class="text-center mb-12">
@@ -849,8 +830,6 @@ const webSiteSchema = {
     </section>
 
     <!-- ============ TRUSTED PLATFORMS ============ -->
-    <div class="section-seam" aria-hidden="true"></div>
-
     <section class="py-0 relative section-gradient-4">
       <div class="mx-auto px-6 max-w-5xl pt-16 pb-16">
         <div class="text-center mb-12">
@@ -882,8 +861,6 @@ const webSiteSchema = {
     </section>
 
     <!-- ============ WHISPERS OF THE UNCONSCIOUS ============ -->
-    <div class="section-seam" aria-hidden="true"></div>
-
     <section class="py-0 relative section-gradient-5">
       <div class="mx-auto px-6 max-w-6xl pt-24 pb-24">
         <div class="text-center mb-12">
@@ -935,8 +912,6 @@ const webSiteSchema = {
     </section>
 
     <!-- ============ FINAL CTA ============ -->
-    <div class="section-seam" aria-hidden="true"></div>
-
     <section class="py-0 relative section-gradient-6">
       <div class="mx-auto px-6 max-w-4xl text-center pt-24 pb-24">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Meet Your True Self?</h2>
