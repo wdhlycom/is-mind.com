@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+.astro/
+.npm-cache/
+
+# stale vite cache parked outside node_modules (safe-delete blocks vite's own
+# cleanup, so we `mv` it here instead of deleting). Never commit.
+_vite-cache-stale/
+
+# local backup snapshots — never commit
+_backup-*/
+
+# logs
+*.log
+npm-log.txt
+install.log
+
+# misc
+.DS_Store
+Thumbs.db

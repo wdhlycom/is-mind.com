@@ -1,0 +1,22 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  title: string;
+  summary?: string;
+  items: { title: string; url: string; summary: string }[];
+}
+const { title, summary, items } = Astro.props;
+---
+<BaseLayout title={title} description={summary}>
+  <section class="container" style="padding:3.5rem 1.25rem">
+    <h1 style="font-family:var(--display); color:var(--gold-bright); font-size:clamp(1.8rem,4vw,2.6rem)">{title}</h1>
+    {summary && <p class="summary" style="font-style:italic;color:rgba(243,229,171,.85);border-left:2px solid var(--gold);padding-left:1rem;margin-bottom:1.6rem">{summary}</p>}
+    <div class="card-grid">
+      {items.map((it) => (
+        <a class="card" href={it.url}><h3>{it.title}</h3><p>{it.summary.slice(0, 90)}{it.summary.length > 90 ? '…' : ''}</p></a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,292 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import AtmosFlow from '../components/AtmosFlow.astro';
+
+interface ReviewItem {
+  title: string;
+  url: string;
+  summary: string;
+  shortDate: string;
+}
+
+interface Props {
+  title: string;
+  summary?: string;
+  items: ReviewItem[];
+}
+const { title, summary, items } = Astro.props;
+
+// Tools Directory — mirrors Hugo data/tools.yml (auto-renders a card per entry).
+const tools = [
+  {
+    name: 'Gaia',
+    description: 'Conscious media, yoga, meditation, and spiritual documentaries.',
+    link: '/reviews/gaia-intro.html',
+    review: '/reviews/gaia/',
+    affiliate: 'https://www.gaia.com/',
+    cta: 'Start Free Trial →',
+    icon: '🌿',
+  },
+  {
+    name: 'Oranum',
+    description: 'Live tarot, astrology, and psychic readings from certified readers — real-time, on demand.',
+    link: '/reviews/oranum-intro.html',
+    review: '/reviews/oranum/',
+    affiliate: 'https://www.oranum.com/',
+    cta: 'Claim Free Session →',
+    icon: '🔮',
+  },
+  {
+    name: 'Kasamba',
+    description: 'Professional psychic, tarot, and astrology guidance with free initial minutes.',
+    link: '/reviews/kasamba-intro.html',
+    review: '/reviews/kasamba/',
+    affiliate: 'https://www.kasamba.com/',
+    cta: 'Claim 3 Free Mins →',
+    icon: '✨',
+  },
+  {
+    name: 'PsychicOz',
+    description: 'Vetted psychic readings via call or chat — transparent $0.99/min pricing.',
+    link: '/reviews/psychicoz-intro.html',
+    review: '/reviews/psychicoz/',
+    affiliate: 'https://www.psychicoz.com/',
+    cta: 'Start Free Chat →',
+    icon: '🌟',
+  },
+];
+
+// Featured review is pinned to best-tarot-decks-beginners; product reviews
+// (gaia/oranum/kasamba/psychicoz) are excluded from the "guides" list.
+const excluded = ['/reviews/gaia/', '/reviews/oranum/', '/reviews/kasamba/', '/reviews/psychicoz/'];
+const guides = items.filter((it) => !excluded.includes(it.url));
+const featured = guides.find((it) => it.url.includes('/best-tarot-decks-beginners/')) ?? guides[0];
+const rest = featured ? guides.filter((it) => it.url !== featured.url) : [];
+
+// Deterministic particle positions (mirrors Hugo math.Mod loops).
+const dust1 = Array.from({ length: 20 }, (_, i) => ({ left: (i * 41) % 98, dur: ((i * 3) % 6) + 10, delay: (i * 2.3) % 14 }));
+const dust2 = Array.from({ length: 18 }, (_, i) => ({ left: (i * 59) % 98, dur: ((i * 4) % 5) + 11, delay: (i * 3.1) % 15 }));
+const dust3 = Array.from({ length: 15 }, (_, i) => ({ left: (i * 73) % 98, dur: ((i * 5) % 5) + 12, delay: (i * 4.2) % 16 }));
+const particles = Array.from({ length: 44 }, (_, i) => ({
+  left: (i * 61) % 98,
+  size: ((i * 3) % 4) + 2,
+  dur: ((i * 7) % 7) + 8,
+  delay: (i * 2.7) % 17,
+}));
+---
+<BaseLayout title={title} description={summary} bodyClass="review-page">
+  <style is:global>
+    @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap");
+
+    @keyframes goldFall {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      10%  { opacity: 0.7; }
+      60%  { opacity: 0.3; }
+      100% { transform: translateY(50vh) translateX(15px); opacity: 0; }
+    }
+    @keyframes goldFall2 {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      15%  { opacity: 0.6; }
+      55%  { opacity: 0.25; }
+      100% { transform: translateY(55vh) translateX(-10px); opacity: 0; }
+    }
+    .gold-dust { position: absolute; border-radius: 50%; pointer-events: none; will-change: transform, opacity; background: #ffe480; box-shadow: 0 0 6px 2px rgba(255,228,128,0.7), 0 0 14px 4px rgba(255,210,80,0.3); }
+    .gd-1 { width: 2px; height: 2px; }
+    .gd-2 { width: 2.5px;   height: 2.5px; }
+    .gd-3 { width: 1.5px;   height: 1.5px;   background: #ffeebb; }
+
+    @keyframes sparkFlash { 0% { opacity: 0; transform: scale(0.2); } 8% { opacity: 0.9; transform: scale(1); } 30% { opacity: 0.6; } 100% { opacity: 0; transform: scale(0.1); } }
+    .point-spark { position: absolute; pointer-events: none; border-radius: 50%; will-change: transform, opacity; background: radial-gradient(circle, rgba(255,250,230,0.95) 0%, rgba(255,220,100,0.5) 30%, rgba(255,200,60,0) 70%); box-shadow: 0 0 6px rgba(255,240,180,0.8), 0 0 14px rgba(255,210,80,0.3); animation-fill-mode: both; }
+
+    @keyframes meteorLine { 0% { transform: translate(-5vw, -5vh); opacity: 0; } 5% { opacity: 0.95; } 30% { opacity: 0.15; } 100% { transform: translate(95vw, 55vh); opacity: 0; } }
+    .meteor-streak { position: absolute; pointer-events: none; will-change: transform, opacity; width: 0.8px; height: 14px; background: linear-gradient(to bottom, rgba(255,250,230,0.85), rgba(255,210,80,0.2), transparent); border-radius: 1px; animation-fill-mode: both; }
+    .meteor-head { position: absolute; pointer-events: none; will-change: transform, opacity; width: 2px; height: 2px; border-radius: 50%; background: rgba(255,255,245,0.95); box-shadow: 0 0 2px rgba(255,245,200,0.5); animation-fill-mode: both; }
+
+    @keyframes flowerRotate { 0% { transform: translateX(-50%) rotate(0deg); } 100% { transform: translateX(-50%) rotate(360deg); } }
+    .flower-of-life { position: absolute; top: 56%; left: 50%; width: 500px; height: 460px; max-width: 85vw; pointer-events: none; opacity: 0.22; filter: drop-shadow(0 0 6px rgba(255,228,150,0.3)); animation: flowerRotate 220s linear infinite; transform: translateX(-50%); z-index: 1; }
+
+    @keyframes cardIn { 0% { opacity: 0; transform: translateY(16px); } 100% { opacity: 1; transform: translateY(0); } }
+    .review-card {
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      background: linear-gradient(160deg, rgba(50,20,70,0.45) 0%, rgba(30,12,50,0.6) 60%, rgba(20,8,38,0.75) 100%);
+      border: 1px solid rgba((255,228, NaN),0, 0.05);
+      transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden; will-change: transform;
+    }
+    .review-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,228,0,0.25), transparent); }
+    .review-card::after { content: ''; position: absolute; inset: 0; border-radius: inherit; opacity: 0; transition: opacity 0.4s ease; box-shadow: 0 0 30px rgba(255,228,0,0.1), 0 0 60px rgba(255,200,0,0.05); }
+    .review-card:hover { transform: translateY(-6px) scale(1.02); border-color: rgba(255,228,0,0.3); }
+    .review-card:hover::after { opacity: 1; }
+
+    .text-lavender { color: #d3c2e5; font-weight: 300; }
+    .reviews-subtitle { display: block; }
+    @media (min-width: 768px) { .reviews-subtitle { white-space: nowrap; } }
+
+    @keyframes toolIn { 0% { opacity: 0; transform: translateY(20px) scale(0.98); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+    .tools-section { position: relative; z-index: 10; margin-top: 3rem; }
+    .tools-intro { text-align: center; max-width: 42rem; margin: 0 auto 2.5rem; }
+    .tools-intro h2 { font-family: 'EB Garamond', Georgia, serif; font-size: 2rem; font-weight: 700; color: #ffe480; margin-bottom: 0.6rem; letter-spacing: 0.01em; }
+    .tools-intro p { color: #d3c2e5; font-weight: 300; font-size: 1.05rem; line-height: 1.6; }
+    .tools-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 768px) { .tools-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .tools-grid { grid-template-columns: repeat(4, 1fr); } }
+    .tool-card {
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      background: linear-gradient(160deg, rgba(50,20,70,0.5) 0%, rgba(30,12,50,0.68) 100%);
+      border: 1px solid rgba((255,228, NaN),0, 0.07);
+      border-radius: 1rem; padding: 1.9rem 1.5rem; text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .tool-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,228,0,0.3), transparent); }
+    .tool-card:hover { transform: translateY(-6px); border-color: rgba(255,228,0,0.4); box-shadow: 0 0 30px rgba(255,228,0,0.14), 0 0 60px rgba(255,200,0,0.06); }
+    .tool-icon { font-size: 2.4rem; line-height: 1; margin-bottom: 0.85rem; }
+    .tool-card h3 { font-family: 'EB Garamond', Georgia, serif; color: #fff; font-size: 1.45rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .tool-desc { color: #d3c2e5; font-weight: 300; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.1rem; min-height: 3rem; }
+    .tool-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; color: rgba(255,228,128,0.85); text-decoration: none; margin-bottom: 0.85rem; position: relative; z-index: 2; transition: color 0.3s ease; }
+    .tool-badge:hover { color: #ffe480; text-decoration: underline; }
+    .tool-btn { display: inline-block; padding: 0.62rem 1.5rem; border-radius: 9999px; font-weight: 700; font-size: 0.9rem; background: linear-gradient(90deg, #ffe400, #ffd700); color: #2a1a00; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 14px rgba(255,215,0,0.3); margin-top: auto; position: relative; z-index: 2; }
+    .tool-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(255,215,0,0.45); }
+    .tool-card__link { position: absolute; inset: 0; z-index: 1; border-radius: inherit; text-decoration: none; }
+
+    .atmos-layer { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    @keyframes shootStar { 0% { transform: translate(0, 0) rotate(45deg); opacity: 0; } 10% { opacity: 0.4; } 28% { opacity: 0.35; } 100% { transform: translate(-95vw, 95vh) rotate(45deg); opacity: 0; } }
+    .shooting-star { position: absolute; top: -6%; pointer-events: none; will-change: transform, opacity; width: 2px; height: 90px; border-radius: 2px; z-index: 0; opacity: 0; background: linear-gradient(to bottom, rgba(255,250,230,0.85), rgba(255,210,80,0.12), transparent); filter: drop-shadow(0 0 4px rgba(255,230,150,0.55)); animation-name: shootStar; animation-timing-function: linear; animation-iteration-count: infinite; }
+    .shooting-star::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,245,0.95); box-shadow: 0 0 6px rgba(255,240,180,0.9); }
+    @keyframes riseUp { 0% { transform: translateY(0); opacity: 0; } 18% { opacity: 0.35; } 65% { opacity: 0.28; } 100% { transform: translateY(-55vh); opacity: 0; } }
+    .energy-particle { position: absolute; bottom: -12px; pointer-events: none; border-radius: 50%; z-index: 0; opacity: 0; background: radial-gradient(circle, rgba(255,230,160,0.8) 0%, rgba(255,200,80,0.3) 45%, transparent 72%); box-shadow: 0 0 6px rgba(255,220,120,0.5); will-change: transform, opacity; }
+
+    .reviews-divider { margin-top: 4rem; }
+    .reviews-divider .reviews-rule { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(255,228,0,0.45), transparent); }
+    .reviews-divider h2 { font-family: 'EB Garamond', Georgia, serif; font-size: 1.8rem; font-weight: 700; color: #fff; white-space: nowrap; }
+  </style>
+
+  <div class="review-page min-h-screen pt-3 px-4 pb-14 md:pt-4 md:px-6 md:pb-20 relative overflow-hidden bg-gradient-to-b from-[#2C1A48] via-[#21123D] via-[#1A0D33] to-[#120829]">
+
+    <AtmosFlow density={20000} max={70} min={18} speed={0.85} alpha={0.65} />
+
+    <div class="atmos-layer" aria-hidden="true">
+      <div class="shooting-star" style="left:84%; animation-duration:7s;   animation-delay:0s;"></div>
+      <div class="shooting-star" style="left:70%; animation-duration:9s;   animation-delay:3.5s;"></div>
+      <div class="shooting-star" style="left:92%; animation-duration:11s;  animation-delay:6s;"></div>
+      <div class="shooting-star" style="left:78%; animation-duration:8s;   animation-delay:9.5s;"></div>
+      {particles.map((p) => (
+        <div class="energy-particle" style={`left:${p.left}%;width:${p.size}px;height:${p.size}px;animation:riseUp ${p.dur}s ease-in ${p.delay}s infinite;`}></div>
+      ))}
+    </div>
+
+    <div class="point-spark" style="top:8%;left:15%;width:5px;height:5px;animation:sparkFlash 2.2s ease-out infinite;animation-delay:0s;"></div>
+    <div class="point-spark" style="top:18%;left:55%;width:4px;height:4px;animation:sparkFlash 2.6s ease-out infinite;animation-delay:1.5s;"></div>
+    <div class="point-spark" style="top:12%;left:78%;width:6px;height:6px;animation:sparkFlash 1.9s ease-out infinite;animation-delay:3s;"></div>
+    <div class="point-spark" style="top:25%;left:30%;width:4px;height:4px;animation:sparkFlash 3s ease-out infinite;animation-delay:4.5s;"></div>
+    <div class="point-spark" style="top:6%;left:42%;width:3px;height:3px;animation:sparkFlash 2.4s ease-out infinite;animation-delay:6s;"></div>
+    <div class="point-spark" style="top:22%;left:90%;width:5px;height:5px;animation:sparkFlash 2.8s ease-out infinite;animation-delay:7.5s;"></div>
+
+    <div class="meteor-streak" style="top:6%;left:5%;transform:rotate(38deg);animation:meteorLine 2s ease-out infinite;animation-delay:0s;"></div>
+    <div class="meteor-head" style="top:6%;left:5%;animation:meteorLine 2s ease-out infinite;animation-delay:0s;"></div>
+    <div class="meteor-streak" style="top:14%;left:60%;transform:rotate(42deg);animation:meteorLine 2.4s ease-out infinite;animation-delay:6s;"></div>
+    <div class="meteor-head" style="top:14%;left:60%;animation:meteorLine 2.4s ease-out infinite;animation-delay:6s;"></div>
+
+    <svg class="flower-of-life" viewBox="-10 -20 260 250" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="120" cy="110" r="40" fill="none" stroke="rgba(255,245,220,0.6)" stroke-width="0.8"/>
+      <circle cx="160" cy="110" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+      <circle cx="140" cy="144.64" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+      <circle cx="100" cy="144.64" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+      <circle cx="80" cy="110" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+      <circle cx="100" cy="75.36" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+      <circle cx="140" cy="75.36" r="40" fill="none" stroke="rgba(255,245,220,0.5)" stroke-width="0.8"/>
+      <circle cx="200" cy="110" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="180" cy="144.64" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="160" cy="179.28" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="120" cy="179.28" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="80" cy="179.28" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="60" cy="144.64" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="40" cy="110" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="60" cy="75.36" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="80" cy="40.72" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="120" cy="40.72" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="160" cy="40.72" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="180" cy="75.36" r="40" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.7"/>
+      <circle cx="120" cy="110" r="80" fill="none" stroke="rgba(255,235,180,0.3)" stroke-width="0.6"/>
+      <circle cx="120" cy="110" r="125" fill="none" stroke="rgba(255,235,180,0.25)" stroke-width="0.6"/>
+    </svg>
+
+    {dust1.map((d) => (<div class="gold-dust gd-1" style={`left:${d.left}%;top:2px;animation:goldFall ${d.dur}s ease-in ${d.delay}s infinite;`}></div>))}
+    {dust2.map((d) => (<div class="gold-dust gd-2" style={`left:${d.left}%;top:2px;animation:goldFall2 ${d.dur}s ease-in ${d.delay}s infinite;`}></div>))}
+    {dust3.map((d) => (<div class="gold-dust gd-3" style={`left:${d.left}%;top:2px;animation:goldFall ${d.dur}s ease-in ${d.delay}s infinite;`}></div>))}
+
+    <div class="max-w-6xl mx-auto relative z-10">
+      <header class="text-center pt-12 mb-6 md:pt-14 md:mb-10">
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-5 tracking-tight" style="font-family: 'EB Garamond', Georgia, serif;">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ffe400] via-[#fff080] to-[#ffd700]">{title}</span>
+        </h1>
+        <p class="text-lg text-lavender mx-auto leading-relaxed reviews-subtitle">{summary || "Honest reviews of spiritual tools, services, and resources to support your mystical journey."}</p>
+        <div class="mt-6 flex justify-center"><div class="w-16 h-px bg-gradient-to-r from-transparent via-[#ffe400]/60 to-transparent"></div></div>
+      </header>
+
+      <p class="text-center max-w-2xl mx-auto mb-2" style="color: #9a8fb0; font-size: 0.9rem; line-height: 1.6;">
+        🔮 <strong style="color:#d3c2e5;">Our Toolkits:</strong> We handpick and review the best mental wellness, astrology, and depth-psychology resources. To support our work, some of the links below are affiliate links.
+      </p>
+      <p class="text-center mb-8" style="color: #9a8fb0; font-size: 0.9rem;">
+        <a href="/disclosure/" style="color:#ffd700; text-decoration:underline;">Read our full Affiliate Disclosure →</a>
+      </p>
+
+      <section class="tools-section">
+        <div class="tools-intro">
+          <h2>🔮 The Mind's Resource Library</h2>
+          <p>We test and review spiritual, metaphysical, and depth-psychology tools to help you navigate your journey. Here are the elite resources we recommend this month:</p>
+        </div>
+        <div class="tools-grid">
+          {tools.map((t, i) => (
+            <div class="tool-card" style={`animation: toolIn ${i * 0.15 + 0.3}s ease-out both;`}>
+              <a class="tool-card__link" href={t.link} aria-label={`${t.name} — intro page`}></a>
+              <a class="tool-badge" href={t.review}>📖 Read Full Review →</a>
+              <div class="tool-icon">{t.icon}</div>
+              <h3>{t.name}</h3>
+              <p class="tool-desc">{t.description}</p>
+              <a class="tool-btn" href={t.affiliate} target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">{t.cta}</a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div class="reviews-divider">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="reviews-rule"></div>
+          <h2>Latest Reviews</h2>
+          <div class="reviews-rule"></div>
+        </div>
+
+        {guides.length > 0 && featured && (
+          <>
+            <a href={featured.url}
+               class="review-card rounded-2xl p-5 md:p-8 group block mb-10"
+               style="border: 1px solid rgba((255,228, NaN),0, 0.225); animation: cardIn .4s ease-out both;">
+              <span class="inline-block px-3 py-1 rounded-full mb-4" style="background: linear-gradient(90deg,#ffe400,#ffd700); color:#1a1025; font-size:0.7rem; font-weight:700; letter-spacing:0.12em;">★ FEATURED REVIEW</span>
+              <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#ffe400] transition-colors duration-300">{featured.title}</h3>
+              {featured.summary && <p class="text-lavender text-sm mb-4 leading-relaxed opacity-85">{featured.summary.slice(0, 160)}{featured.summary.length > 160 ? '…' : ''}</p>}
+              <span class="text-xs text-gray-500">{featured.shortDate}</span>
+            </a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 pb-16">
+              {rest.map((r, i) => (
+                <a href={r.url}
+                   class="review-card rounded-2xl p-5 md:p-8 group block"
+                   style={`animation: cardIn ${i * 0.2 + 0.4}s ease-out both;`}>
+                  <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#ffe400] transition-colors duration-300">{r.title}</h3>
+                  {r.summary && <p class="text-lavender text-sm mb-4 leading-relaxed opacity-85">{r.summary.slice(0, 120)}{r.summary.length > 120 ? '…' : ''}</p>}
+                  <span class="text-xs text-gray-500">{r.shortDate}</span>
+                </a>
+              ))}
+            </div>
+          </>
+        )}
+        {guides.length === 0 && (
+          <div class="text-center py-20">
+            <h3 class="text-2xl font-bold text-white mb-3">Curating with Care</h3>
+            <p class="text-lavender max-w-md mx-auto opacity-70">Each review is crafted with discernment — like choosing the right crystal for your altar. Honest assessments coming soon.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

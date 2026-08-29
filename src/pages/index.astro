@@ -1,0 +1,1062 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const site = Astro.site ?? new URL('https://is-mind.com/');
+const webSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'is-mind.com',
+  url: site.href,
+  description: 'Decode the Language of Your Soul — ancient wisdom meets modern insight.',
+};
+---
+<BaseLayout isHome={true} schema={webSiteSchema} bodyClass="home-page">
+  <style is:global>
+    .mystical-particle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,164,176,0.8) 0%, rgba(232,164,176,0) 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .card-reveal { perspective: 1000px; }
+    .card-reveal-inner {
+      position: relative; width: 100%; height: 100%;
+      transition: transform 0.8s; transform-style: preserve-3d;
+    }
+    .card-reveal.flipped .card-reveal-inner { transform: rotateY(180deg); }
+    .card-front, .card-back {
+      position: absolute; width: 100%; height: 100%;
+      backface-visibility: hidden; border-radius: 12px;
+    }
+    .card-back { transform: rotateY(180deg); }
+    .tool-reveal { perspective: 1000px; }
+    .tool-reveal-inner {
+      position: relative; width: 100%; height: 100%;
+      transition: transform 0.7s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d;
+    }
+    .tool-reveal.flipped .tool-reveal-inner { transform: rotateY(180deg); }
+    .floating-element { animation: float 6s ease-in-out infinite; }
+    .pulse-glow { animation: pulse-glow 3s ease-in-out infinite alternate; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 20px rgba(232, 164, 176, 0.3); }
+      100% { box-shadow: 0 0 40px rgba(232, 164, 176, 0.6), 0 0 60px rgba(232, 164, 176, 0.3); }
+    }
+    .glass-morphism {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: none;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 0 22px rgba(232, 164, 176, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    .mystical-border { position: relative; }
+    .mystical-border::before {
+      content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+      background: linear-gradient(45deg, #E8A4B0, #add8e6, #da70d6, #E8A4B0);
+      background-size: 200% 200%;
+      border-radius: 14px; z-index: -1; animation: border-rotate 4s linear infinite;
+    }
+    @keyframes border-rotate {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    .crystal-effect { position: relative; overflow: hidden; }
+    .crystal-effect::after {
+      content: ''; position: absolute; top: -50%; left: -60%;
+      width: 20px; height: 200%; background: rgba(255, 255, 255, 0.4);
+      transform: rotate(25deg); transition: all 0.6s;
+    }
+    .crystal-effect:hover::after { left: 120%; }
+    .particle {
+      position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: screen;
+      width: 28px; height: 28px;
+      background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(232,164,176,0.35) 35%, rgba(147,112,219,0.15) 65%, transparent 100%);
+      filter: blur(6px);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: cloudFade 0.9s ease-out forwards;
+    }
+    @keyframes cloudFade {
+      0%   { opacity: 0.9; transform: translate(-50%,-50%) scale(0.6); }
+      60%  { opacity: 0.55; transform: translate(-50%,-50%) scale(1.35); }
+      100% { opacity: 0; transform: translate(-50%,-60%) scale(1.9); }
+    }
+    .section-gradient-1 { background: linear-gradient(to bottom, #1C163D, #211B43); }
+    .section-gradient-2 { background: linear-gradient(to bottom, #211B43, #2C215C); }
+    .section-gradient-3 { background: linear-gradient(to bottom, #2C215C, #362A71); }
+    .section-gradient-4 { background: linear-gradient(to bottom, #362A71, #403485); }
+    .section-gradient-5 { background: linear-gradient(to bottom, #403485, #4A3C9A); }
+    .section-gradient-6 { background: linear-gradient(to bottom, #4A3C9A, #2F245A); }
+    .portal-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(232, 164, 176, 0.25), 0 0 30px rgba(173, 216, 230, 0.2) inset;
+    }
+    .portal-card-large { min-height: 250px; }
+    /* ===== Gateways flourish — 4-card themed series ===== */
+    #gateways .grid > a { position: relative; overflow: hidden; }
+    /* Rotating geometric watermark per gateway theme */
+    #gateways .grid > a::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      width: 300px; height: 300px; margin: -150px 0 0 -150px;
+      background-size: contain; background-repeat: no-repeat; background-position: center;
+      opacity: 0.14; pointer-events: none;
+      animation: gatewaySpin 80s linear infinite;
+    }
+    @keyframes gatewaySpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    /* Mind & Psych — violet nebula + triangle (spirit) */
+    #gateways .grid > a:nth-child(1)::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23a855f7' stroke-width='0.6'%3E%3Ccircle cx='100' cy='100' r='90'/%3E%3Ccircle cx='100' cy='100' r='62'/%3E%3Ccircle cx='100' cy='100' r='34'/%3E%3Cpath d='M100 22 L170 150 L30 150 Z'/%3E%3Ccircle cx='100' cy='100' r='8'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    /* Tarot — gold star mandala (divine) */
+    #gateways .grid > a:nth-child(2)::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23E8A4B0' stroke-width='0.6'%3E%3Ccircle cx='100' cy='100' r='90'/%3E%3Ccircle cx='100' cy='100' r='60'/%3E%3Cpath d='M100 10 L112 78 L180 88 L112 98 L100 166 L88 98 L20 88 L88 78 Z'/%3E%3Ccircle cx='100' cy='100' r='10'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    /* Energy — emerald orbit rings (chakra) */
+    #gateways .grid > a:nth-child(3)::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%2334d399' stroke-width='0.6'%3E%3Ccircle cx='100' cy='100' r='88'/%3E%3Ccircle cx='100' cy='100' r='64'/%3E%3Ccircle cx='100' cy='100' r='40'/%3E%3Ccircle cx='100' cy='100' r='16'/%3E%3Cpath d='M100 12 A88 88 0 0 1 188 100 M100 188 A88 88 0 0 1 12 100'/%3E%3Ccircle cx='100' cy='100' r='6'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    /* Astrology — fuchsia constellation (stars) */
+    #gateways .grid > a:nth-child(4)::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23e879f9' stroke-width='0.6'%3E%3Ccircle cx='100' cy='100' r='90'/%3E%3Cpath d='M40 40 L100 80 L160 40 M100 80 L60 150 M100 80 L140 150'/%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3Ccircle cx='100' cy='80' r='5'/%3E%3Ccircle cx='160' cy='40' r='5'/%3E%3Ccircle cx='60' cy='150' r='5'/%3E%3Ccircle cx='140' cy='150' r='5'/%3E%3Ccircle cx='100' cy='100' r='12'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    /* Gradient glow border */
+    #gateways .grid > a::after {
+      content: ''; position: absolute; inset: 0; border-radius: 1rem;
+      padding: 1px; pointer-events: none;
+      background: linear-gradient(135deg, rgba(232,164,176,0.5), transparent 40%, transparent 60%, rgba(232,164,194,0.45));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+    }
+    /* Themed nebula tint per gateway */
+    #gateways .grid > a:nth-child(1) { background: linear-gradient(160deg, rgba(168,85,247,0.18) 0%, rgba(40,20,72,0.60) 55%, rgba(18,10,35,0.75) 100%); }
+    #gateways .grid > a:nth-child(2) { background: linear-gradient(160deg, rgba(232,164,176,0.16) 0%, rgba(52,36,14,0.62) 55%, rgba(24,16,6,0.75) 100%); }
+    #gateways .grid > a:nth-child(3) { background: linear-gradient(160deg, rgba(52,211,153,0.16) 0%, rgba(14,44,32,0.60) 55%, rgba(8,24,17,0.75) 100%); }
+    #gateways .grid > a:nth-child(4) { background: linear-gradient(160deg, rgba(232,121,249,0.16) 0%, rgba(48,16,52,0.60) 55%, rgba(26,9,28,0.75) 100%); }
+    .foundation-glow {
+      box-shadow: 0 0 15px rgba(232,164,176,0.15), 0 0 30px rgba(232,164,176,0.08);
+    }
+    .foundation-glow:hover {
+      box-shadow: 0 0 25px rgba(232,164,176,0.3), 0 0 50px rgba(232,164,176,0.15);
+    }
+    @keyframes auroraFlow1 {
+      0%   { transform: translateX(-15%) scaleY(1); }
+      50%  { transform: translateX(10%) scaleY(1.2); }
+      100% { transform: translateX(-15%) scaleY(1); }
+    }
+    @keyframes auroraFlow2 {
+      0%   { transform: translateX(10%) scaleY(1); }
+      50%  { transform: translateX(-8%) scaleY(1.15); }
+      100% { transform: translateX(10%) scaleY(1); }
+    }
+    @keyframes auroraFlow3 {
+      0%   { transform: translateX(-5%) scaleY(1); }
+      50%  { transform: translateX(12%) scaleY(1.1); }
+      100% { transform: translateX(-5%) scaleY(1); }
+    }
+    .aurora-ribbon {
+      position: absolute; left: -10%; width: 140%; height: 35vh;
+      pointer-events: none; filter: blur(80px); will-change: transform;
+      mix-blend-mode: screen;
+    }
+    .ar-1 {
+      top: 10%;
+      background: linear-gradient(90deg, transparent 0%, rgba(210,170,220,0.15) 12%, rgba(190,150,210,0.3) 28%, rgba(200,160,215,0.22) 44%, rgba(175,140,195,0.12) 60%, transparent 78%);
+      animation: auroraFlow1 30s ease-in-out infinite;
+    }
+    .ar-2 {
+      top: 30%;
+      background: linear-gradient(90deg, transparent 0%, rgba(200,160,180,0.12) 18%, rgba(230,190,170,0.28) 33%, rgba(215,175,155,0.2) 48%, rgba(195,155,140,0.1) 68%, transparent 88%);
+      animation: auroraFlow2 35s ease-in-out infinite; animation-delay: -8s;
+    }
+    .ar-3 {
+      top: 50%;
+      background: linear-gradient(90deg, transparent 0%, rgba(210,190,150,0.1) 8%, rgba(250,220,160,0.25) 26%, rgba(235,205,145,0.18) 40%, rgba(210,180,120,0.1) 58%, transparent 82%);
+      animation: auroraFlow3 32s ease-in-out infinite; animation-delay: -15s;
+    }
+    .ar-4 {
+      top: 65%;
+      background: linear-gradient(90deg, transparent 0%, rgba(200,170,210,0.14) 10%, rgba(220,190,210,0.28) 24%, rgba(205,175,195,0.2) 38%, rgba(185,155,175,0.1) 55%, transparent 76%);
+      animation: auroraFlow1 38s ease-in-out infinite; animation-delay: -22s;
+    }
+    .quote-card {
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-radius: 1rem; padding: 2rem;
+      border: none; box-shadow: 0 0 22px rgba(232,164,176,0.08), 0 18px 45px -20px rgba(0,0,0,0.85);
+      background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(232,164,176,0.04) 50%, rgba(0,0,0,0.2) 100%);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 10px 15px -3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05), 0 0 20px rgba(232,164,176,0.05);
+      transition: all 0.4s ease; position: relative;
+    }
+    .quote-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px -5px rgba(0,0,0,0.4), 0 20px 30px -10px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08), 0 0 40px rgba(232,164,176,0.12);
+      border-color: rgba(232,164,176,0.4);
+    }
+    .quote-card::before {
+      content: ''; position: absolute; top: 0; left: 1.5rem; right: 1.5rem; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232,164,176,0.3), transparent);
+    }
+    .quote-text { font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 1.8; color: #e0d8c8; }
+    .quote-author { font-family: Georgia, 'Times New Roman', serif; font-style: italic; color: rgba(232,164,176,0.6); }
+
+    /* ===== Whisper of the Unconscious — interactive quote cards ===== */
+    .whisper-card {
+      position: relative; overflow: hidden; cursor: pointer; text-align: left;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-radius: 1.25rem; padding: 2.2rem 2rem 1.8rem;
+      border: none; box-shadow: 0 0 24px rgba(232,164,176,0.10), 0 18px 45px -20px rgba(0,0,0,0.85);
+      background:
+        radial-gradient(circle at 30% 0%, rgba(168,85,247,0.20), transparent 55%),
+        radial-gradient(circle at 85% 100%, rgba(232,164,176,0.14), transparent 55%),
+        linear-gradient(160deg, rgba(40,20,72,0.60) 0%, rgba(20,10,40,0.70) 60%, rgba(15,8,35,0.78) 100%);
+      box-shadow: 0 0 0 1px rgba(232,164,176,0.10), 0 18px 45px -20px rgba(0,0,0,0.85);
+      transition: transform .45s cubic-bezier(.4,0,.2,1), box-shadow .45s, border-color .45s;
+    }
+    /* Per-card themed nebula accent (romantic, mystical) */
+    .whisper-card[data-whisper="0"] { background: radial-gradient(circle at 28% 0%, rgba(168,85,247,0.28), transparent 55%), radial-gradient(circle at 88% 100%, rgba(80,120,220,0.16), transparent 55%), linear-gradient(160deg, #2a1448 0%, #170a30 60%, #100820 100%); }
+    .whisper-card[data-whisper="1"] { background: radial-gradient(circle at 30% 0%, rgba(80,160,220,0.26), transparent 55%), radial-gradient(circle at 85% 100%, rgba(140,120,240,0.16), transparent 55%), linear-gradient(160deg, #122a48 0%, #0a1a30 60%, #081020 100%); }
+    .whisper-card[data-whisper="2"] { background: radial-gradient(circle at 30% 0%, rgba(232,180,90,0.26), transparent 55%), radial-gradient(circle at 88% 100%, rgba(200,140,60,0.18), transparent 55%), linear-gradient(160deg, #3a2810 0%, #221608 60%, #140e04 100%); }
+    .whisper-card[data-whisper="3"] { background: radial-gradient(circle at 30% 0%, rgba(232,140,190,0.26), transparent 55%), radial-gradient(circle at 85% 100%, rgba(160,110,200,0.16), transparent 55%), linear-gradient(160deg, #3a1428 0%, #220c18 60%, #140710 100%); }
+    /* Rotating mandala watermark (sacred-geometry flourish) */
+    .whisper-card::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      width: 340px; height: 340px; margin: -170px 0 0 -170px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23E8A4B0' stroke-width='0.5' opacity='0.5'%3E%3Ccircle cx='100' cy='100' r='96'/%3E%3Ccircle cx='100' cy='100' r='68'/%3E%3Ccircle cx='100' cy='100' r='40'/%3E%3Ccircle cx='100' cy='100' r='14'/%3E%3Cpath d='M100 4 L100 196 M4 100 L196 100 M32 32 L168 168 M168 32 L32 168'/%3E%3Ccircle cx='100' cy='4' r='4'/%3E%3Ccircle cx='100' cy='196' r='4'/%3E%3Ccircle cx='4' cy='100' r='4'/%3E%3Ccircle cx='196' cy='100' r='4'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: contain; background-repeat: no-repeat; background-position: center;
+      opacity: 0.16; pointer-events: none;
+      animation: mandalaSpin 60s linear infinite;
+    }
+    @keyframes mandalaSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .whisper-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: 1.25rem;
+      padding: 1px; pointer-events: none;
+      background: linear-gradient(135deg, rgba(232,164,176,0.55), transparent 35%, transparent 65%, rgba(232,164,194,0.55));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+    }
+    .whisper-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      border-color: rgba(243,229,171,0.8);
+      box-shadow: 0 0 0 1px rgba(243,229,171,0.3), 0 0 55px rgba(232,164,176,0.28), 0 0 90px rgba(232,164,194,0.15), 0 22px 50px -15px rgba(0,0,0,0.9);
+    }
+    .whisper-emblem {
+      position: absolute; top: -8px; right: 16px; z-index: 1;
+      font-size: 2.2rem; color: rgba(243,229,171,0.45);
+      text-shadow: 0 0 22px rgba(232,164,176,0.6), 0 0 40px rgba(232,164,194,0.35);
+      animation: dcFloat 5s ease-in-out infinite;
+    }
+    @keyframes dcFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .whisper-text {
+      position: relative; z-index: 1;
+      font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+      font-size: 1.22rem; line-height: 1.72; color: #efe4cd;
+      margin: 0 0 1.2rem; text-align: center;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+    }
+    .whisper-author {
+      position: relative; z-index: 1;
+      font-family: Georgia, serif; font-size: .9rem; color: rgba(243,229,171,0.8);
+      letter-spacing: .06em; align-self: flex-end; margin-bottom: 1.4rem;
+    }
+    .whisper-cta {
+      position: relative; z-index: 1;
+      align-self: stretch; text-align: center; display: block;
+      font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif; font-weight: 600;
+      font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+      color: #1a1206; padding: .85rem 1rem;
+      background: linear-gradient(90deg, #E8A4B0, #F3E5AB, #E8A4B0);
+      background-size: 200% auto;
+      border-radius: 999px;
+      transition: transform .25s ease, box-shadow .25s ease, background-position .5s ease;
+    }
+    .whisper-card:hover .whisper-cta {
+      transform: translateY(-1px);
+      background-position: right center;
+      box-shadow: 0 0 30px rgba(232,164,176,0.5), 0 0 55px rgba(232,164,194,0.25);
+    }
+
+    /* ===== Whisper Popup ===== */
+    .whisper-popup {
+      position: fixed; inset: 0; z-index: 80;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(8,6,16,0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      padding: 1.5rem;
+      animation: whisperFade .25s ease both;
+    }
+    .whisper-popup.open { display: flex; }
+    @keyframes whisperFade { from { opacity: 0; } to { opacity: 1; } }
+    .whisper-popup-inner {
+      position: relative; max-width: 460px; width: 100%;
+      background: linear-gradient(160deg, #2a1648 0%, #1a0e30 50%, #150a25 100%);
+      border: 1px solid rgba(232,164,176,0.45);
+      border-radius: 1.25rem; padding: 2rem 2rem 1.6rem; text-align: center;
+      box-shadow: 0 0 0 1px rgba(232,164,176,0.18), 0 30px 80px -20px rgba(0,0,0,0.9), 0 0 50px rgba(232,164,176,0.18);
+      animation: whisperPop .35s cubic-bezier(.4,0,.2,1) both;
+    }
+    @keyframes whisperPop { from { transform: scale(.92) translateY(8px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+    .whisper-popup-close {
+      position: absolute; top: 14px; right: 16px;
+      width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.06); color: #fff; font-size: 20px; line-height: 1;
+      cursor: pointer; transition: background .2s;
+    }
+    .whisper-popup-close:hover { background: rgba(255,255,255,.2); }
+    .whisper-popup-tag {
+      display: inline-block; font-family: 'Playfair Display', serif; font-size: .7rem;
+      letter-spacing: .22em; text-transform: uppercase; color: #F3E5AB;
+      padding: .25rem .8rem; border: 1px solid rgba(232,164,176,.4); border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .whisper-popup-title {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600;
+      font-size: 1.55rem; line-height: 1.3; color: #f3ead0; margin: 0 0 1rem;
+    }
+    .whisper-popup-quote {
+      font-family: Georgia, serif; font-style: italic; font-size: .95rem;
+      color: rgba(220,210,190,0.75); margin: 0 0 1.4rem; line-height: 1.55;
+      padding: 0 .5rem;
+    }
+    .whisper-popup-actions {
+      display: flex; flex-direction: column; gap: .65rem;
+    }
+    .whisper-popup-btn {
+      display: block; padding: .85rem 1rem; border-radius: 999px;
+      font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: .88rem;
+      letter-spacing: .04em; text-decoration: none; text-align: center;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .whisper-popup-btn-primary {
+      background: linear-gradient(90deg, #E8A4B0, #F3E5AB);
+      color: #1a1206;
+      box-shadow: 0 0 24px rgba(232,164,176,0.4);
+    }
+    .whisper-popup-btn-primary:hover {
+      transform: translateY(-2px); color: #1a1206;
+      box-shadow: 0 0 38px rgba(232,164,176,0.65);
+    }
+    .whisper-popup-btn-ghost {
+      background: transparent; color: #F3E5AB;
+      border: 1px solid rgba(232,164,176,0.45);
+    }
+    .whisper-popup-btn-ghost:hover {
+      background: rgba(232,164,176,0.12); color: #fff;
+    }
+    .hero-section { background-color: #211B43; position: relative; }
+    .hero-section::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+      height: 18%;
+      background: linear-gradient(to top, rgba(26, 21, 52, 1) 0%, rgba(26, 21, 52, 0) 100%);
+      pointer-events: none; z-index: 5;
+    }
+    .hero-subtitle, .section-subtitle { max-width: 680px; margin-left: auto; margin-right: auto; text-wrap: balance; }
+    .section-subtitle { margin-top: 0.5rem; }
+    @media (min-width: 1024px) {
+      .hero-subtitle, .section-subtitle { max-width: 1000px; }
+    }
+    .cornerstones-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    @media (max-width: 1023px) { .cornerstones-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .cornerstones-grid { grid-template-columns: 1fr; } }
+    .cornerstone-card {
+      position: relative; display: flex; flex-direction: column; gap: 0.85rem;
+      padding: 1.75rem 1.5rem 1.5rem; border-radius: 1.15rem;
+      background: linear-gradient(165deg, rgba(255,255,255,0.06) 0%, rgba(232,164,176,0.03) 55%, rgba(255,255,255,0.02) 100%);
+      border: none;
+      box-shadow: 0 0 26px rgba(232,164,176,0.10), 0 18px 40px -22px rgba(0,0,0,0.8);
+      transition: transform .45s cubic-bezier(.4,0,.2,1), box-shadow .45s;
+      text-decoration: none; will-change: transform;
+    }
+    /* Soft gradient edge instead of a hard straight border */
+    .cornerstone-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: 1.15rem;
+      padding: 1px; pointer-events: none;
+      background: linear-gradient(135deg, rgba(232,164,176,0.5), transparent 35%, rgba(200,182,255,0.28) 65%, transparent 90%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      transition: opacity .4s ease;
+    }
+    .cornerstone-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 44px rgba(232,164,176,0.22), 0 26px 55px -22px rgba(0,0,0,0.9);
+    }
+    .cornerstone-card:hover::before {
+      background: linear-gradient(135deg, rgba(243,229,171,0.75), transparent 35%, rgba(232,164,176,0.5) 65%, transparent 90%);
+    }
+    .cornerstone-card:hover {
+      transform: translateY(-6px); border-color: rgba(243,229,171,0.65);
+      box-shadow: 0 0 0 1px rgba(243,229,171,0.28), 0 0 44px rgba(232,164,176,0.28), 0 26px 55px -22px rgba(0,0,0,0.9);
+    }
+    .cornerstone-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 54px; height: 54px; border-radius: 16px;
+      border: none; background: rgba(232,164,176,0.06); box-shadow: 0 0 0 1px rgba(232,164,176,0.18), 0 0 20px rgba(232,164,176,0.16);
+      color: #E8A4B0; box-shadow: 0 0 18px rgba(232,164,176,0.15);
+      transition: color .3s, background .3s, box-shadow .3s;
+    }
+    /* Hover tremble — the emoji should feel alive when the cursor lands on a
+       card, not just scale up. Note: transform is ignored on non-replaced
+       inline elements, so both icon classes need display: inline-block. */
+    @keyframes emojiTremble {
+      0%,  100% { transform: rotate(-6deg) scale(1.14); }
+      25%       { transform: rotate(7deg)  scale(1.19); }
+      50%       { transform: rotate(-5deg) scale(1.16); }
+      75%       { transform: rotate(6deg)  scale(1.19); }
+    }
+    .cornerstone-icon.cornerstone-emoji {
+      font-size: 28px; line-height: 1;
+      display: inline-block;
+      filter: drop-shadow(0 0 10px rgba(232,164,176,0.45));
+      transition: transform .3s ease, filter .3s ease;
+    }
+    .cornerstone-card:hover .cornerstone-icon.cornerstone-emoji {
+      animation: emojiTremble .9s ease-in-out infinite;
+      filter: drop-shadow(0 0 16px rgba(243,229,171,0.6));
+    }
+    .cornerstone-card:hover .cornerstone-icon { color: #F3E5AB; background: rgba(232,164,176,0.12); box-shadow: 0 0 26px rgba(232,164,176,0.3); }
+    .cornerstone-icon svg { width: 26px; height: 26px; stroke-width: 1.1; }
+    /* Gateway emoji icon */
+    .gateway-emoji {
+      font-size: 3.4rem; line-height: 1;
+      display: inline-block;
+      filter: drop-shadow(0 0 14px rgba(232,164,176,0.5));
+      transition: transform .3s ease, filter .3s ease;
+    }
+    .portal-card:hover .gateway-emoji {
+      animation: emojiTremble 1.1s ease-in-out infinite;
+      filter: drop-shadow(0 0 22px rgba(243,229,171,0.65));
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cornerstone-card:hover .cornerstone-icon.cornerstone-emoji,
+      .portal-card:hover .gateway-emoji { animation: none; transform: scale(1.12); }
+    }
+    .cornerstone-card h3 { font-size: 1.12rem; font-weight: 700; color: #f4ecff; line-height: 1.25; margin: 0; text-wrap: balance; }
+    .cornerstone-card p { color: rgba(222,214,236,0.72); font-size: 0.9rem; line-height: 1.55; margin: 0; text-wrap: balance; flex-grow: 1; }
+    .cornerstone-cta {
+      display: inline-flex; align-items: center; gap: 0.4rem; align-self: flex-start;
+      margin-top: 0.35rem; padding: 0.5rem 1.1rem; border-radius: 999px;
+      border: none; color: #E8A4B0; box-shadow: 0 0 0 1px rgba(232,164,176,0.35), 0 0 16px rgba(232,164,176,0.18);
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; transition: all .3s;
+    }
+    .cornerstone-card:hover .cornerstone-cta { background: linear-gradient(90deg, #e8c45a, #F3E5AB); color: #1a1228; border-color: transparent; }
+
+    /* Light mode home overrides */
+    html:not(.dark) .home-page .section-gradient-1 { background: linear-gradient(to bottom, #f3eee2, #f5f0e6) !important; }
+    html:not(.dark) .home-page .section-gradient-2 { background: linear-gradient(to bottom, #f5f0e6, #f7f2e8) !important; }
+    html:not(.dark) .home-page .section-gradient-3 { background: linear-gradient(to bottom, #f7f2e8, #f9f4ea) !important; }
+    html:not(.dark) .home-page .section-gradient-4 { background: linear-gradient(to bottom, #f9f4ea, #f7f2e8) !important; }
+    html:not(.dark) .home-page .section-gradient-5 { background: linear-gradient(to bottom, #f7f2e8, #f5f0e6) !important; }
+    html:not(.dark) .home-page .section-gradient-6 { background: linear-gradient(to bottom, #f5f0e6, #efe9d8) !important; }
+    html:not(.dark) .home-page .text-white:not(a):not(button) { color: #2a2440 !important; }
+    html:not(.dark) .home-page .text-gray-300:not(a):not(button) { color: #4a4256 !important; }
+    html:not(.dark) .home-page .text-gray-200:not(a):not(button) { color: #3a3448 !important; }
+    html:not(.dark) .home-page .text-\[#E8A4B0\] { color: #9a7614 !important; }
+    html:not(.dark) .home-page .text-yellow-300 { color: #a8760a !important; }
+    html:not(.dark) .home-page .text-emerald-300 { color: #1f7a4d !important; }
+    html:not(.dark) .home-page .text-fuchsia-300 { color: #a23a8a !important; }
+    html:not(.dark) .home-page .text-cyan-300 { color: #1f7a9a !important; }
+    html:not(.dark) .home-page .card-front { background: linear-gradient(to bottom right, #efe7f5, #e7ecf5) !important; }
+    html:not(.dark) .home-page [class*="bg-clip-text"] { background-image: linear-gradient(90deg, #b8860b, #c9a227, #b8860b) !important; -webkit-background-clip: text; background-clip: text; }
+    html:not(.dark) .home-page .glass-morphism { background: rgba(255,255,255,0.62) !important; border-color: rgba(232,164,176,0.32) !important; box-shadow: 0 10px 30px -15px rgba(120,90,30,0.22) !important; }
+    html:not(.dark) .home-page .portal-card { color: #2a2440 !important; }
+    html:not(.dark) .home-page .quote-card { background: linear-gradient(135deg, rgba(255,255,255,0.74) 0%, rgba(255,250,235,0.62) 50%, rgba(245,238,220,0.52) 100%) !important; border-color: rgba(232,164,176,0.36) !important; box-shadow: 0 10px 30px -15px rgba(150,120,40,0.22) !important; }
+    html:not(.dark) .home-page .quote-text { color: #3a3020 !important; }
+    html:not(.dark) .home-page .quote-author { color: rgba(180,140,40,0.9) !important; }
+    html:not(.dark) .cornerstone-card { background: linear-gradient(165deg, rgba(255,255,255,0.9) 0%, rgba(248,243,255,0.96) 100%); border-color: rgba(154,118,20,0.3); }
+    html:not(.dark) .cornerstone-card h3 { color: #2c1e4a; }
+    html:not(.dark) .cornerstone-card p { color: #5a5478; }
+    html:not(.dark) .cornerstone-icon { background: rgba(154,118,20,0.08); border-color: rgba(154,118,20,0.32); color: #9a7614; }
+    html:not(.dark) .cornerstone-card:hover .cornerstone-icon { color: #7a5c10; }
+    html:not(.dark) .cornerstone-cta { border-color: rgba(154,118,20,0.42); color: #9a7614; }
+    html:not(.dark) .cornerstone-card:hover .cornerstone-cta { background: linear-gradient(90deg, #e8c45a, #F3E5AB); color: #1a1228; }
+    html:not(.dark) .hero-section { background-color: #f3eee2 !important; }
+
+    /* Near-invisible seam. The section gradients now meet end-to-end, so the
+       boundary is already seamless; this only blurs away any banding across
+       very tall gradients. No hairline — that read as an actual divider.
+       Negative margins cancel the height, so it adds no page length. */
+    .section-seam {
+      position: relative;
+      height: 140px;
+      margin-top: -70px;
+      margin-bottom: -70px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .section-seam::before {
+      content: '';
+      position: absolute;
+      inset: -40px 0;
+      background: linear-gradient(to bottom,
+        rgba(200,182,255,0) 0%,
+        rgba(200,182,255,0.022) 45%,
+        rgba(232,164,176,0.015) 62%,
+        rgba(200,182,255,0) 100%);
+      filter: blur(28px);
+    }
+
+    /* Hero mandala. transform-box: view-box makes transform-origin resolve
+       against the 400x400 viewBox, so the groups spin about their true centre. */
+    .hero-mandala {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: clamp(320px, 44vw, 620px);
+      height: clamp(320px, 44vw, 620px);
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+    .hero-mandala ellipse {
+      fill: none;
+      stroke: rgba(232, 164, 176, 0.20);
+      stroke-width: 1;
+    }
+    .hero-mandala .mandala-ring-b circle {
+      fill: rgba(243, 229, 171, 0.5);
+    }
+    .hero-mandala .mandala-core {
+      fill: none;
+      stroke: rgba(200, 182, 255, 0.16);
+      stroke-width: 1;
+    }
+    .mandala-ring-a,
+    .mandala-ring-b {
+      transform-box: view-box;
+      transform-origin: center;
+    }
+    .mandala-ring-a { animation: mandalaTurn 120s linear infinite; }
+    .mandala-ring-b { animation: mandalaTurn 80s linear infinite reverse; }
+    @keyframes mandalaTurn {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mandala-ring-a, .mandala-ring-b { animation: none; }
+    }
+  </style>
+
+  <div id="mouse-trail" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;"></div>
+
+  <!-- Full-page flow field: slow round motes drifting across every section.
+       Sits above the sections (z-20) because each section paints its own
+       opaque background; screen blending keeps it from muddying text. -->
+  <canvas id="flow-fullscreen" aria-hidden="true" style="position: fixed; inset: 0; width: 100%; height: 100%; z-index: 20; pointer-events: none;"></canvas>
+
+  <div class="home-page relative z-10 pt-12">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero-section min-h-[75vh] flex items-center justify-center px-6 relative overflow-hidden" style="padding-top:4rem">
+
+      <!-- Radial gold aura layers -->
+      <div class="absolute inset-0 z-0">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] opacity-35" style="background: radial-gradient(ellipse, rgba(240,208,96,0.18) 0%, rgba(232,164,176,0.06) 35%, transparent 65%);"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] opacity-25 animate-pulse" style="background: radial-gradient(ellipse, rgba(255,228,77,0.22) 0%, transparent 55%); animation-duration: 3.5s;"></div>
+      </div>
+
+      <!-- Aurora Borealis ribbons -->
+      <div class="aurora-ribbon ar-1"></div>
+      <div class="aurora-ribbon ar-2"></div>
+      <div class="aurora-ribbon ar-3"></div>
+      <div class="aurora-ribbon ar-4"></div>
+
+      <!-- Animated star particles -->
+      <div id="particles-container"></div>
+
+      <!-- Slowly turning mandala: soft petals plus a counter-rotating ring of
+           light. Organic rather than hard geometry, and slow enough to read as
+           atmosphere instead of a spinner. -->
+      <svg class="hero-mandala" viewBox="0 0 400 400" aria-hidden="true">
+        <g class="mandala-ring-a">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <ellipse cx="200" cy="74" rx="23" ry="68" transform={`rotate(${i * 30} 200 200)`} />
+          ))}
+        </g>
+        <g class="mandala-ring-b">
+          {Array.from({ length: 24 }).map((_, i) => (
+            <circle cx="200" cy="46" r="2.6" transform={`rotate(${i * 15} 200 200)`} />
+          ))}
+        </g>
+        <circle class="mandala-core" cx="200" cy="200" r="132" />
+        <circle class="mandala-core" cx="200" cy="200" r="88" />
+        <circle class="mandala-core" cx="200" cy="200" r="42" />
+      </svg>
+
+      <div class="text-center max-w-4xl mx-auto relative z-10">
+        <div class="floating-element mb-8">
+          <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+            <span class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#E8A4B0] via-[#f0d060] to-[#E8A4B0]">
+              Decode the
+            </span>
+            <br>
+            <span class="text-4xl md:text-6xl text-white">Language of Your Soul</span>
+          </h1>
+        </div>
+
+        <div class="floating-element" style="animation-delay: 0.5s;">
+          <p class="hero-subtitle text-lg md:text-xl text-gray-300 mb-12 leading-relaxed">
+            Where depth psychology meets symbolic wisdom. Explore the unconscious, decode your shadow, and master your inner world.
+          </p>
+        </div>
+
+        <div class="floating-element flex flex-col sm:flex-row gap-6 justify-center items-center" style="animation-delay: 1s;">
+          <a href="#cornerstones" class="group bg-gradient-to-r from-[#E8A4B0] to-[#b8941f] hover:from-[#e6c040] hover:to-[#c4a430] text-black font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 pulse-glow shadow-lg shadow-[#E8A4B0]/20">
+            Begin Your Journey
+            <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+          <a href="/reviews/" class="group bg-[#E8A4B0]/10 border border-[#E8A4B0]/50 backdrop-blur-sm text-[#E8A4B0] hover:bg-[#E8A4B0]/20 hover:border-[#E8A4B0]/80 font-bold py-4 px-8 rounded-full text-lg transition-all duration-300">
+            Explore Reviews
+          </a>
+        </div>
+
+        <div class="mt-10 floating-element" style="animation-delay: 1.6s;">
+          <a href="#cornerstones" class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-gray-400 hover:text-[#E8A4B0] transition-colors duration-300">
+            New here? Start with the cornerstones <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="absolute top-20 left-10 text-4xl text-[#E8A4B0]/15 floating-element">✦</div>
+      <div class="absolute top-40 right-20 text-3xl text-cyan-300/15 floating-element" style="animation-delay: 0.5s;">✧</div>
+      <div class="absolute bottom-40 left-20 text-5xl text-fuchsia-300/15 floating-element" style="animation-delay: 1s;">✦</div>
+      <div class="absolute bottom-20 right-10 text-3xl text-emerald-300/15 floating-element" style="animation-delay: 1.5s;">✧</div>
+    </section>
+
+    <!-- ============ CORNERSTONES ============ -->
+    <div class="section-seam" aria-hidden="true"></div>
+
+    <section id="cornerstones" class="py-0 relative" style="background-color:#211B43; scroll-margin-top:4rem;">
+      <div class="mx-auto px-6 max-w-7xl pt-[90px] pb-[90px]">
+        <div class="text-center mb-10">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" style="text-wrap:balance;">Start Here: The Cornerstone Guides</h2>
+          <p class="section-subtitle text-gray-400 text-sm md:text-base leading-relaxed">
+            New to this world? Begin with our four foundational guides — each maps an entire field, then points you to the deeper dives.
+          </p>
+        </div>
+        <div class="cornerstones-grid">
+          <a href="/tarot/fools-journey-complete-guide/" class="cornerstone-card">
+            <span class="cornerstone-icon cornerstone-emoji" aria-hidden="true">✨</span>
+            <h3>The Fool's Journey</h3>
+            <p>All 22 Major Arcana cards, decoded card by card.</p>
+            <span class="cornerstone-cta">Read Guide →</span>
+          </a>
+          <a href="/astrology/astrology-101-sun-moon-rising/" class="cornerstone-card">
+            <span class="cornerstone-icon cornerstone-emoji" aria-hidden="true">🌙</span>
+            <h3>Astrology 101</h3>
+            <p>Sun, Moon & Rising signs — the map that makes charts make sense.</p>
+            <span class="cornerstone-cta">Read Guide →</span>
+          </a>
+          <a href="/energy/energy-body-101/" class="cornerstone-card">
+            <span class="cornerstone-icon cornerstone-emoji" aria-hidden="true">🪷</span>
+            <h3>Your Energy Body 101</h3>
+            <p>A beginner's map of the subtle energy system — aura, chakras, flow.</p>
+            <span class="cornerstone-cta">Read Guide →</span>
+          </a>
+          <a href="/reviews/best-tarot-decks-beginners/" class="cornerstone-card">
+            <span class="cornerstone-icon cornerstone-emoji" aria-hidden="true">🎴</span>
+            <h3>Best Tarot Decks 2026</h3>
+            <p>Six beginner decks reviewed — what's worth your money, what to skip.</p>
+            <span class="cornerstone-cta">Read Guide →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GATEWAYS ============ -->
+    <div class="section-seam" aria-hidden="true"></div>
+
+    <section id="gateways" class="py-0 relative section-gradient-2">
+      <div class="mx-auto px-6 max-w-7xl pt-24 pb-24">
+        <div class="text-center mb-20">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 relative inline-block">
+            <span class="relative z-10">Gateways to Transcendent Knowledge</span>
+            <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#E8A4B0] to-transparent"></div>
+          </h2>
+          <p class="section-subtitle text-lg md:text-xl text-gray-300">
+            Traverse the multidimensional pathways of esoteric wisdom and depth psychology.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Mind & Psych -->
+          <a href="/psych/" class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group transition-all duration-300 relative overflow-hidden border border-[#E8A4B0]/30 foundation-glow block">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#E8A4B0]/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative z-10">
+              <div class="mb-6 flex justify-center"><span class="gateway-emoji" aria-hidden="true">🦋</span></div>
+              <h3 class="text-xl font-bold text-white mb-4">Mind & Psych</h3>
+              <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+                Where depth psychology meets symbolic wisdom. Decode your dreams and explore the unconscious mind.
+              </p>
+              <span class="inline-block text-[#E8A4B0] hover:text-[#e6c040] font-medium transition-colors">
+                Explore the Mind →
+              </span>
+            </div>
+          </a>
+
+          <a href="/tarot/" class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group hover:border-yellow-300/50 transition-all duration-300 relative overflow-hidden block">
+            <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative z-10">
+              <div class="mb-6 flex justify-center"><span class="gateway-emoji" aria-hidden="true">🔮</span></div>
+              <h3 class="text-xl font-bold text-white mb-4">Sacred Tarot & Oracle</h3>
+              <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+                Ancient archetypal wisdom speaks through symbolic imagery, revealing hidden truths.
+              </p>
+              <span class="inline-block text-yellow-300 hover:text-yellow-400 font-medium transition-colors">
+                Channel Insights →
+              </span>
+            </div>
+          </a>
+
+          <a href="/energy/" class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group hover:border-emerald-300/50 transition-all duration-300 relative overflow-hidden block">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative z-10">
+              <div class="mb-6 flex justify-center"><span class="gateway-emoji" aria-hidden="true">🌸</span></div>
+              <h3 class="text-xl font-bold text-white mb-4">Energy & Chakras</h3>
+              <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+                Harmonize your subtle energy bodies, activating life force flow for optimal vitality.
+              </p>
+              <span class="inline-block text-emerald-300 hover:text-emerald-400 font-medium transition-colors">
+                Activate Centers →
+              </span>
+            </div>
+          </a>
+
+          <a href="/astrology/" class="portal-card portal-card-large glass-morphism p-8 rounded-2xl text-center group hover:border-fuchsia-300/50 transition-all duration-300 relative overflow-hidden block">
+            <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative z-10">
+              <div class="mb-6 flex justify-center"><span class="gateway-emoji" aria-hidden="true">⭐</span></div>
+              <h3 class="text-xl font-bold text-white mb-4">Cosmic Astrology & Symbols</h3>
+              <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+                Decipher celestial influences and symbolic messages encoded in the fabric of consciousness.
+              </p>
+              <span class="inline-block text-fuchsia-300 hover:text-fuchsia-400 font-medium transition-colors">
+                Read Cosmic Signs →
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ YOUR INNER WORLD (PLAYFUL INTRO) ============ -->
+    <div class="section-seam" aria-hidden="true"></div>
+
+    <section class="py-0 relative" style="background: #2C215C;">
+      <div class="mx-auto px-6 max-w-5xl pt-20 pb-14 text-center">
+        <span class="inline-block text-[#E8A4B0] text-sm tracking-[0.25em] uppercase mb-4">Play first · Read later</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" style="text-wrap:balance;">Your inner world, made <span class="text-[#E8A4B0]">playful</span> Curiosity.</h2>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">Pull a card, ask a question, check your sign match — no expertise needed, just curiosity.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/daily-oracle/" class="inline-block bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full text-base transition-all duration-300 transform hover:scale-105">Start with a card draw →</a>
+          <a href="/reviews/" class="inline-block bg-transparent border border-[#E8A4B0] text-[#E8A4B0] hover:bg-[#E8A4B0] hover:text-black font-bold py-3 px-6 rounded-full text-base transition-all duration-300">Explore the guides</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SACRED GUIDANCE / START HERE ============ -->
+    <div class="section-seam" aria-hidden="true"></div>
+
+    <section id="play" class="py-0 relative section-gradient-3">
+      <div class="mx-auto px-6 max-w-5xl pt-16 pb-16">
+        <div class="text-center mb-12">
+          <span class="inline-block text-[#E8A4B0] text-sm tracking-[0.25em] uppercase mb-3">Sacred Guidance</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Start here — pick a card, ask a question</h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">Three little games to spark intuition. Tap any card to flip it, then open the tool.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Daily Oracle -->
+          <div class="tool-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleToolCard(this)" style="height: 240px;">
+            <div class="tool-reveal-inner">
+              <div class="card-front p-4 flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/80 to-indigo-900/80">
+                <div class="text-4xl mb-3 text-[#E8A4B0] group-hover:scale-110 transition-transform">🔮</div>
+                <h3 class="text-lg font-bold text-white mb-1">Daily Oracle</h3>
+                <p class="text-gray-300 text-xs">Tap to flip</p>
+              </div>
+              <div class="card-back p-5 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/95 to-amber-100/95">
+                <div class="text-3xl mb-2 text-purple-800">🔮</div>
+                <h3 class="text-sm font-bold text-purple-800 mb-1">Daily Oracle</h3>
+                <p class="text-purple-700 text-xs text-center mb-3 leading-relaxed">Draw today's card and read its one-line guidance.</p>
+                <a href="/daily-oracle/" class="text-purple-900 font-semibold text-xs underline decoration-2 underline-offset-2" onclick="event.stopPropagation();">Open tool →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Yes / No Tarot -->
+          <div class="tool-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleToolCard(this)" style="height: 240px;">
+            <div class="tool-reveal-inner">
+              <div class="card-front p-4 flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/80 to-indigo-900/80">
+                <div class="text-4xl mb-3 text-cyan-300 group-hover:scale-110 transition-transform">✨</div>
+                <h3 class="text-lg font-bold text-white mb-1">Yes / No Tarot</h3>
+                <p class="text-gray-300 text-xs">Tap to flip</p>
+              </div>
+              <div class="card-back p-5 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/95 to-amber-100/95">
+                <div class="text-3xl mb-2 text-purple-800">✨</div>
+                <h3 class="text-sm font-bold text-purple-800 mb-1">Yes / No Tarot</h3>
+                <p class="text-purple-700 text-xs text-center mb-3 leading-relaxed">Ask anything in your head. Get a clear lean.</p>
+                <a href="/yes-no-tarot/" class="text-purple-900 font-semibold text-xs underline decoration-2 underline-offset-2" onclick="event.stopPropagation();">Open tool →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Sign Compatibility -->
+          <div class="tool-reveal glass-morphism mystical-border p-1 group cursor-pointer" onclick="toggleToolCard(this)" style="height: 240px;">
+            <div class="tool-reveal-inner">
+              <div class="card-front p-4 flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/80 to-indigo-900/80">
+                <div class="text-4xl mb-3 text-fuchsia-300 group-hover:scale-110 transition-transform">💞</div>
+                <h3 class="text-lg font-bold text-white mb-1">Sign Compatibility</h3>
+                <p class="text-gray-300 text-xs">Tap to flip</p>
+              </div>
+              <div class="card-back p-5 flex flex-col items-center justify-center bg-gradient-to-br from-amber-50/95 to-amber-100/95">
+                <div class="text-3xl mb-2 text-purple-800">💞</div>
+                <h3 class="text-sm font-bold text-purple-800 mb-1">Sign Compatibility</h3>
+                <p class="text-purple-700 text-xs text-center mb-3 leading-relaxed">Choose two signs and see how you match.</p>
+                <a href="/sign-compatibility/" class="text-purple-900 font-semibold text-xs underline decoration-2 underline-offset-2" onclick="event.stopPropagation();">Open tool →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <a href="/daily-oracle/" class="inline-block bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full text-base transition-all duration-300 transform hover:scale-105 pulse-glow crystal-effect">
+            Draw Your Sacred Card
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRUSTED PLATFORMS ============ -->
+    <div class="section-seam" aria-hidden="true"></div>
+
+    <section class="py-0 relative section-gradient-4">
+      <div class="mx-auto px-6 max-w-5xl pt-16 pb-16">
+        <div class="text-center mb-12">
+          <span class="inline-block text-[#E8A4B0] text-sm tracking-[0.25em] uppercase mb-3">Recommended</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Trusted platforms</h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">Hand-picked tools and services we actually like — affiliate spots.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <a href="/reviews/oranum/" class="glass-morphism mystical-border p-6 rounded-2xl text-center block hover:border-[#E8A4B0] hover:-translate-y-1 transition-all duration-300 relative">
+            <div class="text-3xl mb-3">🔮</div>
+            <h3 class="text-xl font-bold text-white mb-3">Psychic & tarot readings</h3>
+            <p class="text-gray-300 text-sm mb-5 leading-relaxed">Compare the top vetted platforms (Oranum, Kasamba, PsychicOz) before you book a session.</p>
+            <span class="inline-block text-[#E8A4B0] hover:text-[#e6c040] font-medium text-sm">Compare platforms →</span>
+          </a>
+          <a href="/reviews/best-tarot-decks-beginners/" class="glass-morphism mystical-border p-6 rounded-2xl text-center block hover:border-[#E8A4B0] hover:-translate-y-1 transition-all duration-300 relative">
+            <div class="text-3xl mb-3">🎴</div>
+            <h3 class="text-xl font-bold text-white mb-3">Beginner tarot decks</h3>
+            <p class="text-gray-300 text-sm mb-5 leading-relaxed">Six beginner decks reviewed — what's worth your money, what to skip.</p>
+            <span class="inline-block text-[#E8A4B0] hover:text-[#e6c040] font-medium text-sm">Read the guide →</span>
+          </a>
+          <a href="/reviews/" class="glass-morphism mystical-border p-6 rounded-2xl text-center block hover:border-[#E8A4B0] hover:-translate-y-1 transition-all duration-300 relative">
+            <div class="text-3xl mb-3">🌿</div>
+            <h3 class="text-xl font-bold text-white mb-3">Spiritual media</h3>
+            <p class="text-gray-300 text-sm mb-5 leading-relaxed">Conscious documentaries and yoga apps worth your screen time (Gaia and friends).</p>
+            <span class="inline-block text-[#E8A4B0] hover:text-[#e6c040] font-medium text-sm">Browse the toolkit →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHISPERS OF THE UNCONSCIOUS ============ -->
+    <div class="section-seam" aria-hidden="true"></div>
+
+    <section class="py-0 relative section-gradient-5">
+      <div class="mx-auto px-6 max-w-6xl pt-24 pb-24">
+        <div class="text-center mb-12">
+          <span class="inline-block text-[#E8A4B0] text-sm tracking-[0.25em] uppercase mb-3">Whispers</span>
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Whispers of the Unconscious</h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">Four quotes that hold a mirror. Tap any to see which part of you it's calling.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <button type="button" class="whisper-card group" data-whisper="0">
+            <span class="whisper-emblem">✦</span>
+            <p class="whisper-text">"Until you make the unconscious conscious, it will direct your life and you will call it fate."</p>
+            <span class="whisper-author">— Carl Jung</span>
+            <span class="whisper-cta">Activate Unconscious Insight →</span>
+          </button>
+          <button type="button" class="whisper-card group" data-whisper="1">
+            <span class="whisper-emblem">✧</span>
+            <p class="whisper-text">"Who looks outside, dreams; who looks inside, awakes."</p>
+            <span class="whisper-author">— Joseph Campbell</span>
+            <span class="whisper-cta">Begin Self-Exploration Journey →</span>
+          </button>
+          <button type="button" class="whisper-card group" data-whisper="2">
+            <span class="whisper-emblem">✦</span>
+            <p class="whisper-text">"The cave you fear to enter holds the treasure you seek."</p>
+            <span class="whisper-author">— Sigmund Freud</span>
+            <span class="whisper-cta">Unearth Your Inner Treasure →</span>
+          </button>
+          <button type="button" class="whisper-card group" data-whisper="3">
+            <span class="whisper-emblem">✧</span>
+            <p class="whisper-text">"Dreams are the royal road to the knowledge of the unconscious activities of the mind."</p>
+            <span class="whisper-author">— Sigmund Freud</span>
+            <span class="whisper-cta">Navigate Your Dreams →</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Whisper Popup -->
+      <div id="whisper-popup" class="whisper-popup" aria-hidden="true">
+        <div class="whisper-popup-inner" role="dialog" aria-modal="true">
+          <button class="whisper-popup-close" aria-label="Close" id="whisper-popup-close">×</button>
+          <span class="whisper-popup-tag">✨ A whisper heard</span>
+          <h3 class="whisper-popup-title">Which part of your unconscious is calling you today?</h3>
+          <p class="whisper-popup-quote" id="whisper-popup-quote"></p>
+          <div class="whisper-popup-actions">
+            <a href="/reviews/" class="whisper-popup-btn whisper-popup-btn-primary">🔮 Get a Professional Intuitive Reading</a>
+            <a href="/reviews/" class="whisper-popup-btn whisper-popup-btn-ghost">🌿 Explore Recommended Tools</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <div class="section-seam" aria-hidden="true"></div>
+
+    <section class="py-0 relative section-gradient-6">
+      <div class="mx-auto px-6 max-w-4xl text-center pt-24 pb-24">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Meet Your True Self?</h2>
+        <p class="section-subtitle text-lg text-gray-300 mb-10 leading-relaxed">
+          The blueprint of your psyche is waiting to be uncovered. Take the first step today.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/psych/shadow-work/12-jungian-archetypes-intro/" class="bg-[#E8A4B0] text-black font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-[#E8A4B0]/30 hover:shadow-[#E8A4B0]/50">
+            Discover Your Archetype →
+          </a>
+          <a href="/psych/shadow-work/shadow-work-guide/" class="bg-transparent border border-[#E8A4B0] text-[#E8A4B0] hover:bg-[#E8A4B0] hover:text-black font-bold py-4 px-8 rounded-full text-lg transition-all duration-300">
+            Get Free Shadow Work Guide
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="/js/flowfield.js" is:inline></script>
+  <script is:inline>
+    function toggleCard(card) {
+      document.querySelectorAll('.card-reveal').forEach(function(c){ if(c!==card)c.classList.remove('flipped'); });
+      card.classList.toggle('flipped');
+    }
+    function toggleToolCard(card) {
+      card.classList.toggle('flipped');
+    }
+
+    var currentCardIndex = 0;
+    var cards = [];
+    var autoRotateInterval = null;
+
+    function autoRotateCards() {
+      cards.forEach(function(c){c.classList.remove('flipped')});
+      setTimeout(function(){
+        if(cards[currentCardIndex])cards[currentCardIndex].classList.add('flipped');
+        currentCardIndex=(currentCardIndex+1)%cards.length;
+      },300);
+    }
+
+    function initWhispers() {
+      var cards = document.querySelectorAll('.whisper-card');
+      var popup = document.getElementById('whisper-popup');
+      var popupQuote = document.getElementById('whisper-popup-quote');
+      var popupClose = document.getElementById('whisper-popup-close');
+      if (!cards.length || !popup) return;
+      // Cache the per-card quote text so we can echo it inside the popup.
+      var quotes = [];
+      cards.forEach(function (c) {
+        quotes.push((c.querySelector('.whisper-text') || {}).textContent || '');
+      });
+      function open(idx) {
+        popupQuote.textContent = quotes[idx] || '';
+        popup.classList.add('open');
+        popup.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        popup.classList.remove('open');
+        popup.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      cards.forEach(function (c, idx) {
+        c.addEventListener('click', function () { open(idx); });
+      });
+      popupClose && popupClose.addEventListener('click', close);
+      popup.addEventListener('click', function (e) { if (e.target === popup) close(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && popup.classList.contains('open')) close();
+      });
+    }
+
+    function initMouseTrail() {
+      var container = document.getElementById('mouse-trail');
+      if(!container) return;
+      // clear any existing listeners by replacing container
+      var newContainer = container.cloneNode(true);
+      container.parentNode.replaceChild(newContainer, container);
+      var trail=[],max=26,lastX=0,lastY=0,lastT=0;
+      document.addEventListener('mousemove',function(e){
+        // throttle: only spawn a cloud every ~28px of movement, keeps it soft not noisy
+        var dx=e.clientX-lastX, dy=e.clientY-lastY, dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<26) return;
+        lastX=e.clientX; lastY=e.clientY;
+        var p=document.createElement('div');p.className='particle';
+        p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';
+        // soft pastel cloud tints
+        var tints=[
+          'radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(232,164,176,0.4) 35%, rgba(232,164,176,0.1) 65%, transparent 100%)',
+          'radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(147,112,219,0.4) 35%, rgba(147,112,219,0.1) 65%, transparent 100%)',
+          'radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(80,200,220,0.4) 35%, rgba(80,200,220,0.1) 65%, transparent 100%)',
+          'radial-gradient(circle, rgba(255,255,255,0.82) 0%, rgba(240,160,190,0.4) 35%, rgba(240,160,190,0.1) 65%, transparent 100%)'
+        ];
+        p.style.background=tints[Math.floor(Math.random()*tints.length)];
+        // slight size/rotation variance for a fluffy, organic feel
+        var s=0.8+Math.random()*0.9;
+        p.style.width=(28*s)+'px'; p.style.height=(28*s)+'px';
+        p.style.filter='blur('+(5+Math.random()*3)+'px)';
+        newContainer.appendChild(p);trail.push(p);
+        if(trail.length>max){var o=trail.shift();if(o.parentNode)o.parentNode.removeChild(o);}
+      });
+    }
+
+    function initParticlesContainer() {
+      var wrap = document.getElementById('particles-container');
+      if(!wrap) return;
+      wrap.innerHTML = '';
+      var frag = document.createDocumentFragment();
+      for (var i = 0; i < 40; i++) {
+        var s = document.createElement('div');
+        s.className = 'mystical-particle';
+        s.style.cssText = 'width:'+(2+Math.random()*3)+'px;height:'+(2+Math.random()*3)+'px;left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;opacity:'+(0.2+Math.random()*0.4)+';animation:float '+(4+Math.random()*4)+'s ease-in-out infinite;animation-delay:'+(Math.random()*-4)+'s;';
+        frag.appendChild(s);
+      }
+      wrap.appendChild(frag);
+    }
+
+    function initHomeScripts() {
+      if (typeof window.initFlowField === 'function') window.initFlowField();
+      initMouseTrail();
+      initParticlesContainer();
+      initWhispers();
+      if (autoRotateInterval) clearInterval(autoRotateInterval);
+      cards = document.querySelectorAll('.tool-reveal');
+      if(cards.length) {
+        currentCardIndex = 0;
+        autoRotateInterval = setInterval(autoRotateCards,8000);
+        setTimeout(autoRotateCards,3000);
+      }
+      document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener('click',function(e){
+          e.preventDefault();
+          var t=document.querySelector(this.getAttribute('href'));
+          if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+        });
+      });
+    }
+
+    document.addEventListener('astro:page-load', initHomeScripts);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHomeScripts);
+    } else {
+      initHomeScripts();
+    }
+  </script>
+</BaseLayout>

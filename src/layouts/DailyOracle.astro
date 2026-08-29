@@ -1,0 +1,524 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+interface Props { title: string; summary?: string; }
+const { title, summary } = Astro.props;
+---
+<BaseLayout title={title} description={summary} bodyClass="dc-page">
+  <style is:global>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap');
+
+    .dc-page {
+      --gold: #E8A4B0;
+      --gold-bright: #F3E5AB;
+      --violet: #a855f7;
+      --violet-deep: #6d28d9;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 50% -10%, #2B2254 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 110%, #322968 0%, transparent 50%),
+        linear-gradient(180deg, #1A1534 0%, #1A1534 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 1.25rem 6rem;
+    }
+    .dc-stars { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .dc-star {
+      position: absolute; border-radius: 50%;
+      background: #fff; opacity: .5;
+      animation: dcTwinkle 4s infinite ease-in-out;
+    }
+    @keyframes dcTwinkle { 0%,100% { opacity:.15; transform: scale(.7);} 50% { opacity:.9; transform: scale(1.2);} }
+
+    .dc-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; text-align: center; }
+
+    .dc-title {
+      font-family: 'Playfair Display', Georgia, serif; font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.15;
+      letter-spacing: .02em; margin: 0 0 .6rem;
+      background: linear-gradient(90deg, #e8d8b8, var(--gold-bright), #c0a880);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .dc-sub {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+      font-size: clamp(1rem, 2.4vw, 1.25rem); color: rgba(223,214,193,.72);
+      max-width: 34rem; margin: 0 auto 2.4rem;
+    }
+
+    .dc-stage { perspective: 1400px; display: flex; justify-content: center; margin-bottom: 2.2rem; }
+    .dc-card {
+      width: 260px; height: 420px; position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s cubic-bezier(.4,.2,.2,1);
+      cursor: pointer;
+    }
+    @media (max-width: 480px) { .dc-card { width: 220px; height: 356px; } }
+    .dc-card.is-flipped { transform: rotateY(180deg); }
+    .dc-card.reversed.is-flipped { transform: rotateY(180deg) rotate(180deg); }
+
+    .dc-face {
+      position: absolute; inset: 0; border-radius: 18px;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      overflow: hidden; box-shadow: 0 20px 60px -15px rgba(0,0,0,.8), 0 0 0 1px rgba(232,164,176,.35);
+    }
+    .dc-back {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(168,85,247,.22), transparent 62%),
+        linear-gradient(145deg, #180d2c 0%, #0d0819 100%);
+      border: 1px solid rgba(232,164,176,.4);
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+    }
+    .dc-back::before {
+      content: ""; position: absolute; inset: 12px; border-radius: 12px;
+      border: 1px solid rgba(232,164,176,.25);
+      background:
+        repeating-linear-gradient(45deg, rgba(232,164,176,.05) 0 8px, transparent 8px 16px),
+        repeating-linear-gradient(-45deg, rgba(168,85,247,.05) 0 8px, transparent 8px 16px);
+    }
+    .dc-back-emblem { position: relative; font-size: 3.4rem; filter: drop-shadow(0 0 14px rgba(232,164,176,.6)); animation: dcFloat 5s ease-in-out infinite; }
+    @keyframes dcFloat { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-8px);} }
+    .dc-back-text { position: relative; margin-top: .8rem; font-family: 'Playfair Display', serif; font-size: .72rem; letter-spacing: .35em; color: rgba(232,164,176,.65); text-transform: uppercase; }
+
+    .dc-front {
+      transform: rotateY(180deg);
+      background: linear-gradient(160deg, #1b1130 0%, #0c0718 100%);
+      border: 1px solid rgba(232,164,176,.55);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 1.4rem 1.1rem; text-align: center;
+    }
+    .dc-front::before {
+      content: ""; position: absolute; inset: 9px; border-radius: 12px;
+      border: 1px double rgba(232,164,176,.4); pointer-events: none;
+    }
+    .dc-front-glyph { font-size: 3.6rem; margin-bottom: .5rem; filter: drop-shadow(0 0 12px rgba(232,164,176,.5)); }
+    .dc-front-num { font-family: 'Playfair Display', serif; font-size: .7rem; letter-spacing: .3em; color: rgba(232,164,176,.7); margin-bottom: .3rem; }
+    .dc-front-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; line-height: 1.2; color: var(--gold-bright); margin: 0; }
+    .dc-front-hint { margin-top: .9rem; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: .95rem; color: rgba(220,212,190,.55); }
+
+    .dc-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1rem; letter-spacing: .06em;
+      padding: .95rem 2.4rem; border-radius: 9999px; cursor: pointer;
+      color: #1a1206; border: none;
+      background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+      box-shadow: 0 0 30px rgba(232,164,176,.35);
+      transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease;
+    }
+    .dc-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 0 45px rgba(232,164,176,.6); }
+    .dc-btn:active { transform: scale(.98); }
+    .dc-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    .dc-result {
+      max-width: 560px; margin: 2.4rem auto 0;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+      pointer-events: none;
+    }
+    .dc-result.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .dc-result-name {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.7rem;
+      color: var(--gold-bright); margin: 0 0 .3rem;
+    }
+    .dc-oneline {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+      font-size: 1.18rem; line-height: 1.5; color: rgba(243,229,171,.85);
+      max-width: 32rem; margin: 0 auto 1.4rem;
+    }
+    .dc-orient {
+      display: inline-block; font-family: 'Playfair Display', serif; font-size: .72rem; letter-spacing: .2em;
+      text-transform: uppercase; padding: .25rem .8rem; border-radius: 9999px; margin-bottom: 1rem;
+    }
+    .dc-orient.upright { color: #7fe8b0; border: 1px solid rgba(127,232,176,.4); background: rgba(127,232,176,.08); }
+    .dc-orient.reversed { color: #f0a5c0; border: 1px solid rgba(240,165,192,.4); background: rgba(240,165,192,.08); }
+    .dc-oracle { max-width: 36rem; margin: 0 auto 1.8rem; text-align: left; }
+    .dc-kw {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+      font-size: 1.05rem; line-height: 1.5; color: rgba(243,229,171,.9); margin-bottom: 1.1rem;
+    }
+    .dc-kw-label {
+      display: block; margin-bottom: .3rem; font-family: 'Playfair Display', serif; font-style: normal;
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(243,229,171,.6);
+    }
+    .dc-sec { margin-bottom: 1.15rem; }
+    .dc-sec-label {
+      display: block; margin-bottom: .35rem; font-family: 'Playfair Display', serif; font-weight: 600;
+      font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-bright);
+    }
+    .dc-sec p {
+      margin: 0; font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.12rem; line-height: 1.62; color: rgba(233,224,203,.9);
+    }
+    .dc-divider { width: 90px; height: 1px; margin: 1.4rem auto; background: linear-gradient(90deg, transparent, rgba(232,164,176,.6), transparent); }
+
+    .dc-cta {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.08rem; line-height: 1.6; color: rgba(210,200,180,.78);
+      max-width: 40rem; margin: 0 auto;
+    }
+    .dc-cta a {
+      color: var(--gold-bright); font-weight: 600; text-decoration: none;
+      border-bottom: 1px solid rgba(243,229,171,.5); transition: color .3s ease, border-color .3s ease;
+    }
+    .dc-cta a:hover { color: #fff; border-color: #fff; }
+
+    .dc-ritual {
+      max-width: 560px; margin: 0 auto 2.2rem; text-align: left;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(232, 164, 176, .18);
+      border-radius: 14px; padding: .2rem 1.25rem;
+    }
+    .dc-ritual summary {
+      cursor: pointer; list-style: none; display: flex; align-items: center; gap: .55rem;
+      font-family: 'Playfair Display', serif; font-weight: 600; font-size: .95rem; letter-spacing: .06em;
+      color: var(--gold-bright); padding: .85rem 0;
+    }
+    .dc-ritual summary::-webkit-details-marker { display: none; }
+    .dc-ritual .dc-chev { transition: transform .3s ease; font-size: .7rem; }
+    .dc-ritual[open] .dc-chev { transform: rotate(90deg); }
+    .dc-ritual ol { margin: .2rem 0 1rem; padding-left: 1.2rem; }
+    .dc-ritual li {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.05rem; line-height: 1.55;
+      color: rgba(223, 214, 193, .82); margin-bottom: .7rem;
+    }
+    .dc-ritual li b { color: var(--gold-bright); font-weight: 600; }
+
+    html:not(.dark) .dc-page {
+      background:
+        radial-gradient(ellipse at 50% -10%, #ece3fb 0%, transparent 55%),
+        linear-gradient(180deg, #f8f6fc 0%, #fbfaff 100%);
+    }
+    html:not(.dark) .dc-sub { color: #5b5470; }
+    html:not(.dark) .dc-star { background: #7c3aed; }
+    html:not(.dark) .dc-oneline { color: #7c3aed; }
+    html:not(.dark) .dc-cta { color: #5b5470; }
+    html:not(.dark) .dc-cta a { color: #7c3aed; border-color: rgba(124,58,237,.4); }
+    html:not(.dark) .dc-cta a:hover { color: #4c1d95; border-color: #4c1d95; }
+    html:not(.dark) .dc-front-name, html:not(.dark) .dc-result-name { color: #6d28d9; }
+    html:not(.dark) .dc-oracle { color: #3b2f63; }
+    html:not(.dark) .dc-kw { color: #7c3aed; }
+    html:not(.dark) .dc-kw-label { color: #9d174d; }
+    html:not(.dark) .dc-sec-label { color: #6d28d9; }
+    html:not(.dark) .dc-sec p { color: #3b2f63; }
+    html:not(.dark) .dc-ritual { background: rgba(124, 58, 237, 0.05); border-color: rgba(124, 58, 237, 0.2); }
+    html:not(.dark) .dc-ritual summary { color: #6d28d9; }
+    html:not(.dark) .dc-ritual li { color: #5b5470; }
+    html:not(.dark) .dc-ritual li b { color: #7c3aed; }
+  </style>
+
+  <div class="dc-page">
+    <div class="dc-stars" id="dcStars"></div>
+
+    <div class="dc-inner">
+      <h1 class="dc-title">Daily Oracle</h1>
+      <p class="dc-sub">Still your mind, hold a question, and let a single card mirror the energy moving through you today — then read its deeper psychological reflection.</p>
+
+      <details class="dc-ritual" id="dcRitual">
+        <summary><span class="dc-chev">▶</span> How to Consult the Oracle</summary>
+        <ol>
+          <li><b>Still Your Mind:</b> Close your eyes and take three deep, conscious breaths. Let go of the external noise.</li>
+          <li><b>Hold a Question:</b> Formulate a sincere question or intention in your mind — e.g. <i>"What parts of my shadow self need attention today?"</i></li>
+          <li><b>Draw the Mirror:</b> Click the button below. Let the synchronicity of the Major Arcana mirror your current psychological state.</li>
+        </ol>
+      </details>
+
+      <div class="dc-stage">
+        <div class="dc-card" id="dcCard" role="button" tabindex="0" aria-label="Tarot card">
+          <div class="dc-face dc-back">
+            <div class="dc-back-emblem">🔮</div>
+            <div class="dc-back-text">✦ Arcana ✦</div>
+          </div>
+          <div class="dc-face dc-front">
+            <div class="dc-front-glyph" id="dcGlyph">🌙</div>
+            <div class="dc-front-num" id="dcNum">— · —</div>
+            <h2 class="dc-front-name" id="dcName">The Unknown</h2>
+            <div class="dc-front-hint" id="dcHint">Upright</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="dc-btn" id="dcBtn">✨ Draw Today's Card</button>
+
+      <div class="dc-result" id="dcResult">
+        <h3 class="dc-result-name" id="dcResName"></h3>
+        <p class="dc-oneline" id="dcOne"></p>
+        <span class="dc-orient" id="dcResOrient"></span>
+        <p class="dc-oracle" id="dcOracle"></p>
+        <div class="dc-divider"></div>
+        <p class="dc-cta">
+          Want a deeper, professional interpretation of your path? Explore our handpicked
+          <a href="/reviews/">Mind Toolkits &amp; Reviews</a> or connect with a live guide.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+  (function () {
+    var DECK = [
+      { n:"0", name:"The Fool", glyph:"🌱",
+        up:  { keywords:"Beginnings, innocence, trust, the leap of faith",
+               mirror:"The psyche stands at a threshold, raw potential before the ego forms. From a Jungian view, the Fool is the innocent explorer of the unconscious — the call to trust what reason cannot yet justify.",
+               reflection:"What would you begin today if you trusted the ground would appear beneath your feet?" },
+        rev: { keywords:"Hesitation, fear of the void, recklessness, avoidance",
+               mirror:"Terror of the unknown keeps you circling the familiar. Reversed, the Fool shows paralysis before a threshold — or a reckless leap that denies the risk. The instinct for new life is blocked.",
+               reflection:"What fear is keeping you from the threshold you are meant to cross?" } },
+      { n:"I", name:"The Magician", glyph:"⚡",
+        up:  { keywords:"Will, manifestation, resourcefulness, focus",
+               mirror:"The tools are already in your hands. Focused will turns raw potential into form. The Magician is the ego aligned with the deeper Self — name what you intend and the psyche conspires to create it.",
+               reflection:"What have you been waiting for permission to begin?" },
+        rev: { keywords:"Manipulation, scattered energy, self-deception",
+               mirror:"Scattered energy or self-deception blocks the current. Reversed, the Magician warns that will has detached from truth — you may be performing a power you do not actually feel.",
+               reflection:"Where are your words out of alignment with your true aim?" } },
+      { n:"II", name:"The High Priestess", glyph:"🌙",
+        up:  { keywords:"Intuition, the unconscious, inner knowing, mystery",
+               mirror:"The answer lives below the surface. The Priestess guards the threshold to the unconscious; she asks you to honor the intuition you keep dismissing. The deep mind is already speaking.",
+               reflection:"What quiet knowing have you been rationalizing away?" },
+        rev: { keywords:"Disconnection, noise, ignored intuition",
+               mirror:"You are overriding inner knowing with outer noise. Reversed, the Priestess is silenced — the veil thickens because you have stopped listening to the body's truth.",
+               reflection:"What would shift if you withdrew and listened for one hour?" } },
+      { n:"III", name:"The Empress", glyph:"🌸",
+        up:  { keywords:"Nurturance, creativity, abundance, the body",
+               mirror:"Something in you is ready to be nurtured into being. The Empress is the archetype of generative love — tend your growth with patience and sensual, grounded care.",
+               reflection:"What part of your life is asking to be tended, not pushed?" },
+        rev: { keywords:"Creative block, neglect, over-control",
+               mirror:"Creative flow is dammed by neglect or by over-control. Reversed, the mothering instinct turns anxious — you either abandon the seed or clutch it too tightly to grow.",
+               reflection:"Where have you confused control with care?" } },
+      { n:"IV", name:"The Emperor", glyph:"🏛️",
+        up:  { keywords:"Structure, authority, order, boundaries",
+               mirror:"Structure liberates. The Emperor builds the boundaries and order that let a vision stand. He invites you to become your own inner authority rather than seek one outside.",
+               reflection:"What boundary would give your life more freedom, not less?" },
+        rev: { keywords:"Rigidity, control, the inner tyrant",
+               mirror:"Rigidity or a domineering inner father constrains you. Reversed, the Emperor's order has hardened into fear — rules that protect have become walls that imprison.",
+               reflection:"Where has discipline tipped into control?" } },
+      { n:"V", name:"The Hierophant", glyph:"🗝️",
+        up:  { keywords:"Tradition, mentorship, initiation, wisdom",
+               mirror:"Tradition and mentors offer a proven path. The Hierophant is the bridge between the known and the sacred — learn the rules deeply before you decide which to transcend.",
+               reflection:"Whose hard-won wisdom could shorten your path?" },
+        rev: { keywords:"Dogma, rebellion, the false teacher",
+               mirror:"The old dogma no longer fits your soul. Reversed, the Hierophant shows belief worn as costume — it is time to seek the inner teacher beneath the institution.",
+               reflection:"What inherited rule no longer serves the life in front of you?" } },
+      { n:"VI", name:"The Lovers", glyph:"💞",
+        up:  { keywords:"Union, choice, values, wholeness",
+               mirror:"A meaningful choice asks for wholeness, not compromise. The Lovers unite the divided parts of yourself — choose from love, and the inner opposites reconcile.",
+               reflection:"What would you choose if no one else's approval were at stake?" },
+        rev: { keywords:"Disharmony, misalignment, division",
+               mirror:"Disharmony or misaligned values pull you apart. Reversed, the Lovers show an inner split — you are choosing from fear or obligation rather than from the self.",
+               reflection:"Which inner opposite are you refusing to reconcile?" } },
+      { n:"VII", name:"The Chariot", glyph:"🛡️",
+        up:  { keywords:"Willpower, direction, mastery, drive",
+               mirror:"Opposing drives can be harnessed as one. The Chariot is the ego holding the reins of conflicting instincts — willpower and clear direction carry you through.",
+               reflection:"What two forces in you could move as one?" },
+        rev: { keywords:"Loss of control, aggression, inner conflict",
+               mirror:"You are being pulled in two directions at once. Reversed, the Chariot warns the shadow impulse or repressed emotion is driving the vehicle of your life.",
+               reflection:"Where are you forcing a direction your psyche is resisting?" } },
+      { n:"VIII", name:"Strength", glyph:"🦁",
+        up:  { keywords:"Courage, gentleness, self-mastery, instinct",
+               mirror:"True power is gentle. Strength meets the inner beast with compassion, and it becomes an ally. The lion is instinct tamed not by force but by love.",
+               reflection:"What would soften if you met your fear with patience?" },
+        rev: { keywords:"Self-doubt, suppressed instinct, depletion",
+               mirror:"Self-doubt or suppressed instinct drains you. Reversed, Strength shows the wild energy caged or leaking out — you mistake anxiety for weakness.",
+               reflection:"Where have you mistaken self-punishment for discipline?" } },
+      { n:"IX", name:"The Hermit", glyph:"🕯️",
+        up:  { keywords:"Solitude, inner wisdom, retreat, guidance",
+               mirror:"Solitude is not exile but return. The Hermit withdraws inward; the lantern he seeks is his own quiet wisdom, carried now to light the way for others.",
+               reflection:"What truth only silence has been trying to tell you?" },
+        rev: { keywords:"Isolation, avoidance, withdrawal",
+               mirror:"Isolation has curdled into avoidance. Reversed, the Hermit's lamp is hidden from the world — you use solitude to escape relationship rather than to find yourself.",
+               reflection:"Where has alone become a hiding place?" } },
+      { n:"X", name:"Wheel of Fortune", glyph:"☸️",
+        up:  { keywords:"Cycles, fate, change, opportunity",
+               mirror:"The cycle turns. The Wheel is the pattern your soul is here to learn — meet change not as fate imposed, but as rhythm you are part of.",
+               reflection:"What season of your life are you resisting that you could instead ride?" },
+        rev: { keywords:"Resistance, stagnation, clutching control",
+               mirror:"Resisting the turning only prolongs the fall. Reversed, the Wheel shows you gripping a spoke that has already passed — control that delays the inevitable descent.",
+               reflection:"What are you clinging to that the cycle is asking you to release?" } },
+      { n:"XI", name:"Justice", glyph:"⚖️",
+        up:  { keywords:"Truth, accountability, balance, fairness",
+               mirror:"Cause and consequence are aligning. Justice asks you to speak truth, own your part, and let honest accountability set you free.",
+               reflection:"What truth about your own part have you been avoiding?" },
+        rev: { keywords:"Imbalance, evasion, projection",
+               mirror:"An imbalance goes unaddressed. Reversed, Justice shows you projecting blame outward to avoid the uncomfortable truth you have been refusing to face.",
+               reflection:"Where are you demanding fairness you will not give yourself?" } },
+      { n:"XII", name:"The Hanged Man", glyph:"🙃",
+        up:  { keywords:"Surrender, pause, new perspective, sacrifice",
+               mirror:"Surrender reveals a new angle. What feels like suspension is a sacred pause — invert your view and the situation shows its hidden meaning.",
+               reflection:"What would you see if you stopped struggling and looked up?" },
+        rev: { keywords:"Martyrdom, stagnation, self-sacrifice",
+               mirror:"Needless martyrdom keeps you stuck. Reversed, the Hanged Man shows suspension without surrender — suffering you choose but do not offer.",
+               reflection:"What sacrifice are you making that no longer serves anyone?" } },
+      { n:"XIII", name:"Death", glyph:"🦋",
+        up:  { keywords:"Endings, transformation, release, rebirth",
+               mirror:"An ending clears the ground. Death asks the outworn self to dissolve so the next form of you can emerge — not an ending, but a threshold.",
+               reflection:"What in you is already dead that you keep pretending to feed?" },
+        rev: { keywords:"Clinging, blockage, fear of change",
+               mirror:"You are clinging to what has already died. Reversed, Death shows the grief unmet — transformation stalled because you will not mourn what was.",
+               reflection:"What are you refusing to grieve so you can move on?" } },
+      { n:"XIV", name:"Temperance", glyph:"🌗",
+        up:  { keywords:"Balance, patience, alchemy, moderation",
+               mirror:"Blend the opposites within you. Temperance is the slow alchemy of conflict into a healing middle way — patience that moderates without suppressing.",
+               reflection:"What two parts of your life need a third, blended path?" },
+        rev: { keywords:"Excess, impatience, imbalance",
+               mirror:"Excess or impatience throws you off center. Reversed, Temperance shows the mix is wrong — too much of one element, too little of its opposite.",
+               reflection:"Where has moderation tipped into either/or?" } },
+      { n:"XV", name:"The Devil", glyph:"⛓️",
+        up:  { keywords:"Attachment, shadow, desire, bondage",
+               mirror:"Name the attachment that binds you. The Devil's chains of shadow, desire, or fear are looser than they appear — bondage is partly a story you consent to.",
+               reflection:"What chain are you wearing that you could set down?" },
+        rev: { keywords:"Awakening, release, reclaiming power",
+               mirror:"You are beginning to see the illusion of your own bondage. Reversed, the Devil shows the first loosening — reclaiming the power you gave away.",
+               reflection:"What power have you been handing to something outside yourself?" } },
+      { n:"XVI", name:"The Tower", glyph:"🗼",
+        up:  { keywords:"Upheaval, revelation, liberation, collapse",
+               mirror:"A false structure is struck by truth. What collapses was never solid — the Tower's lightning liberates by tearing down the edifice built on a lie.",
+               reflection:"What belief is crumbling that was never truly yours?" },
+        rev: { keywords:"Avoidance, delay, impending reckoning",
+               mirror:"You are delaying an inevitable reckoning. Reversed, the Tower shows the fall postponed — dismantle it consciously before it shatters on its own.",
+               reflection:"What are you propping up that wants to fall?" } },
+      { n:"XVII", name:"The Star", glyph:"⭐",
+        up:  { keywords:"Hope, healing, faith, replenishment",
+               mirror:"After the storm, quiet hope returns. The Star is faith restored — let yourself be seen and replenished; the wound begins to close.",
+               reflection:"What small good could you let yourself believe in today?" },
+        rev: { keywords:"Disillusion, despair, disconnection",
+               mirror:"Disillusion dims your light. Reversed, the Star shows the connection to meaning frayed — you have forgotten what genuinely nourishes your spirit.",
+               reflection:"Where have you stopped trusting that you will be replenished?" } },
+      { n:"XVIII", name:"The Moon", glyph:"🌕",
+        up:  { keywords:"Uncertainty, illusion, the unconscious, intuition",
+               mirror:"Walk gently through uncertainty. The Moon surfaces illusions and old fears so the unconscious can be met and integrated rather than feared.",
+               reflection:"What fear is loudest right now that asks to be understood, not solved?" },
+        rev: { keywords:"Confusion clearing, emerging truth, release of fear",
+               mirror:"Confusion is beginning to clear. Reversed, the Moon shows the fog thinning — the truth emerging from beneath what you projected.",
+               reflection:"What illusion are you finally ready to see through?" } },
+      { n:"XIX", name:"The Sun", glyph:"☀️",
+        up:  { keywords:"Clarity, joy, vitality, authenticity",
+               mirror:"Clarity, warmth, and authentic joy are yours. The Sun is the Self made conscious — let your true nature shine without apology.",
+               reflection:"What part of you have you been keeping in the shade?" },
+        rev: { keywords:"Clouded vitality, sadness, withdrawal",
+               mirror:"A cloud passes over your vitality. Reversed, the Sun shows the light dimmed — seek the simple joy that reconnects you to your core.",
+               reflection:"What small light could you let back in?" } },
+      { n:"XX", name:"Judgement", glyph:"📯",
+        up:  { keywords:"Awakening, reckoning, forgiveness, renewal",
+               mirror:"A call to awaken sounds. Judgement asks you to review your story with honesty, forgive, and rise into a truer version of yourself.",
+               reflection:"What old verdict on yourself is ready to be overturned?" },
+        rev: { keywords:"Self-judgment, guilt, avoidance of the call",
+               mirror:"Self-judgment keeps you from the call. Reversed, Judgement shows harsh inner verdicts drowning the trumpet — you condemn before you can awaken.",
+               reflection:"What are you condemning in yourself that asks for compassion?" } },
+      { n:"XXI", name:"The World", glyph:"🌍",
+        up:  { keywords:"Completion, integration, wholeness, fulfillment",
+               mirror:"A cycle completes in wholeness. The World is integration achieved — honor the journey before you begin the next turn of the spiral.",
+               reflection:"What have you finished that you have not yet celebrated?" },
+        rev: { keywords:"Incompletion, hesitation, loose ends",
+               mirror:"You are near completion but hesitate to close the loop. Reversed, the World shows the circle left open — you begin the next before honoring the last.",
+               reflection:"What loose end is asking you to finish, not flee?" } }
+    ];
+
+    var LINES = {
+      "The Fool": "A leap of faith opens the door you have been circling.",
+      "The Magician": "The tools are already in your hands — name what you intend.",
+      "The High Priestess": "The answer lives below the surface; trust your quiet knowing.",
+      "The Empress": "Something in you is ready to be nurtured into being.",
+      "The Emperor": "A clear boundary would give your life more freedom, not less.",
+      "The Hierophant": "Learn the rules deeply before you decide which to transcend.",
+      "The Lovers": "Choose from love, and your inner opposites reconcile.",
+      "The Chariot": "Harness two opposing drives as one, and move with direction.",
+      "Strength": "Meet your fear with patience; the wild becomes an ally.",
+      "The Hermit": "Solitude is a return — your own quiet wisdom lights the way.",
+      "Wheel of Fortune": "The cycle turns; ride the season you keep resisting.",
+      "Justice": "Own your part, speak the truth, and let balance set you free.",
+      "The Hanged Man": "Surrender the struggle and the situation shows its hidden meaning.",
+      "Death": "Let the outworn self dissolve so the next you can emerge.",
+      "Temperance": "Blend the opposites within you into a healing middle way.",
+      "The Devil": "Name the attachment that binds you; its chains are looser than they seem.",
+      "The Tower": "A false structure falls — what remains was always solid.",
+      "The Star": "After the storm, quiet hope returns. Let yourself be replenished.",
+      "The Moon": "Walk gently through uncertainty; meet the fear, don't solve it.",
+      "The Sun": "Clarity and joy are yours — let your true nature shine.",
+      "Judgement": "Review your story with honesty, forgive, and rise.",
+      "The World": "A cycle completes in wholeness — honor the journey before the next."
+    };
+
+    function initOracle() {
+      var card = document.getElementById('dcCard');
+      var btn = document.getElementById('dcBtn');
+      var result = document.getElementById('dcResult');
+      var glyphEl = document.getElementById('dcGlyph');
+      var numEl = document.getElementById('dcNum');
+      var nameEl = document.getElementById('dcName');
+      var hintEl = document.getElementById('dcHint');
+      var resName = document.getElementById('dcResName');
+      var resOne = document.getElementById('dcOne');
+      var resOrient = document.getElementById('dcResOrient');
+      var oracle = document.getElementById('dcOracle');
+      if (!card || !btn) return;
+      var drawing = false;
+
+      var wrap = document.getElementById('dcStars');
+      if (wrap && !wrap.dataset.ready) {
+        wrap.dataset.ready = '1';
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < 60; i++) {
+          var s = document.createElement('div');
+          s.className = 'dc-star';
+          var size = (Math.random() * 2 + 1).toFixed(1);
+          s.style.width = size + 'px'; s.style.height = size + 'px';
+          s.style.left = (Math.random() * 100).toFixed(2) + '%';
+          s.style.top = (Math.random() * 100).toFixed(2) + '%';
+          s.style.animationDelay = (Math.random() * 4).toFixed(2) + 's';
+          frag.appendChild(s);
+        }
+        wrap.appendChild(frag);
+      }
+
+      function draw() {
+        if (drawing) return;
+        drawing = true;
+        btn.disabled = true;
+        result.classList.remove('show');
+        card.classList.remove('is-flipped');
+        card.classList.remove('reversed');
+
+        var pick = DECK[Math.floor(Math.random() * DECK.length)];
+        var reversed = Math.random() < 0.5;
+
+        setTimeout(function () {
+          glyphEl.textContent = pick.glyph;
+          numEl.textContent = '✦ ' + pick.n + ' ✦';
+          nameEl.textContent = pick.name;
+          hintEl.textContent = reversed ? 'Reversed' : 'Upright';
+
+          if (reversed) card.classList.add('reversed');
+          card.classList.add('is-flipped');
+
+          resName.textContent = pick.name;
+          resOne.textContent = LINES[pick.name] || '';
+          resOrient.textContent = reversed ? 'Reversed' : 'Upright';
+          resOrient.className = 'dc-orient ' + (reversed ? 'reversed' : 'upright');
+          var data = reversed ? pick.rev : pick.up;
+          oracle.innerHTML =
+            '<div class="dc-kw"><span class="dc-kw-label">Keywords</span>' + data.keywords + '</div>' +
+            '<div class="dc-sec"><span class="dc-sec-label">The Psychological Mirror</span><p>' + data.mirror + '</p></div>' +
+            '<div class="dc-sec"><span class="dc-sec-label">Daily Reflection</span><p>' + data.reflection + '</p></div>';
+
+          setTimeout(function () {
+            result.classList.add('show');
+            btn.textContent = '🔄 Draw Again';
+            btn.disabled = false;
+            drawing = false;
+          }, 1050);
+        }, 260);
+      }
+
+      btn.addEventListener('click', draw);
+      card.addEventListener('click', function () { if (!drawing) draw(); });
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (!drawing) draw(); }
+      });
+    }
+
+    document.addEventListener('astro:page-load', initOracle);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initOracle);
+    } else {
+      initOracle();
+    }
+  })();
+  </script>
+</BaseLayout>

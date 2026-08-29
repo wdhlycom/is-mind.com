@@ -1,0 +1,304 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import AtmosFlow from '../components/AtmosFlow.astro';
+
+interface TarotItem {
+  title: string;
+  url: string;
+  summary: string;
+  date: string;
+}
+
+interface Props {
+  title: string;
+  summary?: string;
+  items: TarotItem[];
+}
+
+const { title, summary, items } = Astro.props;
+
+// Featured cards are pinned by their Hugo slug (matches original tarot/list.html).
+const featuredSlugs = ['fools-journey-complete-guide', 'tarot-for-beginners', 'major-vs-minor-arcana'];
+const featured = items
+  .filter((it) => featuredSlugs.some((s) => it.url.includes(`/${s}/`)))
+  .slice(0, 3);
+const rest = items.filter((it) => !featured.some((f) => f.url === it.url));
+
+// Scattered-deck profiles — alternating portrait(220x332) / landscape(300x198) cards.
+const profiles = [
+  { w: '220px', h: '332px', tilt: '-86deg', tx: '-18px', ty: '14px', z: '3' },
+  { w: '300px', h: '198px', tilt: '82deg', tx: '22px', ty: '-10px', z: '5' },
+  { w: '220px', h: '332px', tilt: '-45deg', tx: '-30px', ty: '22px', z: '2' },
+  { w: '300px', h: '198px', tilt: '48deg', tx: '34px', ty: '8px', z: '6' },
+  { w: '220px', h: '332px', tilt: '-22deg', tx: '-12px', ty: '-16px', z: '4' },
+  { w: '300px', h: '198px', tilt: '24deg', tx: '16px', ty: '18px', z: '3' },
+  { w: '220px', h: '332px', tilt: '-67deg', tx: '-26px', ty: '10px', z: '5' },
+  { w: '300px', h: '198px', tilt: '70deg', tx: '28px', ty: '-14px', z: '2' },
+  { w: '220px', h: '332px', tilt: '-38deg', tx: '-8px', ty: '24px', z: '4' },
+  { w: '300px', h: '198px', tilt: '40deg', tx: '20px', ty: '-8px', z: '6' },
+  { w: '220px', h: '332px', tilt: '-58deg', tx: '-34px', ty: '6px', z: '3' },
+  { w: '300px', h: '198px', tilt: '60deg', tx: '30px', ty: '14px', z: '5' },
+  { w: '220px', h: '332px', tilt: '-88deg', tx: '-16px', ty: '-20px', z: '2' },
+  { w: '300px', h: '198px', tilt: '84deg', tx: '24px', ty: '12px', z: '4' },
+  { w: '220px', h: '332px', tilt: '-30deg', tx: '-22px', ty: '20px', z: '6' },
+  { w: '300px', h: '198px', tilt: '28deg', tx: '12px', ty: '-12px', z: '3' },
+  { w: '220px', h: '332px', tilt: '-76deg', tx: '-30px', ty: '16px', z: '5' },
+  { w: '300px', h: '198px', tilt: '78deg', tx: '26px', ty: '-6px', z: '4' },
+];
+const romans = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII'];
+const featuredTilts = ['-3deg', '4deg', '-5deg'];
+const featuredTys = ['0px', '16px', '-10px'];
+
+// Precompute nebula sparkle positions deterministically (mirrors Hugo math.Mod loops).
+const sparkles1 = Array.from({ length: 14 }, (_, i) => ({
+  left: (i * 37) % 100,
+  top: (i * 53) % 92,
+  dur: ((i * 3) % 5) + 6,
+  delay: ((i * 2.1) % 8),
+}));
+const sparkles2 = Array.from({ length: 10 }, (_, i) => ({
+  left: (i * 43) % 100,
+  top: (i * 59) % 90,
+  dur: ((i * 4) % 4) + 7,
+  delay: ((i * 1.7) % 10),
+}));
+---
+<BaseLayout title={title} description={summary} bodyClass="tarot-page">
+  <style is:global>
+    /* ===== Deep space nebula background ===== */
+    @keyframes driftSlow { 0% { transform: translate(0, 0); } 50% { transform: translate(6vw, -3vh); } 100% { transform: translate(0, 0); } }
+    @keyframes driftWide { 0% { transform: translate(0, 0); } 33% { transform: translate(-5vw, -5vh); } 66% { transform: translate(8vw, 2vh); } 100% { transform: translate(0, 0); } }
+    @keyframes driftGentle { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-3vw, -4vh) scale(1.1); } 100% { transform: translate(0, 0) scale(1); } }
+
+    .nebula-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(60px); will-change: transform; }
+    .neb-purple { width: 55vw; height: 45vh; background: radial-gradient(ellipse at center, rgba(86,52,140,0.55) 0%, rgba(60,36,100,0.25) 40%, transparent 75%); }
+    .neb-violet { width: 45vw; height: 40vh; background: radial-gradient(ellipse at center, rgba(120,70,170,0.40) 0%, rgba(90,50,140,0.18) 45%, transparent 75%); }
+    .neb-gold   { width: 38vw; height: 32vh; background: radial-gradient(ellipse at center, rgba(196,150,60,0.30) 0%, rgba(160,120,50,0.12) 45%, transparent 75%); }
+    .neb-obsidian { width: 60vw; height: 50vh; background: radial-gradient(ellipse at center, rgba(20,14,34,0.9) 0%, rgba(12,9,22,0.6) 50%, transparent 80%); }
+
+    .n1 { top: -8%;  left: -12%; animation: driftSlow 24s ease-in-out infinite; }
+    .n2 { top: 8%;   right: -15%; animation: driftWide 28s ease-in-out infinite; animation-delay: -4s; }
+    .n3 { top: 38%;  left: 3%;  animation: driftGentle 22s ease-in-out infinite; animation-delay: -9s; }
+    .n4 { top: 55%;  right: -8%; animation: driftSlow 30s ease-in-out infinite; animation-delay: -14s; }
+    .n5 { top: 70%;  left: -10%; animation: driftWide 26s ease-in-out infinite; animation-delay: -7s; }
+    .n6 { top: 82%;  right: 12%; animation: driftGentle 32s ease-in-out infinite; animation-delay: -18s; }
+
+    .starfield {
+      position: absolute; inset: 0; pointer-events: none; opacity: 0.55;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 27% 62%, rgba(255,250,230,0.8), transparent),
+        radial-gradient(1px 1px at 41% 33%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1.4px 1.4px at 58% 71%, rgba(255,245,210,0.85), transparent),
+        radial-gradient(1px 1px at 67% 22%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 78% 54%, rgba(255,250,235,0.8), transparent),
+        radial-gradient(1.2px 1.2px at 88% 80%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 8% 84%, rgba(255,250,230,0.7), transparent),
+        radial-gradient(1px 1px at 50% 12%, rgba(255,255,255,0.75), transparent),
+        radial-gradient(1.3px 1.3px at 34% 88%, rgba(255,245,215,0.8), transparent);
+    }
+
+    @keyframes sparkleFloat {
+      0% { transform: translateY(0) scale(0); opacity: 0; }
+      20% { transform: translateY(-30px) scale(1); opacity: 0.8; }
+      100% { transform: translateY(-120px) scale(0); opacity: 0; }
+    }
+    .sparkle { position: absolute; pointer-events: none; border-radius: 50%;
+      box-shadow: 0 0 6px 2px rgba(230,210,180,0.6), 0 0 12px 4px rgba(200,170,140,0.3); }
+    .s-gold { background: #f0d78c; }
+    .sp-1 { width: 5px; height: 5px; }
+    .sp-2 { width: 3px; height: 3px; }
+
+    @keyframes fadeOnly { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+    .tarot-h1 {
+      font-family: 'Playfair Display', Georgia, serif; font-weight: 900;
+      letter-spacing: 0.04em; line-height: 1.1;
+    }
+    .art-nouveau-rule {
+      width: 140px; height: 22px; margin: 0.6rem auto 0;
+      background:
+        radial-gradient(circle at 50% 50%, #e8c45a 0 3px, transparent 4px),
+        linear-gradient(90deg, transparent, #E8A4B0 30%, #F3E5AB 50%, #E8A4B0 70%, transparent);
+      background-repeat: no-repeat;
+      background-size: 22px 22px, 100% 1px;
+      background-position: 50% 50%, 0 50%;
+      opacity: 0.85;
+    }
+    .text-soft { color: rgba(220, 210, 235, 0.78); font-weight: 300; }
+    .section-label {
+      font-family: 'Playfair Display', Georgia, serif; font-weight: 700;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      font-size: 0.78rem; color: #e8c45a;
+      display: inline-flex; align-items: center; gap: 0.8rem;
+    }
+    .section-label::before, .section-label::after {
+      content: ""; width: 36px; height: 1px;
+      background: linear-gradient(90deg, transparent, #E8A4B0);
+    }
+    .section-label::after { background: linear-gradient(90deg, #E8A4B0, transparent); }
+
+    /* ===== FEATURED asymmetric grid ===== */
+    .featured-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.4rem; }
+    .featured-card {
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      border-radius: 16px;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(120,80,180,0.30), transparent 60%),
+        linear-gradient(160deg, rgba(46,30,72,0.92) 0%, rgba(26,17,44,0.96) 70%, rgba(16,11,28,0.98) 100%);
+      border: 1.5px solid rgba(232,164,176,0.55);
+      box-shadow: 0 0 28px rgba(232,164,176,0.10), 0 18px 40px -20px rgba(0,0,0,0.7);
+      padding: 1.4rem 1.5rem;
+      --ftilt: 0deg; --fty: 0px;
+      transform: rotate(var(--ftilt)) translateY(var(--fty));
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1), box-shadow 0.5s, border-color 0.5s;
+      will-change: transform; text-decoration: none;
+    }
+    .featured-card .inner-frame { position: absolute; inset: 9px; border-radius: 10px; border: 1px solid rgba((232,164, NaN),176, 0.14); pointer-events: none; }
+    .featured-card .geo-watermark { position: absolute; top: 50%; left: 50%; width: 230px; height: 230px; transform: translate(-50%,-50%); opacity: 0.07; pointer-events: none; color: #e8c45a; }
+    .geo-corner { position: absolute; width: 34px; height: 34px; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M3 37 L3 15 Q3 3 15 3 L37 3' fill='none' stroke='%23E8A4B0' stroke-width='1.5'/%3E%3Cpath d='M3 23 Q13 23 13 13' fill='none' stroke='%23E8A4B0' stroke-width='1' opacity='0.7'/%3E%3Ccircle cx='15' cy='15' r='2' fill='%23E8A4B0'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; }
+    .geo-corner.tl { top: 8px; left: 8px; }
+    .geo-corner.tr { top: 8px; right: 8px; transform: scaleX(-1); }
+    .geo-corner.bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+    .geo-corner.br { bottom: 8px; right: 8px; transform: scale(-1,-1); }
+    .featured-card:hover { transform: rotate(0deg) translateY(-6px); border-color: rgba(243,229,171,0.85); box-shadow: 0 0 46px rgba(232,164,176,0.22), 0 22px 50px -20px rgba(0,0,0,0.8); }
+    .featured-card .fc-badge { position: absolute; top: 14px; left: 14px; z-index: 3; font-family: 'Playfair Display', serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #1a1228; background: linear-gradient(90deg, #e8c45a, #F3E5AB); padding: 0.28rem 0.7rem; border-radius: 999px; box-shadow: 0 4px 14px rgba(232,164,176,0.35); }
+    .featured-card .fc-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: #f4ecff; line-height: 1.2; margin: 0 0 0.5rem; position: relative; z-index: 2; }
+    .featured-card .fc-summary { color: rgba(222,214,236,0.82); position: relative; z-index: 2; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.02rem; line-height: 1.5; }
+    .featured-card .fc-date { margin-top: 0.7rem; font-size: 0.72rem; letter-spacing: 0.08em; color: rgba(232,164,176,0.85); position: relative; z-index: 2; }
+    .fc-0 { grid-column: span 7; grid-row: span 2; min-height: 320px; }
+    .fc-0 .fc-title { font-size: 1.9rem; }
+    .fc-0 .geo-watermark { width: 300px; height: 300px; }
+    .fc-1, .fc-2 { grid-column: span 5; min-height: 150px; }
+    .fc-1 .fc-title, .fc-2 .fc-title { font-size: 1.3rem; }
+
+    /* ===== DECK SPREAD (rest) ===== */
+    .waterfall { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 0; padding: 2.8rem 0.5rem 1rem; }
+    .wf-card {
+      --w: 220px; --h: 332px; --tilt: 0deg; --tx: 0px; --ty: 0px; --z: 1;
+      flex: 0 0 auto; box-sizing: border-box;
+      width: var(--w); min-height: var(--h);
+      margin: 0 -26px; position: relative; z-index: var(--z);
+      border-radius: 14px; padding: 1.5rem 1.2rem 1.3rem;
+      text-decoration: none; overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(120,80,180,0.22), transparent 62%),
+        linear-gradient(165deg, rgba(40,27,64,0.84) 0%, rgba(20,13,36,0.94) 100%);
+      border: 1px solid rgba((232,164, NaN),176, 0.16);
+      box-shadow: 0 12px 26px -16px rgba(0,0,0,0.9), 0 0 22px rgba(140,90,200,0.12);
+      transform: translate(var(--tx), var(--ty)) rotate(var(--tilt));
+      transition: transform 0.45s cubic-bezier(.34,1.45,.5,1), box-shadow 0.45s, border-color 0.45s;
+      will-change: transform;
+    }
+    .wf-card .wf-inner { position: absolute; inset: 7px; border-radius: 10px; border: 1px solid rgba((232,164, NaN),176, 0.09); pointer-events: none; }
+    .wf-card .wf-emblem { display: block; text-align: center; font-family: 'Playfair Display', serif; font-size: 0.82rem; letter-spacing: 0.22em; color: rgba(232,164,176,0.82); margin-bottom: 1rem; }
+    .wf-card .wf-emblem::after { content: ""; display: block; width: 42px; height: 1px; margin: 0.55rem auto 0; background: linear-gradient(90deg, transparent, rgba(232,164,176,0.6), transparent); }
+    .wf-card:hover { transform: translate(0, -8px) rotate(0deg) scale(1.06); z-index: 60; border-color: rgba(243,229,171,0.72); box-shadow: 0 20px 44px -16px rgba(0,0,0,0.92), 0 0 40px rgba(160,110,220,0.30); }
+    .wf-card .wf-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: #ece2ff; font-size: 1.02rem; line-height: 1.28; margin: 0 0 0.6rem; text-align: center; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .wf-card .wf-summary { color: rgba(212,205,228,0.72); font-size: 0.82rem; line-height: 1.5; text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+    .wf-card .wf-date { position: absolute; bottom: 0.9rem; left: 0; right: 0; text-align: center; font-size: 0.64rem; color: rgba(232,164,176,0.7); letter-spacing: 0.08em; }
+
+    /* Light mode */
+    html:not(.dark) .tarot-page { background: linear-gradient(180deg, #f6f1ff 0%, #efe7fb 45%, #e9e0f5 100%) !important; }
+    html:not(.dark) .nebula-blob { opacity: 0.35; }
+    html:not(.dark) .text-soft { color: #4b4470; }
+    html:not(.dark) .featured-card { background: linear-gradient(160deg, rgba(255,255,255,0.9) 0%, rgba(248,243,255,0.95) 100%); border-color: rgba(154,118,20,0.45); }
+    html:not(.dark) .featured-card .fc-title { color: #2c1e4a; }
+    html:not(.dark) .featured-card .fc-summary { color: #514a6e; }
+    html:not(.dark) .featured-card .geo-watermark { color: #9a7614; opacity: 0.10; }
+    html:not(.dark) .wf-card { background: rgba(255,255,255,0.82); border-color: rgba(154,118,20,0.25); }
+    html:not(.dark) .wf-card .wf-title { color: #2c1e4a; }
+    html:not(.dark) .wf-card .wf-summary { color: #5a5478; }
+    html:not(.dark) .wf-card .wf-inner { border-color: rgba(154,118,20,0.22); }
+    html:not(.dark) .wf-card .wf-emblem { color: #9a7614; }
+
+    @media (max-width: 1023px) {
+      .featured-grid { grid-template-columns: 1fr; }
+      .fc-0, .fc-1, .fc-2 { grid-column: span 1; grid-row: auto; min-height: 0; }
+      .fc-0 .fc-title { font-size: 1.5rem; }
+      .wf-card { --w: 200px; --h: 300px; margin: 0 -10px; }
+    }
+    @media (max-width: 640px) {
+      .wf-card { --w: 190px; --h: 286px; margin: 0 -6px; }
+    }
+  </style>
+
+  <div class="tarot-page min-h-screen pt-3 px-4 pb-16 md:pt-4 md:px-6 md:pb-24 relative overflow-hidden"
+       style="background: radial-gradient(ellipse at 50% -10%, #241741 0%, #170F29 55%, #0E0A1A 100%);">
+
+    <AtmosFlow density={22000} max={62} min={16} speed={0.75} alpha={0.58} />
+
+    <div class="nebula-blob neb-obsidian n4" style="opacity:0.9"></div>
+    <div class="nebula-blob neb-purple n1" style="opacity:0.8"></div>
+    <div class="nebula-blob neb-violet n2" style="opacity:0.7"></div>
+    <div class="nebula-blob neb-gold n3" style="opacity:0.5"></div>
+    <div class="nebula-blob neb-violet n5" style="opacity:0.55"></div>
+    <div class="nebula-blob neb-purple n6" style="opacity:0.5"></div>
+    <div class="starfield"></div>
+    {sparkles1.map((s) => (
+      <div class="sparkle s-gold sp-1" style={`left:${s.left}%;top:${s.top}%;animation:sparkleFloat ${s.dur}s ease-out ${s.delay}s infinite;`}></div>
+    ))}
+    {sparkles2.map((s) => (
+      <div class="sparkle s-gold sp-2" style={`left:${s.left}%;top:${s.top}%;animation:sparkleFloat ${s.dur}s ease-out ${s.delay}s infinite;`}></div>
+    ))}
+
+    <div class="max-w-6xl mx-auto relative z-10">
+      <header class="text-center pt-12 mb-10 md:pt-14 md:mb-14">
+        <h1 class="tarot-h1 text-4xl md:text-6xl text-white mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#e8c45a] via-[#F3E5AB] to-[#E8A4B0]">
+          {title}
+        </h1>
+        <div class="art-nouveau-rule"></div>
+        <p class="text-soft text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-5">
+          {summary || "Ancient archetypal wisdom speaks through symbolic imagery, revealing hidden truths and divine guidance."}
+        </p>
+      </header>
+
+      {featured.length > 0 && (
+        <>
+          <div class="mb-6 text-center"><span class="section-label">Featured</span></div>
+          <div class="featured-grid mb-16">
+            {featured.map((f, i) => (
+              <a href={f.url} class={`featured-card fc-${i}`}
+                 style={`--ftilt:${featuredTilts[i] || '0deg'}; --fty:${featuredTys[i] || '0px'}; animation: fadeOnly ${i * 0.15 + 0.3}s ease-out both;`}>
+                <span class="fc-badge">Featured</span>
+                <span class="inner-frame"></span>
+                <svg class="geo-watermark" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1">
+                  <circle cx="100" cy="100" r="78"/><circle cx="100" cy="100" r="58"/>
+                  <polygon points="100,28 162,138 38,138"/><rect x="44" y="44" width="112" height="112" transform="rotate(45 100 100)"/>
+                  <polygon points="100,52 148,124 52,124" opacity="0.6"/>
+                </svg>
+                <span class="geo-corner tl"></span><span class="geo-corner tr"></span><span class="geo-corner bl"></span><span class="geo-corner br"></span>
+                <h3 class="fc-title">{f.title}</h3>
+                {f.summary && <p class="fc-summary">{f.summary}</p>}
+                <div class="fc-date">{f.date}</div>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
+
+      {rest.length > 0 && (
+        <>
+          <div class="mb-6 text-center"><span class="section-label">All Tarot Readings</span></div>
+          <div class="waterfall">
+            {rest.map((r, i) => {
+              const pr = profiles[i % profiles.length];
+              const rn = romans[i % romans.length];
+              return (
+                <a href={r.url} class="wf-card"
+                   style={`--w:${pr.w}; --h:${pr.h}; --tilt:${pr.tilt}; --tx:${pr.tx}; --ty:${pr.ty}; --z:${pr.z}; animation: fadeOnly ${i * 0.06 + 0.4}s ease-out both;`}>
+                  <span class="wf-inner"></span>
+                  <span class="wf-emblem">{rn}</span>
+                  <h3 class="wf-title">{r.title}</h3>
+                  {r.summary && <p class="wf-summary">{r.summary}</p>}
+                  <div class="wf-date">{r.date}</div>
+                </a>
+              );
+            })}
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+</BaseLayout>

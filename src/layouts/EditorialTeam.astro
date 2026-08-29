@@ -1,0 +1,82 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { entry: CollectionEntry<'pages'>; }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+interface Member { name: string; role: string; img: string; x: string; xHandle: string; }
+const members: Member[] = [
+  { name: 'Holive Hu', role: 'Founder & Editor', img: '/avatars/Holive%20Hu.jpg', x: '/about/holive-hu/', xHandle: 'Full bio' },
+  { name: 'Luna Vale', role: 'The Intuitive · dreams, energy & symbol', img: '/avatars/Luna%20Vale.jpg', x: 'https://x.com/trueer7', xHandle: '@trueer7' },
+  { name: 'Sage Mercer', role: 'The Scholar · psychology & mechanism', img: '/avatars/Sage%20Mercer.jpg', x: 'https://x.com/trueer8', xHandle: '@trueer8' },
+  { name: 'Iris Calder', role: 'The Warm Narrator · shadow work & self-compassion', img: '/avatars/Iris%20Calder.jpg', x: 'https://x.com/trueer9', xHandle: '@trueer9' },
+  { name: 'Wren Hollow', role: 'The Storyteller · card stories, myth & dreams', img: '/avatars/Wren%20Hollow.jpg', x: 'https://x.com/soywhale', xHandle: '@soywhale' },
+  { name: 'Seraphina Cole', role: 'The Sharp Analyst · relationships, bias & reviews', img: '/avatars/Seraphina%20Cole.jpg', x: 'https://x.com/soyricher', xHandle: '@soyricher' },
+];
+---
+<BaseLayout title={d.title} description={d.description}>
+  <style is:global>
+    .team-wrap { padding: 4.5rem 1.25rem 3rem; }
+    .team-wrap .team-title {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin: 0 0 .4rem;
+      background: linear-gradient(90deg, #e8d8b8, var(--gold-bright), #c0a880);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .team-wrap .team-sub { font-style: italic; color: rgba(243, 229, 171, .85); margin: .4rem 0 2.2rem; }
+    .team-grid { display: grid; grid-template-columns: 1fr; gap: 1.4rem; margin-bottom: 2.6rem; }
+    @media (min-width: 560px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+    .team-card {
+      background: var(--panel); border: 1px solid var(--panel-border); border-radius: 16px;
+      padding: 1.5rem; text-align: center;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .team-card:hover { transform: translateY(-4px); box-shadow: 0 0 32px rgba(232, 164, 176, .18); border-color: var(--gold-bright); }
+    .team-avatar { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; border: 2px solid rgba(232, 164, 176, .4); }
+    .team-card h3 { font-family: var(--display); color: var(--gold-bright); margin: 0 0 .2rem; font-size: 1.15rem; }
+    .team-role { color: var(--ink-soft); font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 .7rem; }
+    .team-x { display: inline-block; margin-top: .4rem; font-size: .88rem; color: var(--gold-bright); text-decoration: none; border-bottom: 1px solid rgba(232, 164, 176, .35); padding-bottom: 1px; }
+    .team-x:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+    .team-prose { max-width: 720px; }
+    .team-prose h2 { font-family: var(--display); color: var(--gold-bright); margin-top: 2.4rem; font-size: 1.5rem; }
+    .team-prose h3 { color: var(--ink); }
+    .team-prose p { color: var(--ink); line-height: 1.75; font-size: 1.08rem; }
+    .team-prose strong { color: var(--gold-bright); }
+    .team-prose a { color: var(--gold-bright); }
+
+    html:not(.dark) .team-wrap .team-prose p { color: #2a2440; }
+    html:not(.dark) .team-wrap .team-prose h2 { color: #9a7614; }
+    html:not(.dark) .team-wrap .team-prose h3 { color: #2a2440; }
+    html:not(.dark) .team-wrap .team-sub { color: #5b5470; }
+    html:not(.dark) .team-card { background: rgba(255,255,255,0.62); border-color: rgba(232,164,176,0.32); }
+    html:not(.dark) .team-card h3 { color: #9a7614; }
+    html:not(.dark) .team-role { color: #5a5478; }
+  </style>
+
+  <section class="team-wrap">
+    <div class="container" style="max-width:980px">
+      <h1 class="team-title">{d.title}</h1>
+      {d.description && <p class="team-sub">{d.description}</p>}
+
+      <div class="team-grid">
+        {members.map((m) => (
+          <div class="team-card">
+            <img class="team-avatar" src={m.img} alt={m.name} loading="lazy" />
+            <h3>{m.name}</h3>
+            <p class="team-role">{m.role}</p>
+            <a class="team-x" href={m.x} target={m.x.startsWith('http') ? '_blank' : undefined} rel={m.x.startsWith('http') ? 'noopener' : undefined}>{m.xHandle}</a>
+          </div>
+        ))}
+      </div>
+
+      <div class="team-prose">
+        <Content />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

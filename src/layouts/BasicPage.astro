@@ -1,0 +1,18 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { entry: CollectionEntry<'pages'>; lang?: 'en' | 'zh' | 'es'; }
+const { entry, lang = 'en' } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+<BaseLayout title={d.title} description={d.description} isHome={false} lang={lang}>
+  <section class="basic container">
+    <h1>{d.title}</h1>
+    <div class="prose">
+      <Content />
+    </div>
+  </section>
+</BaseLayout>

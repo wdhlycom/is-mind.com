@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Twikoo backend envId — the deployed Twikoo service URL.
+// Falls back to the TWIKOO_ENV_ID environment variable (set in Vercel project settings).
+const TWIKOO_ENV = import.meta.env.TWIKOO_ENV_ID || 'https://is-mind-g4vvnnjm9-wdhlycom.vercel.app';
+const title = 'Community Board';
+const desc = 'Leave a message, share a thought, or ask a question — a quiet room for the soul in a loud world.';
+---
+<BaseLayout title={title} description={desc} bodyClass="dc-page">
+  <style is:global>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap');
+
+    .dc-page {
+      --gold: #E8A4B0;
+      --gold-bright: #F3E5AB;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 50% -10%, #2B2254 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 110%, #322968 0%, transparent 50%),
+        linear-gradient(180deg, #1A1534 0%, #1A1534 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 1.25rem 6rem;
+    }
+    .dc-stars { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .dc-star {
+      position: absolute; border-radius: 50%;
+      background: #fff; opacity: .5;
+      animation: dcTwinkle 4s infinite ease-in-out;
+    }
+    @keyframes dcTwinkle { 0%,100% { opacity:.15; transform: scale(.7);} 50% { opacity:.9; transform: scale(1.2);} }
+
+    .dc-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; text-align: center; }
+    .dc-title {
+      font-family: 'Playfair Display', Georgia, serif; font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.15;
+      letter-spacing: .02em; margin: 0 0 .6rem;
+      background: linear-gradient(90deg, #e8d8b8, var(--gold-bright), #c0a880);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .dc-sub {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+      font-size: clamp(1rem, 2.4vw, 1.25rem); color: rgba(223,214,193,.72);
+      max-width: 34rem; margin: 0 auto 2.2rem;
+    }
+    .dc-board {
+      max-width: 640px; margin: 0 auto; text-align: left;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(232,164,176,.18);
+      border-radius: 16px; padding: 1.4rem 1.4rem 1.6rem;
+    }
+    .dc-board-note {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+      font-size: 1rem; color: rgba(210,200,180,.7); margin: 0 0 1.2rem;
+    }
+    .dc-noconfig {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.02rem;
+      color: rgba(223,214,193,.75); line-height: 1.7; padding: 1rem 0;
+    }
+    html:not(.dark) .dc-page { background: radial-gradient(ellipse at 50% -10%, #ece3fb 0%, transparent 55%), linear-gradient(180deg, #f8f6fc 0%, #fbfaff 100%); }
+    html:not(.dark) .dc-sub { color: #5b5470; }
+    html:not(.dark) .dc-star { background: #7c3aed; }
+    html:not(.dark) .dc-board { background: rgba(255,255,255,0.72); border-color: rgba(124,58,237,.2); }
+    html:not(.dark) .dc-board-note { color: #5b5470; }
+    html:not(.dark) .dc-noconfig { color: #5b5470; }
+  </style>
+
+  <div class="dc-page">
+    <div class="dc-stars" id="dcStars"></div>
+
+    <div class="dc-inner">
+      <h1 class="dc-title">{title}</h1>
+      <p class="dc-sub">{desc}</p>
+
+      <div class="dc-board">
+        <p class="dc-board-note">
+          Come with questions. Come with discoveries. Lurk, share, and realize you were never the only one thinking this way.
+        </p>
+
+        {TWIKOO_ENV ? (
+          <div id="tcomment"></div>
+        ) : (
+          <p class="dc-noconfig">
+            The community board is almost ready — the comment backend just needs one configuration step.
+            Set the <code style="color:var(--gold-bright)">TWIKOO_ENV_ID</code> environment variable (or edit
+            <code style="color:var(--gold-bright)">src/pages/community.astro</code>) to your Twikoo deployment URL, and messages will appear here.
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+  (function () {
+    var wrap = document.getElementById('dcStars');
+    if (wrap && !wrap.dataset.ready) {
+      wrap.dataset.ready = '1';
+      var frag = document.createDocumentFragment();
+      for (var i = 0; i < 60; i++) {
+        var s = document.createElement('div');
+        s.className = 'dc-star';
+        var size = (Math.random() * 2 + 1).toFixed(1);
+        s.style.width = size + 'px'; s.style.height = size + 'px';
+        s.style.left = (Math.random() * 100).toFixed(2) + '%';
+        s.style.top = (Math.random() * 100).toFixed(2) + '%';
+        s.style.animationDelay = (Math.random() * 4).toFixed(2) + 's';
+        frag.appendChild(s);
+      }
+      wrap.appendChild(frag);
+    }
+  })();
+  </script>
+  {TWIKOO_ENV && (
+    <script is:inline src="https://cdn.staticfile.org/twikoo/1.6.39/twikoo.all.min.js"></script>
+  )}
+  {TWIKOO_ENV && (
+    <script is:inline set:html={`twikoo.init({ envId: '${TWIKOO_ENV}', el: '#tcomment' });`}></script>
+  )}
+</BaseLayout>

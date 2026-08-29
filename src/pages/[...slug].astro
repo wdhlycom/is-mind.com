@@ -1,0 +1,147 @@
+---
+import { getCollection } from 'astro:content';
+import { urlFromId, kindFromId, sectionFromId } from '../utils/entry-url';
+import Article from '../layouts/Article.astro';
+import BasicPage from '../layouts/BasicPage.astro';
+import SectionList from '../layouts/SectionList.astro';
+import TarotSection from '../layouts/TarotSection.astro';
+import PsychSection from '../layouts/PsychSection.astro';
+import EnergySection from '../layouts/EnergySection.astro';
+import AstrologySection from '../layouts/AstrologySection.astro';
+import ReviewsSection from '../layouts/ReviewsSection.astro';
+import AboutSection from '../layouts/AboutSection.astro';
+import EditorialTeam from '../layouts/EditorialTeam.astro';
+import DailyOracle from '../layouts/DailyOracle.astro';
+import YesNoTarot from '../layouts/YesNoTarot.astro';
+import SignCompatibility from '../layouts/SignCompatibility.astro';
+import LanguageHome from '../layouts/LanguageHome.astro';
+
+// Reproduce every Hugo URL as a static route, 1:1.
+export async function getStaticPaths() {
+  const all = await getCollection('pages');
+  return all
+    .filter((e) => kindFromId(e.id) !== 'home')
+    .map((e) => ({
+      params: { slug: urlFromId(e.id).replace(/^\/|\/$/g, '') },
+      props: { id: e.id },
+    }));
+}
+
+const { id } = Astro.props;
+const all = await getCollection('pages');
+const entry = all.find((e) => e.id === id);
+const kind = entry ? kindFromId(entry.id) : null;
+
+const fmtDate = (d: unknown) =>
+  d ? new Date(d as string).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+const fmtShortDate = (d: unknown) =>
+  d ? new Date(d as string).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+
+interface Item {
+  title: string;
+  url: string;
+  summary: string;
+  date: string;
+  shortDate: string;
+}
+
+let items: Item[] = [];
+let sec = entry && kind === 'section' ? sectionFromId(entry.id) : null;
+
+if (entry && kind === 'section') {
+  const s = sectionFromId(entry.id)!;
+  items = all
+    .filter((e) => sectionFromId(e.id) === s && kindFromId(e.id) === 'article')
+    .map((e) => ({
+      title: e.data.title ?? e.id,
+      url: urlFromId(e.id),
+      summary: e.data.summary ?? '',
+      date: fmtDate(e.data.date),
+      shortDate: fmtShortDate(e.data.date),
+    }));
+}
+
+// ---- Psych special handling: parent (3 subcategories) vs subcategory page ----
+// NOTE: the glob loader preserves the on-disk casing of the content dir, so
+// ids come back as "Psych/_index" (capital P) on Windows. Compare case-insensitively.
+const isPsychParent = id.toLowerCase() === 'psych/_index';
+const isPsychSub = !!id.match(/^psych\/.+\/_index$/i);
+let psychSubs: { title: string; url: string; quote: string; icon: string; theme: string; weight: number; articles: Item[] }[] = [];
+let psychTheme = '';
+const psychArticlesOf = (prefix: string): Item[] =>
+  all
+    .filter((e) => e.id.toLowerCase().startsWith(prefix.toLowerCase() + '/') && kindFromId(e.id) === 'article')
+    .map((x) => ({
+      title: x.data.title ?? x.id,
+      url: urlFromId(x.id),
+      summary: x.data.summary ?? '',
+      date: fmtDate(x.data.date),
+      shortDate: fmtShortDate(x.data.date),
+    }));
+if (isPsychParent) {
+  psychSubs = all
+    .filter((e) => !!e.id.match(/^psych\/.+\/_index$/i))
+    .map((e) => {
+      const prefix = e.id.replace(/\/_index$/i, '');
+      return {
+        title: e.data.title ?? e.id,
+        url: urlFromId(e.id),
+        quote: e.data.quote ?? '',
+        icon: e.data.icon ?? 'book',
+        theme: e.data.theme ?? '',
+        weight: e.data.weight ?? 0,
+        articles: psychArticlesOf(prefix),
+      };
+    })
+    .sort((a, b) => (a as { weight: number }).weight - (b as { weight: number }).weight || a.title.localeCompare(b.title));
+} else if (isPsychSub) {
+  psychTheme = entry?.data.theme ?? '';
+  items = psychArticlesOf(id.replace(/\/_index$/i, ''));
+}
+
+const isTarot = sec === 'tarot';
+const isPsych = sec === 'psych';
+const isEnergy = sec === 'energy';
+const isAstrology = sec === 'astrology';
+const isReviews = sec === 'reviews';
+const isDailyOracle = sec === 'daily-oracle';
+const isYesNo = sec === 'yes-no-tarot';
+const isSignCompat = sec === 'sign-compatibility';
+
+// ---- About parent page: render prose + sub-page cards ----
+const isAboutParent = id.toLowerCase() === 'about/_index';
+const isEditorialTeam = id.toLowerCase() === 'about/editorial-team';
+const aboutSubs = all
+  .filter((e) => e.id.toLowerCase().startsWith('about/') && e.id !== id && kindFromId(e.id) === 'basic')
+  .map((e) => ({
+    title: e.data.title ?? e.id,
+    url: urlFromId(e.id),
+    description: e.data.description ?? '',
+  }));
+
+// ---- Localized home pages: /zh/, /es/ (thin content, link to translated About) ----
+const isZhHome = id.toLowerCase() === 'zh/_index';
+const isEsHome = id.toLowerCase() === 'es/_index';
+const langAboutUrl = isZhHome ? '/zh/about/' : isEsHome ? '/es/about/' : '';
+---
+{entry && kind === 'section' && isZhHome && <LanguageHome title={entry.data.title ?? '中文'} description={entry.data.description} aboutUrl="/zh/about/" lang="zh" />}
+{entry && kind === 'section' && isEsHome && <LanguageHome title={entry.data.title ?? 'Español'} description={entry.data.description} aboutUrl="/es/about/" lang="es" />}
+{entry && kind === 'section' && isAboutParent && <AboutSection entry={entry} subPages={aboutSubs} />}
+{entry && kind === 'section' && isDailyOracle && <DailyOracle title={entry.data.title ?? 'Daily Oracle'} summary={entry.data.description} />}
+{entry && kind === 'section' && isYesNo && <YesNoTarot title={entry.data.title ?? 'Yes / No Tarot'} summary={entry.data.description} />}
+{entry && kind === 'section' && isSignCompat && <SignCompatibility title={entry.data.title ?? 'Sign Compatibility'} summary={entry.data.description} />}
+{entry && kind === 'section' && isTarot && <TarotSection title={entry.data.title ?? ''} summary={entry.data.summary} items={items} />}
+{entry && kind === 'section' && isEnergy && <EnergySection title={entry.data.title ?? ''} summary={entry.data.summary} items={items} />}
+{entry && kind === 'section' && isAstrology && <AstrologySection title={entry.data.title ?? ''} summary={entry.data.summary} items={items} />}
+{entry && kind === 'section' && isReviews && <ReviewsSection title={entry.data.title ?? ''} summary={entry.data.summary} items={items} />}
+{entry && kind === 'section' && isPsych && isPsychParent && (
+  <PsychSection title={entry.data.title ?? ''} summary={entry.data.summary} isParent={true} subs={psychSubs} />
+)}
+{entry && kind === 'section' && isPsych && isPsychSub && (
+  <PsychSection title={entry.data.title ?? ''} summary={entry.data.summary} isParent={false} theme={psychTheme} items={items} />
+)}
+{entry && kind === 'section' && !isZhHome && !isEsHome && !isAboutParent && !isDailyOracle && !isYesNo && !isSignCompat && !isTarot && !isPsych && !isEnergy && !isAstrology && !isReviews && <SectionList title={entry.data.title ?? ''} summary={entry.data.summary} items={items} />}
+{entry && kind === 'basic' && isEditorialTeam && <EditorialTeam entry={entry} />}
+{entry && kind === 'basic' && !isEditorialTeam && <BasicPage entry={entry} lang={id.toLowerCase().startsWith('zh/') ? 'zh' : id.toLowerCase().startsWith('es/') ? 'es' : 'en'} />}
+{entry && kind === 'article' && <Article entry={entry} />}
+{!entry && <p>404 — not found</p>}

@@ -1,0 +1,85 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { getAuthor } from '../utils/authors';
+
+interface Props { entry: CollectionEntry<'pages'>; }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const url = new URL(Astro.url.pathname, Astro.site ?? 'https://is-mind.com/').href;
+const author = getAuthor(d.author);
+
+const dateStr = d.date
+  ? new Date(typeof d.date === 'string' ? d.date : (d.date as Date)).toISOString().slice(0, 10)
+  : null;
+
+// Reading time: ~220 words per minute, rounded up, min 1.
+const bodyText = entry.body ?? '';
+const wordCount = bodyText ? bodyText.trim().split(/\s+/).filter(Boolean).length : 0;
+const readingTime = Math.max(1, Math.round(wordCount / 220)) + ' min read';
+
+const dateDisplay = d.date
+  ? new Date(typeof d.date === 'string' ? d.date : (d.date as Date)).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+  : null;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.title ?? '',
+  description: d.summary ?? d.description ?? '',
+  author: {
+    '@type': 'Person',
+    name: d.author ?? 'is-mind',
+    ...(author ? { url: new URL(author.url, 'https://is-mind.com/').href } : {}),
+  },
+  publisher: { '@type': 'Organization', name: 'is-mind.com' },
+  datePublished: dateStr,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  inLanguage: 'en-US',
+};
+---
+<BaseLayout title={d.title} description={d.summary ?? d.description} schema={schema}>
+  <article class="article container">
+    <h1>{d.title}</h1>
+
+    <!-- YMYL-adjacent disclaimer: hardcoded immediately after the H1, before the first paragraph. -->
+    <p class="article-disclaimer">
+      For education and self-reflection only — not medical, psychological, or psychiatric advice.
+      If you're in distress, please talk to a licensed professional. <a href="/disclaimer/">Full disclaimer</a>.
+    </p>
+
+    <div class="article-meta-box">
+      <div class="meta">
+        {dateDisplay}
+        {d.author && (
+          <>
+            <span class="meta-sep">•</span> By {author ? <a href={author.url} class="author">{d.author}</a> : <span class="author">{d.author}</span>}
+          </>
+        )}
+        <span class="meta-sep">•</span> {readingTime}
+      </div>
+      {d.summary && <p class="summary">{d.summary}</p>}
+    </div>
+    <div class="prose">
+      <Content />
+    </div>
+
+    {author && (
+      <aside class="author-bio-box">
+        <img class="author-bio-avatar" src={author.avatar} alt={author.name} loading="lazy" />
+        <div class="author-bio-body">
+          <h3>
+            <a href={author.url}>{author.name}</a>
+          </h3>
+          <p class="author-bio-role">{author.persona} · {author.column}</p>
+          <p class="author-bio-text">{author.bio}</p>
+          {author.x && (
+            <a class="author-bio-x" href={author.x} target="_blank" rel="noopener">{author.xHandle}</a>
+          )}
+        </div>
+      </aside>
+    )}
+  </article>
+</BaseLayout>

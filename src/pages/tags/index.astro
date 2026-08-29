@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { urlFromId } from '../../utils/entry-url';
+
+interface TagInfo {
+  tag: string;
+  count: number;
+  urls: { title: string; url: string }[];
+}
+
+const all = await getCollection('pages');
+
+// Aggregate tags from all articles (skip hidden items / drafts).
+const tagMap = new Map<string, { titles: string[]; urls: string[] }>();
+for (const entry of all) {
+  if (entry.data?.draft) continue;
+  const tags = (entry.data?.tags as unknown[]) ?? [];
+  if (!Array.isArray(tags)) continue;
+  for (const t of tags) {
+    if (typeof t !== 'string' || !t.trim()) continue;
+    const k = t.toLowerCase().trim();
+    if (!tagMap.has(k)) tagMap.set(k, { titles: [], urls: [] });
+    const bag = tagMap.get(k)!;
+    bag.titles.push(entry.data?.title ?? entry.id);
+    bag.urls.push(urlFromId(entry.id));
+  }
+}
+
+const tags: TagInfo[] = [...tagMap.entries()]
+  .map(([tag, v]) => ({ tag, count: v.titles.length, urls: v.titles.map((t, i) => ({ title: t, url: v.urls[i] })) }))
+  .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+
+const title = 'Tags & Topics';
+const desc = 'Browse every tag on is-mind.com — tarot, shadow work, astrology, dreams, attachment, energy healing and more.';
+---
+<BaseLayout title={title} description={desc}>
+  <style is:global>
+    /* ===== Tags index — soft rose-gold, romantic feel ===== */
+    .tags-page { padding: 6rem 1.25rem 4rem; min-height: 60vh; }
+    .tags-page .tags-inner { max-width: 980px; margin: 0 auto; }
+    .tags-page .tags-title {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.15; margin: 0 0 .6rem;
+      background: linear-gradient(90deg, #F3E5AB, #e8a4c2 45%, #E8A4B0);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .tags-page .tags-sub {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;
+      font-size: 1.15rem; color: rgba(220, 210, 190, 0.7); margin: 0 0 2rem; max-width: 38rem;
+    }
+    .tags-cloud {
+      position: relative;
+      display: flex; flex-wrap: wrap; gap: .65rem .8rem;
+      padding: 1.4rem; border-radius: 1.25rem;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(232,164,194,0.10), transparent 55%),
+        radial-gradient(circle at 90% 80%, rgba(232,164,176,0.10), transparent 55%),
+        rgba(255,255,255,0.03);
+      border: none;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      margin-bottom: 2.6rem;
+    }
+    .tags-cloud::before {
+      content: ''; position: absolute; inset: 0; border-radius: 1.25rem;
+      padding: 1px; pointer-events: none;
+      background: linear-gradient(135deg, rgba(232,164,176,0.45), transparent 30%, rgba(200,182,255,0.28) 55%, transparent 80%, rgba(232,164,176,0.4));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      box-shadow: 0 0 24px rgba(232,164,176,0.12);
+    }
+    .tag-pill {
+      position: relative; display: inline-flex; align-items: baseline; gap: .4rem;
+      padding: .55rem 1.05rem; border-radius: 999px;
+      font-family: 'Playfair Display', Georgia, serif; font-size: .82rem;
+      letter-spacing: .04em; color: #1a1206;
+      background: linear-gradient(120deg, #F3E5AB, #e8a4c2 70%, #E8A4B0);
+      border: none;
+      text-decoration: none; cursor: pointer;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.10) inset, 0 0 14px rgba(232,164,176,0.28), 0 4px 14px -4px rgba(0,0,0,0.5);
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+    }
+    .tag-pill:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 0 34px rgba(232,164,194,0.55), 0 0 60px rgba(200,182,255,0.25), 0 8px 20px -6px rgba(0,0,0,0.6);
+      filter: brightness(1.08);
+    }
+    .tag-pill .count {
+      font-family: Georgia, serif; font-size: .72rem;
+      background: rgba(26,18,6,0.18); color: #1a1206; padding: .1rem .45rem; border-radius: 999px;
+    }
+    .tags-divider { margin: 2.4rem 0 1.4rem; font-family: 'Playfair Display', serif; font-size: .82rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(232,164,176,0.6); display: flex; align-items: center; gap: 1rem; }
+    .tags-divider::before, .tags-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(232,164,176,0.4), transparent); }
+    .tag-row {
+      position: relative;
+      padding: 1rem 1.2rem; border-radius: 16px; margin-bottom: 1rem;
+      background: rgba(255,255,255,0.03);
+      border: none;
+      transition: transform .25s ease;
+    }
+    .tag-row::before {
+      content: ''; position: absolute; inset: 0; border-radius: 16px;
+      padding: 1px; pointer-events: none;
+      background: linear-gradient(120deg, rgba(232,164,194,0.32), transparent 45%, rgba(200,182,255,0.22) 80%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      transition: opacity .25s ease;
+    }
+    .tag-row:hover { transform: translateX(2px); }
+    .tag-row:hover::before { background: linear-gradient(120deg, rgba(232,164,176,0.6), transparent 45%, rgba(200,182,255,0.4) 80%); }
+    .tag-row h3 { margin: 0 0 .55rem; font-family: 'Playfair Display', serif; font-size: 1rem; color: #F3E5AB; letter-spacing: .04em; }
+    .tag-row .tag-articles { display: flex; flex-wrap: wrap; gap: .35rem .6rem; }
+    .tag-row .tag-articles a {
+      font-family: Georgia, serif; font-size: .9rem; color: rgba(220,210,190,0.8);
+      text-decoration: none; padding: .2rem .6rem; border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      border: none;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.07) inset;
+      transition: background .2s, color .2s, box-shadow .2s;
+    }
+    .tag-row .tag-articles a:hover { color: #fff; background: rgba(232,164,176,0.18); box-shadow: 0 0 12px rgba(232,164,176,0.35); }
+
+    html:not(.dark) .tags-page .tags-sub { color: #5b5470; }
+    html:not(.dark) .tag-row { background: rgba(255,255,255,0.6); border-color: rgba(168,85,247,0.22); }
+    html:not(.dark) .tag-row h3 { color: #7c3aed; }
+    html:not(.dark) .tag-row .tag-articles a { color: #3b2f63; background: rgba(168,85,247,0.06); border-color: rgba(168,85,247,0.15); }
+    html:not(.dark) .tag-row .tag-articles a:hover { background: rgba(168,85,247,0.18); color: #2a1a4d; }
+    html:not(.dark) .tags-cloud { background: linear-gradient(120deg, rgba(168,85,247,0.08), rgba(232,164,176,0.08)); border-color: rgba(168,85,247,0.25); }
+  </style>
+
+  <section class="tags-page">
+    <div class="tags-inner">
+      <h1 class="tags-title">{title}</h1>
+      <p class="tags-sub">{desc}</p>
+
+      <div class="tags-cloud">
+        {tags.map((t) => (
+          <a class="tag-pill" href={`#tag-${encodeURIComponent(t.tag)}`}>
+            #{t.tag} <span class="count">{t.count}</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="tags-divider">All articles by topic</div>
+
+      {tags.map((t) => (
+        <div class="tag-row" id={`tag-${encodeURIComponent(t.tag)}`}>
+          <h3>#{t.tag} <span style="color: rgba(232,164,176,0.55); font-weight: 400; font-size: 0.85rem;">({t.count} {t.count === 1 ? 'article' : 'articles'})</span></h3>
+          <div class="tag-articles">
+            {t.urls.map((a) => (
+              <a href={a.url}>{a.title}</a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

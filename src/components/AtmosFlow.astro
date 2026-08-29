@@ -1,0 +1,112 @@
+---
+/**
+ * AtmosFlow — a drifting particle canvas that can sit behind a section or
+ * overlay the whole viewport.
+ *
+ * Scoped mode (default): drop it as the first child of a
+ * `relative overflow-hidden` section wrapper. Renders at z-0, with content
+ * wrappers at z-10, so it reads as living background texture.
+ *
+ * Fullscreen mode: `position: fixed`, sized to the window, rendered above the
+ * sections (z-20) because each section paints its own opaque background.
+ * Screen blending keeps it from muddying text.
+ */
+export interface Props {
+  /** px² per particle — higher means a sparser field */
+  density?: number;
+  /** particle cap on desktop */
+  max?: number;
+  /** floor, so small viewports still get some motion */
+  min?: number;
+  speed?: number;
+  alpha?: number;
+  /** 'stream' = ribbon trails, 'dot' = single round motes */
+  render?: 'stream' | 'dot';
+  /** mote radius multiplier (dot mode only); 1 is roughly 2.3px across */
+  dotScale?: number;
+  /** fix to the viewport instead of filling the parent section */
+  fullscreen?: boolean;
+}
+
+const {
+  density = 20000,
+  max = 70,
+  min = 18,
+  speed = 0.8,
+  alpha = 0.72,
+  render = 'stream',
+  dotScale = 1,
+  fullscreen = false,
+} = Astro.props;
+---
+
+<canvas
+  class="flow-atmos"
+  aria-hidden="true"
+  data-density={density}
+  data-max={max}
+  data-min={min}
+  data-speed={speed}
+  data-alpha={alpha}
+  data-render={render}
+  data-dot-scale={dotScale}
+  data-fullscreen={fullscreen ? '1' : '0'}
+></canvas>
+
+<style is:global>
+  .flow-atmos {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  /* Viewport-wide overlay: must sit above the sections, which each paint an
+     opaque background of their own. */
+  .flow-atmos[data-fullscreen="1"] {
+    position: fixed;
+    z-index: 20;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function mountAll() {
+      var nodes = document.querySelectorAll('.flow-atmos');
+      for (var i = 0; i < nodes.length; i++) {
+        var c = nodes[i];
+        if (c.dataset.mounted === '1') continue;
+        c.dataset.mounted = '1';
+        window.FlowField.mount(c, {
+          density: parseFloat(c.dataset.density) || 20000,
+          max: parseFloat(c.dataset.max) || 70,
+          min: parseFloat(c.dataset.min) || 18,
+          speed: parseFloat(c.dataset.speed) || 0.8,
+          alpha: parseFloat(c.dataset.alpha) || 0.72,
+          render: c.dataset.render === 'dot' ? 'dot' : 'stream',
+          dotScale: parseFloat(c.dataset.dotScale) || 1,
+          pointer: false
+        });
+      }
+    }
+
+    function boot() {
+      if (window.FlowField) {
+        mountAll();
+        return;
+      }
+      var s = document.createElement('script');
+      s.src = '/js/flowfield.js';
+      s.onload = mountAll;
+      document.head.appendChild(s);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
