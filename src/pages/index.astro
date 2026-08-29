@@ -479,22 +479,22 @@ const webSiteSchema = {
        Negative margins cancel the height, so it adds no page length. */
     .section-seam {
       position: relative;
-      height: 140px;
-      margin-top: -70px;
-      margin-bottom: -70px;
+      height: 200px;
+      margin-top: -100px;
+      margin-bottom: -100px;
       pointer-events: none;
       z-index: 2;
     }
     .section-seam::before {
       content: '';
       position: absolute;
-      inset: -40px 0;
+      inset: -60px 0;
       background: linear-gradient(to bottom,
         rgba(200,182,255,0) 0%,
-        rgba(200,182,255,0.022) 45%,
-        rgba(232,164,176,0.015) 62%,
+        rgba(200,182,255,0.012) 45%,
+        rgba(232,164,176,0.009) 62%,
         rgba(200,182,255,0) 100%);
-      filter: blur(28px);
+      filter: blur(44px);
     }
 
     /* Hero mandala. transform-box: view-box makes transform-origin resolve
@@ -503,25 +503,29 @@ const webSiteSchema = {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: clamp(320px, 44vw, 620px);
-      height: clamp(320px, 44vw, 620px);
+      width: clamp(430px, 64vw, 900px);
+      height: clamp(430px, 64vw, 900px);
       transform: translate(-50%, -50%);
       z-index: 0;
       pointer-events: none;
-      opacity: 0.55;
+      opacity: 0.62;
+      /* Radiance: two stacked glows, warm close in and cool further out. */
+      filter:
+        drop-shadow(0 0 16px rgba(232, 164, 176, 0.32))
+        drop-shadow(0 0 42px rgba(200, 182, 255, 0.18));
     }
     .hero-mandala ellipse {
       fill: none;
-      stroke: rgba(232, 164, 176, 0.20);
-      stroke-width: 1;
+      stroke: rgba(232, 164, 176, 0.30);
+      stroke-width: 1.7;
     }
     .hero-mandala .mandala-ring-b circle {
-      fill: rgba(243, 229, 171, 0.5);
+      fill: rgba(246, 232, 178, 0.72);
     }
     .hero-mandala .mandala-core {
       fill: none;
-      stroke: rgba(200, 182, 255, 0.16);
-      stroke-width: 1;
+      stroke: rgba(200, 182, 255, 0.24);
+      stroke-width: 1.4;
     }
     .mandala-ring-a,
     .mandala-ring-b {
@@ -530,12 +534,21 @@ const webSiteSchema = {
     }
     .mandala-ring-a { animation: mandalaTurn 120s linear infinite; }
     .mandala-ring-b { animation: mandalaTurn 80s linear infinite reverse; }
+    .mandala-halo {
+      transform-box: view-box;
+      transform-origin: center;
+      animation: mandalaPulse 9s ease-in-out infinite;
+    }
     @keyframes mandalaTurn {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+    @keyframes mandalaPulse {
+      0%, 100% { opacity: 0.6; transform: scale(0.96); }
+      50%      { opacity: 1;   transform: scale(1.05); }
+    }
     @media (prefers-reduced-motion: reduce) {
-      .mandala-ring-a, .mandala-ring-b { animation: none; }
+      .mandala-ring-a, .mandala-ring-b, .mandala-halo { animation: none; }
     }
   </style>
 
@@ -570,6 +583,17 @@ const webSiteSchema = {
            light. Organic rather than hard geometry, and slow enough to read as
            atmosphere instead of a spinner. -->
       <svg class="hero-mandala" viewBox="0 0 400 400" aria-hidden="true">
+        <defs>
+          <radialGradient id="mandalaGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#F3E5AB" stop-opacity="0.30" />
+            <stop offset="42%" stop-color="#E8A4B0" stop-opacity="0.13" />
+            <stop offset="100%" stop-color="#C8B6FF" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        <!-- The radiance itself: a soft core glow that breathes. -->
+        <circle class="mandala-halo" cx="200" cy="200" r="160" fill="url(#mandalaGlow)" />
+
         <g class="mandala-ring-a">
           {Array.from({ length: 12 }).map((_, i) => (
             <ellipse cx="200" cy="74" rx="23" ry="68" transform={`rotate(${i * 30} 200 200)`} />
@@ -577,7 +601,7 @@ const webSiteSchema = {
         </g>
         <g class="mandala-ring-b">
           {Array.from({ length: 24 }).map((_, i) => (
-            <circle cx="200" cy="46" r="2.6" transform={`rotate(${i * 15} 200 200)`} />
+            <circle cx="200" cy="46" r="3" transform={`rotate(${i * 15} 200 200)`} />
           ))}
         </g>
         <circle class="mandala-core" cx="200" cy="200" r="132" />

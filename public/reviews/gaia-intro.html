@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gaia — Conscious Media &amp; Yoga Streaming | Expand Your Mind</title>
+<meta name="description" content="Gaia is the world's largest streaming library of yoga, meditation, and conscious media. 8,000+ ad-free titles, award-winning docs, and a 7-day free trial." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --teal:#01b4b4;
+  --teal-dark:#007172;
+  --teal-deep:#018181;
+  --magenta:#ca4186;
+  --purple:#71428b;
+  --ink:#15171f;
+  --ink-2:#1f2230;
+  --ink-3:#281d2f;
+  --light:#f4f5f6;
+  --muted:rgba(255,255,255,.66);
+  --card:rgba(255,255,255,.04);
+  --card-border:rgba(1,180,180,.22);
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;
+  background:var(--ink);
+  color:#fff;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 40px;
+  background:rgba(18,20,28,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(1,180,180,.18);
+}
+.brand{font-weight:800;font-size:24px;letter-spacing:3px;color:#fff}
+.brand b{color:var(--teal)}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:15px;font-weight:600;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--teal)}
+.btn{
+  display:inline-block;font-weight:700;font-size:15px;cursor:pointer;
+  border:none;border-radius:999px;transition:transform .2s,box-shadow .2s,background .2s;
+  text-align:center;
+}
+.btn-teal{background:var(--teal);color:#062826;padding:12px 26px}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(1,180,180,.4)}
+.btn-ghost{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.22);padding:12px 26px}
+.btn-ghost:hover{transform:translateY(-2px);border-color:var(--teal)}
+.btn-lg{font-size:17px;padding:16px 38px}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  text-align:center;
+  padding:120px 24px 110px;
+  background:
+    radial-gradient(900px 500px at 50% -10%,rgba(1,180,180,.32),transparent 60%),
+    radial-gradient(700px 400px at 80% 20%,rgba(113,66,139,.28),transparent 60%),
+    linear-gradient(180deg,#0d0f16 0%,#15171f 60%,#1a1426 100%);
+}
+.hero-badge{
+  display:inline-block;font-size:13px;font-weight:700;letter-spacing:1px;
+  color:var(--teal);background:rgba(1,180,180,.1);
+  border:1px solid rgba(1,180,180,.4);
+  padding:7px 16px;border-radius:999px;margin-bottom:26px;text-transform:uppercase;
+}
+.hero h1{
+  font-size:64px;font-weight:900;line-height:1.05;letter-spacing:-1px;
+  max-width:920px;margin:0 auto 22px;
+}
+.hero h1 .hl{
+  background:linear-gradient(120deg,var(--teal),#3fe0e0);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero p.lead{
+  font-size:20px;color:var(--muted);max-width:680px;margin:0 auto 36px;
+}
+.hero-form{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  max-width:560px;margin:0 auto;
+}
+.hero-form input{
+  flex:1;min-width:240px;padding:15px 20px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);
+  color:#fff;font-size:15px;font-family:inherit;
+}
+.hero-form input::placeholder{color:rgba(255,255,255,.45)}
+.hero-trust{
+  margin-top:24px;font-size:14px;color:rgba(255,255,255,.5);
+}
+.hero-trust b{color:var(--teal)}
+
+/* ---------- STATS ---------- */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  max-width:1080px;margin:-50px auto 0;padding:0 24px;position:relative;z-index:5;
+}
+.stat{
+  background:var(--ink-2);border:1px solid var(--card-border);
+  border-radius:var(--radius);padding:30px 20px;text-align:center;
+}
+.stat .num{font-size:36px;font-weight:900;color:var(--teal)}
+.stat .lbl{font-size:14px;color:var(--muted);margin-top:6px}
+
+/* ---------- SECTION ---------- */
+section.block{padding:90px 24px}
+.wrap{max-width:1140px;margin:0 auto}
+.sec-head{text-align:center;max-width:760px;margin:0 auto 50px}
+.sec-head .eyebrow{font-size:13px;font-weight:800;letter-spacing:2px;color:var(--teal);text-transform:uppercase}
+.sec-head h2{font-size:40px;font-weight:900;margin:14px 0 12px;letter-spacing:-.5px}
+.sec-head p{font-size:17px;color:var(--muted)}
+
+/* ---------- CATEGORY CARDS ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.cat-link{display:block;color:inherit;text-decoration:none}
+.card{
+  background:var(--card);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);padding:30px;height:100%;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+.cat-link:hover .card{
+  transform:translateY(-6px);
+  border-color:var(--teal);
+  box-shadow:0 18px 40px rgba(0,0,0,.4),0 0 0 1px var(--teal),0 0 30px rgba(1,180,180,.35);
+}
+.card .ic{
+  width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:rgba(1,180,180,.12);margin-bottom:18px;
+}
+.card .ic svg{width:28px;height:28px}
+.card h3{font-size:20px;font-weight:800;margin-bottom:8px}
+.card p{font-size:15px;color:var(--muted)}
+.card .go{margin-top:14px;font-size:14px;font-weight:700;color:var(--teal);opacity:0;transition:opacity .25s}
+.cat-link:hover .card .go{opacity:1}
+
+/* gradient tint for some icons */
+.ic.m{background:rgba(202,65,134,.14)}
+.ic.p{background:rgba(113,66,139,.18)}
+
+/* ---------- TEACHERS ---------- */
+.teachers{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.teacher{
+  background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);
+  padding:28px 22px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+.teacher:hover{transform:translateY(-6px);border-color:var(--card-border);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.teacher .av{
+  width:96px;height:96px;border-radius:50%;margin:0 auto 16px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;font-weight:900;color:#062826;
+  background:linear-gradient(135deg,var(--teal),#3fe0e0);
+  border:2px solid rgba(255,255,255,.18);
+}
+.teacher .av img{width:100%;height:100%;object-fit:cover;display:block}
+.teacher h3{font-size:18px;font-weight:800}
+.teacher .role{font-size:13px;color:var(--teal);font-weight:700;margin:4px 0 8px}
+.teacher p{font-size:14px;color:var(--muted);flex:1}
+.teacher .btn{margin-top:18px;width:100%;font-size:14px;padding:11px 16px}
+
+/* ---------- PRICING ---------- */
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.plan{
+  background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);
+  padding:34px 28px;display:flex;flex-direction:column;position:relative;
+  transition:transform .25s,box-shadow .25s;
+}
+.plan.best{
+  border:2px solid var(--teal);
+  box-shadow:0 0 0 2px var(--teal),0 26px 64px rgba(1,180,180,.30);
+  transform:translateY(-8px);
+  background:linear-gradient(180deg,rgba(1,180,180,.10),rgba(255,255,255,.04));
+}
+.plan .tag{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(90deg,var(--teal),#3fe0e0);color:#062826;font-size:12px;font-weight:800;
+  padding:6px 16px;border-radius:999px;letter-spacing:.6px;white-space:nowrap;
+  box-shadow:0 8px 20px rgba(1,180,180,.4);
+}
+.plan .pname{font-size:18px;font-weight:800;margin-bottom:6px}
+.plan .price{font-size:42px;font-weight:900;color:#fff}
+.plan .price .per{font-size:15px;font-weight:600;color:var(--muted)}
+.plan .bill{font-size:13px;color:var(--muted);margin-bottom:18px}
+.plan ul{list-style:none;margin:0 0 24px;flex:1}
+.plan ul li{font-size:15px;color:#e6e9ee;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:10px}
+.plan ul li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);flex:none}
+.plan a{width:100%;text-align:center}
+
+/* ---------- WHY ---------- */
+.why{background:linear-gradient(180deg,#1a1426,#15171f);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.why-item{text-align:center;padding:10px}
+.why-item .big{font-size:30px;font-weight:900;color:var(--teal)}
+.why-item h3{font-size:18px;font-weight:800;margin:8px 0 6px}
+.why-item p{font-size:15px;color:var(--muted)}
+
+/* ---------- FINAL CTA ---------- */
+.final{
+  text-align:center;padding:100px 24px;
+  background:
+    radial-gradient(800px 420px at 50% 0%,rgba(1,180,180,.3),transparent 60%),
+    linear-gradient(180deg,#15171f,#0d0f16);
+}
+.final h2{font-size:46px;font-weight:900;max-width:720px;margin:0 auto 18px;letter-spacing:-.5px}
+.final p{font-size:18px;color:var(--muted);max-width:600px;margin:0 auto 32px}
+.final .note{margin-top:18px;font-size:14px;color:rgba(255,255,255,.45)}
+
+/* ---------- FOOTER ---------- */
+.footer{
+  background:#0c0e14;border-top:1px solid rgba(255,255,255,.08);
+  padding:56px 24px 100px;text-align:center;
+}
+.footer .brand{margin-bottom:14px}
+.footer .ftag{color:var(--muted);font-size:15px;margin-bottom:22px}
+.footer-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+.footer-links a{font-size:14px;color:var(--muted)}
+.footer-links a:hover{color:var(--teal)}
+.footer .copy{font-size:12px;color:rgba(255,255,255,.35);max-width:640px;margin:0 auto}
+
+/* ---------- STICKY CTA ---------- */
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:14px 24px;
+  background:linear-gradient(90deg,#0c2b2b,#13233c);
+  border-top:1px solid rgba(1,180,180,.45);
+  box-shadow:0 -12px 34px rgba(0,0,0,.55);
+  transform:translateY(140%);transition:transform .4s ease;
+}
+.sticky-cta.show{transform:none}
+.sticky-cta .msg{font-size:15px;font-weight:800;color:#fff}
+.sticky-cta .msg .gift{margin-right:6px}
+.sticky-cta .btn{white-space:nowrap;background:linear-gradient(90deg,var(--teal),#3fe0e0);color:#062826}
+
+/* ---------- ANIM ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:980px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .cards,.teachers,.pricing,.why-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .nav{padding:14px 18px}
+  .nav-links{display:none}
+  .hero h1{font-size:40px}
+  .hero p.lead{font-size:17px}
+  .sec-head h2{font-size:30px}
+  .cards,.teachers,.pricing,.why-grid,.stats{grid-template-columns:1fr}
+  section.block{padding:64px 18px}
+  .final h2{font-size:32px}
+  .sticky-cta{flex-direction:column;gap:8px;padding:12px 16px;text-align:center}
+  .sticky-cta .msg{font-size:13px}
+  .plan.best{transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="brand">GA<b>IA</b></div>
+  <div class="nav-links">
+    <a href="#categories">Explore</a>
+    <a href="#teachers">Teachers</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#why">Why Gaia</a>
+  </div>
+  <a href="https://your-affiliate-link.com" class="btn btn-teal" target="_blank" rel="noopener">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <span class="hero-badge">Conscious Media · Streaming</span>
+  <h1>Expand Your Mind.<br /><span class="hl">Transform Your Life.</span></h1>
+  <p class="lead">The world's largest streaming library of yoga, meditation, and conscious media — award-winning films, original series, and guided practices from the teachers you trust.</p>
+  <form class="hero-form" onsubmit="event.preventDefault();window.open('https://your-affiliate-link.com','_blank');">
+    <input type="email" placeholder="Enter your email to get started" aria-label="Email" required />
+    <button type="submit" class="btn btn-teal btn-lg">Get Started</button>
+  </form>
+  <p class="hero-trust">Join <b>800,000+ Gaians</b> in 185 countries · <b>7-day free trial</b> · Cancel anytime</p>
+</header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat reveal"><div class="num">8,000+</div><div class="lbl">Ad-free titles</div></div>
+  <div class="stat reveal"><div class="num">7 Days</div><div class="lbl">Free trial</div></div>
+  <div class="stat reveal"><div class="num">800K+</div><div class="lbl">Members worldwide</div></div>
+  <div class="stat reveal"><div class="num">185</div><div class="lbl">Countries</div></div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="block" id="categories">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What's Inside</span>
+      <h2>One membership. A whole universe of practice.</h2>
+      <p>From your living-room yoga mat to deep explorations of consciousness — Gaia brings it all together, ad-free and on demand.</p>
+    </div>
+    <div class="cards">
+      <a class="cat-link" href="https://your-affiliate-link.com" target="_blank" rel="noopener">
+        <div class="card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#01b4b4" stroke-width="1.7"/><path d="M12 3v18M3 12h18" stroke="#01b4b4" stroke-width="1.7"/></svg></div>
+          <h3>Gaia Originals</h3>
+          <p>Exclusive, award-winning series you won't find anywhere else — new releases every week across consciousness, ancient wisdom, and the unexplained.</p>
+          <div class="go">Explore &rarr;</div>
+        </div>
+      </a>
+      <a class="cat-link" href="https://your-affiliate-link.com" target="_blank" rel="noopener">
+        <div class="card reveal">
+          <div class="ic p"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a6 6 0 016 6c0 3-2 5-6 12-4-7-6-9-6-12a6 6 0 016-6z" stroke="#71428b" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3>Yoga &amp; Meditation</h3>
+          <p>Hundreds of classes for every level — build flexibility, energy, and better sleep with world-class instructors guiding every breath.</p>
+          <div class="go">Explore &rarr;</div>
+        </div>
+      </a>
+      <a class="cat-link" href="https://your-affiliate-link.com" target="_blank" rel="noopener">
+        <div class="card reveal">
+          <div class="ic m"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#ca4186" stroke-width="1.7"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke="#ca4186" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3>Spiritual Growth</h3>
+          <p>Explore expanded consciousness, energy work, and personal transformation through teachings grounded in both science and soul.</p>
+          <div class="go">Explore &rarr;</div>
+        </div>
+      </a>
+      <a class="cat-link" href="https://your-affiliate-link.com" target="_blank" rel="noopener">
+        <div class="card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20l5-9 4 5 3-6 4 10z" stroke="#01b4b4" stroke-width="1.7" stroke-linejoin="round"/><circle cx="9" cy="7" r="2" stroke="#01b4b4" stroke-width="1.7"/></svg></div>
+          <h3>Ancient Mysteries</h3>
+          <p>Journey into lost civilizations, sacred sites, and humanity's oldest questions — documentaries that challenge what you thought you knew.</p>
+          <div class="go">Explore &rarr;</div>
+        </div>
+      </a>
+      <a class="cat-link" href="https://your-affiliate-link.com" target="_blank" rel="noopener">
+        <div class="card reveal">
+          <div class="ic p"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#71428b" stroke-width="1.7"/><path d="M3 9h18M8 5v14" stroke="#71428b" stroke-width="1.7"/></svg></div>
+          <h3>Docs &amp; Films</h3>
+          <p>Thousands of thought-provoking documentaries and inspired films featuring voices like Bruce Lipton, Marianne Williamson, and Michael Beckwith.</p>
+          <div class="go">Explore &rarr;</div>
+        </div>
+      </a>
+      <a class="cat-link" href="https://your-affiliate-link.com" target="_blank" rel="noopener">
+        <div class="card reveal">
+          <div class="ic m"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#ca4186" stroke-width="1.7"/><path d="M12 8v4l3 2" stroke="#ca4186" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>AI Guide &amp; Tarot</h3>
+          <p>Your AI-guided companion answers questions from Gaia's entire living library, plus unlimited tarot readings to reflect and reset.</p>
+          <div class="go">Explore &rarr;</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHERS -->
+<section class="block" id="teachers" style="background:linear-gradient(180deg,#15171f,#1a1426);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Featured Voices</span>
+      <h2>Learn from the teachers who defined the field</h2>
+      <p>Gaia's library is built around the pioneers of consciousness, healing, and mindful movement.</p>
+    </div>
+    <div class="teachers">
+      <!-- TEACHER IMAGE: replace .av letter block with <img class="av-img" src="OFFICIAL_AVATAR_URL"> once provided -->
+      <div class="teacher reveal">
+        <div class="av">GB</div>
+        <h3>Gregg Braden</h3>
+        <div class="role">Ancient Wisdom</div>
+        <p>New York Times bestselling author bridging science and spirituality.</p>
+        <a href="https://your-affiliate-link.com" class="btn btn-teal" target="_blank" rel="noopener">Watch Free Classes</a>
+      </div>
+      <div class="teacher reveal">
+        <div class="av">CM</div>
+        <h3>Caroline Myss</h3>
+        <div class="role">Energy &amp; Healing</div>
+        <p>Renowned medical intuitive on intuition, power, and grace.</p>
+        <a href="https://your-affiliate-link.com" class="btn btn-teal" target="_blank" rel="noopener">Watch Free Classes</a>
+      </div>
+      <div class="teacher reveal">
+        <div class="av">BL</div>
+        <h3>Bruce Lipton</h3>
+        <div class="role">Epigenetics</div>
+        <p>Cell biologist reframing how beliefs shape our biology.</p>
+        <a href="https://your-affiliate-link.com" class="btn btn-teal" target="_blank" rel="noopener">Watch Free Classes</a>
+      </div>
+      <div class="teacher reveal">
+        <div class="av">RY</div>
+        <h3>Rodney Yee</h3>
+        <div class="role">Yoga</div>
+        <p>Beloved instructor who has guided millions onto the mat.</p>
+        <a href="https://your-affiliate-link.com" class="btn btn-teal" target="_blank" rel="noopener">Watch Free Classes</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="block" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Simple Pricing</span>
+      <h2>Start free. Stay because it matters.</h2>
+      <p>Every plan begins with a 7-day free trial. No contract, cancel anytime. All prices in USD.</p>
+    </div>
+    <div class="pricing">
+      <div class="plan reveal">
+        <div class="pname">Monthly</div>
+        <div class="price">$13.99<span class="per">/mo</span></div>
+        <div class="bill">Billed monthly</div>
+        <ul>
+          <li>8,000+ ad-free titles</li>
+          <li>Unlimited yoga &amp; meditation</li>
+          <li>AI Guide (text &amp; voice)</li>
+          <li>10% off Marketplace</li>
+        </ul>
+        <a href="https://your-affiliate-link.com" class="btn btn-ghost" target="_blank" rel="noopener">Start Free Trial</a>
+      </div>
+      <div class="plan best reveal">
+        <span class="tag">MOST POPULAR</span>
+        <div class="pname">Annual</div>
+        <div class="price">$9.92<span class="per">/mo</span></div>
+        <div class="bill">$119 billed annually</div>
+        <ul>
+          <li>Everything in Monthly</li>
+          <li>Save 29% vs monthly</li>
+          <li>New releases every week</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a href="https://your-affiliate-link.com" class="btn btn-teal" target="_blank" rel="noopener">Start Free Trial</a>
+      </div>
+      <div class="plan reveal">
+        <div class="pname">Gaia+</div>
+        <div class="price">$24.92<span class="per">/mo</span></div>
+        <div class="bill">$299 billed annually</div>
+        <ul>
+          <li>250+ exclusive Originals</li>
+          <li>Live &amp; replay events</li>
+          <li>25% off GaiaSphere events</li>
+          <li>Manifestation Guide eBook</li>
+        </ul>
+        <a href="https://your-affiliate-link.com" class="btn btn-ghost" target="_blank" rel="noopener">Start Free Trial</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="block why" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why Gaia</span>
+      <h2>A mission-driven community for the globally curious</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal"><div class="big">#1</div><h3>Largest exclusive library</h3><p>The world's biggest collection of spiritual and conscious content — nowhere else.</p></div>
+      <div class="why-item reveal"><div class="big">100%</div><h3>Ad-free</h3><p>Uninterrupted, on-demand streaming across every device, anywhere you are.</p></div>
+      <div class="why-item reveal"><div class="big">800K+</div><h3>A worldwide circle</h3><p>Over 800,000 members across 185 countries, exploring together.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="reveal">
+    <h2>Your intuition is right. Start exploring today.</h2>
+    <p>Begin your 7-day free trial and unlock 8,000+ titles of yoga, meditation, and conscious media. No commitment — keep what serves you.</p>
+    <a href="https://your-affiliate-link.com" class="btn btn-teal btn-lg" target="_blank" rel="noopener">Get Started — Free for 7 Days</a>
+    <p class="note">No credit card pressure. Cancel anytime in two clicks.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="brand">GA<b>IA</b></div>
+  <div class="ftag">Expand Your Mind. Transform Your Life.</div>
+  <div class="footer-links">
+    <a href="#categories">Explore</a>
+    <a href="#teachers">Teachers</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#why">Why Gaia</a>
+    <a href="https://your-affiliate-link.com" target="_blank" rel="noopener">Visit Gaia.com</a>
+  </div>
+  <div class="copy">This is an independent introduction page for informational purposes. Gaia®, its name, and trademarks are the property of their respective owner. Not affiliated with or endorsed by Gaia, Inc.</div>
+</footer>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="msg"><span class="gift">🎁</span>Start Your 7-Day Free Trial — Unlock 8,000+ Titles Today</div>
+  <a href="https://your-affiliate-link.com" class="btn btn-teal btn-lg" target="_blank" rel="noopener">Try Gaia Free &rarr;</a>
+</div>
+
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Sticky CTA: reveal after scrolling past the hero header
+const sc=document.getElementById('stickyCta');
+const onScroll=()=>{ if(window.scrollY>320){sc.classList.add('show');} else {sc.classList.remove('show');} };
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+</script>
+</body>
+</html>
