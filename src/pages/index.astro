@@ -358,6 +358,101 @@ const webSiteSchema = {
       background: rgba(232,164,176,0.12); color: #fff;
     }
     .hero-section { position: relative; }
+
+    /* Fade the decor group (aura + ribbons) towards the hero's bottom edge so
+       overflow-hidden never shows a cut line against the section below. */
+    .hero-decor {
+      -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 96%);
+      mask-image: linear-gradient(to bottom, #000 58%, transparent 96%);
+    }
+
+    /* Art-directed hero title: an italic serif whisper above, a big
+       mixed-type declaration below with each word drifting on its own delay,
+       and "Soul" as a glowing champagne italic with a hand-drawn light arc. */
+    .hero-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 0 2rem;
+    }
+    .ht-pre {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.3rem, 2.8vw, 2rem);
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #e8a4b0, #f3e5ab, #e8a4b0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .ht-main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      column-gap: 0.3em;
+      row-gap: 0.1em;
+      line-height: 1.04;
+    }
+    .ht-word {
+      display: inline-block;
+      animation: wordDrift 7.5s ease-in-out infinite;
+      animation-delay: var(--d, 0s);
+    }
+    .ht-plain {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2.7rem, 7vw, 5.2rem);
+      color: #faf7ff;
+      text-shadow: 0 0 34px rgba(200, 182, 255, 0.38), 0 2px 18px rgba(0, 0, 0, 0.35);
+    }
+    .ht-of {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.6rem, 3.8vw, 2.8rem);
+      color: rgba(232, 164, 176, 0.92);
+    }
+    .ht-your {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(2rem, 4.6vw, 3.4rem);
+      color: rgba(243, 229, 171, 0.9);
+    }
+    .ht-soul {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(3.1rem, 8vw, 6rem);
+      background: linear-gradient(115deg, #f0d060 10%, #f3e5ab 45%, #e8a4b0 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 26px rgba(240, 208, 96, 0.5));
+    }
+    .ht-underline {
+      width: clamp(180px, 26vw, 320px);
+      margin-top: 0.55rem;
+    }
+    .ht-underline path {
+      stroke-dasharray: 330;
+      stroke-dashoffset: 330;
+      animation: htDraw 2.4s ease-out 0.6s forwards, htGlow 5s ease-in-out 3.2s infinite;
+    }
+    @keyframes htDraw { to { stroke-dashoffset: 0; } }
+    @keyframes htGlow { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
+    @keyframes wordDrift {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-9px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ht-word, .ht-underline path { animation: none; }
+      .ht-underline path { stroke-dashoffset: 0; }
+    }
     .hero-section::after {
       content: ''; position: absolute; left: 0; right: 0; bottom: 0;
       height: 18%;
@@ -574,22 +669,19 @@ const webSiteSchema = {
     <!-- ============ HERO ============ -->
     <section class="hero-section min-h-[75vh] flex items-center justify-center px-6 relative overflow-hidden" style="padding-top:4rem">
 
-      <!-- Radial gold aura layers -->
-      <div class="absolute inset-0 z-0">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] opacity-35" style="background: radial-gradient(ellipse, rgba(240,208,96,0.18) 0%, rgba(232,164,176,0.06) 35%, transparent 65%);"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] opacity-25 animate-pulse" style="background: radial-gradient(ellipse, rgba(255,228,77,0.22) 0%, transparent 55%); animation-duration: 3.5s;"></div>
+      <!-- Decorative layer (aura + ribbons) in one group. The 1500px aura is
+           larger than the hero and would be clipped into a hard line by
+           overflow-hidden; mask-image instead fades the whole group out
+           towards the bottom, letting the continuous .home-page gradient show
+           through with no seam. -->
+      <div class="hero-decor absolute inset-0 z-0">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1500px] h-[1500px] opacity-40" style="background: radial-gradient(ellipse, rgba(240,208,96,0.20) 0%, rgba(232,164,176,0.07) 38%, transparent 62%);"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] opacity-30 animate-pulse" style="background: radial-gradient(ellipse, rgba(255,228,77,0.24) 0%, transparent 55%); animation-duration: 3.5s;"></div>
+        <div class="aurora-ribbon ar-1"></div>
+        <div class="aurora-ribbon ar-2"></div>
+        <div class="aurora-ribbon ar-3"></div>
+        <div class="aurora-ribbon ar-4"></div>
       </div>
-
-      <!-- Aurora Borealis ribbons -->
-      <div class="aurora-ribbon ar-1"></div>
-      <div class="aurora-ribbon ar-2"></div>
-      <div class="aurora-ribbon ar-3"></div>
-      <div class="aurora-ribbon ar-4"></div>
-
-      <!-- The aura and ribbons get clipped by overflow-hidden at the hero's
-           bottom edge, which read as a hard divider before the next section.
-           Feather them out into the (same-colour) section below. -->
-      <div class="absolute bottom-0 left-0 right-0 h-44 z-[1] pointer-events-none" style="background: linear-gradient(to bottom, transparent, #211B43);"></div>
 
       <!-- Animated star particles -->
       <div id="particles-container"></div>
@@ -636,12 +728,24 @@ const webSiteSchema = {
 
       <div class="text-center max-w-4xl mx-auto relative z-10">
         <div class="floating-element mb-8">
-          <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-            <span class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#E8A4B0] via-[#f0d060] to-[#E8A4B0]">
-              Decode the
+          <h1 class="hero-title">
+            <span class="ht-pre">Decode the</span>
+            <span class="ht-main">
+              <span class="ht-word ht-plain" style="--d:0.3s">Language</span>
+              <span class="ht-word ht-of" style="--d:0.6s">of</span>
+              <span class="ht-word ht-your" style="--d:0.9s">Your</span>
+              <span class="ht-word ht-soul" style="--d:1.2s">Soul</span>
             </span>
-            <br>
-            <span class="text-4xl md:text-6xl text-white">Language of Your Soul</span>
+            <svg class="ht-underline" viewBox="0 0 320 22" aria-hidden="true">
+              <defs>
+                <linearGradient id="htU" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#E8A4B0" stop-opacity="0" />
+                  <stop offset="0.5" stop-color="#F0D060" stop-opacity="0.9" />
+                  <stop offset="1" stop-color="#E8A4B0" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <path d="M6 14 C 80 3, 240 3, 314 12" fill="none" stroke="url(#htU)" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
           </h1>
         </div>
 

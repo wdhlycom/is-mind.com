@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import AtmosFlow from '../components/AtmosFlow.astro';
+import { AFFILIATES, AFFILIATE_REL } from '../config/affiliates';
 
 interface ReviewItem {
   title: string;
@@ -17,13 +18,15 @@ interface Props {
 const { title, summary, items } = Astro.props;
 
 // Tools Directory — mirrors Hugo data/tools.yml (auto-renders a card per entry).
+// affiliate links come from src/config/affiliates.ts — the tracking URLs that
+// actually pay, not the brand homepages.
 const tools = [
   {
     name: 'Gaia',
     description: 'Conscious media, yoga, meditation, and spiritual documentaries.',
     link: '/reviews/gaia-intro.html',
     review: '/reviews/gaia/',
-    affiliate: 'https://www.gaia.com/',
+    affiliate: AFFILIATES.gaia.home,
     cta: 'Start Free Trial →',
     icon: '🌿',
   },
@@ -32,7 +35,7 @@ const tools = [
     description: 'Live tarot, astrology, and psychic readings from certified readers — real-time, on demand.',
     link: '/reviews/oranum-intro.html',
     review: '/reviews/oranum/',
-    affiliate: 'https://www.oranum.com/',
+    affiliate: AFFILIATES.oranum.home,
     cta: 'Claim Free Session →',
     icon: '🔮',
   },
@@ -41,7 +44,7 @@ const tools = [
     description: 'Professional psychic, tarot, and astrology guidance with free initial minutes.',
     link: '/reviews/kasamba-intro.html',
     review: '/reviews/kasamba/',
-    affiliate: 'https://www.kasamba.com/',
+    affiliate: AFFILIATES.kasamba.home,
     cta: 'Claim 3 Free Mins →',
     icon: '✨',
   },
@@ -50,7 +53,7 @@ const tools = [
     description: 'Vetted psychic readings via call or chat — transparent $0.99/min pricing.',
     link: '/reviews/psychicoz-intro.html',
     review: '/reviews/psychicoz/',
-    affiliate: 'https://www.psychicoz.com/',
+    affiliate: AFFILIATES.psychicoz.home,
     cta: 'Start Free Chat →',
     icon: '🌟',
   },
@@ -244,7 +247,7 @@ const particles = Array.from({ length: 44 }, (_, i) => ({
               <div class="tool-icon">{t.icon}</div>
               <h3>{t.name}</h3>
               <p class="tool-desc">{t.description}</p>
-              <a class="tool-btn" href={t.affiliate} target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">{t.cta}</a>
+              <a class="tool-btn" href={t.affiliate} target="_blank" rel={AFFILIATE_REL} onclick="event.stopPropagation()">{t.cta}</a>
             </div>
           ))}
         </div>

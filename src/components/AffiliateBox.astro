@@ -1,0 +1,121 @@
+---
+/**
+ * AffiliateBox — a themed conversion block for article bodies.
+ *
+ * Usage in an article layout:
+ *   <AffiliateBox topic="tarot" />
+ *   <AffiliateBox topic="love" heading="Stuck on this with someone?" />
+ *
+ * Links come exclusively from src/config/affiliates.ts and every rendered
+ * anchor carries rel="sponsored nofollow noopener".
+ */
+import { AFFILIATES, AFFILIATE_REL } from '../config/affiliates';
+
+type Topic =
+  | 'tarot' | 'love' | 'dreams' | 'astrology' | 'numerology'
+  | 'career' | 'healers' | 'mediums' | 'review';
+
+type Cta = { name: string; text: string; url: string };
+
+const picks: Record<Topic, Cta[]> = {
+  tarot: [
+    { name: 'Purple Garden', text: 'Video tarot — watch the cards being laid out for your question.', url: AFFILIATES.purpleGarden.tarot },
+    { name: 'Kasamba', text: 'New users chat with 3 tarot readers, free.', url: AFFILIATES.kasamba.tarotExperts },
+  ],
+  love: [
+    { name: 'Keen', text: 'Their strongest speciality — love and relationships.', url: AFFILIATES.keen.love },
+    { name: 'PsychicOz', text: 'Love readings from $0.99/min.', url: AFFILIATES.psychicoz.love },
+  ],
+  dreams: [
+    { name: 'Oranum', text: 'Live readers who specialise in dream work.', url: AFFILIATES.oranum.dreams },
+  ],
+  astrology: [
+    { name: 'Purple Garden', text: 'A natal chart built from YOUR birth data, not a generic horoscope.', url: AFFILIATES.purpleGarden.astrology },
+    { name: 'Kasamba', text: 'Chat with top-rated astrologers.', url: AFFILIATES.kasamba.astrologyTop },
+  ],
+  numerology: [
+    { name: 'Kasamba', text: '3 free minutes + 50% off your first reading.', url: AFFILIATES.kasamba.numerology },
+  ],
+  career: [
+    { name: 'Kasamba', text: 'Career timing and blind spots — in writing, no pressure.', url: AFFILIATES.kasamba.career },
+  ],
+  healers: [
+    { name: 'Purple Garden', text: 'Spiritual healers — angel work, energy, divine guidance.', url: AFFILIATES.purpleGarden.healers },
+  ],
+  mediums: [
+    { name: 'Keen', text: 'Mediums for messages and grief support.', url: AFFILIATES.keen.mediums },
+  ],
+  review: [
+    { name: 'Kasamba', text: 'Chat-based, 3 free minutes for new users.', url: AFFILIATES.kasamba.home },
+    { name: 'Purple Garden', text: 'Video-first app with a $30 welcome credit.', url: AFFILIATES.purpleGarden.home },
+    { name: 'Keen', text: 'Phone + chat, love specialists since 1999.', url: AFFILIATES.keen.home },
+    { name: 'Purple Ocean', text: 'Text readings, the lowest-cost entry.', url: AFFILIATES.purpleOcean.home },
+  ],
+};
+
+interface Props {
+  topic: Topic;
+  heading?: string;
+}
+
+const { topic, heading = 'Want a live reading on this?' } = Astro.props;
+const ctas = picks[topic] ?? [];
+---
+
+{ctas.length > 0 && (
+<aside class="aff-box">
+  <p class="aff-box__title">{heading}</p>
+  <div class="aff-box__grid">
+    {ctas.map((c) => (
+      <a class="aff-card" href={c.url} target="_blank" rel={AFFILIATE_REL}>
+        <span class="aff-card__name">{c.name}</span>
+        <span class="aff-card__text">{c.text}</span>
+        <span class="aff-card__cta">Free to start →</span>
+      </a>
+    ))}
+  </div>
+  <p class="aff-box__disclosure">Affiliate links — we may earn a commission at no extra cost to you.</p>
+</aside>
+)}
+
+<style>
+  .aff-box {
+    max-width: 720px;
+    margin: 2.6rem 0;
+    padding: 1.2rem 1.3rem;
+    border: 1px solid rgba(232, 164, 176, 0.25);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .aff-box__title {
+    font-family: var(--display);
+    color: var(--gold-bright);
+    margin: 0 0 0.8rem;
+    font-size: 1.05rem;
+  }
+  .aff-box__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.8rem;
+  }
+  .aff-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--panel-border);
+    background: var(--panel);
+    text-decoration: none;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .aff-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 24px rgba(232, 164, 176, 0.15);
+  }
+  .aff-card__name { font-weight: 700; color: var(--gold-bright); font-size: 0.95rem; }
+  .aff-card__text { color: var(--ink-soft); font-size: 0.85rem; line-height: 1.45; }
+  .aff-card__cta { margin-top: 0.35rem; font-size: 0.8rem; font-weight: 700; color: #e8a4b0; }
+  .aff-box__disclosure { margin: 0.9rem 0 0; font-size: 0.72rem; color: var(--ink-soft); opacity: 0.7; }
+</style>
