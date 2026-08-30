@@ -521,8 +521,29 @@ const webSiteSchema = {
       transform-box: view-box;
       transform-origin: center;
     }
-    .mandala-ring-a { animation: mandalaTurn 120s linear infinite; }
+    .mandala-ring-a {
+      animation: mandalaTurn 120s linear infinite;
+      filter: drop-shadow(0 0 7px rgba(232, 164, 176, 0.5));
+    }
     .mandala-ring-b { animation: mandalaTurn 80s linear infinite reverse; }
+    .mandala-ring-b circle { animation: beadPulse 3.5s ease-in-out infinite; }
+    @keyframes beadPulse {
+      0%, 100% { opacity: 0.55; }
+      50%      { opacity: 1; }
+    }
+
+    /* Beads: gliding in and out along each petal, chasing one another. */
+    .mandala-beads circle {
+      fill: rgba(246, 232, 178, 0.9);
+      filter: drop-shadow(0 0 4px rgba(243, 229, 171, 0.8));
+    }
+    .mandala-bead {
+      animation: beadGlide 7s ease-in-out infinite;
+    }
+    @keyframes beadGlide {
+      0%, 100% { transform: translateY(24px); opacity: 0.2; }
+      50%      { transform: translateY(-32px); opacity: 1; }
+    }
     .mandala-halo {
       transform-box: view-box;
       transform-origin: center;
@@ -537,7 +558,7 @@ const webSiteSchema = {
       50%      { opacity: 1;   transform: scale(1.05); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .mandala-ring-a, .mandala-ring-b, .mandala-halo { animation: none; }
+      .mandala-ring-a, .mandala-ring-b, .mandala-halo, .mandala-bead, .mandala-ring-b circle { animation: none; }
     }
   </style>
 
@@ -565,6 +586,11 @@ const webSiteSchema = {
       <div class="aurora-ribbon ar-3"></div>
       <div class="aurora-ribbon ar-4"></div>
 
+      <!-- The aura and ribbons get clipped by overflow-hidden at the hero's
+           bottom edge, which read as a hard divider before the next section.
+           Feather them out into the (same-colour) section below. -->
+      <div class="absolute bottom-0 left-0 right-0 h-44 z-[1] pointer-events-none" style="background: linear-gradient(to bottom, transparent, #211B43);"></div>
+
       <!-- Animated star particles -->
       <div id="particles-container"></div>
 
@@ -591,6 +617,16 @@ const webSiteSchema = {
         <g class="mandala-ring-b">
           {Array.from({ length: 24 }).map((_, i) => (
             <circle cx="200" cy="46" r="3" transform={`rotate(${i * 15} 200 200)`} />
+          ))}
+        </g>
+        <!-- Light beads gliding along each petal: each bead lives in a rotated
+             group, so its CSS transform slides it radially in/out while the
+             whole ring keeps turning. Staggered delays make them chase. -->
+        <g class="mandala-beads">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <g transform={`rotate(${i * 30} 200 200)`}>
+              <circle class="mandala-bead" cx="200" cy="62" r="2.8" style={`animation-delay:${(i * 0.58).toFixed(2)}s`} />
+            </g>
           ))}
         </g>
         <circle class="mandala-core" cx="200" cy="200" r="132" />

@@ -5,13 +5,14 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/gen-sitemap.mjs",
+    "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
     "verify:urls": "node scripts/verify-urls.mjs"
   },
   "dependencies": {
-    "astro": "^5.7.0"
+    "astro": "^5.7.0",
+    "@astrojs/sitemap": "^3.2.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",

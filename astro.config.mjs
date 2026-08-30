@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 
 // is-mind.com Astro rebuild
 // Content is reused verbatim from the Hugo site's content/ directory.
@@ -19,7 +20,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  integrations: [tailwind()],
+  integrations: [tailwind(), sitemap()],
   vite: {
     // Allow reading the original Hugo content dir (sibling of this repo).
   },
