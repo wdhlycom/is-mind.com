@@ -36,22 +36,44 @@ The funny thing is, modern science has been proving Einstein right for decades.
 
 ---
 
+## TL;DR
+
+A stomach drops before the phone rings.
+A throat closes around a half-truth.
+A fox on the road — third time this month.
+A dream of water and a locked basement door.
+
+The body already ran the numbers.
+It hands you the answer as weather —
+a tightness, a warmth, a breath gone shallow.
+Shoulders rise around one decision, release around another.
+
+The mind arrives later, calls it coincidence.
+The heart was early by six seconds.
+The gut held the verdict the whole time.
+Answers surface in the shower, where effort lets go.
+
+Twelve signals. One message underneath:
+you knew before you knew.
+
+---
+
 ## 🔮 The Twelve Signals — At a Glance
 
 Before we dive in, here's what we're looking for:
 
-- [ ] A physical sensation you can't explain
-- [ ] Clarity that arrives when you stop searching
-- [ ] An emotional reaction that contradicts the facts
-- [ ] A symbol or pattern that keeps reappearing
-- [ ] A dream that refuses to fade after you wake
-- [ ] A decision that feels oddly light
-- [ ] A nudge that returns no matter how many times you dismiss it
-- [ ] A throat that tightens when something feels off
-- [ ] Shoulders that tense around a specific decision
-- [ ] A stomach drop before something that matters
-- [ ] A heart rate that shifts without physical exertion
-- [ ] A breath that goes shallow when you're off track
+- A physical sensation you can't explain
+- Clarity that arrives when you stop searching
+- An emotional reaction that contradicts the facts
+- A symbol or pattern that keeps reappearing
+- A dream that refuses to fade after you wake
+- A decision that feels oddly light
+- A nudge that returns no matter how many times you dismiss it
+- A throat that tightens when something feels off
+- Shoulders that tense around a specific decision
+- A stomach drop before something that matters
+- A heart rate that shifts without physical exertion
+- A breath that goes shallow when you're off track
 
 ---
 ![](illustration-02-notebook-nightstand.png)
@@ -62,6 +84,8 @@ Your **enteric nervous system** — more than a hundred million neurons lining y
 > Carl Jung called intuition *"perception via the unconscious."* He wasn't describing anything mystical. He meant your brain cross-references every micro-expression, vocal tone, and body-language cue against a lifetime of stored interactions, reaches a verdict, and hands it to you as a *feeling*. You never see the spreadsheet. You just get the answer.
 
 The HeartMath Institute recorded something even stranger: the heart responds to emotional stimuli several seconds *before* the brain registers the event.
+
+For the deeper anatomy of that lead — the research, the pathways, the timing — our [science of intuition piece](/tarot/science-of-intuition/) traces the whole circuit.
 
 > *The heart has its reasons which reason knows nothing of.* — Blaise Pascal
 
@@ -127,6 +151,8 @@ Whether you act on it is a separate question. But pretending you didn't notice w
 > Jung spent years studying synchronicity — meaningful coincidence that can't be explained by cause and effect. He argued these patterns surface when the psyche wants to redirect your attention toward something you've been avoiding.
 
 Some people frame this as the universe sending a message. Others see it as the **reticular activating system** filtering for what's emotionally charged. Honestly, both explanations lead to the same move: if something keeps showing up, **it wants your attention.**
+
+If the repeating symbol wears numbers — the same digits on a clock, a receipt, a stranger's plate — [why you keep seeing repeating numbers](/astrology/repeating-numbers/) traces what that particular pattern tends to point toward.
 
 ---
 #### 🧪 Quick Self-Check
@@ -227,6 +253,8 @@ Breathing is one of the fastest-read signals in the body. You can check it in th
 
 **The daily practice:** Three times today — once in the morning, once at midday, once in the evening — pause for five seconds and notice your breath. Shallow or deep? Fast or slow? Don't try to change it. Just notice. After a week, you'll start catching the moments when your breath shifts — and those shifts will tell you more than any checklist can.
 
+For a quieter first hour of the day — a practice that opens the channel before the noise starts — [three morning rituals to strengthen your intuition](/energy/morning-rituals/) is where to begin.
+
 ---
 
 #### 🧪 The Body Scan
@@ -266,7 +294,7 @@ So we've got twelve signals, each with its own signature:
 
 Recognizing the signals is step one. **Interpreting them is where it gets harder** — because you're standing too close to your own patterns to see them clearly.
 
-Sometimes a second pair of eyes is all it takes. Oranum screens every psychic through a **live demonstration reading** before they can accept paid sessions — so you're not talking to someone who just filled out a form. Their refund policy is straightforward: if the reading doesn't feel right, you can ask for your money back within twenty-four hours. For newcomers, a first session costs less than lunch. No subscription, no commitment.
+Sometimes a second pair of eyes is all it takes. <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum</a> screens every psychic through a **live demonstration reading** before they can accept paid sessions — so you're not talking to someone who just filled out a form. Their refund policy is straightforward: if the reading doesn't feel right, you can ask for your money back within twenty-four hours. For newcomers, a first session costs less than lunch. No subscription, no commitment.
 
 **Try it once.** If nothing else, you'll learn something about how your own signals work — and that alone is worth the price of a sandwich.
 

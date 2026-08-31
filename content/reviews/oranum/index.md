@@ -5,6 +5,7 @@ date: "2026-08-06"
 tags:
   - psychic site reviews
 directory: /reviews/
+affiliateTopic: "tarot"
 summary: "You can walk into any reader's live room on Oranum and watch them work for free, before spending a cent. That single rule changes everything about how you pick someone to trust with your questions."
 pin_a: "Trust isn't given. It's earned in the five minutes you spend watching someone handle a stranger's problem."
 pin_b: "A reading won't fix your life. But a good one can hand you the question you didn't know you were avoiding."
@@ -13,6 +14,10 @@ pin_b: "A reading won't fix your life. But a good one can hand you the question 
 You're awake at 1 a.m. again. Something's off — a relationship, a job, a feeling you can't name. You've typed "psychic near me" into a search bar and closed the tab. Because how do you trust a face on a profile picture?
 
 That question — *who do you trust when you're looking for answers about your own life?* — is the one Oranum seems built to answer.
+
+## TL;DR
+
+**What we actually know is** this: Oranum has run live psychic video rooms since 2010, and its defining feature is that you can watch any reader work for free before paying a cent. Entry rates start near 0.98 credits per minute and cap at 9.99; new users get roughly $9.99 in credit after verifying a card. The catches are concrete, not hidden — the credit system takes a few minutes to read, refunds are case-by-case rather than automatic, and results depend entirely on which reader you pick. It is positioned as entertainment for adults, explicitly not therapy or medical, legal, or financial advice. If you'd rather see someone handle a stranger's question than trust a headshot, it's worth a look; if you need guaranteed answers or unconditional refunds, it's not your fit.
 
 Here's what it is, what it costs, and where it actually falls short.
 
@@ -75,8 +80,10 @@ Third-party review sites put Oranum around 3.8 to 4.3 stars. Most of the complai
 
 **It's probably not your fit if** you expect guaranteed answers — readings illuminate, they don't decide; if you need unconditional refunds; or if you'd treat a reading as your only source for a medical, legal, or financial call. For those, close the tab and call a professional.
 
+If you're weighing Oranum against a chat-based alternative, our [Kasamba review](/reviews/kasamba/) runs the same honest test — watch-first video versus text-first chat, and which one earns its keep for which kind of question. And if the tarot side of the menu caught your eye, start with [tarot for beginners](/tarot/tarot-for-beginners/) to know what you'd actually be asking a reader. For a hardware question — which deck to hold in your hand first — [the best tarot decks for beginners](/reviews/best-tarot-decks-beginners/) covers that side.
+
 ## A note before you start
 
-The link below is an affiliate link. If you sign up through [AFFILIATE_LINK_ORANUM], this site may earn a small commission — at no extra cost to you. That arrangement doesn't touch a word above. The caveats stay. The praise stays. You decide.
+The link below is an affiliate link. If you sign up through [Oranum](https://wmorajmp.com/?pageName=home&siteId=oranum&prm[psid]=HuMaster&prm[pstool]=606_1&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"}, this site may earn a small commission — at no extra cost to you. That arrangement doesn't touch a word above. The caveats stay. The praise stays. You decide.
 
 Oranum is entertainment, for adults, and a mirror, not a map. Start with a free live room. Bring the question that's actually keeping you up. And notice who makes you breathe out.

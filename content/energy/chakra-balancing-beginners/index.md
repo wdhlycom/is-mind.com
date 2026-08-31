@@ -31,11 +31,35 @@ Her throat chakra had been screaming for months. She'd been swallowing her truth
 
 ![](chakra-balancing-beginners-en-01_cleanup.png)
 
+## 🌪️ TL;DR
+
+Her hand went to her throat.
+The words she'd swallowed for years
+had stacked up like furniture behind a door.
+
+Seven wheels along the spine.
+One stuck — and the whole body slows.
+Not broken. Blocked.
+And blocked is something you can work with.
+
+The throat hums HAM and the truth gets lighter.
+The third eye opens when you finally trust the pull.
+The root spins when your feet meet the ground.
+
+Exhaustion was the signal, not the sickness.
+The river isn't dry — it's dammed.
+Move one log, and the water remembers how to run.
+
+Your energy isn't broken.
+It's just stuck — and stuck energy can move.
+
+---
+
 ### 🌀 Why You're Tired (The Energy Perspective Nobody Talks About)
 
 Western medicine treats the body as a machine — parts that can be tested, scanned, and measured. It's brilliant at what it does. But it has a blind spot: **energy.**
 
-The chakra system comes from ancient Indian traditions — a map of seven energy centers aligned along the spine, each governing different aspects of physical, emotional, and spiritual well-being. The word *chakra* means "wheel" in Sanskrit. When the wheels are spinning freely, energy flows. When they're blocked, energy stagnates — and stagnation eventually becomes symptoms.
+The [chakra system](/energy/energy-body-101/) comes from ancient Indian traditions — a map of seven energy centers aligned along the spine, each governing different aspects of physical, emotional, and spiritual well-being. The word *chakra* means "wheel" in Sanskrit. When the wheels are spinning freely, energy flows. When they're blocked, energy stagnates — and stagnation eventually becomes symptoms.
 
 > Modern research on the mind-body connection — from the gut-brain axis to the measurable effects of meditation on nervous system regulation — increasingly validates what the chakra system described thousands of years ago: your emotional state affects your physical health, and the connection runs through the body's energy centers. Whether you understand chakras literally or metaphorically, the diagnostic framework is remarkably useful.
 
@@ -113,7 +137,7 @@ The chakra system comes from ancient Indian traditions — a map of seven energy
 
 **When blocked:** Overthinking, inability to trust gut feelings, feeling lost or directionless. Physical symptoms: headaches, eye strain, sleep issues.
 
-**Quick check:** When was the last time you trusted a gut feeling without immediately talking yourself out of it?
+**Quick check:** When was the last time you trusted a [gut feeling](/tarot/7-signs-intuition/) without immediately talking yourself out of it?
 
 ---
 
@@ -214,7 +238,7 @@ And when you've done the self-work and still feel stuck — when you know which 
 
 ---
 
-Maya started with her throat chakra. Not the whole system — just the one that was screaming loudest. She chanted HAM for five minutes each morning, placed a piece of blue lace agate on her throat while she journaled, and — hardest of all — started saying the things she'd been swallowing.
+Maya started with her throat chakra. Not the whole system — just the one that was screaming loudest. She chanted HAM for five minutes each morning, placed a piece of blue lace agate on her throat while she journaled, and — hardest of all — started saying the things she'd been swallowing. (She'd built the whole thing as a [morning ritual](/energy/morning-rituals/), which is why it survived the two weeks when she felt too tired to bother.)
 
 She didn't transform overnight. But about two months in, she told me the exhaustion had lifted. Not because she was sleeping more — her sleep hadn't changed. Because she'd stopped using her energy to hold back what wanted to be said.
 

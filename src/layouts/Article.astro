@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import AffiliateBox from '../components/AffiliateBox.astro';
 import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { getAuthor } from '../utils/authors';
@@ -65,6 +66,10 @@ const schema = {
     <div class="prose">
       <Content />
     </div>
+
+    {d.affiliateTopic && (
+      <AffiliateBox topic={d.affiliateTopic} />
+    )}
 
     {author && (
       <aside class="author-bio-box">

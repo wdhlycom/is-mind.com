@@ -21,19 +21,46 @@ pin_b: "Are you asking the cards what you should do — or what you're afraid to
 
 A woman came to me once with a reading that had gone nowhere. She'd asked the cards: *"What does the future hold for me?"*
 
-The spread was a mess — scattered, contradictory, every card pulling in a different direction. She thought the deck was broken. She thought she wasn't "intuitive enough." She thought tarot just didn't work for her.
+The spread was a mess — scattered, contradictory, every card pulling in a different direction. She thought the deck was broken. She thought she wasn't "[intuitive enough](/tarot/7-signs-intuition/)." She thought tarot just didn't work for her.
 
 I asked her to reframe the question. Not "what does the future hold?" but *"What do I need to understand about the situation I'm in right now?"*
 
-She pulled three cards. Same deck. Same shuffle. Completely different reading. Clear. Connected. Specific.
+She pulled [three cards](/tarot/3-card-spreads/). Same deck. Same shuffle. Completely different reading. Clear. Connected. Specific.
 
 **The problem was never the deck. It was the question.** She'd asked something so broad that the cards couldn't help but give her a broad answer. When she asked something specific, the cards got specific.
 
 ---
 
+## 🌪️ TL;DR
+
+She asked the future. The future answered in fog.
+Scattered cards, each one pulling away.
+She thought the deck was broken.
+The deck was fine. The question was the leak.
+
+A compass can't tell you where you'll be in three years.
+Tarot can't tell you what will happen.
+It shows you the water you're already in.
+
+"Should I?" hands the wheel to someone else.
+"What will happen?" waits at the station.
+"What do I need to know right now?" —
+seven words, one open door,
+the answer arrives in a card.
+
+Ask about you. Ask about patterns.
+Ask what you're not seeing.
+A good question feels a little vulnerable.
+If it's safe, it's not digging.
+
+The future doesn't need predicting.
+It needs understanding.
+
+---
+
 ### ❌ Why Most Questions Don't Work
 
-Tarot is not a search engine. It's not designed to answer "should I" questions, "will they" questions, or "what will happen" questions. Those are passive questions — they cast you as the recipient of fate rather than the agent of your own life.
+[Tarot](/tarot/tarot-for-beginners/) is not a search engine. It's not designed to answer "should I" questions, "will they" questions, or "what will happen" questions. Those are passive questions — they cast you as the recipient of fate rather than the agent of your own life.
 
 Here are the five most common question formats — and why they produce confusing readings:
 
@@ -106,7 +133,7 @@ Before your next reading, look at the question you're about to ask:
 
 Sometimes the hardest part isn't interpreting the cards — it's knowing what to ask. You sense something is off but can't name it. You've got a tangle of feelings and none of them resolve into a clean question.
 
-A skilled reader can help you find the question — and then answer it. Oranum screens every reader through a **live demonstration reading** before they accept clients. Their refund policy: twenty-four hours, no questions. First session costs less than lunch. No subscription.
+A skilled reader can help you find the question — and then answer it. <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum</a> screens every reader through a **live demonstration reading** before they accept clients. Their refund policy: twenty-four hours, no questions. First session costs less than lunch. No subscription.
 
 **Try it once.** Go in with the seven-word question if you have nothing else: *"What do I need to know right now?"* See what the cards say when someone else is the one shuffling them.
 
@@ -118,4 +145,4 @@ When you stop asking the cards to predict your life and start asking them to ref
 
 ---
 
-*Next week: astrology and symbols — angel numbers, zodiac signs, and the cosmic patterns that show up when you least expect them.*
+*Next week: astrology and symbols — [angel numbers](/astrology/repeating-numbers/), zodiac signs, and the cosmic patterns that show up when you least expect them.*

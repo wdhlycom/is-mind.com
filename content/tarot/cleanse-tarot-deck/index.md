@@ -32,13 +32,43 @@ She was simultaneously relieved and annoyed — relieved that the answer was sim
 
 ![](day12-cleanse-tarot-deck-02.png)
 
+## 🌪️ TL;DR
+
+Seventy dollars of sage and selenite.
+A moon-carved box she didn't need.
+The deck wasn't dirty. She was just tired.
+
+Three knuckles on cardstock. One word: clear.
+One breath, exhaled across the top of the cards.
+That's the whole ceremony.
+
+The moonlight isn't charging anything.
+It's reminding you to slow down.
+The crystal isn't absorbing energy.
+It's giving your mind a place to rest.
+
+Knock three times. Say one word.
+The boundary appears where your hand meets the cards.
+No smoke, no moonlight, no price tag.
+Just a pause — and then you read.
+
+Five methods, one mechanism:
+a boundary between then and now.
+The deck never needed cleansing.
+The reader did.
+
+Your deck doesn't need sage.
+It needs your attention.
+
+---
+
 ### 🧹 What Cleansing Actually Does (and Doesn't Do)
 
 Let's talk about what's real and what's theater.
 
-Your deck is seventy-eight pieces of cardstock. It doesn't "absorb" energy like a sponge. It doesn't hold grudges. It doesn't get spiritually dirty.
+Your [tarot deck](/tarot/tarot-for-beginners/) is seventy-eight pieces of cardstock. It doesn't "absorb" energy like a sponge. It doesn't hold grudges. It doesn't get spiritually dirty.
 
-**What cleansing actually does is reset *your* relationship to the deck.** After an intense reading — something heavy, emotional, or confusing — you might feel a residue. Not in the cards. In you. The ritual of cleansing clears *your* head so you can approach the next reading with fresh eyes.
+**What cleansing actually does is reset *your* relationship to the deck.** After an intense reading — something heavy, emotional, or confusing — you might feel a residue. Not in the cards. In you. It's your [intuition](/tarot/7-signs-intuition/) telling you the last reading is still open. The ritual of cleansing clears *your* head so you can approach the next reading with fresh eyes.
 
 > The deck doesn't need to be cleansed. The reader does. The ritual is for you — a psychological reset that signals to your unconscious: previous reading is closed, new reading is open. The mechanism is psychological, not metaphysical. The effect is the same either way.
 
@@ -110,11 +140,21 @@ Before you buy anything, ask yourself:
 
 ---
 
+### 🗂️ The Thirty-Second Routine
+
+Keep it boring. Knock three times. Breathe once. Pull your [three-card spread](/tarot/3-card-spreads/). That's the whole routine — the version that fits between "wake up" and "leave for work."
+
+Moonlight when the moon is full. Smoke when you want the theater of it. Selenite if you like looking at it. None of it is required.
+
+The only cleansing that matters is the one that happens before every reading, not the one that happens once a month. Thirty seconds, every time, beats a grand ritual you skip.
+
+---
+
 ## 🔮 When You Want a Reading Without the Ritual
 
 Cleansing is about clearing your head so you can read clearly. But sometimes the blockage isn't the deck — it's you being too close to your own situation to see it.
 
-A skilled reader brings fresh eyes to your questions — no cleansing required, because they're not carrying your history. Oranum screens every reader through a **live demonstration reading** before they accept clients. Their refund policy: if the session doesn't feel right, ask for your money back within twenty-four hours. First session costs less than lunch. No subscription.
+A skilled reader brings fresh eyes to your questions — no cleansing required, because they're not carrying your history. <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum</a> screens every reader through a **live demonstration reading** before they accept clients. Their refund policy: if the session doesn't feel right, ask for your money back within twenty-four hours. First session costs less than lunch. No subscription.
 
 **Try it once.** Ask a question you've been stuck on. See what comes back. Sometimes the best way to cleanse a deck is to let someone else shuffle it.
 

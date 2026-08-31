@@ -29,13 +29,42 @@ Not because they told her fortune. Because they told her a *story* she already k
 
 ![](day10-3-card-spreads-01.png)
 
+---
+
+## TL;DR
+
+Two in the morning. Phone face-down.
+One question circling like a shark.
+Three cards, laid out left to right.
+
+One card is a snapshot.
+Two cards create tension.
+Three cards create movement —
+a beginning, a middle, something unfolding.
+
+Two of Cups. Three of Swords. The Star.
+Connection, hurt, and healing on the other side.
+The river flows where it flows.
+You can always pick up the oar.
+
+Read the flow, not the cards.
+The middle card is the crisis point.
+Your first impression is the reading.
+The question matters more than the cards —
+a clear question pulls clean answers.
+
+Three cards. One question.
+That's all it takes.
+
+---
+
 ### 🃏 Why Three Cards?
 
 Most people think tarot requires the Celtic Cross with its ten positions, or something that looks like it belongs in a velvet-curtained room. But the three-card spread is where tarot comes alive without being overwhelming.
 
-**Three is the smallest number that creates a narrative.** One card is a snapshot. Two cards create tension. Three cards create *movement* — a beginning, a middle, and something unfolding. And humans are wired for narrative. We don't remember data points. We remember stories.
+**Three is the smallest number that creates a narrative.** [One card](/tarot/tarot-for-beginners/) is a snapshot. Two cards create tension. Three cards create *movement* — a beginning, a middle, and something unfolding. And humans are wired for narrative. We don't remember data points. We remember stories.
 
-> The three-card spread hits the psychological sweet spot between simplicity and depth. It gives the unconscious just enough structure to project onto without being so rigid that intuition gets crowded out by memorized positions.
+> The three-card spread hits the psychological sweet spot between simplicity and depth. It gives the unconscious just enough structure to project onto without being so rigid that [intuition](/tarot/7-signs-intuition/) gets crowded out by memorized positions.
 
 You don't need to know what "quintessence" means. You don't need to have memorized anything. You just need three cards, a quiet moment, and an honest question.
 
@@ -132,7 +161,7 @@ If you have a deck nearby — or even if you don't — ask yourself:
 * If I pulled three cards right now and trusted whatever I saw, what would I be most afraid they'd tell me?
 * What would I do differently tomorrow if the cards confirmed something I already suspected?
 
-**The question matters more than the cards. A clear question pulls clean answers. A vague question gets noise.**
+**[The question matters more than the cards](/tarot/better-tarot-questions/).** A clear question pulls clean answers. A vague question gets noise.
 
 ---
 
@@ -140,7 +169,7 @@ If you have a deck nearby — or even if you don't — ask yourself:
 
 Pulling your own cards is one skill. Having someone pull for you — someone who can see the patterns you're too close to recognize — is a different experience entirely.
 
-A skilled tarot reader can sit with your question, pull three cards, and reflect back connections you've been walking past for weeks. Oranum screens every reader through a **live demonstration reading** before they accept clients. Their refund policy: if it doesn't land, ask for your money back within twenty-four hours. First session costs less than lunch. No subscription.
+A skilled tarot reader can sit with your question, pull three cards, and reflect back connections you've been walking past for weeks. <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum</a> screens every reader through a **live demonstration reading** before they accept clients. Their refund policy: if it doesn't land, ask for your money back within twenty-four hours. First session costs less than lunch. No subscription.
 
 **Try it once.** Ask the same question you've been asking yourself. See what someone else pulls. Sometimes the cards say the same thing from a different angle — and that angle is the one that finally gets through.
 

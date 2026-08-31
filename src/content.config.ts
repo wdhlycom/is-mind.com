@@ -54,6 +54,7 @@ const page = z
     date: z.union([z.string(), z.date()]).optional(),
     tags: z.array(z.string()).optional(),
     directory: z.string().optional(),
+    affiliateTopic: z.string().optional(),
     layout: z.string().optional(),
     type: z.string().optional(),
     aliases: z.array(z.string()).optional(),

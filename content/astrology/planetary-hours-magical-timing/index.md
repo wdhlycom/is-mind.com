@@ -32,6 +32,34 @@ He wasn't practicing magic. He was practicing **alignment.** And the ancient sys
 
 ---
 
+## 🌪️ TL;DR
+
+Ten on a Tuesday. A Venus hour.
+He got the offer.
+His friend rolled her eyes.
+
+The sun comes up and the count starts over.
+Seven planets, twelve uneven slices of daylight,
+an order kept longer than any calendar we trust.
+
+Summer hours stretch. Winter hours shrink.
+The system measures daylight, not the clock.
+
+Mercury for the email that needs to land.
+Mars for the conversation you keep postponing.
+The Moon for listening instead of deciding.
+Venus for the words that have to stay kind.
+
+Not magic. Alignment.
+The current runs your way for an hour —
+you still have to paddle.
+
+Time isn't just linear.
+Each hour carries a different energy —
+and you can learn to work with it.
+
+---
+
 ### 🌌 As Above, So Below
 
 The Hermetic principle — "as above, so below" — isn't poetry. It's a functional statement about correspondence: the patterns of the cosmos are reflected in the patterns of daily life. The sun rises. The moon waxes and wanes. The planets trace their orbits. And within those rhythms, specific moments carry specific energetic qualities.
@@ -46,7 +74,7 @@ The system doesn't require belief in astrology. It requires willingness to exper
 
 A planetary "hour" isn't sixty minutes. It's one-twelfth of the time between sunrise and sunset (for day hours) or sunset and sunrise (for night hours). In summer, day hours are longer. In winter, they're shorter. **The system adjusts to the actual rhythm of daylight where you are.**
 
-Each day begins at sunrise with the hour of the planet that rules that day. The sequence then follows the Chaldean order — Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon — cycling continuously through day and night.
+Each day begins at sunrise with the hour of the planet that rules that day. The sequence then follows the [Chaldean order](/astrology/astrology-101-sun-moon-rising/) — Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon — cycling continuously through day and night.
 
 You don't need to calculate this by hand. Apps like Hours, Planetary Times, and Time Nomad calculate your local planetary hours automatically. Enter your location, check the app, and you'll know which planet rules the current hour.
 
@@ -76,7 +104,7 @@ The Sun hour is when you are most radiant — when your presence carries weight 
 
 The Moon hour is when the rational mind softens and the felt sense sharpens. This is the hour for **listening inward:** meditation, journaling, dream recall, tarot pulls, anything that requires you to receive rather than project.
 
-**Best for:** Intuition work, emotional processing, connecting with family, rest, dream journaling, ritual.
+**Best for:** [Intuition work](/tarot/7-signs-intuition/), emotional processing, connecting with family, rest, dream journaling, ritual.
 
 **Avoid:** Major decisions that require sharp logic. The Moon hour favors feeling over analysis — save the spreadsheets for Mercury.
 
@@ -162,6 +190,7 @@ For the next week, try this:
 * Check the current planetary hour three times a day — morning, midday, evening.
 * Note whether the energy of the hour matches what you're actually doing.
 * Experiment with scheduling one task during its aligned hour. Notice the difference.
+* If the same hour keeps catching your attention, note it — patterns that repeat carry the same signal as [repeating numbers](/astrology/repeating-numbers/).
 
 **The system doesn't require belief. It rewards experimentation.**
 
@@ -189,4 +218,4 @@ He smiled. Didn't explain.
 
 ---
 
-*Explore our full Astrology & Symbols series, or read about Venus retrograde to understand what happens when the planet of love and timing appears to move backward.*
+*Explore our full Astrology & Symbols series, or read about [Venus retrograde](/astrology/venus-retrograde/) to understand what happens when the planet of love and timing appears to move backward.*

@@ -349,7 +349,7 @@ The journey is ancient, but the tools are affordable:
 
 **A dedicated journal.** Date each entry. Record the card, your first impression, and the one-word answer to "what archetype was active today." After a month, read back through — you'll see your own journey unfolding in ink.
 
-And when a card keeps returning and you can't see what it's asking — when the lesson is too close to see clearly — a skilled reader can help. Oranum screens every reader through a live demonstration reading. Refund policy: twenty-four hours. First session costs less than lunch.
+And when a card keeps returning and you can't see what it's asking — when the lesson is too close to see clearly — a skilled reader can help. <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum</a> screens every reader through a live demonstration reading. Refund policy: twenty-four hours. First session costs less than lunch.
 
 ---
 

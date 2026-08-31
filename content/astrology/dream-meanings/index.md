@@ -150,6 +150,10 @@ If flying dreams come during difficult periods — a breakup, a career crisis, a
 
 ---
 
+There's a cousin to the recurring dream, one your unconscious doesn't wait until night to send. The number you keep noticing — on a clock, a receipt, a license plate — works the same way a dream does: a symbol repeating until you stop and ask what it wants. If a figure keeps turning up in your waking life, [read what repeating numbers tend to mean](/astrology/repeating-numbers/). Same logic. Different hour of the day.
+
+---
+
 ### 📖 How to Work With Your Dreams
 
 Dreams don't need a professional interpreter. They need your attention.
@@ -197,7 +201,7 @@ Working with dreams becomes a practice when you have the right tools:
 
 **A sleep ritual kit.** Lavender sleep spray. A silk eye mask. A white noise machine or app. These aren't just comfort items — they improve sleep quality, which directly increases dream recall. The deeper you sleep, the more vividly you dream.
 
-And when a dream keeps returning and you can't decode it on your own — when the symbol is too close for you to see clearly — a skilled dream interpreter or psychic reader can help. Oranum screens every reader through a live demonstration reading. First session costs less than lunch. No subscription.
+And when a dream keeps returning and you can't decode it on your own — when the symbol is too close for you to see clearly — a skilled dream interpreter or psychic reader can help. <a href="https://wmorajmp.com/?pageName=search&siteId=oranum&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Dreams&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum</a> screens every reader through a live demonstration reading. First session costs less than lunch. No subscription.
 
 ---
 
@@ -209,4 +213,4 @@ She still dreams. Everyone does. But the dreams that come now are different — 
 
 ---
 
-*Explore [Shadow Work](/psych/shadow-work/) to continue the descent into your unconscious, or read our guide to the [Major Arcana's archetypal messages](/tarot/major-arcana-archetypes/) for a tarot-based framework for psychological exploration.*
+*Explore [Shadow Work](/psych/shadow-work/shadow-work-guide/) to continue the descent into your unconscious, or read our guide to the [Major Arcana's archetypal messages](/tarot/major-arcana-archetypes/) for a tarot-based framework for psychological exploration.*

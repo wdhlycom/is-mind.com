@@ -7,6 +7,7 @@ tags:
   - tarot card meanings
   - tarot for beginners
 directory: /tarot/
+affiliateTopic: "tarot"
 summary: "Twenty-two cards represent your soul's curriculum. Fifty-six cards represent
   your daily homework. Once you understand that single distinction, seventy-eight cards
   collapse into a structure so simple you'll wonder why it ever felt complicated. Here's
@@ -21,7 +22,13 @@ pin_b: "Is this a life-changing moment — or just something you need to get thr
 
 ---
 
-A client once pulled ten cards for a career question and every single one was from the Minor Arcana. Not a single Major. She looked disappointed — she'd been hoping for something dramatic, some sign from the universe that her burnout meant something profound.
+## TL;DR
+
+**What we actually know is** that a standard 78-card tarot deck splits into two groups that answer two different questions. The twenty-two Major Arcana cards carry archetypal themes — endings, awakenings, deep shifts — and signal that something larger than your day-to-day choices is in motion. The fifty-six Minor Arcana cards, arranged in four suits of fourteen, describe the texture of ordinary life: feelings, thoughts, actions, and material circumstances. A quick rule that holds up in practice: count the Majors. Zero or one points to a practical situation you can steer with your choices; three or more points to a bigger transition worth sitting with. The cards don't carry information on their own — this framing is a sorting tool, and it's the one that makes seventy-eight cards feel manageable.
+
+---
+
+A client once pulled ten cards for a career question and every single one was from the Minor Arcana. Not a single Major. She looked disappointed — she'd been hoping for something dramatic, some sign from the universe that her burnout meant something significant.
 
 I asked her: "Do you want this to be a spiritual crisis — or just a job you need to leave?"
 
@@ -72,6 +79,22 @@ Here's the simplest diagnostic I know:
 
 ---
 
+### 🧭 A Working Cheat Sheet
+
+When a reading feels murky, sort it with three questions rather than reaching for the guidebook:
+
+| The question | Major Arcana answer | Minor Arcana answer |
+|---|---|---|
+| What's the time scale? | Months to years — a chapter | Days to weeks — a scene |
+| Where does the leverage sit? | Forces larger than your choices | Your next decision |
+| How should you respond? | Sit with it, don't rush | Act on it, then move on |
+
+**A common mistake is treating Minors as "minor" in importance.** They're not. A Cups card about a conversation you've been avoiding can change a relationship faster than any Tower. "Minor" describes the *scale* of the situation, not its weight. The Minor Arcana is where most real life actually happens — which is why a reading full of Minors is usually more useful than one full of Majors: it's telling you the problem is within reach.
+
+**Another is assuming Majors mean fate.** Three Majors don't mean you've lost agency. They mean the stakes have risen — the decision matters more, which is precisely when your choice carries the most weight. The cards frame the situation. They don't make the call. That part stays yours.
+
+---
+
 ### 🎴 The Court Cards: People, Parts of Yourself, or Stages
 
 The sixteen court cards — Page, Knight, Queen, King in each suit — are the most confusing part of the Minor Arcana. Every book has a different interpretation. Here's what's actually useful:
@@ -102,10 +125,10 @@ Next time you do a reading, before you interpret anything, count the Majors:
 
 You've pulled your cards. You've counted the Majors. You've got a rough sense of the story — but something isn't clicking. That's normal. Reading for yourself means reading through your own blind spots.
 
-A skilled tarot reader can look at the same spread and see connections you missed — not because they're more intuitive, but because they're not carrying your history. Oranum screens every reader through a **live demonstration reading** before they accept clients. Refund policy: twenty-four hours, no questions. First session costs less than lunch. No subscription.
+A skilled tarot reader can look at the same spread and see connections you missed — not because they're more intuitive, but because they're not carrying your history. The [Oranum tarot space](https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live readers who can sit with your spread and reflect back what you walked past. Use them as a second set of eyes, not a verdict.
 
 **Try it once.** Pull your own three cards. Note your impressions. Then have someone else read the same spread. The gap between what you saw and what they saw will teach you more than any article.
 
 ---
 
-*Tomorrow: [how to cleanse your tarot deck](/tarot/cleanse-tarot-deck/) — five methods that actually matter, and why most of the advice online is overcomplicating something your deck doesn't actually need.*
+*Tomorrow: [how to cleanse your tarot deck](/tarot/cleanse-tarot-deck/) — five methods that actually matter, and why most of the advice online is overcomplicating something your deck doesn't actually need. For the psychology behind those twenty-two Major cards, see our [Jungian guide to the Major Arcana archetypes](/tarot/major-arcana-archetypes/).*

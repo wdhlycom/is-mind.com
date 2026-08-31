@@ -39,7 +39,11 @@ That interpretation isn't wrong — but it's incomplete in a way that misses the
 
 > In the Rider-Waite-Smith imagery, The Lovers depicts a man and woman standing beneath an angel — but the original Renaissance decks depicted a man standing between two women, choosing. One represents virtue. The other represents desire. The card has always been about choice — specifically, the choice between what feels good and what *is* good.
 
+That older image — a man at a fork, one road to the right thing and one to the easy thing — is an old, old story. Carl Jung called it the choice that builds character, the moment a person stops doing what's comfortable and starts doing what's them. The Greeks dressed the same crossroads in Hercules, the young man who chose the harder path and only then became the hero people remember. The face changes. The fork doesn't.
+
 The angel above isn't blessing a union. It's witnessing a decision. The mountain in the background isn't a romantic backdrop — it's the difficult path that follows once the choice is made. **The Lovers is the card of the crossroads where love and values collide — and you can't have both.**
+
+Not every card tests you this hard. Some days you get [the Fool](/tarot/the-fool-card/), urging you to step off a cliff on faith. Some days you get The Lovers, asking you to stand still long enough to see which road is yours. Both turn up at the threshold — they just ask different things of you.
 
 ![](day13-the-lovers-card-01.png)
 
@@ -78,6 +82,8 @@ Let's clear a few things:
 * The Lovers does **not** guarantee a happy ending. Some choices The Lovers brings are painful. The card isn't promising comfort — it's promising clarity, which is often uncomfortable first.
 * The Lovers does **not** mean you'll find love soon. If you're single and pull The Lovers, look for the *choice* you're wrestling with — not the person you're waiting to meet.
 
+The Lovers is only one of twenty-two major cards, each with its own weight to carry. If you want the whole arc — from the Fool's first step to the World's completion — [the Fool's Journey](/tarot/fools-journey-complete-guide/) walks all twenty-two in order. And if you're tired of card six being mistaken for a matchmaker, it's worth learning where the majors end and [the minor arcana](/tarot/major-vs-minor-arcana/) begin.
+
 ---
 
 #### 🧪 Quick Self-Check
@@ -97,9 +103,11 @@ If The Lovers appears in your reading, ask yourself:
 
 Some crossroads are too close to see. You've weighed every option, written every pro-con list, asked every friend — and the answer still isn't clear. That's not failure. It's proximity.
 
-A skilled tarot reader can lay out your situation in symbols and reflect back the choice you've been avoiding — often in the first three cards. Oranum screens every reader through a **live demonstration reading** before they accept clients. Their refund policy: twenty-four hours, no questions. First session costs less than lunch. No subscription.
+A skilled tarot reader can lay out your situation in symbols and reflect back the choice you've been avoiding — often in the first three cards.
 
-**Try it once.** Ask about the crossroads. See what the cards show. Sometimes what you need isn't more information — it's someone to hold up the mirror.
+That story doesn't end here. Some readers on <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum</a> can help you write the next chapter — they screen every reader through a live demonstration reading before they take a client, and if the session doesn't land, you can ask for your money back within twenty-four hours. First session costs less than lunch.
+
+Ask about the crossroads. See what the cards show. Sometimes what you need isn't more information — it's someone to hold up the mirror.
 
 ---
 

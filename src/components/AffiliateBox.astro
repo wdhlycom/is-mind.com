@@ -19,10 +19,12 @@ type Cta = { name: string; text: string; url: string };
 
 const picks: Record<Topic, Cta[]> = {
   tarot: [
-    { name: 'Purple Garden', text: 'Video tarot — watch the cards being laid out for your question.', url: AFFILIATES.purpleGarden.tarot },
+    { name: 'Oranum', text: 'Live video readings — you watch the cards being laid out.', url: AFFILIATES.oranum.tarot },
     { name: 'Kasamba', text: 'New users chat with 3 tarot readers, free.', url: AFFILIATES.kasamba.tarotExperts },
+    { name: 'PsychicOz', text: 'Vetted tarot readers by speciality.', url: AFFILIATES.psychicoz.tarot },
   ],
   love: [
+    { name: 'Oranum', text: 'Live love and relationship readers.', url: AFFILIATES.oranum.love },
     { name: 'Keen', text: 'Their strongest speciality — love and relationships.', url: AFFILIATES.keen.love },
     { name: 'PsychicOz', text: 'Love readings from $0.99/min.', url: AFFILIATES.psychicoz.love },
   ],
@@ -30,6 +32,7 @@ const picks: Record<Topic, Cta[]> = {
     { name: 'Oranum', text: 'Live readers who specialise in dream work.', url: AFFILIATES.oranum.dreams },
   ],
   astrology: [
+    { name: 'Oranum', text: 'Live astrologers — a natal chart built from your birth data.', url: AFFILIATES.oranum.intro },
     { name: 'Purple Garden', text: 'A natal chart built from YOUR birth data, not a generic horoscope.', url: AFFILIATES.purpleGarden.astrology },
     { name: 'Kasamba', text: 'Chat with top-rated astrologers.', url: AFFILIATES.kasamba.astrologyTop },
   ],
@@ -40,15 +43,17 @@ const picks: Record<Topic, Cta[]> = {
     { name: 'Kasamba', text: 'Career timing and blind spots — in writing, no pressure.', url: AFFILIATES.kasamba.career },
   ],
   healers: [
+    { name: 'Oranum', text: 'Live energy and spiritual healers.', url: AFFILIATES.oranum.intro },
     { name: 'Purple Garden', text: 'Spiritual healers — angel work, energy, divine guidance.', url: AFFILIATES.purpleGarden.healers },
   ],
   mediums: [
     { name: 'Keen', text: 'Mediums for messages and grief support.', url: AFFILIATES.keen.mediums },
+    { name: 'Oranum', text: 'Live video mediums — you see who you talk to.', url: AFFILIATES.oranum.intro },
   ],
   review: [
     { name: 'Kasamba', text: 'Chat-based, 3 free minutes for new users.', url: AFFILIATES.kasamba.home },
+    { name: 'Oranum', text: 'Live video readings with real mediums.', url: AFFILIATES.oranum.home },
     { name: 'Purple Garden', text: 'Video-first app with a $30 welcome credit.', url: AFFILIATES.purpleGarden.home },
-    { name: 'Keen', text: 'Phone + chat, love specialists since 1999.', url: AFFILIATES.keen.home },
     { name: 'Purple Ocean', text: 'Text readings, the lowest-cost entry.', url: AFFILIATES.purpleOcean.home },
   ],
 };

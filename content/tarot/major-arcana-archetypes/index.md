@@ -8,6 +8,7 @@ tags:
   - tarot card meanings
   - shadow work
 directory: /tarot/
+affiliateTopic: "tarot"
 summary: "The Major Arcana isn't a deck of fortune-telling props — it's a map of the
   human psyche, drawn centuries before Carl Jung gave us the language to describe it.
   Each card is an archetype: a universal pattern of experience living in every human
@@ -19,6 +20,12 @@ pin_b: "What if twenty-two cards could map your entire psychological journey?"
 ---
 
 > The Major Arcana isn't about predicting your future. It's about revealing who you already are.
+
+---
+
+## TL;DR
+
+**What we actually know is** that Carl Jung, who studied the tarot's Major Arcana in the 1930s, read the twenty-two cards as a catalog of archetypes — recurring figures (the Innocent, the Sage, the Creator) that appear across cultures and eras because they map to common structures in the human mind. He borrowed the word "archetype" from ancient Greek and gave it to modern psychology; the Major Arcana, in his framing, is a visual index of those patterns. Jung's term for the lifelong work of integrating them was **individuation**. What the evidence does *not* support is the cards predicting anything. They work as a vocabulary — a way to name the pattern you're already living so you can see it clearly. That's the whole tool, and it doesn't need a supernatural mechanism to be useful.
 
 ---
 
@@ -147,7 +154,7 @@ The archetypes come alive when you spend time with them. A few tools that make t
 
 **A dedicated journal.** Not a notebook you also use for grocery lists. Something beautiful enough that you want to reach for it. A blank journal invites the cards to speak. Date each entry. Record the card, your first impression, and the one-word answer to "what archetype was active today." After a month, read back through. You'll see your own individuation unfolding in ink.
 
-**A reading to go deeper.** Sometimes the cards you pull for yourself are filtered through your own blind spots. Oranum screens every reader through a live demonstration reading before they accept clients. Refund policy: twenty-four hours, no questions. First session costs less than lunch.
+**A reading to go deeper.** Sometimes the cards you pull for yourself are filtered through your own blind spots — you'll keep drawing the same archetype and miss what it's pointing at. A second pair of eyes can help. The [Oranum tarot space](https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live readers who work in symbolic, archetypal territory. Use them as a mirror, not a verdict — the card's meaning is still yours to settle.
 
 ---
 
@@ -159,4 +166,4 @@ The cards had been telling her the whole time. She just needed to learn the lang
 
 ---
 
-*Explore all 22 cards card by card in our [complete guide to the Fool's Journey](/tarot/fools-journey-complete-guide/), or dive into [Shadow Work](/psych/shadow-work/) to begin the descent phase of your own individuation.*
+*Explore all 22 cards card by card in our [complete guide to the Fool's Journey](/tarot/fools-journey-complete-guide/), see how the archetypes differ from the everyday suits in [Major Arcana vs Minor Arcana](/tarot/major-vs-minor-arcana/), or dive into [Shadow Work](/psych/shadow-work/) to begin the descent phase of your own individuation.*

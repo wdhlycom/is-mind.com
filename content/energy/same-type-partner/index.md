@@ -19,6 +19,8 @@ pin_b: "What if the problem isn't who you're choosing — but what feels familia
 
 > You're not attracting the same person. You're responding to the same wound.
 
+> **Here's the hard truth.** You don't have a type. You have a wound that keeps hiring the same face to press on it. Every time you say "I keep attracting emotionally unavailable people," you're telling yourself a story that lets you stay passive — as if partners fall out of the sky and you just happen to catch them. They don't. You reach for them, over and over, because on some level they feel like home. The pattern isn't who keeps finding you. It's what keeps feeling familiar. And that part is yours to change.
+
 ---
 
 My friend Elena has a type. Emotionally unavailable. Intense at the beginning, distant by month three. The kind of man who texts "good morning beautiful" for two weeks and then disappears for three days without explanation.
@@ -37,7 +39,7 @@ She stopped talking. The pattern had just named itself.
 
 ---
 
-### 🌀 The Real Reason You Keep Ending Up Here
+### The Real Reason You Keep Ending Up Here
 
 **The core answer:** You're not attracting the same type of person by accident. You're drawn to what feels familiar — and what feels familiar is often what hurt you first.
 
@@ -49,7 +51,7 @@ The mechanism is unconscious. You meet someone and feel a spark — chemistry, c
 
 ---
 
-### 🔥 Why "Just Choose Better" Doesn't Work
+### Why "Just Choose Better" Doesn't Work
 
 People love to give this advice: "You just need to pick a different type. Stop going for the unavailable ones. Choose the nice guy." It's well-meaning and completely useless.
 
@@ -61,9 +63,9 @@ Here's why: the "nice guy" who's consistent, emotionally available, and genuinel
 
 ![](day18-same-type-partner-01.png)
 
-### 🧩 The Four Most Common Patterns
+### The Four Most Common Patterns
 
-### 🎭 Pattern #1: The Pursuer and the Distancer
+### Pattern #1: The Pursuer and the Distancer
 
 **The core answer:** One person chases. One person withdraws. The pursuer feels abandoned. The distancer feels suffocated. Both are replaying childhood dynamics — just from opposite sides of the same wound.
 
@@ -73,7 +75,7 @@ This is the most common toxic cycle. The pursuer experienced inconsistent love a
 
 ---
 
-### 🛡️ Pattern #2: The Fixer and the Project
+### Pattern #2: The Fixer and the Project
 
 **The core answer:** You're drawn to people who need saving — not because you're a good person, but because fixing others lets you avoid fixing yourself.
 
@@ -83,7 +85,7 @@ The fixer finds partners who are struggling — career, mental health, addiction
 
 ![](day18-same-type-partner-02.png)
 
-### 🪞 Pattern #3: The Familiar Wound
+### Pattern #3: The Familiar Wound
 
 **The core answer:** You choose partners who recreate your earliest relational wound — not because you're a masochist, but because your psyche is trying to resolve it. You keep hoping that *this time* the unavailable person will show up. *This time* the critical person will accept you. *This time* you'll finally be enough.
 
@@ -91,7 +93,7 @@ But the unavailable person never shows up. The critical person never accepts you
 
 ---
 
-### ⚖️ Pattern #4: The Overcorrection
+### Pattern #4: The Overcorrection
 
 **The core answer:** You've been hurt by a specific type, so you overcorrect — choosing someone who's the complete opposite. But opposites aren't necessarily healthy. They're just opposite.
 
@@ -99,7 +101,7 @@ After a chaotic relationship, you choose someone who's "stable" — but stable t
 
 ---
 
-#### 🧪 Quick Self-Check
+#### Quick Self-Check
 
 Look at your last three relationships — significant ones. Ask yourself:
 
@@ -112,13 +114,11 @@ Look at your last three relationships — significant ones. Ask yourself:
 
 ![](day18-same-type-partner-03.png)
 
-## 🔮 When You Need Help Seeing the Pattern
+### When You Need Help Seeing the Pattern
 
 Sometimes the pattern is so embedded you can't see it from the inside. A skilled reader or therapist can hold up a mirror that shows you what you've been avoiding — not by telling you who to pick, but by helping you see *why* you keep picking what you pick.
 
-Oranum screens every reader through a **live demonstration reading** before they accept clients. Refund policy: twenty-four hours, no questions. First session costs less than lunch. No subscription.
-
-**Try it once.** Don't ask about a specific person. Ask about the pattern. "What am I repeating that I can't see?"
+If you're deep enough in the loop that it's starting to feel like who you are, that's the point where a licensed therapist is the right call — not a reader, not a friend. Repetition compulsion runs on wiring that formed before you had words for it, and untangling it alone is how the loop keeps spinning. If you want a second angle on a relationship dynamic you're too close to read, an outside perspective can help — but treat it as a mirror, not a diagnosis. Nothing here replaces professional help for trauma or abuse.
 
 ---
 
@@ -129,5 +129,11 @@ She's with someone now — consistent, present, emotionally available. She told 
 "You know what the difference is?" she said. "I stopped mistaking anxiety for chemistry. That was the whole thing. Just that."
 
 ---
+
+### Where to Go From Here
+
+Naming the pattern is step one. Seeing *how* it formed is step two.
+
+If you want to understand the wiring underneath the loop, start with [how attachment styles shape who you're drawn to](/psych/relationship/attachment-styles/) — it's the framework this whole article is standing on. And if a partner's version of events has you doubting your own read on things, learn to tell the difference between [real self-doubt and manufactured confusion](/psych/relationship/gaslighting/) before you go trusting someone else's account over your own.
 
 *Tomorrow: [six self-love rituals for healing after a breakup](/reviews/self-love-rituals/) — the practical, non-toxic kind that actually works, starting with the one you can do tonight without leaving your bed.*
