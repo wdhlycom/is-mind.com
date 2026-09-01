@@ -140,7 +140,7 @@ This is where Kasamba quietly shines. Long-term readers on the platform often de
 
 ## A note before you start
 
-The link below is an affiliate link. If you sign up through [the Kasamba site](https://bargestech.go2cloud.org/aff_c?offer_id=191&aff_id=2559){rel="sponsored nofollow noopener" target="_blank"}, this site may earn a small commission — at no extra cost to you. That doesn't change a word above. The limits stay listed. The strengths stay listed. You decide.
+The link below is an affiliate link. If you sign up through <a href="https://bargestech.go2cloud.org/aff_c?offer_id=191&aff_id=2559" target="_blank" rel="sponsored nofollow noopener">the Kasamba site</a>, this site may earn a small commission — at no extra cost to you. That doesn't change a word above. The limits stay listed. The strengths stay listed. You decide.
 
 Kasamba's value is twenty-five years of quiet depth, handed to you with three free minutes to find the right voice. Start with a free chat. Bring the question that's actually keeping you up. Then decide how far to go.
 

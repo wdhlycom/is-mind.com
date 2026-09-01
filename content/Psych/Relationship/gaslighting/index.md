@@ -16,7 +16,9 @@ pin_b: "If you've caught yourself saying 'maybe I'm remembering it wrong' more o
 
 > The scariest part of gaslighting isn't that you start believing their lies. It's that you stop believing your own memory.
 
-> Here's the hard truth. Gaslighting doesn't break your grip on reality with one big lie. It wears your grip down with a hundred small denials, until you're afraid to trust what you saw with your own eyes. The trick you keep missing isn't that they're convincing. It's that you keep asking the wrong person to confirm your version. They already gave you their answer — every time. You're still trying to win the one debate that was designed to be unwinnable. Stop debating. Start documenting.
+## TL;DR
+
+Here's the hard truth. Gaslighting doesn't break your grip on reality with one big lie. It wears your grip down with a hundred small denials, until you're afraid to trust what you saw with your own eyes. The trick you keep missing isn't that they're convincing. It's that you keep asking the wrong person to confirm your version. They already gave you their answer — every time. You're still trying to win the one debate that was designed to be unwinnable. Stop debating. Start documenting.
 
 ## How does gaslighting actually work?
 
@@ -147,7 +149,5 @@ Sometimes — but only if the other person can name what they've been doing with
 If you've stopped trusting your own memory and want a second opinion from someone who won't tell you what you want to hear, <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=love&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">talk to a straight-talking advisor on Oranum</a>. No sugarcoating.
 
 For a different angle on what's happening in the relationship — patterns you might be too close to see — <a href="https://psychicoz.com/psychics/love-relationship-psychic-readers?a_aid=3b186vp94x73d&a_bid=5dd1df23" target="_blank" rel="sponsored nofollow noopener">browse vetted love and relationship psychic readers on Psychicoz</a>.
-
-<a href="https://psychicoz.com/psychics/love-relationship-psychic-readers?a_aid=3b186vp94x73d&a_bid=5dd1df23" target="_blank" rel="sponsored nofollow noopener"><img src="https://psychicoz.com/aimg/3b186vp94x73d/5dd1df23" alt="Love and Relationship Psychic Readings on Psychicoz" width="320" height="250" style="display:block; max-width:100%; height:auto; border:0;" loading="lazy" /></a><img src="https://psychicoz.com/aimg?a_aid=3b186vp94x73d&a_bid=5dd1df23" width="0" height="0" style="position:absolute;visibility:hidden;" border="0" alt="" />
 
 If what you've been experiencing is heavy enough that the strategies above don't feel like enough on their own, please talk to a licensed therapist. Patterns like this are exactly what they're trained to help with. You don't have to sort it out alone.

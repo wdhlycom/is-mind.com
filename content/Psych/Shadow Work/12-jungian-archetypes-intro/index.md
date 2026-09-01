@@ -149,7 +149,7 @@ The framework is more useful as an inner exercise than as a personality quiz. Tr
 
 This isn't a quiz with a result. It's a mirror. The point isn't to label yourself; it's to widen the territory you can move in. A person with strong Hero energy who has practiced even a little of the Caregiver's gift becomes a more useful friend, partner, and leader. A person with strong Sage energy who has practiced the Jester's lightness becomes easier to be around in a crisis.
 
-If you'd like a sounding board for what you found—someone to talk it through with in real time—the [Kasamba psychic reading category](https://bargestech.go2cloud.org/aff_c?offer_id=191&aff_id=2559&url_id=103){rel="sponsored nofollow noopener" target="_blank"} collects live advisors who work in this exact territory of self-reflection. Use them as a mirror, not a verdict.
+If you'd like a sounding board for what you found—someone to talk it through with in real time—the <a href="https://bargestech.go2cloud.org/aff_c?offer_id=191&aff_id=2559&url_id=103" target="_blank" rel="sponsored nofollow noopener">Kasamba psychic reading category</a> collects live advisors who work in this exact territory of self-reflection. Use them as a mirror, not a verdict.
 
 ## FAQ
 

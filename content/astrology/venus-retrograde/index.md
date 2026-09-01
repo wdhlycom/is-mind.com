@@ -17,6 +17,8 @@ pin_a: "Venus retrograde doesn't break relationships — it reveals what was alr
 pin_b: "Is your relationship falling apart — or finally showing you the truth?"
 ---
 
+## TL;DR
+
 > There's a quiet space here for you. Venus retrograde isn't here to punish your love life. It's here to turn on the lights in the rooms you've been avoiding. Every six weeks, the planet of relationship and value slows down, looks backward, and asks one quiet question: *are you in this because you want to be — or because you're afraid to leave?* This isn't a forecast. It's a permission slip. To look at what was already cracked. To stop blaming the sky for what was happening on the ground. To finally answer honestly, in your own time.
 
 > Venus retrograde doesn't break relationships — it reveals what was already cracked.

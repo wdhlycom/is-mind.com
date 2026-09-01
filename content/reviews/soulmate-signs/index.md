@@ -15,6 +15,8 @@ pin_a: "A soulmate doesn't feel like lightning. It feels like coming home."
 pin_b: "What if you've already met them — and just didn't recognize what you were looking at?"
 ---
 
+## TL;DR
+
 > Here's the hard truth. You are not waiting to meet the right person. You are waiting for the right *feeling* — the lightning bolt, the certainty, the storm — and that feeling is the one reliable sign that you're about to mistake intensity for love. The real thing has already happened for a lot of people, and they missed it because it was quiet, and they'd been told quiet meant settling.
 
 > A soulmate doesn't feel like lightning. It feels like coming home.

@@ -125,7 +125,7 @@ Next time you do a reading, before you interpret anything, count the Majors:
 
 You've pulled your cards. You've counted the Majors. You've got a rough sense of the story — but something isn't clicking. That's normal. Reading for yourself means reading through your own blind spots.
 
-A skilled tarot reader can look at the same spread and see connections you missed — not because they're more intuitive, but because they're not carrying your history. The [Oranum tarot space](https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live readers who can sit with your spread and reflect back what you walked past. Use them as a second set of eyes, not a verdict.
+A skilled tarot reader can look at the same spread and see connections you missed — not because they're more intuitive, but because they're not carrying your history. The <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum tarot space</a> collects live readers who can sit with your spread and reflect back what you walked past. Use them as a second set of eyes, not a verdict.
 
 **Try it once.** Pull your own three cards. Note your impressions. Then have someone else read the same spread. The gap between what you saw and what they saw will teach you more than any article.
 

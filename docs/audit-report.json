@@ -1,0 +1,891 @@
+{
+  "total": 43,
+  "authors": {
+    "Sage Mercer": 16,
+    "Wren Hollow": 4,
+    "Luna Vale": 9,
+    "Iris Calder": 5,
+    "Seraphina Cole": 9
+  },
+  "tag_out": [],
+  "tag_count": {
+    "astrology basics": 1,
+    "dream interpretation": 1,
+    "planetary transits": 1,
+    "angel numbers": 1,
+    "venus retrograde": 1,
+    "zodiac compatibility": 1,
+    "energy healing": 2,
+    "intuition": 4,
+    "relationship patterns": 3,
+    "attachment": 4,
+    "book insights": 2,
+    "gaslighting": 1,
+    "narcissism": 1,
+    "carl jung": 2,
+    "shadow work": 3,
+    "tarot deck reviews": 1,
+    "psychic site reviews": 4,
+    "tarot spreads": 1,
+    "tarot practice": 2,
+    "major arcana": 3,
+    "tarot for beginners": 1,
+    "love tarot": 1,
+    "tarot card meanings": 2
+  },
+  "thin": [],
+  "thin800": [],
+  "lowlink": [],
+  "no_tldr": [],
+  "no_tldr_heading": [],
+  "no_author": [],
+  "banned": [],
+  "no_image": [
+    "astrology/astrology-101-sun-moon-rising/index.md",
+    "energy/energy-body-101/index.md",
+    "Psych/Relationship/attachment-styles/index.md",
+    "reviews/kasamba/index.md",
+    "reviews/oranum/index.md",
+    "tarot/fools-journey-complete-guide/index.md"
+  ],
+  "pillars": {
+    "tarot/tarot-for-beginners": "OK",
+    "tarot/fools-journey-complete-guide": "OK",
+    "tarot/science-of-intuition": "OK",
+    "Psych/Shadow Work/shadow-work-guide": "OK",
+    "Psych/Relationship/attachment-styles": "OK",
+    "energy/energy-body-101": "OK",
+    "astrology/astrology-101-sun-moon-rising": "OK",
+    "astrology/dream-meanings": "OK",
+    "reviews/best-tarot-decks-beginners": "OK"
+  },
+  "articles": [
+    {
+      "title": "Astrology 101: Sun, Moon & Rising Signs Explained",
+      "author": "Sage Mercer",
+      "date": "2026-08-05",
+      "directory": "/astrology/",
+      "summary": "Your sun sign is what you show. Your moon sign is what you feel. Your rising",
+      "tags": [
+        "astrology basics"
+      ],
+      "words": 2159,
+      "links": 7,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": false,
+      "banned": [
+        "crucial"
+      ],
+      "path": "astrology/astrology-101-sun-moon-rising/index.md",
+      "slug": "/astrology/astrology-101-sun-moon-rising/"
+    },
+    {
+      "title": "What Your Dreams Mean: Decoding Recurring Dreams & Common Symbols",
+      "author": "Wren Hollow",
+      "date": "2026-07-14",
+      "directory": "/astrology/",
+      "summary": "She dreamed about falling for six months — same sensation, same jolt awake,",
+      "tags": [
+        "dream interpretation"
+      ],
+      "words": 2480,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": false,
+      "has_tldr_heading": false,
+      "has_image": true,
+      "banned": [],
+      "path": "astrology/dream-meanings/index.md",
+      "slug": "/astrology/dream-meanings/"
+    },
+    {
+      "title": "Planetary Hours and Magical Timing",
+      "author": "Luna Vale",
+      "date": "2026-07-14",
+      "directory": "/astrology/",
+      "summary": "He scheduled his job interview for a Venus hour and got the offer. His",
+      "tags": [
+        "planetary transits"
+      ],
+      "words": 1763,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "astrology/planetary-hours-magical-timing/index.md",
+      "slug": "/astrology/planetary-hours-magical-timing/"
+    },
+    {
+      "title": "Why You Keep Seeing Repeating Numbers",
+      "author": "Luna Vale",
+      "date": "2026-06-25",
+      "directory": "/astrology/",
+      "summary": "He started seeing 11:11 everywhere — on the microwave, on receipts, on his phone",
+      "tags": [
+        "angel numbers"
+      ],
+      "words": 1907,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "astrology/Repeating-Numbers/index.md",
+      "slug": "/astrology/repeating-numbers/"
+    },
+    {
+      "title": "How Venus Retrograde Affects Your Love Life",
+      "author": "Iris Calder",
+      "date": "2026-08-02",
+      "directory": "/astrology/",
+      "summary": "She blamed the breakup on Venus retrograde. The astrologer she consulted",
+      "tags": [
+        "venus retrograde"
+      ],
+      "words": 1506,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "astrology/venus-retrograde/index.md",
+      "slug": "/astrology/venus-retrograde/"
+    },
+    {
+      "title": "What Your Zodiac Sign Needs in a Partner",
+      "author": "Sage Mercer",
+      "date": "2026-08-18",
+      "directory": "/astrology/",
+      "summary": "She was a Taurus dating a Sagittarius and every compatibility chart told",
+      "tags": [
+        "zodiac compatibility"
+      ],
+      "words": 1661,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "astrology/zodiac-sign-partner-needs/index.md",
+      "slug": "/astrology/zodiac-sign-partner-needs/"
+    },
+    {
+      "title": "Chakra Balancing Techniques for Beginners",
+      "author": "Luna Vale",
+      "date": "2026-07-14",
+      "directory": "/energy/",
+      "summary": "She was tired all the time — not the kind of tired that sleep fixes, but",
+      "tags": [
+        "energy healing"
+      ],
+      "words": 1873,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "energy/chakra-balancing-beginners/index.md",
+      "slug": "/energy/chakra-balancing-beginners/"
+    },
+    {
+      "title": "Your Energy Body 101: A Beginner's Map of the Subtle Energy System",
+      "author": "Sage Mercer",
+      "date": "2026-08-05",
+      "directory": "/energy/",
+      "summary": "You know when someone walks into a room and the mood changes? When you feel",
+      "tags": [
+        "energy healing"
+      ],
+      "words": 1728,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": false,
+      "banned": [
+        "landscape"
+      ],
+      "path": "energy/energy-body-101/index.md",
+      "slug": "/energy/energy-body-101/"
+    },
+    {
+      "title": "3 Morning Rituals to Strengthen Your Intuition",
+      "author": "Luna Vale",
+      "date": "2026-07-06",
+      "directory": "/energy/",
+      "summary": "Most people reach for their phone before they reach for themselves. That",
+      "tags": [
+        "intuition"
+      ],
+      "words": 1428,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "energy/morning-rituals/index.md",
+      "slug": "/energy/morning-rituals/"
+    },
+    {
+      "title": "Why You Keep Attracting the Same Type of Partner",
+      "author": "Seraphina Cole",
+      "date": "2026-08-11",
+      "directory": "/energy/",
+      "summary": "Her last three relationships had ended the same way — same fights, same",
+      "tags": [
+        "relationship patterns"
+      ],
+      "words": 1485,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "energy/same-type-partner/index.md",
+      "slug": "/energy/same-type-partner/"
+    },
+    {
+      "title": "Why You Keep Dating the Wrong People: Attachment Theory in 5 Minutes",
+      "author": "Sage Mercer",
+      "date": "2026-08-23",
+      "directory": "book-insights",
+      "summary": "Amir Levine's 'Attached' argues that the panic, the pursuit, and the pulling away in adult relationships aren't personality flaws—they're survival strategies we learned before we had words for them. A practical map of the four styles, where they come from, and what 'earned secure' actually takes.",
+      "tags": [
+        "attachment"
+      ],
+      "words": 2260,
+      "links": 6,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Book Insights/attached/index.md",
+      "slug": "/psych/book-insights/attached/"
+    },
+    {
+      "title": "The Adlerian Idea That Cuts Your Emotional Baggage in Half",
+      "author": "Sage Mercer",
+      "date": "2026-08-23",
+      "directory": "book-insights",
+      "summary": "Alfred Adler's separation of tasks is the most underrated concept in popular psychology. It doesn't give you a new technique—it gives you a way to tell whose problem is whose, which is most of the work.",
+      "tags": [
+        "book insights"
+      ],
+      "words": 1958,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Book Insights/courage-to-be-disliked/index.md",
+      "slug": "/psych/book-insights/courage-to-be-disliked/"
+    },
+    {
+      "title": "Your Brain Has Two Operating Systems—and One of Them Is Lazy",
+      "author": "Seraphina Cole",
+      "date": "2026-08-30",
+      "directory": "book-insights",
+      "summary": "Daniel Kahneman's central insight from Thinking, Fast and Slow: most of the time, we're not thinking. We're pattern-matching. And the part of our brain that's supposed to catch the errors is surprisingly lazy.",
+      "tags": [
+        "book insights"
+      ],
+      "words": 1550,
+      "links": 5,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Book Insights/thinking-fast-slow/index.md",
+      "slug": "/psych/book-insights/thinking-fast-slow/"
+    },
+    {
+      "title": "Anxious Attachment: Why You Overthink Every Text and How to Feel More Secure",
+      "author": "Sage Mercer",
+      "date": "2026-09-16",
+      "directory": "relationship-dynamics",
+      "summary": "Anxious attachment isn't being 'too needy.' It's a nervous system trained to scan for abandonment. This article explains the mechanism, where it comes from, what actually helps, and a small practice to start with this week.",
+      "tags": [
+        "attachment"
+      ],
+      "words": 1942,
+      "links": 10,
+      "has_faq": true,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Relationship/anxious-attachment/index.md",
+      "slug": "/psych/relationship/anxious-attachment/"
+    },
+    {
+      "title": "Attachment Styles: The 4 Ways We Love (and Why They Explain Everything)",
+      "author": "Sage Mercer",
+      "date": "2026-08-25",
+      "directory": "relationship-dynamics",
+      "summary": "Why do you chase, flee, or stay calm in love? Attachment theory — the most replicated finding in relationship psychology — says the answer was written in your earliest relationships. Here are the four attachment styles, how to spot your own, the situational shifts, and the surprising good news: your style isn't a life sentence. It's a starting point you can change.",
+      "tags": [
+        "attachment"
+      ],
+      "words": 2458,
+      "links": 11,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": false,
+      "banned": [],
+      "path": "Psych/Relationship/attachment-styles/index.md",
+      "slug": "/psych/relationship/attachment-styles/"
+    },
+    {
+      "title": "When Your Partner Keeps Pulling Away: The Psychology Behind Avoidant Attachment",
+      "author": "Seraphina Cole",
+      "date": "2026-08-24",
+      "directory": "relationship-dynamics",
+      "summary": "Avoidant attachment isn't about not loving you—it's about intimacy triggering a threat response. This article breaks down what's actually happening and what you can do about it.",
+      "tags": [
+        "attachment"
+      ],
+      "words": 1634,
+      "links": 6,
+      "has_faq": true,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Relationship/avoidant-partner/index.md",
+      "slug": "/psych/relationship/avoidant-partner/"
+    },
+    {
+      "title": "Gaslighting: 12 Phrases That Reveal Someone Is Rewriting Your Reality",
+      "author": "Seraphina Cole",
+      "date": "2026-09-28",
+      "directory": "relationship-dynamics",
+      "summary": "Gaslighting doesn't start with obvious lies. It starts with small denials that make you doubt your own memory. This article breaks down the mechanics of manipulation and what to do when you recognize it.",
+      "tags": [
+        "gaslighting"
+      ],
+      "words": 1692,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Relationship/gaslighting/index.md",
+      "slug": "/psych/relationship/gaslighting/"
+    },
+    {
+      "title": "7 Signs of a Narcissist That Go Beyond 'Arrogance'",
+      "author": "Seraphina Cole",
+      "date": "2026-09-07",
+      "directory": "relationship-dynamics",
+      "summary": "Narcissism isn't just self-absorption. At its core, it's a fragile self that requires constant external validation to stay intact. This article breaks down the signs that go deeper than the stereotype.",
+      "tags": [
+        "narcissism"
+      ],
+      "words": 1893,
+      "links": 6,
+      "has_faq": true,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Relationship/narcissist-signs/index.md",
+      "slug": "/psych/relationship/narcissist-signs/"
+    },
+    {
+      "title": "12 Classic Jungian Archetypes: A Simple Introduction",
+      "author": "Sage Mercer",
+      "date": "2026-07-19",
+      "directory": "shadow-work",
+      "summary": "A beginner-friendly overview of the 12 Jungian archetypes that shape personality, motivation, and the stories we tell ourselves — from the Innocent to the Ruler. Includes a short note on the framework's history, what each archetype costs you, and what to do with the one that bothers you most.",
+      "tags": [
+        "carl jung"
+      ],
+      "words": 2574,
+      "links": 8,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Shadow Work/12-jungian-archetypes-intro/index.md",
+      "slug": "/psych/shadow-work/12-jungian-archetypes-intro/"
+    },
+    {
+      "title": "Carl Jung's Shadow: The Psychology Concept That Explains Your Darkest Reactions",
+      "author": "Sage Mercer",
+      "date": "2026-09-23",
+      "directory": "shadow-work",
+      "summary": "Jung's concept of the shadow isn't about having a dark side. It's about the parts of yourself you've disowned—and the surprising ways they run your life without your permission. The mechanics, the recognition signals, and the single most useful thing you can do about it.",
+      "tags": [
+        "carl jung"
+      ],
+      "words": 1954,
+      "links": 14,
+      "has_faq": true,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [
+        "crucial"
+      ],
+      "path": "Psych/Shadow Work/carl-jung-shadow/index.md",
+      "slug": "/psych/shadow-work/carl-jung-shadow/"
+    },
+    {
+      "title": "5 Shadow Work Prompts for Healing Childhood Trauma",
+      "author": "Iris Calder",
+      "date": "2026-09-10",
+      "directory": "shadow-work",
+      "summary": "Childhood wounds don't announce themselves. They show up as overreactions, unexplained dread, and the same relationship patterns on repeat. These five shadow work prompts help you meet those old injuries with curiosity instead of avoidance.",
+      "tags": [
+        "shadow work"
+      ],
+      "words": 1281,
+      "links": 3,
+      "has_faq": true,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Shadow Work/childhood-trauma/index.md",
+      "slug": "/psych/shadow-work/childhood-trauma/"
+    },
+    {
+      "title": "Why Do Other People's Flaws Make Me So Angry? What Jung Really Meant by 'Projection'",
+      "author": "Sage Mercer",
+      "date": "2026-09-30",
+      "directory": "shadow-work",
+      "summary": "An explanation of Jung's concept of 'projection' — why the traits we most easily spot in others are often the ones we've rejected in ourselves. For anyone who finds themselves unusually angry at, or put off by, a certain type of person.",
+      "tags": [
+        "shadow work"
+      ],
+      "words": 1722,
+      "links": 6,
+      "has_faq": true,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Shadow Work/projection/index.md",
+      "slug": "/psych/shadow-work/projection/"
+    },
+    {
+      "title": "Shadow Work for Beginners: A Complete Guide with 10 Self-Reflection Questions",
+      "author": "Iris Calder",
+      "date": "2026-07-19",
+      "directory": "shadow-work",
+      "summary": "A practical, no-nonsense introduction to shadow work — Carl Jung's method",
+      "tags": [
+        "shadow work"
+      ],
+      "words": 1554,
+      "links": 6,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "Psych/Shadow Work/shadow-work-guide/index.md",
+      "slug": "/psych/shadow-work/shadow-work-guide/"
+    },
+    {
+      "title": "Best Tarot Decks for Beginners: 2026 Review",
+      "author": "Seraphina Cole",
+      "date": "2026-08-05",
+      "directory": "/reviews/",
+      "summary": "Buying your first tarot deck is like buying your first guitar: the right one",
+      "tags": [
+        "tarot deck reviews"
+      ],
+      "words": 1856,
+      "links": 2,
+      "has_faq": true,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "reviews/best-tarot-decks-beginners/index.md",
+      "slug": "/reviews/best-tarot-decks-beginners/"
+    },
+    {
+      "title": "Gaia Review: A Netflix for the Soul — If Your Soul Likes Conspiracy Docs Too",
+      "author": "Seraphina Cole",
+      "date": "2026-08-06",
+      "directory": "/reviews/",
+      "summary": "Gaia is a subscription streaming service for yoga, meditation, and consciousness — 8,000+ ad-free films, no algorithm feeding you ads. The catch is the range: it runs from quiet morning yoga to Atlantis and UFO disclosure.",
+      "tags": [
+        "psychic site reviews"
+      ],
+      "words": 1757,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": false,
+      "banned": [],
+      "path": "reviews/gaia/index.md",
+      "slug": "/reviews/gaia/"
+    },
+    {
+      "title": "Kasamba Review: Twenty-Five Years of Quiet Rooms, Not Loud Stages",
+      "author": "Sage Mercer",
+      "date": "2026-08-06",
+      "directory": "/reviews/",
+      "summary": "Kasamba has run since 1999 on text, phone, and email — not live video. Its edge is depth: readers who've spent twenty years on love, past lives, and karmic ties. Every new advisor gives you three free minutes to audition. Here is what it is, what it costs, what it does well, and where it stops short.",
+      "tags": [
+        "psychic site reviews"
+      ],
+      "words": 2251,
+      "links": 10,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": false,
+      "banned": [],
+      "path": "reviews/kasamba/index.md",
+      "slug": "/reviews/kasamba/"
+    },
+    {
+      "title": "Oranum Review: The One Psychic Site Where You Watch Before You Pay",
+      "author": "Sage Mercer",
+      "date": "2026-08-06",
+      "directory": "/reviews/",
+      "summary": "You can walk into any reader's live room on Oranum and watch them work for free, before spending a cent. That single rule changes everything about how you pick someone to trust with your questions.",
+      "tags": [
+        "psychic site reviews"
+      ],
+      "words": 1326,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": false,
+      "banned": [],
+      "path": "reviews/oranum/index.md",
+      "slug": "/reviews/oranum/"
+    },
+    {
+      "title": "PsychicOz Review: The Site That Shows You the Price Before You Blink",
+      "author": "Seraphina Cole",
+      "date": "2026-08-06",
+      "directory": "/reviews/",
+      "summary": "PsychicOz tells you the price before you're emotionally invested. First three minutes free, no subscription, no auto-renew. For a category full of surprise charges, that honesty is the whole pitch.",
+      "tags": [
+        "psychic site reviews"
+      ],
+      "words": 2251,
+      "links": 8,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": false,
+      "banned": [],
+      "path": "reviews/psychicoz/index.md",
+      "slug": "/reviews/psychicoz/"
+    },
+    {
+      "title": "Self-Love Rituals for Healing After a Breakup",
+      "author": "Iris Calder",
+      "date": "2026-08-14",
+      "directory": "/reviews/",
+      "summary": "She did everything the internet told her to do after the breakup. Cut her",
+      "tags": [
+        "relationship patterns"
+      ],
+      "words": 1685,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "reviews/self-love-rituals/index.md",
+      "slug": "/reviews/self-love-rituals/"
+    },
+    {
+      "title": "8 Signs You've Met Your Soulmate",
+      "author": "Seraphina Cole",
+      "date": "2026-07-31",
+      "directory": "/reviews/",
+      "summary": "She met someone and felt nothing dramatic — no lightning bolt, no love-at-first-sight",
+      "tags": [
+        "relationship patterns"
+      ],
+      "words": 1635,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "reviews/soulmate-signs/index.md",
+      "slug": "/reviews/soulmate-signs/"
+    },
+    {
+      "title": "3-Card Tarot Spreads Anyone Can Do",
+      "author": "Luna Vale",
+      "date": "2026-07-10",
+      "directory": "/tarot/",
+      "summary": "She pulled three cards at 2 AM, no idea what she was doing, and something",
+      "tags": [
+        "tarot spreads"
+      ],
+      "words": 1417,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "tarot/3-card-spreads/index.md",
+      "slug": "/tarot/3-card-spreads/"
+    },
+    {
+      "title": "12 Signs Your Intuition Is Trying to Tell You Something",
+      "author": "Luna Vale",
+      "date": "2026-07-01",
+      "directory": "/tarot/",
+      "summary": "What if those random gut feelings and sudden certainties aren't random at all?",
+      "tags": [
+        "intuition"
+      ],
+      "words": 2910,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "tarot/7-signs-intuition/index.md",
+      "slug": "/tarot/7-signs-intuition/"
+    },
+    {
+      "title": "How to Ask Tarot Better Questions",
+      "author": "Luna Vale",
+      "date": "2026-07-27",
+      "directory": "/tarot/",
+      "summary": "She asked the cards 'what should I do?' and got back an answer so vague it",
+      "tags": [
+        "tarot practice"
+      ],
+      "words": 1370,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [
+        "landscape"
+      ],
+      "path": "tarot/better-tarot-questions/index.md",
+      "slug": "/tarot/better-tarot-questions/"
+    },
+    {
+      "title": "How to Cleanse Your Tarot Deck: 5 Ways That Actually Matter",
+      "author": "Luna Vale",
+      "date": "2026-07-25",
+      "directory": "/tarot/",
+      "summary": "She bought sage, selenite, a special cloth, and a wooden box she definitely",
+      "tags": [
+        "tarot practice"
+      ],
+      "words": 1431,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "tarot/cleanse-tarot-deck/index.md",
+      "slug": "/tarot/cleanse-tarot-deck/"
+    },
+    {
+      "title": "How to Tell the Difference Between Fear and Intuition",
+      "author": "Sage Mercer",
+      "date": "2026-07-03",
+      "directory": "/tarot/",
+      "summary": "The difference between fear and intuition isn't vague or mystical. Fear feels like a wall. Intuition feels like a door you're scared to open. Here's a framework for telling them apart in real time, grounded in neuroscience and Jungian psychology, plus one question that cuts through the confusion faster than any checklist.",
+      "tags": [
+        "intuition"
+      ],
+      "words": 1899,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "tarot/fear-vs-intuition/index.md",
+      "slug": "/tarot/fear-vs-intuition/"
+    },
+    {
+      "title": "The Fool's Journey: A Complete Guide to All 22 Major Arcana Cards",
+      "author": "Wren Hollow",
+      "date": "2026-08-05",
+      "directory": "/tarot/",
+      "summary": "Twenty-two cards. One story — and it's the oldest map of human growth ever",
+      "tags": [
+        "major arcana"
+      ],
+      "words": 3055,
+      "links": 7,
+      "has_faq": false,
+      "has_tldr": false,
+      "has_tldr_heading": false,
+      "has_image": false,
+      "banned": [],
+      "path": "tarot/fools-journey-complete-guide/index.md",
+      "slug": "/tarot/fools-journey-complete-guide/"
+    },
+    {
+      "title": "Tarot Archetypes: The Jungian Psychology Behind the Major Arcana",
+      "author": "Sage Mercer",
+      "date": "2026-07-14",
+      "directory": "/tarot/",
+      "summary": "The Major Arcana isn't a deck of fortune-telling props — it's a map of the",
+      "tags": [
+        "major arcana"
+      ],
+      "words": 1873,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "tarot/major-arcana-archetypes/index.md",
+      "slug": "/tarot/major-arcana-archetypes/"
+    },
+    {
+      "title": "Major Arcana vs Minor Arcana: Simple Guide",
+      "author": "Sage Mercer",
+      "date": "2026-07-20",
+      "directory": "/tarot/",
+      "summary": "Twenty-two cards represent your soul's curriculum. Fifty-six cards represent",
+      "tags": [
+        "major arcana"
+      ],
+      "words": 1489,
+      "links": 2,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "tarot/major-vs-minor-arcana/index.md",
+      "slug": "/tarot/major-vs-minor-arcana/"
+    },
+    {
+      "title": "The Science Behind Intuition (Yes, It's Real)",
+      "author": "Sage Mercer",
+      "date": "2026-07-05",
+      "directory": "/tarot/",
+      "summary": "For centuries, intuition was dismissed as superstition — 'women's feelings,'",
+      "tags": [
+        "intuition"
+      ],
+      "words": 1258,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [
+        "research suggests"
+      ],
+      "path": "tarot/science-of-intuition/index.md",
+      "slug": "/tarot/science-of-intuition/"
+    },
+    {
+      "title": "Tarot for Absolute Beginners: Where to Start",
+      "author": "Luna Vale",
+      "date": "2026-07-08",
+      "directory": "/tarot/",
+      "summary": "She bought a deck three years ago. It sat on her shelf, still wrapped in",
+      "tags": [
+        "tarot for beginners"
+      ],
+      "words": 1439,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "tarot/tarot-for-beginners/index.md",
+      "slug": "/tarot/tarot-for-beginners/"
+    },
+    {
+      "title": "Tarot Cards That Signal a New Relationship",
+      "author": "Iris Calder",
+      "date": "2026-08-10",
+      "directory": "/tarot/",
+      "summary": "She kept pulling The Lovers and panicking — convinced every reading was",
+      "tags": [
+        "love tarot"
+      ],
+      "words": 1418,
+      "links": 3,
+      "has_faq": false,
+      "has_tldr": true,
+      "has_tldr_heading": true,
+      "has_image": true,
+      "banned": [],
+      "path": "tarot/tarot-love-cards/index.md",
+      "slug": "/tarot/tarot-love-cards/"
+    },
+    {
+      "title": "The Fool Card: What It Really Means",
+      "author": "Wren Hollow",
+      "date": "2026-07-09",
+      "directory": "/tarot/",
+      "summary": "Everyone thinks The Fool is the beginner's card — naive, reckless, about",
+      "tags": [
+        "tarot card meanings"
+      ],
+      "words": 1318,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": false,
+      "has_tldr_heading": false,
+      "has_image": true,
+      "banned": [],
+      "path": "tarot/the-fool-card/index.md",
+      "slug": "/tarot/the-fool-card/"
+    },
+    {
+      "title": "The Lovers Card: More Than Just Romance",
+      "author": "Wren Hollow",
+      "date": "2026-07-26",
+      "directory": "/tarot/",
+      "summary": "She pulled The Lovers and immediately panicked — convinced it meant she was",
+      "tags": [
+        "tarot card meanings"
+      ],
+      "words": 1399,
+      "links": 4,
+      "has_faq": false,
+      "has_tldr": false,
+      "has_tldr_heading": false,
+      "has_image": true,
+      "banned": [],
+      "path": "tarot/the-lovers-card/index.md",
+      "slug": "/tarot/the-lovers-card/"
+    }
+  ]
+}

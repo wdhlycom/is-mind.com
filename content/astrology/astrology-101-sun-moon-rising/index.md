@@ -154,7 +154,7 @@ That's the whole entry point. Everything else — aspects, transits, progression
 
 **A trusted reference.** For depth, *The Only Astrology Book You'll Ever Need* (Joanna Martine Woolfolk) covers signs, planets, houses, and aspects in plain English — the standard first book for decades.
 
-And when you want to understand how the transits are affecting *your* chart right now — not a generic horoscope, but your own sky — a session with a professional astrologer is worth the money. [Oranum](https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=astrology&prm[topic]=Live&prm[psid]=HuMaster&prm[pstool]=606_1&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} screens every reader through a live demonstration reading before they take clients, and refunds within twenty-four hours if a session doesn't land. Treat the reading as one interpretation of your chart, alongside your own — a reader's input is data, not direction.
+And when you want to understand how the transits are affecting *your* chart right now — not a generic horoscope, but your own sky — a session with a professional astrologer is worth the money. <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=astrology&prm[topic]=Live&prm[psid]=HuMaster&prm[pstool]=606_1&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum</a> screens every reader through a live demonstration reading before they take clients, and refunds within twenty-four hours if a session doesn't land. Treat the reading as one interpretation of your chart, alongside your own — a reader's input is data, not direction.
 
 ---
 

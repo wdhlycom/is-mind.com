@@ -162,7 +162,7 @@ For people who work in symbols — tarot readers, astrologers, dream workers —
 
 Sometimes you've run every checklist, scanned your body, journaled for a week — and the signal still isn't clear. That's not failure. It just means you're too close to read your own patterns. A friend with no skin in the game, a therapist, or a skilled reader can sometimes separate the noise from the signal in about twenty minutes — because they're not carrying your history.
 
-If you'd like a sounding board for a stuck decision, the [Oranum discovery space](https://wmorajmp.com/?pageName=intro&siteId=oranum&subSiteId=about&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live advisors who work in self-reflection and decision-clarity. Use them as a mirror, not a verdict — and remember that a reader's input is data, not direction.
+If you'd like a sounding board for a stuck decision, the <a href="https://wmorajmp.com/?pageName=intro&siteId=oranum&subSiteId=about&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum discovery space</a> collects live advisors who work in self-reflection and decision-clarity. Use them as a mirror, not a verdict — and remember that a reader's input is data, not direction.
 
 ---
 

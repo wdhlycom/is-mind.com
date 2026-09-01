@@ -32,7 +32,7 @@ He wasn't practicing magic. He was practicing **alignment.** And the ancient sys
 
 ---
 
-## 🌪️ TL;DR
+## TL;DR
 
 Ten on a Tuesday. A Venus hour.
 He got the offer.

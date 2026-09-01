@@ -12,6 +12,8 @@ pin_a: "It's not a lack of love. It's closeness itself that sets off the alarm."
 pin_b: "You send three messages, he sends back an emoji. It's not coldness—it's a survival reflex he learned decades before he met you."
 ---
 
+## TL;DR
+
 > Here's the hard truth. You are not married to a distant man. You are married to a frightened one, and the two look identical from the outside. That's why everything you've been trying — the leaning in, the talking it through, the wanting more — has been making it worse. You've been responding to the surface. The person you actually love is on the other side of a reflex that fires before thought does.
 
 > It's not a lack of love. It's closeness itself that sets off the alarm.
@@ -93,8 +95,6 @@ The opposite pattern matters too. Anxious attachment looks like the mirror image
 ## When you need a second read on the pattern
 
 When you're this close to a dynamic, you lose the ability to see it clearly. You need someone outside it. If the push-pull has you exhausted and you want an outside perspective on what's actually happening between the two of you, <a href="https://psychicoz.com/psychics/love-relationship-psychic-readers?a_aid=3b186vp94x73d&a_bid=5dd1df23" target="_blank" rel="sponsored nofollow noopener">love and relationship readers on PsychicOz</a> can give you a read on the pattern. A reader is not a therapist and this is not couples counseling — if the retreat has turned to belittling or isolation, the person to call is a licensed professional, not a psychic.
-
-<a href="https://psychicoz.com/psychics/love-relationship-psychic-readers?a_aid=3b186vp94x73d&a_bid=5dd1df23" target="_blank" rel="sponsored nofollow noopener"><img src="https://psychicoz.com/aimg/3b186vp94x73d/5dd1df23" alt="Love and relationship psychic readings on PsychicOz" width="320" height="250" style="display:block; max-width:100%; height:auto; border:0;" loading="lazy" /></a><img src="https://psychicoz.com/aimg?a_aid=3b186vp94x73d&a_bid=5dd1df23" width="0" height="0" style="position:absolute;visibility:hidden;" border="0" alt="" />
 
 ---
 

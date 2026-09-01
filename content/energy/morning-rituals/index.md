@@ -27,7 +27,7 @@ She didn't lack [intuition](/tarot/7-signs-intuition/). She'd built a morning ro
 
 ![](day06-morning-rituals-01_cleanup.png)
 
-## 🌪️ TL;DR
+## TL;DR
 
 Alarm. Phone. Email. Slack.
 Three notifications before her eyes adjusted.

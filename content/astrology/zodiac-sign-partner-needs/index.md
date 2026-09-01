@@ -184,7 +184,7 @@ Look at your current or most recent relationship:
 
 Sometimes you're too inside the relationship to see the dynamic clearly. A skilled astrologer or tarot reader can reflect back what's really happening between you — what each of you needs, where the friction is, and whether the gap is bridgeable.
 
-If you want a sounding board for that specific question — not "are we compatible," but "what does each of us actually need, and can we offer it" — the [Oranum love and relationship space](https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=love&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live advisors who work in exactly this territory. Use them as a mirror for the dynamic, not a verdict on the match.
+If you want a sounding board for that specific question — not "are we compatible," but "what does each of us actually need, and can we offer it" — the <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=love&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum love and relationship space</a> collects live advisors who work in exactly this territory. Use them as a mirror for the dynamic, not a verdict on the match.
 
 ---
 

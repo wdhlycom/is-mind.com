@@ -12,7 +12,9 @@ pin_b: "You bought something on sale you didn't need, and you're not sure why. K
 
 > We think reason is driving. Intuition has been at the wheel the whole time.
 
-> Here's the hard truth. Reading about cognitive bias doesn't protect you from cognitive bias. Kahneman spent fifty years cataloguing these errors and still caught himself making them. The self-deception isn't "I don't understand this." It's "now that I understand it, I'm exempt." You're not. System 1 doesn't retire just because you learned its name. What this book actually gives you is one thing: a pause. One beat longer before you commit.
+## TL;DR
+
+Here's the hard truth. Reading about cognitive bias doesn't protect you from cognitive bias. Kahneman spent fifty years cataloguing these errors and still caught himself making them. The self-deception isn't "I don't understand this." It's "now that I understand it, I'm exempt." You're not. System 1 doesn't retire just because you learned its name. What this book actually gives you is one thing: a pause. One beat longer before you commit.
 
 ## What are System 1 and System 2?
 

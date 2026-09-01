@@ -43,10 +43,10 @@
 | 8 | `/reviews/best-tarot-decks-beginners/` | 1657 | 1998 | 2 | 2 | `tarot`（3 卡） | **0** | ✅ 完成（缺图，待补） |
 | 9 | `/energy/same-type-partner/` | 1428 | 1655 | 3 | **0**（见注④） | 未挂（见注④） | 3 | ✅ 完成 |
 
-**注①**：thinking-fast-slow 是认知偏差书评，九个 topic 无一贴合（love/tarot/astrology 全部违和）。硬挂卡片会反噬 E-E-A-T，故只保留 2 条正文软链。**是否给它加通用 topic，等拍板。**
-**注③**：narcissist-signs 的三张图中 `2026-07-02-attached-01.png` 文件名为 **attached**（依恋书评篇）而非 narcissist。跨篇复用，**按「没把握零移动」原则未动**，仅报告。位置在 7 signs 之后、「Why the label is the trap」之前，主题对位尚可（依恋 × 自恋动态相邻）。
+**注①**：thinking-fast-slow 是认知偏差书评，九个 topic 无一贴合（love/tarot/astrology 全部违和）。硬挂卡片会反噬 E-E-A-T，故只保留 2 条正文软链。**已裁决（2026-09-01）：维持现状，不新增通用 topic、不挂卡片。**
+**注③**：narcissist-signs 的三张图中 `2026-07-02-attached-01.png` 文件名为 **attached**（依恋书评篇）而非 narcissist。**已裁决（2026-09-01）：删图 + 删正文引用行**（选 A 方案，文件名泄漏关键词对图片 SEO 是负面信号），目录现余 01/03 两张。
 **注②**：psychicoz 用 `love` 而非 `review`——`review` 卡片只列 Kasamba/Oranum/PG/PO 四家竞品且不含 PsychicOz，等于在自己的评测页推竞品；`love` 卡片含 PsychicOz 且对应其最强赛道。
-**注④**：same-type-partner **零联盟链接**。依据「合适性判断」三条（见 MEMORY.md）——原文「When You Need Help Seeing the Pattern」段是 **Oranum 且带 Oranum 专属政策描述**（live demo 阅读、24h 退款、首诊低于午餐价）。换品牌 = 替对方编造政策，违规；Oranum 又无 energy/关系模式落地页。三条全不成立 → 保持纯文本，不插软链、不挂卡片。联盟段改写为「持牌治疗师优先，通灵师只是镜子不是诊断」的诚实表述。
+**注④**：same-type-partner **零联盟链接**。依据「合适性判断」三条（见 MEMORY.md）——原文「When You Need Help Seeing the Pattern」段是 **Oranum 且带 Oranum 专属政策描述**（live demo 阅读、24h 退款、首诊低于午餐价）。换品牌 = 替对方编造政策，违规；Oranum 又无 energy/关系模式落地页。三条全不成立 → 保持纯文本，不插软链、不挂卡片。联盟段改写为「持牌治疗师优先，通灵师只是镜子不是诊断」的诚实表述。**已裁决（2026-09-01）：维持 0 链，改坏比不改更亏。**
 
 执行顺序原则：**最薄优先 + 同簇就近**。
 
@@ -180,11 +180,14 @@
 > 我只在做**联盟链接合规验证**时跑了全站 `grep`，不是做逐篇内容审计。原因：第 1、2 篇写完后发现 `{rel=...}` 属性语法在 .md 里不解析，要判断这是**我一个人的笔误**还是**全站通病**，只能全站扫。结论：全站通病，11 篇中招（其中 2 篇是我自己的，已修；9 篇属 Sage / Iris）。
 > 原则不变：**只改自己的 9 篇，别人的篇目只报告不动手**。下表是给全站修 bug 的清单，不是我的施工范围。
 
-### A. 全站 16 篇 `{rel=` 破损属性文本
+### A. 全站 `{rel=` 破损属性文本 — ✅ 已清零（2026-08-31 23:15）
 
 症状：页面显示 `{rel="sponsored nofollow noopener"}` 字面文本，且 **rel 一个都不生效**。
 根因：项目**未启用 MDX**（`astro.config.mjs` 仅 tailwind + sitemap），`{}` 属性语法在 .md 里不解析。
-> 2026-08-31 收尾复核：**从 11 篇更正为 16 篇**。前几轮台账漏了 5 篇（zodiac-sign-partner-needs / energy-body-101 / major-arcana-archetypes / major-vs-minor-arcana / science-of-intuition），本轮全站精确 `grep '{rel='` 补全。
+
+**修复记录（2026-08-31 收尾）**：用户批准后批量修复 **16 篇**（判定：15 处内容匹配直接修，1 处 `energy-body-101` 锚文本撒谎——URL 是通用 intro 页却自称"energy and spiritual healer space"，改为诚实锚文本"Oranum's live intro space"后修）。另 `venus-retrograde` 此前已修，不在本轮。**修法**：Python 正则 `[锚文本](url){rel="..." target="_blank"}` → `<a href="url" target="_blank" rel="sponsored nofollow noopener">锚文本</a>`，Kasamba 三个 url_id（102 love / 90 career / 103 综合）已对照 `docs/affiliate-links.md` 确认真实。
+
+原破损清单（全部已修）：
 
 | 篇目 | 行 | 归属 voice |
 |---|---|---|
@@ -202,11 +205,10 @@
 | `tarot/major-arcana-archetypes/index.md` | 157 | Sage |
 | `tarot/major-vs-minor-arcana/index.md` | 128 | Sage |
 | `astrology/astrology-101-sun-moon-rising/index.md` | 157 | Sage |
-| `astrology/venus-retrograde/index.md` | 116 | Iris |
 | `astrology/zodiac-sign-partner-needs/index.md` | 187 | Sage |
-| `energy/energy-body-101/index.md` | 135 | Sage |
+| `energy/energy-body-101/index.md` | 135 | Sage（锚文本同步修正） |
 
-修法（sed 可批量）：`[锚文本](url){rel="..." target="_blank"}` → `<a href="url" target="_blank" rel="sponsored nofollow noopener">锚文本</a>`
+验证：构建 69 页 9.78s 通过；dist 全站 `{rel=` = 0；16 篇渲染后 `rel="sponsored nofollow noopener"` 全部生效（kasamba/oranum 评测页含 disclosure 链各 1 条合规）。
 
 ### B. 未替换占位符
 

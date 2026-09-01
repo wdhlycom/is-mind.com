@@ -84,6 +84,6 @@ If you're weighing Oranum against a chat-based alternative, our [Kasamba review]
 
 ## A note before you start
 
-The link below is an affiliate link. If you sign up through [Oranum](https://wmorajmp.com/?pageName=home&siteId=oranum&prm[psid]=HuMaster&prm[pstool]=606_1&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"}, this site may earn a small commission — at no extra cost to you. That arrangement doesn't touch a word above. The caveats stay. The praise stays. You decide.
+The link below is an affiliate link. If you sign up through <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&prm[psid]=HuMaster&prm[pstool]=606_1&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum</a>, this site may earn a small commission — at no extra cost to you. That arrangement doesn't touch a word above. The caveats stay. The praise stays. You decide.
 
 Oranum is entertainment, for adults, and a mirror, not a map. Start with a free live room. Bring the question that's actually keeping you up. And notice who makes you breathe out.

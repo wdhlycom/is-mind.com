@@ -31,7 +31,7 @@ She pulled [three cards](/tarot/3-card-spreads/). Same deck. Same shuffle. Compl
 
 ---
 
-## 🌪️ TL;DR
+## TL;DR
 
 She asked the future. The future answered in fog.
 Scattered cards, each one pulling away.

@@ -13,6 +13,8 @@ pin_b: "Three free minutes isn't a reading. It's an audition — and you're the 
 
 > The scariest part of most psychic sites isn't the reading. It's the bill you didn't see coming.
 
+## TL;DR
+
 Here's the hard truth. PsychicOz's transparency is real, and it doesn't protect you from the thing that actually costs you. Upfront pricing stops a company from surprising you. It does nothing to stop you from surprising yourself — ten sessions that each felt cheap, none of which changed a single decision you made afterward. Low per-minute rates are the most effective pricing model in this industry precisely because they keep the total invisible. Three free minutes aren't a gift. They're a test of whether you can hang up.
 
 There's a particular kind of anxiety that has nothing to do with the cards. It's the bill. You've seen the stories: a low intro rate that quietly triples, a subscription you never meant to start, a balance that drains while you're still on the call.
@@ -168,7 +170,5 @@ Applications, identity checks, an interview, sometimes a test reading, plus ongo
 The links below are affiliate links. If you sign up through them, this site earns a small commission at no extra cost to you. That doesn't change a word above. The limits stay listed. The strengths stay listed. You decide.
 
 If the pricing model is the part that sold you, <a href="https://psychicoz.com/psychics/love-relationship-psychic-readers?a_aid=3b186vp94x73d&a_bid=5dd1df23" target="_blank" rel="sponsored nofollow noopener">the love and relationship readers on PsychicOz</a> are where most people start, and the rates are on the page before you commit to anything.
-
-<a href="https://psychicoz.com/psychics/love-relationship-psychic-readers?a_aid=3b186vp94x73d&a_bid=5dd1df23" target="_blank" rel="sponsored nofollow noopener"><img src="https://psychicoz.com/aimg/3b186vp94x73d/5dd1df23" alt="Love and Relationship Psychic Readings on PsychicOz" width="320" height="250" style="display:block; max-width:100%; height:auto; border:0;" loading="lazy" /></a><img src="https://psychicoz.com/aimg?a_aid=3b186vp94x73d&a_bid=5dd1df23" width="0" height="0" style="position:absolute;visibility:hidden;" border="0" alt="" />
 
 PsychicOz's whole promise is that the price shows up before the emotion does. That's true, and it's worth something. It just isn't the part that decides how this ends. Use the three free minutes like an audition. Bring one question. Set a number first. Then decide how far to go.

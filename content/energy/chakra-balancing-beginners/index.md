@@ -31,7 +31,7 @@ Her throat chakra had been screaming for months. She'd been swallowing her truth
 
 ![](chakra-balancing-beginners-en-01_cleanup.png)
 
-## 🌪️ TL;DR
+## TL;DR
 
 Her hand went to her throat.
 The words she'd swallowed for years

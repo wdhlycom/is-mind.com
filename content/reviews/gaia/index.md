@@ -17,7 +17,9 @@ Gaia is that room — if you're comfortable with how wide it is.
 
 Here's what it is, what it costs, and where you should keep your eyes open.
 
-> Here's the hard truth. Paying for Gaia is not the same thing as having a practice. The platform is very good at selling the feeling of having one — 8,000 titles, a teacher roster that reads like a who's who, zero ads anywhere. All of that is real. So is the other half: the shelf that holds your morning yoga also holds Atlantis and secret space programs, and nobody at Gaia is going to sort that out for you. The subscription is the easy part. Discernment is the part you bring yourself.
+## TL;DR
+
+Here's the hard truth. Paying for Gaia is not the same thing as having a practice. The platform is very good at selling the feeling of having one — 8,000 titles, a teacher roster that reads like a who's who, zero ads anywhere. All of that is real. So is the other half: the shelf that holds your morning yoga also holds Atlantis and secret space programs, and nobody at Gaia is going to sort that out for you. The subscription is the easy part. Discernment is the part you bring yourself.
 
 ## What Gaia is
 

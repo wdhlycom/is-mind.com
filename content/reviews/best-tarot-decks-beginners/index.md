@@ -20,7 +20,9 @@ pin_b: "You don't need the most beautiful deck. You need the most readable one."
 
 > The right first deck is the one you can't stop picking up.
 
-> **Here's the hard truth.** Most people who fail at tarot didn't fail at tarot. They bought a deck that was beautiful to look at and impossible to learn from, confused their own confusion with a lack of talent, and quit. The deck wasn't the problem — it was the first domino. Pick one you can actually read, and everything else gets easier. Pick the pretty one that means nothing to you, and you'll be back in the drawer in a month, blaming yourself for something that was never your fault.
+## TL;DR
+
+**Here's the hard truth.** Most people who fail at tarot didn't fail at tarot. They bought a deck that was beautiful to look at and impossible to learn from, confused their own confusion with a lack of talent, and quit. The deck wasn't the problem — it was the first domino. Pick one you can actually read, and everything else gets easier. Pick the pretty one that means nothing to you, and you'll be back in the drawer in a month, blaming yourself for something that was never your fault.
 
 ---
 
@@ -56,6 +58,8 @@ The original, published in 1909, and still the single best learning tool in exis
 
 **Where to find it:** [See current price on Amazon](https://www.amazon.com/s?k=rider+waite+smith+tarot) — it regularly dips below $25 during sales.
 
+![Rider-Waite-Smith Tarot deck (US Games)](rider-waite-smith.jpg)
+
 ---
 
 ### 2. The Modern Witch Tarot (Lisa Sterle) — The Inclusive Upgrade
@@ -68,6 +72,8 @@ Same system, completely modern imagery: diverse figures, current fashion, real-l
 **Verdict:** ★★★★½ — the best choice if you want to learn on a deck that looks like your life.
 
 **Where to find it:** [Check it on Amazon](https://www.amazon.com/s?k=modern+witch+tarot) or [browse the artist's shop on Etsy](https://www.etsy.com/search?q=modern+witch+tarot).
+
+![The Modern Witch Tarot by Lisa Sterle](modern-witch.jpg)
 
 ---
 
@@ -82,6 +88,8 @@ A wildly popular modern deck with soft, luminous art and a companion guidebook t
 
 **Where to find it:** [See it on Amazon](https://www.amazon.com/s?k=light+seer+tarot) — the companion guidebook is worth buying alongside the deck.
 
+![The Light Seer's Tarot by Chris-Anne](light-seers.jpg)
+
 ---
 
 ### 4. The Wild Unknown (Kim Krans) — The Minimalist Icon
@@ -94,6 +102,8 @@ Hand-drawn, monochrome-ish, deeply atmospheric — one of the most beautiful dec
 **Verdict:** ★★★ — buy it as your second deck, when you already know the meanings and want a deck that speaks in whispers.
 
 **Where to find it:** [Check it on Amazon](https://www.amazon.com/s?k=wild+unknown+tarot) or on the artist's site.
+
+![The Wild Unknown Tarot by Kim Krans](wild-unknown.jpg)
 
 ---
 
@@ -108,6 +118,8 @@ A sleek, gold-on-black deck that *keeps* the RWS meanings while stripping the im
 
 **Where to find it:** [See it on Amazon](https://www.amazon.com/s?k=golden+thread+tarot) — the companion app is free, so you're just paying for the cards.
 
+![Golden Thread Tarot by Tina Gong / Labyrinthos](golden-thread.jpg)
+
 ---
 
 ### 6. Everyday Witch Tarot (Deborah Blake) — The Budget Friend
@@ -120,6 +132,8 @@ Warm, approachable art with clear, simple scenes that stay close to RWS, plus a 
 **Verdict:** ★★★★ — the best under-$25 pick besides the original, especially if the RWS art style feels dated to you.
 
 **Where to find it:** [Check it on Amazon](https://www.amazon.com/s?k=everyday+witch+tarot) — frequently on sale for under $20.
+
+![Everyday Witch Tarot by Deborah Blake](everyday-witch.jpg)
 
 ---
 

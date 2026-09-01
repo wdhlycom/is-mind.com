@@ -32,7 +32,7 @@ She was simultaneously relieved and annoyed — relieved that the answer was sim
 
 ![](day12-cleanse-tarot-deck-02.png)
 
-## 🌪️ TL;DR
+## TL;DR
 
 Seventy dollars of sage and selenite.
 A moon-carved box she didn't need.

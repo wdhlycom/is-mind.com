@@ -1,0 +1,106 @@
+{
+  "_说明": "工作台的手工维护层（台账状态/待办/风险/日志）。合规判据一律来自 scripts/audit.py 的 audit-report.json，本文件不定义合规规则。",
+  "project": {
+    "站点": "is-mind.com",
+    "技术栈": "Astro 5",
+    "唯一目录": "C:/Users/Holive Hu/mind-astro",
+    "内容规模": "43 篇文章 + 6 政策页 + 3 互动工具",
+    "部署": "Git push → Vercel",
+    "核心目标": "提升自然搜索排名",
+    "SEO基线": "曝光 469 / 点击 1 / CTR 0.2% / 平均排名 69 / 收录 194（2026-08-24 GSC）",
+    "部署状态": "✅ 已 commit + push（2026-09-01）"
+  },
+  "ledgers": [
+    {"id": "L01", "名": "SEO 诊断与基线", "状态": "done", "产出": "基线数据 + 5 层优化方案", "文件": "ledgers/L01-SEO诊断.md", "更新": "2026-08-30"},
+    {"id": "L02", "名": "内容重复治理", "状态": "done", "产出": "3 组合并 + 301 重定向", "文件": "ledgers/L02-内容重复治理.md", "更新": "2026-08-30"},
+    {"id": "L03", "名": "Tags 受控词表", "状态": "done", "产出": "42 碎片 → 23 受控词，越界 0", "文件": "ledgers/L03-Tags受控词.md", "更新": "2026-08-30"},
+    {"id": "L04", "名": "内链与集群架构", "状态": "done", "产出": "9 簇 / 9 支柱；内链不足 34 → 0", "文件": "ledgers/L04-内链与集群.md", "更新": "2026-08-31"},
+    {"id": "L05", "名": "E-E-A-T 基建", "状态": "done", "产出": "政策页 + disclaimer + Article schema + bio box（联系方式已改 Instagram）", "文件": "ledgers/L05-EEAT基建.md", "更新": "2026-08-31"},
+    {"id": "L06", "名": "作者署名分配", "状态": "done", "产出": "43 篇 100% 挂 5 笔名 + persona 口径 + X→Instagram", "文件": "ledgers/L06-作者署名分配.md", "更新": "2026-08-31"},
+    {"id": "L07", "名": "内容加厚", "状态": "done", "产出": "22 篇 <1200 词 → 0 篇", "文件": "ledgers/L07-内容加厚.md", "更新": "2026-08-31"},
+    {"id": "L08", "名": "URL 与重定向", "状态": "done", "产出": "slug 规范化 + 4 条 301", "文件": "ledgers/L08-URL与重定向.md", "更新": "2026-08-30"},
+    {"id": "L09", "名": "Astro 迁移", "状态": "done", "产出": "Hugo → Astro 5，69 页构建通过", "文件": "ledgers/L09-Astro迁移.md", "更新": "2026-08-30"},
+    {"id": "L10", "名": "构建与部署", "状态": "warn", "产出": "本地构建通过；改动未 push", "文件": "ledgers/L10-构建与部署.md", "更新": "2026-08-31"},
+    {"id": "L11", "名": "Iris Calder 5 篇改写", "状态": "done", "产出": "5/5 完成，+1628 词，19 内链", "文件": "ledgers/L11-Iris5篇改写台账.md", "更新": "2026-08-31"},
+    {"id": "L12", "名": "Wren Hollow 4 篇改写", "状态": "done", "产出": "4/4 完成（3 动手 + 1 仅验收）+ 第二轮补 4 条联盟链", "文件": "ledgers/L12-Wren4篇改写台账.md", "更新": "2026-08-31"},
+    {"id": "L13", "名": "Luna Vale 9 篇改写", "状态": "done", "产出": "9/9 完成，6 条联盟链（3 篇评估后不插）", "文件": "ledgers/L13-Luna9篇改写台账.md", "更新": "2026-08-31"},
+    {"id": "L14", "名": "Sage Mercer 16 篇改写", "状态": "done", "产出": "16/16 完成 + 联盟卡片（affiliateTopic）架构落地", "文件": "ledgers/L14-Sage16篇改写台账.md", "更新": "2026-08-31"},
+    {"id": "L15", "名": "Seraphina Cole 9 篇改写", "状态": "done", "产出": "9/9 完成（3 篇缺图待补）", "文件": "ledgers/L15-Seraphina9篇改写台账.md", "更新": "2026-08-31"}
+  ],
+  "issues": [
+    {"p": "P2", "标题": "Storyteller 仅 4 篇，作者分布不均", "详情": "Sage 16 / Seraphina 9 / Luna 9 / Iris 5 / Wren 4。Wren 占比最低。", "建议": "后续多写塔罗牌故事 / 梦境叙事补齐。", "台账": "L06"},
+    {"p": "P2", "标题": "GSC 效果尚未复测", "详情": "基线采集于 2026-08-24，此后的内链 / 加厚 / 结构化改动尚未有对应的 GSC 数据回收。", "建议": "push 后 2–4 周拉一次 GSC 对比（曝光/排名/收录），回填 L01。", "台账": "L01"}
+  ],
+  "resolved": [
+    {"日": "2026-09-01", "项": "TL;DR 小标题全站统一", "详情": "实际复核：39 篇已有 `## TL;DR` 小标题 + 4 篇 Storyteller（Wren）豁免 = 43 全清。此前「21/43」为过期审计数据。"},
+    {"日": "2026-09-01", "项": "AI 禁用词 5 处入白名单", "详情": "crucially→crucial（astrology-101 / carl-jung-shadow）、landscape（energy-body-101 / better-tarot-questions）、research suggests（science-of-intuition）5 处自然语境，用户裁决豁免，audit.py 已加 BANNED_WHITELIST。"},
+    {"日": "2026-09-01", "项": "联盟 2 处缺口维持现状", "详情": "thinking-fast-slow（9 topic 无一贴合，保 2 软链不挂卡）+ same-type-partner（Oranum 专属政策，换品牌=编造，维持 0 链）——均选 A 维持，改坏比不改更亏。"},
+    {"日": "2026-09-01", "项": "narcissist-signs 借图删除", "详情": "删 `2026-07-02-attached-01.png`（attached 篇图跨篇复用，文件名泄漏）+ 正文删对应 `![](...)` 行，目录余 01/03 两张。"},
+    {"日": "2026-09-01", "项": "配图从待办降级", "详情": "评测文（kasamba/oranum/gaia/psychicoz/best-tarot-decks）+ 支柱页无图，用户表态「不用管」，配图不再作为硬性红灯。"},
+    {"日": "2026-08-31", "项": "正文重复 H1", "详情": "shadow-work-guide 正文含 markdown H1 与模板 H1 重复 → 已删；全站扫描现为 0（含 12-jungian-archetypes-intro 同问题也已消失）"},
+    {"日": "2026-08-31", "项": "内链不足 34 篇 → 0", "详情": "5 位作者 43 篇逐篇补链，全部 ≥2（多数 3–6 条）"},
+    {"日": "2026-08-31", "项": "薄文 22 篇 → 0", "详情": "全部 ≥1200 词，无 <800 词"},
+    {"日": "2026-08-31", "项": "作者联系方式 X → Instagram", "详情": "editorial-team.md + authors.ts + EditorialTeam.astro 三处同步"},
+    {"日": "2026-08-31", "项": "联盟引擎落地", "详情": "affiliates.ts 单一来源 + affiliateTopic 文末卡片 + 正文软链共存"}
+  ],
+  "changelog": [
+    {"日": "2026-08-24", "项": "SEO 诊断 + 内链 18 处 + tags 42→23 + about 合并 + 3 组合并 + 301", "相关": "L01/L02/L03/L04/L08"},
+    {"日": "2026-08-25", "项": "E-E-A-T 基建 + Major Arcana 区分定位 + dream-meanings slug + attachment-styles 支柱 + 加厚 4 篇", "相关": "L05/L04/L07/L08"},
+    {"日": "2026-08-29", "项": "Astro 迁移完成（真源切换 mind-astro）+ 43 篇署名分配 + 批次 0/1", "相关": "L09/L06"},
+    {"日": "2026-08-30", "项": "契约 v1.0 + 总台账 + L01–L10 + 审计脚本 audit.py", "相关": "全部"},
+    {"日": "2026-08-30", "项": "联盟引擎（affiliates.ts / AffiliateBox）+ 官方 sitemap", "相关": "L10"},
+    {"日": "2026-08-31", "项": "43 篇逐篇改写完成（Sage16 / Seraphina9 / Luna9 / Iris5 / Wren4）+ 联盟全站补齐 + 联系方式改 Instagram + 重复 H1 修复", "相关": "L04/L05/L06/L07/L11–L15"},
+    {"日": "2026-09-01", "项": "新增 L11–L15 五份改写台账 + 工作台 v2（build_dashboard.py 可重生成）", "相关": "L11–L15"},
+    {"日": "2026-09-01", "项": "禁用词白名单 + TL;DR 豁免 + 联盟 2 缺口裁决 + narcissist 借图删除 + commit/push", "相关": "L07/L15/L10"}
+  ],
+  "contract": {
+    "tags": [
+      ["Tarot", "tarot-for-beginners, tarot-card-meanings, major-arcana, tarot-spreads, tarot-practice, love-tarot, tarot-deck-reviews"],
+      ["Psych", "shadow-work, carl-jung, attachment, narcissism, gaslighting, relationship-patterns, book-insights"],
+      ["Energy", "energy-healing, intuition"],
+      ["Astrology", "astrology-basics, zodiac-compatibility, venus-retrograde, planetary-transits, dream-interpretation, angel-numbers"],
+      ["Reviews", "psychic-site-reviews"]
+    ],
+    "authors": [
+      {"笔名": "Luna Vale", "persona": "Intuitive", "声音": "诗意、象征、身体直觉", "锁定": "moon energy / chakra sensing / card symbolism / intuition practice", "联系": "@ismindLunaVale"},
+      {"笔名": "Sage Mercer", "persona": "Scholar", "声音": "冷静、心理学根基、讲机制", "锁定": "tarot/astrology history / psychological mechanism / why it works", "联系": "@ismindSageMercer"},
+      {"笔名": "Iris Calder", "persona": "Warm Narrator", "声音": "疗愈、共情、陪伴", "锁定": "shadow work (emotional) / grief / self-compassion / soothing tarot", "联系": "@ismindiriscalder"},
+      {"笔名": "Wren Hollow", "persona": "Storyteller", "声音": "场景叙事、神话原型", "锁定": "tarot card stories / myth-archetype retellings / dream narratives", "联系": "@ismindwrenhollow"},
+      {"笔名": "Seraphina Cole", "persona": "Sharp Analyst", "声音": "锐利、戳破自欺", "锁定": "relationship dynamics / self-deception / cognitive bias / gaslighting / NPD", "联系": "@ismindSeraphinaCole"}
+    ],
+    "redlines": [
+      "红线 1｜未来向（占星/塔罗预测）→ 只能 Warm Narrator、Intuitive",
+      "红线 2｜心理/过去向（shadow work、relationships、psychology）→ 只能 Sharp Analyst、Scholar",
+      "严禁盗用真实人物（尤其联盟网站占卜师）的照片与姓名；bio 不得虚构临床/学术资质",
+      "编辑政策页必须保留「AI 辅助 + 人工审校」透明说明"
+    ],
+    "pillars": [
+      ["塔罗入门", "/tarot/tarot-for-beginners/"],
+      ["大阿卡纳与原型", "/tarot/fools-journey-complete-guide/"],
+      ["直觉与身体信号", "/tarot/science-of-intuition/"],
+      ["阴影工作与荣格", "/psych/shadow-work/shadow-work-guide/"],
+      ["关系与依恋", "/psych/relationship/attachment-styles/"],
+      ["能量与脉轮", "/energy/energy-body-101/"],
+      ["占星基础与周期", "/astrology/astrology-101-sun-moon-rising/"],
+      ["梦境", "/astrology/dream-meanings/"],
+      ["工具评测", "/reviews/best-tarot-decks-beginners/"]
+    ],
+    "thresholds": [
+      ["字数", "≥1200 词（<800 严重偏薄）"],
+      ["内链", "2–4 条同簇 + 1 条支柱"],
+      ["TL;DR", "有（Storyteller 可省，用场景 hook）"],
+      ["FAQ", "有（3–5 组，吃 PAA）"],
+      ["署名", "5 笔名之一"],
+      ["tags", "2–4 个受控词，全小写"],
+      ["联盟位置", ">60% 文章位置；前 400 词零外链；rel=sponsored nofollow noopener"],
+      ["AI 禁用词", "0（5 处已裁决豁免待入白名单）"]
+    ],
+    "forbidden": [
+      "禁止 git rm 删 content 子目录（safe-delete 会级联吞整棵树）—— 删单文件用 rm -f 绝对路径，删目录用 mv",
+      "禁止在 mind-astro 之外改内容（Desktop/mind 是废弃的旧 Hugo 目录）",
+      "禁止手改模板已渲染的 disclaimer / 作者 bio",
+      "大改后立即 commit 做 checkpoint，用户确认后再 push",
+      "构建前先 mv node_modules/.vite ./_vite-cache-stale/（否则 safe-delete 中断构建）"
+    ]
+  }
+}

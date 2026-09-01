@@ -19,7 +19,9 @@ pin_b: "What if the problem isn't who you're choosing — but what feels familia
 
 > You're not attracting the same person. You're responding to the same wound.
 
-> **Here's the hard truth.** You don't have a type. You have a wound that keeps hiring the same face to press on it. Every time you say "I keep attracting emotionally unavailable people," you're telling yourself a story that lets you stay passive — as if partners fall out of the sky and you just happen to catch them. They don't. You reach for them, over and over, because on some level they feel like home. The pattern isn't who keeps finding you. It's what keeps feeling familiar. And that part is yours to change.
+## TL;DR
+
+**Here's the hard truth.** You don't have a type. You have a wound that keeps hiring the same face to press on it. Every time you say "I keep attracting emotionally unavailable people," you're telling yourself a story that lets you stay passive — as if partners fall out of the sky and you just happen to catch them. They don't. You reach for them, over and over, because on some level they feel like home. The pattern isn't who keeps finding you. It's what keeps feeling familiar. And that part is yours to change.
 
 ---
 

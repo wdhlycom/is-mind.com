@@ -120,7 +120,7 @@ If you want a quick read on your own dominant pattern, don't take a quiz — wat
 
 The point of this isn't to label yourself. It's to widen the territory you can move in. A person with strong anxious energy who learns even a little avoidant self-restraint becomes a more useful partner. A person with strong avoidant energy who learns even a little anxious reach-out becomes easier to be with in a crisis.
 
-If you'd like a sounding board for what you're noticing in yourself, the [Oranum intro and discovery space](https://wmorajmp.com/?pageName=intro&siteId=oranum&subSiteId=about&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live advisors who work in self-reflection and relationship patterns. Use them as a mirror, not a verdict.
+If you'd like a sounding board for what you're noticing in yourself, the <a href="https://wmorajmp.com/?pageName=intro&siteId=oranum&subSiteId=about&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum intro and discovery space</a> collects live advisors who work in self-reflection and relationship patterns. Use them as a mirror, not a verdict.
 
 ---
 

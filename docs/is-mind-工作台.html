@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>is-mind 项目工作台</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--purple:#6d4aa8;--purple-l:#f3edfb;--gold:#b8941f;--gold-l:#fdf6e0;
+--ink:#1a1626;--ink2:#4a4358;--muted:#7d7589;--line:#e8e3f0;
+--ok:#2e8b57;--ok-l:#e6f5ec;--warn:#c8860d;--warn-l:#fdf4e0;--bad:#c0392b;--bad-l:#fdecea;--bg:#faf8fd}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:18px 14px 70px}
+header{padding:6px 0 16px;border-bottom:2px solid var(--line);margin-bottom:18px}
+h1{font-size:24px;font-weight:700;letter-spacing:-.3px}
+.sub{color:var(--muted);font-size:13px;margin-top:4px}
+.badge{display:inline-block;background:var(--purple-l);color:var(--purple);font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;margin-left:6px}
+.badge.g{background:var(--gold-l);color:var(--gold)}
+.badge.r{background:var(--bad-l);color:var(--bad)}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 20px;border-bottom:1px solid var(--line);padding-bottom:10px}
+nav button{border:1px solid var(--line);background:#fff;color:var(--ink2);font-size:13px;font-weight:600;
+padding:7px 14px;border-radius:20px;cursor:pointer;font-family:inherit}
+nav button:hover{border-color:var(--purple);color:var(--purple)}
+nav button.on{background:var(--purple);border-color:var(--purple);color:#fff}
+section{display:none}section.on{display:block}
+h2{font-size:17px;font-weight:700;margin:0 0 12px}
+h3{font-size:14px;font-weight:700;margin:22px 0 10px;color:var(--purple)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.grid{display:grid;gap:12px}
+@media(min-width:760px){.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:repeat(2,1fr)}}
+.metric{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.metric .v{font-size:26px;font-weight:700;letter-spacing:-.5px}
+.metric .l{font-size:11.5px;color:var(--muted);margin-top:2px}
+.metric .t{font-size:11px;font-weight:700;margin-top:7px;display:inline-block;padding:2px 8px;border-radius:6px}
+.t-ok{background:var(--ok-l);color:var(--ok)}.t-warn{background:var(--warn-l);color:var(--warn)}
+.t-bad{background:var(--bad-l);color:var(--bad)}.t-info{background:var(--purple-l);color:var(--purple)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:8px 8px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:11.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.3px;
+position:sticky;top:0;background:#fff;cursor:pointer;user-select:none;white-space:nowrap}
+th:hover{color:var(--purple)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.row:hover{background:#fbf9fe}
+.tw{max-height:none}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px;white-space:nowrap}
+.p-ok{background:var(--ok-l);color:var(--ok)}.p-warn{background:var(--warn-l);color:var(--warn)}
+.p-bad{background:var(--bad-l);color:var(--bad)}.p-info{background:var(--purple-l);color:var(--purple)}
+.p-mute{background:#f0eef4;color:var(--muted)}
+.tag{display:inline-block;font-size:10.5px;background:var(--purple-l);color:var(--purple);padding:1px 6px;border-radius:5px;margin:1px 2px 1px 0}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+input[type=search],select{font-family:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--line);
+border-radius:9px;background:#fff;color:var(--ink)}
+input[type=search]{min-width:220px;flex:1}
+.hint{font-size:12px;color:var(--muted);margin-top:2px}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:0;margin-bottom:10px;overflow:hidden}
+details summary{padding:12px 14px;cursor:pointer;font-weight:600;font-size:14px;list-style:none;display:flex;gap:8px;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details .body{padding:0 14px 14px;font-size:13px;color:var(--ink2);border-top:1px solid var(--line);padding-top:12px;margin-top:0}
+.bar{height:7px;background:#f0eef4;border-radius:4px;overflow:hidden;margin-top:5px}
+.bar i{display:block;height:100%;background:var(--purple);border-radius:4px}
+.bar i.g{background:var(--gold)}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:6px 10px;font-size:13px}
+.kv b{color:var(--muted);font-weight:600}
+code{background:#f5f2fa;padding:1px 5px;border-radius:5px;font-size:12px;
+font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+ul{padding-left:18px}li{margin:3px 0;font-size:13px}
+.small{font-size:12px;color:var(--muted)}
+.foot{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+a{color:var(--purple)}
+.sec-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>is-mind 项目工作台<span class="badge">43 篇</span><span class="badge g" id="genBadge"></span></h1>
+  <div class="sub" id="subline"></div>
+</header>
+
+<nav id="nav">
+  <button data-s="ov" class="on">总览</button>
+  <button data-s="arts">文章全表</button>
+  <button data-s="led">子台账 15</button>
+  <button data-s="iss">待办与风险</button>
+  <button data-s="ct">契约速查</button>
+  <button data-s="log">变更日志</button>
+</nav>
+
+<section id="ov" class="on">
+  <div class="grid g4" id="kpis"></div>
+  <h3>待办优先级</h3>
+  <div id="ovIssues"></div>
+  <h3>作者分布与进度</h3>
+  <div class="card" id="authors"></div>
+  <h3>板块分布</h3>
+  <div class="card" id="sections"></div>
+  <h3>集群支柱页（9/9）</h3>
+  <div class="card" id="pillars"></div>
+</section>
+
+<section id="arts">
+  <div class="tools">
+    <input type="search" id="q" placeholder="搜索标题 / slug / tag…">
+    <select id="fa"><option value="">全部作者</option></select>
+    <select id="fs"><option value="">全部板块</option></select>
+    <select id="ft">
+      <option value="">全部状态</option>
+      <option value="bad">有问题</option>
+      <option value="tldr-soft">TL;DR 缺小标题</option>
+      <option value="banned">AI 禁用词</option>
+      <option value="noimg">无配图</option>
+      <option value="noaff">无联盟</option>
+      <option value="nofaq">无 FAQ</option>
+    </select>
+    <span class="hint" id="cnt"></span>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <table>
+      <thead><tr>
+        <th data-k="t">标题</th><th data-k="a">作者</th><th data-k="sec">板块</th>
+        <th data-k="w">词数</th><th data-k="l">内链</th><th data-k="tldr">TL;DR</th>
+        <th data-k="faq">FAQ</th><th data-k="aff">联盟</th><th data-k="imgs">图</th>
+        <th data-k="banned">禁用词</th><th data-k="upd">更新</th>
+      </tr></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+  <div class="hint" style="margin-top:8px">点击表头排序；点击任意行展开细节（tags / 路径 / 联盟 topic）。</div>
+</section>
+
+<section id="led">
+  <div class="card" style="padding:0;overflow:hidden">
+    <table>
+      <thead><tr><th style="width:60px">ID</th><th>子任务</th><th style="width:80px">状态</th><th>关键产出</th><th style="width:220px">台账文件</th><th style="width:100px">更新</th></tr></thead>
+      <tbody id="ltbody"></tbody>
+    </table>
+  </div>
+  <h3>已完成（近期修复登记）</h3>
+  <div id="resolved"></div>
+</section>
+
+<section id="iss">
+  <div id="issues"></div>
+</section>
+
+<section id="ct">
+  <h3>受控词表（23 个，禁止自创）</h3>
+  <div class="card" id="ctTags"></div>
+  <h3>作者 ↔ Persona（5 笔名）</h3>
+  <div class="card" id="ctAuthors"></div>
+  <h3>红线</h3>
+  <div class="card"><ul id="ctRed"></ul></div>
+  <h3>支柱页（9 簇）</h3>
+  <div class="card" id="ctPillars"></div>
+  <h3>质量阈值</h3>
+  <div class="card" id="ctTh"></div>
+  <h3>禁止操作（踩过的雷）</h3>
+  <div class="card"><ul id="ctForb"></ul></div>
+</section>
+
+<section id="log">
+  <div class="card" style="padding:0;overflow:hidden">
+    <table>
+      <thead><tr><th style="width:110px">日期</th><th>变更</th><th style="width:170px">相关台账</th></tr></thead>
+      <tbody id="logBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<div class="foot">
+  合规判据唯一来源：<code>scripts/audit.py</code> → <code>docs/audit-report.json</code>；
+  手工维护层：<code>docs/dashboard-meta.json</code>；
+  重生成：<code>python scripts/build_dashboard.py</code>（审计后重跑即可刷新本页）。
+</div>
+</div>
+
+<script>
+const D = {"gen": "2026-09-01 18:10", "audit": {"total": 43, "authors": {"Sage Mercer": 16, "Wren Hollow": 4, "Luna Vale": 9, "Iris Calder": 5, "Seraphina Cole": 9}, "tag_out": 0, "tag_kinds": 23, "thin": 0, "thin800": 0, "lowlink": 0, "banned": [], "pillars": {"tarot/tarot-for-beginners": "OK", "tarot/fools-journey-complete-guide": "OK", "tarot/science-of-intuition": "OK", "Psych/Shadow Work/shadow-work-guide": "OK", "Psych/Relationship/attachment-styles": "OK", "energy/energy-body-101": "OK", "astrology/astrology-101-sun-moon-rising": "OK", "astrology/dream-meanings": "OK", "reviews/best-tarot-decks-beginners": "OK"}}, "arts": [{"t": "Astrology 101: Sun, Moon & Rising Signs Explained", "a": "Sage Mercer", "sec": "astrology", "slug": "/astrology/astrology-101-sun-moon-rising/", "w": 2159, "l": 7, "tags": ["astrology basics"], "tldr": "ok", "faq": false, "aff": 1, "topic": "", "imgs": 0, "banned": ["crucial"], "upd": "2026-08-31", "p": "astrology/astrology-101-sun-moon-rising/index.md"}, {"t": "How Venus Retrograde Affects Your Love Life", "a": "Iris Calder", "sec": "astrology", "slug": "/astrology/venus-retrograde/", "w": 1506, "l": 3, "tags": ["venus retrograde"], "tldr": "ok", "faq": true, "aff": 1, "topic": "", "imgs": 2, "banned": [], "upd": "2026-09-01", "p": "astrology/venus-retrograde/index.md"}, {"t": "Planetary Hours and Magical Timing", "a": "Luna Vale", "sec": "astrology", "slug": "/astrology/planetary-hours-magical-timing/", "w": 1763, "l": 4, "tags": ["planetary transits"], "tldr": "ok", "faq": false, "aff": 0, "topic": "", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "astrology/planetary-hours-magical-timing/index.md"}, {"t": "What Your Dreams Mean: Decoding Recurring Dreams & Common Symbols", "a": "Wren Hollow", "sec": "astrology", "slug": "/astrology/dream-meanings/", "w": 2480, "l": 3, "tags": ["dream interpretation"], "tldr": "exempt", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "astrology/dream-meanings/index.md"}, {"t": "What Your Zodiac Sign Needs in a Partner", "a": "Sage Mercer", "sec": "astrology", "slug": "/astrology/zodiac-sign-partner-needs/", "w": 1661, "l": 3, "tags": ["zodiac compatibility"], "tldr": "ok", "faq": false, "aff": 1, "topic": "love", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "astrology/zodiac-sign-partner-needs/index.md"}, {"t": "Why You Keep Seeing Repeating Numbers", "a": "Luna Vale", "sec": "astrology", "slug": "/astrology/repeating-numbers/", "w": 1907, "l": 4, "tags": ["angel numbers"], "tldr": "ok", "faq": false, "aff": 0, "topic": "", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "astrology/Repeating-Numbers/index.md"}, {"t": "3 Morning Rituals to Strengthen Your Intuition", "a": "Luna Vale", "sec": "energy", "slug": "/energy/morning-rituals/", "w": 1428, "l": 4, "tags": ["intuition"], "tldr": "ok", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "energy/morning-rituals/index.md"}, {"t": "Chakra Balancing Techniques for Beginners", "a": "Luna Vale", "sec": "energy", "slug": "/energy/chakra-balancing-beginners/", "w": 1873, "l": 3, "tags": ["energy healing"], "tldr": "ok", "faq": false, "aff": 0, "topic": "", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "energy/chakra-balancing-beginners/index.md"}, {"t": "Why You Keep Attracting the Same Type of Partner", "a": "Seraphina Cole", "sec": "energy", "slug": "/energy/same-type-partner/", "w": 1485, "l": 3, "tags": ["relationship patterns"], "tldr": "ok", "faq": false, "aff": 0, "topic": "", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "energy/same-type-partner/index.md"}, {"t": "Your Energy Body 101: A Beginner's Map of the Subtle Energy System", "a": "Sage Mercer", "sec": "energy", "slug": "/energy/energy-body-101/", "w": 1728, "l": 3, "tags": ["energy healing"], "tldr": "ok", "faq": false, "aff": 1, "topic": "healers", "imgs": 0, "banned": ["landscape"], "upd": "2026-08-31", "p": "energy/energy-body-101/index.md"}, {"t": "12 Classic Jungian Archetypes: A Simple Introduction", "a": "Sage Mercer", "sec": "psych", "slug": "/psych/shadow-work/12-jungian-archetypes-intro/", "w": 2574, "l": 8, "tags": ["carl jung"], "tldr": "ok", "faq": true, "aff": 1, "topic": "", "imgs": 5, "banned": [], "upd": "2026-08-31", "p": "Psych/Shadow Work/12-jungian-archetypes-intro/index.md"}, {"t": "5 Shadow Work Prompts for Healing Childhood Trauma", "a": "Iris Calder", "sec": "psych", "slug": "/psych/shadow-work/childhood-trauma/", "w": 1281, "l": 3, "tags": ["shadow work"], "tldr": "ok", "faq": true, "aff": 0, "topic": "", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "Psych/Shadow Work/childhood-trauma/index.md"}, {"t": "7 Signs of a Narcissist That Go Beyond 'Arrogance'", "a": "Seraphina Cole", "sec": "psych", "slug": "/psych/relationship/narcissist-signs/", "w": 1893, "l": 6, "tags": ["narcissism"], "tldr": "ok", "faq": true, "aff": 2, "topic": "love", "imgs": 2, "banned": [], "upd": "2026-09-01", "p": "Psych/Relationship/narcissist-signs/index.md"}, {"t": "Anxious Attachment: Why You Overthink Every Text and How to Feel More Secure", "a": "Sage Mercer", "sec": "psych", "slug": "/psych/relationship/anxious-attachment/", "w": 1942, "l": 10, "tags": ["attachment"], "tldr": "ok", "faq": true, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "Psych/Relationship/anxious-attachment/index.md"}, {"t": "Attachment Styles: The 4 Ways We Love (and Why They Explain Everything)", "a": "Sage Mercer", "sec": "psych", "slug": "/psych/relationship/attachment-styles/", "w": 2458, "l": 11, "tags": ["attachment"], "tldr": "ok", "faq": true, "aff": 1, "topic": "", "imgs": 0, "banned": [], "upd": "2026-08-31", "p": "Psych/Relationship/attachment-styles/index.md"}, {"t": "Carl Jung's Shadow: The Psychology Concept That Explains Your Darkest Reactions", "a": "Sage Mercer", "sec": "psych", "slug": "/psych/shadow-work/carl-jung-shadow/", "w": 1954, "l": 14, "tags": ["carl jung"], "tldr": "ok", "faq": true, "aff": 1, "topic": "", "imgs": 3, "banned": ["crucial"], "upd": "2026-08-31", "p": "Psych/Shadow Work/carl-jung-shadow/index.md"}, {"t": "Gaslighting: 12 Phrases That Reveal Someone Is Rewriting Your Reality", "a": "Seraphina Cole", "sec": "psych", "slug": "/psych/relationship/gaslighting/", "w": 1692, "l": 4, "tags": ["gaslighting"], "tldr": "ok", "faq": true, "aff": 2, "topic": "love", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "Psych/Relationship/gaslighting/index.md"}, {"t": "Shadow Work for Beginners: A Complete Guide with 10 Self-Reflection Questions", "a": "Iris Calder", "sec": "psych", "slug": "/psych/shadow-work/shadow-work-guide/", "w": 1554, "l": 6, "tags": ["shadow work"], "tldr": "ok", "faq": false, "aff": 0, "topic": "", "imgs": 5, "banned": [], "upd": "2026-08-31", "p": "Psych/Shadow Work/shadow-work-guide/index.md"}, {"t": "The Adlerian Idea That Cuts Your Emotional Baggage in Half", "a": "Sage Mercer", "sec": "psych", "slug": "/psych/book-insights/courage-to-be-disliked/", "w": 1958, "l": 4, "tags": ["book insights"], "tldr": "ok", "faq": true, "aff": 1, "topic": "career", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "Psych/Book Insights/courage-to-be-disliked/index.md"}, {"t": "When Your Partner Keeps Pulling Away: The Psychology Behind Avoidant Attachment", "a": "Seraphina Cole", "sec": "psych", "slug": "/psych/relationship/avoidant-partner/", "w": 1634, "l": 6, "tags": ["attachment"], "tldr": "ok", "faq": true, "aff": 1, "topic": "love", "imgs": 2, "banned": [], "upd": "2026-09-01", "p": "Psych/Relationship/avoidant-partner/index.md"}, {"t": "Why Do Other People's Flaws Make Me So Angry? What Jung Really Meant by 'Projection'", "a": "Sage Mercer", "sec": "psych", "slug": "/psych/shadow-work/projection/", "w": 1722, "l": 6, "tags": ["shadow work"], "tldr": "ok", "faq": true, "aff": 1, "topic": "dreams", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "Psych/Shadow Work/projection/index.md"}, {"t": "Why You Keep Dating the Wrong People: Attachment Theory in 5 Minutes", "a": "Sage Mercer", "sec": "psych", "slug": "/psych/book-insights/attached/", "w": 2260, "l": 6, "tags": ["attachment"], "tldr": "ok", "faq": true, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "Psych/Book Insights/attached/index.md"}, {"t": "Your Brain Has Two Operating Systems—and One of Them Is Lazy", "a": "Seraphina Cole", "sec": "psych", "slug": "/psych/book-insights/thinking-fast-slow/", "w": 1550, "l": 5, "tags": ["book insights"], "tldr": "ok", "faq": true, "aff": 2, "topic": "", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "Psych/Book Insights/thinking-fast-slow/index.md"}, {"t": "8 Signs You've Met Your Soulmate", "a": "Seraphina Cole", "sec": "reviews", "slug": "/reviews/soulmate-signs/", "w": 1635, "l": 3, "tags": ["relationship patterns"], "tldr": "ok", "faq": false, "aff": 2, "topic": "love", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "reviews/soulmate-signs/index.md"}, {"t": "Best Tarot Decks for Beginners: 2026 Review", "a": "Seraphina Cole", "sec": "reviews", "slug": "/reviews/best-tarot-decks-beginners/", "w": 1856, "l": 2, "tags": ["tarot deck reviews"], "tldr": "ok", "faq": true, "aff": 2, "topic": "tarot", "imgs": 6, "banned": [], "upd": "2026-09-01", "p": "reviews/best-tarot-decks-beginners/index.md"}, {"t": "Gaia Review: A Netflix for the Soul — If Your Soul Likes Conspiracy Docs Too", "a": "Seraphina Cole", "sec": "reviews", "slug": "/reviews/gaia/", "w": 1757, "l": 4, "tags": ["psychic site reviews"], "tldr": "ok", "faq": true, "aff": 2, "topic": "review", "imgs": 0, "banned": [], "upd": "2026-09-01", "p": "reviews/gaia/index.md"}, {"t": "Kasamba Review: Twenty-Five Years of Quiet Rooms, Not Loud Stages", "a": "Sage Mercer", "sec": "reviews", "slug": "/reviews/kasamba/", "w": 2251, "l": 10, "tags": ["psychic site reviews"], "tldr": "ok", "faq": true, "aff": 1, "topic": "", "imgs": 0, "banned": [], "upd": "2026-08-31", "p": "reviews/kasamba/index.md"}, {"t": "Oranum Review: The One Psychic Site Where You Watch Before You Pay", "a": "Sage Mercer", "sec": "reviews", "slug": "/reviews/oranum/", "w": 1326, "l": 3, "tags": ["psychic site reviews"], "tldr": "ok", "faq": false, "aff": 1, "topic": "tarot", "imgs": 0, "banned": [], "upd": "2026-08-31", "p": "reviews/oranum/index.md"}, {"t": "PsychicOz Review: The Site That Shows You the Price Before You Blink", "a": "Seraphina Cole", "sec": "reviews", "slug": "/reviews/psychicoz/", "w": 2251, "l": 8, "tags": ["psychic site reviews"], "tldr": "ok", "faq": true, "aff": 2, "topic": "love", "imgs": 0, "banned": [], "upd": "2026-09-01", "p": "reviews/psychicoz/index.md"}, {"t": "Self-Love Rituals for Healing After a Breakup", "a": "Iris Calder", "sec": "reviews", "slug": "/reviews/self-love-rituals/", "w": 1685, "l": 3, "tags": ["relationship patterns"], "tldr": "ok", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "reviews/self-love-rituals/index.md"}, {"t": "12 Signs Your Intuition Is Trying to Tell You Something", "a": "Luna Vale", "sec": "tarot", "slug": "/tarot/7-signs-intuition/", "w": 2910, "l": 4, "tags": ["intuition"], "tldr": "ok", "faq": false, "aff": 1, "topic": "", "imgs": 4, "banned": [], "upd": "2026-08-31", "p": "tarot/7-signs-intuition/index.md"}, {"t": "3-Card Tarot Spreads Anyone Can Do", "a": "Luna Vale", "sec": "tarot", "slug": "/tarot/3-card-spreads/", "w": 1417, "l": 4, "tags": ["tarot spreads"], "tldr": "ok", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "tarot/3-card-spreads/index.md"}, {"t": "How to Ask Tarot Better Questions", "a": "Luna Vale", "sec": "tarot", "slug": "/tarot/better-tarot-questions/", "w": 1370, "l": 4, "tags": ["tarot practice"], "tldr": "ok", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": ["landscape"], "upd": "2026-09-01", "p": "tarot/better-tarot-questions/index.md"}, {"t": "How to Cleanse Your Tarot Deck: 5 Ways That Actually Matter", "a": "Luna Vale", "sec": "tarot", "slug": "/tarot/cleanse-tarot-deck/", "w": 1431, "l": 4, "tags": ["tarot practice"], "tldr": "ok", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "tarot/cleanse-tarot-deck/index.md"}, {"t": "How to Tell the Difference Between Fear and Intuition", "a": "Sage Mercer", "sec": "tarot", "slug": "/tarot/fear-vs-intuition/", "w": 1899, "l": 4, "tags": ["intuition"], "tldr": "ok", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "tarot/fear-vs-intuition/index.md"}, {"t": "Major Arcana vs Minor Arcana: Simple Guide", "a": "Sage Mercer", "sec": "tarot", "slug": "/tarot/major-vs-minor-arcana/", "w": 1489, "l": 2, "tags": ["major arcana"], "tldr": "ok", "faq": false, "aff": 1, "topic": "tarot", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "tarot/major-vs-minor-arcana/index.md"}, {"t": "Tarot Archetypes: The Jungian Psychology Behind the Major Arcana", "a": "Sage Mercer", "sec": "tarot", "slug": "/tarot/major-arcana-archetypes/", "w": 1873, "l": 4, "tags": ["major arcana"], "tldr": "ok", "faq": false, "aff": 1, "topic": "tarot", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "tarot/major-arcana-archetypes/index.md"}, {"t": "Tarot Cards That Signal a New Relationship", "a": "Iris Calder", "sec": "tarot", "slug": "/tarot/tarot-love-cards/", "w": 1418, "l": 3, "tags": ["love tarot"], "tldr": "ok", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-09-01", "p": "tarot/tarot-love-cards/index.md"}, {"t": "Tarot for Absolute Beginners: Where to Start", "a": "Luna Vale", "sec": "tarot", "slug": "/tarot/tarot-for-beginners/", "w": 1439, "l": 4, "tags": ["tarot for beginners"], "tldr": "ok", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "tarot/tarot-for-beginners/index.md"}, {"t": "The Fool Card: What It Really Means", "a": "Wren Hollow", "sec": "tarot", "slug": "/tarot/the-fool-card/", "w": 1318, "l": 4, "tags": ["tarot card meanings"], "tldr": "exempt", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "tarot/the-fool-card/index.md"}, {"t": "The Fool's Journey: A Complete Guide to All 22 Major Arcana Cards", "a": "Wren Hollow", "sec": "tarot", "slug": "/tarot/fools-journey-complete-guide/", "w": 3055, "l": 7, "tags": ["major arcana"], "tldr": "exempt", "faq": false, "aff": 1, "topic": "", "imgs": 0, "banned": [], "upd": "2026-08-31", "p": "tarot/fools-journey-complete-guide/index.md"}, {"t": "The Lovers Card: More Than Just Romance", "a": "Wren Hollow", "sec": "tarot", "slug": "/tarot/the-lovers-card/", "w": 1399, "l": 4, "tags": ["tarot card meanings"], "tldr": "exempt", "faq": false, "aff": 1, "topic": "", "imgs": 3, "banned": [], "upd": "2026-08-31", "p": "tarot/the-lovers-card/index.md"}, {"t": "The Science Behind Intuition (Yes, It's Real)", "a": "Sage Mercer", "sec": "tarot", "slug": "/tarot/science-of-intuition/", "w": 1258, "l": 3, "tags": ["intuition"], "tldr": "ok", "faq": false, "aff": 1, "topic": "tarot", "imgs": 3, "banned": ["research suggests"], "upd": "2026-08-31", "p": "tarot/science-of-intuition/index.md"}], "meta": {"_说明": "工作台的手工维护层（台账状态/待办/风险/日志）。合规判据一律来自 scripts/audit.py 的 audit-report.json，本文件不定义合规规则。", "project": {"站点": "is-mind.com", "技术栈": "Astro 5", "唯一目录": "C:/Users/Holive Hu/mind-astro", "内容规模": "43 篇文章 + 6 政策页 + 3 互动工具", "部署": "Git push → Vercel", "核心目标": "提升自然搜索排名", "SEO基线": "曝光 469 / 点击 1 / CTR 0.2% / 平均排名 69 / 收录 194（2026-08-24 GSC）", "部署状态": "✅ 已 commit + push（2026-09-01）"}, "ledgers": [{"id": "L01", "名": "SEO 诊断与基线", "状态": "done", "产出": "基线数据 + 5 层优化方案", "文件": "ledgers/L01-SEO诊断.md", "更新": "2026-08-30"}, {"id": "L02", "名": "内容重复治理", "状态": "done", "产出": "3 组合并 + 301 重定向", "文件": "ledgers/L02-内容重复治理.md", "更新": "2026-08-30"}, {"id": "L03", "名": "Tags 受控词表", "状态": "done", "产出": "42 碎片 → 23 受控词，越界 0", "文件": "ledgers/L03-Tags受控词.md", "更新": "2026-08-30"}, {"id": "L04", "名": "内链与集群架构", "状态": "done", "产出": "9 簇 / 9 支柱；内链不足 34 → 0", "文件": "ledgers/L04-内链与集群.md", "更新": "2026-08-31"}, {"id": "L05", "名": "E-E-A-T 基建", "状态": "done", "产出": "政策页 + disclaimer + Article schema + bio box（联系方式已改 Instagram）", "文件": "ledgers/L05-EEAT基建.md", "更新": "2026-08-31"}, {"id": "L06", "名": "作者署名分配", "状态": "done", "产出": "43 篇 100% 挂 5 笔名 + persona 口径 + X→Instagram", "文件": "ledgers/L06-作者署名分配.md", "更新": "2026-08-31"}, {"id": "L07", "名": "内容加厚", "状态": "done", "产出": "22 篇 <1200 词 → 0 篇", "文件": "ledgers/L07-内容加厚.md", "更新": "2026-08-31"}, {"id": "L08", "名": "URL 与重定向", "状态": "done", "产出": "slug 规范化 + 4 条 301", "文件": "ledgers/L08-URL与重定向.md", "更新": "2026-08-30"}, {"id": "L09", "名": "Astro 迁移", "状态": "done", "产出": "Hugo → Astro 5，69 页构建通过", "文件": "ledgers/L09-Astro迁移.md", "更新": "2026-08-30"}, {"id": "L10", "名": "构建与部署", "状态": "warn", "产出": "本地构建通过；改动未 push", "文件": "ledgers/L10-构建与部署.md", "更新": "2026-08-31"}, {"id": "L11", "名": "Iris Calder 5 篇改写", "状态": "done", "产出": "5/5 完成，+1628 词，19 内链", "文件": "ledgers/L11-Iris5篇改写台账.md", "更新": "2026-08-31"}, {"id": "L12", "名": "Wren Hollow 4 篇改写", "状态": "done", "产出": "4/4 完成（3 动手 + 1 仅验收）+ 第二轮补 4 条联盟链", "文件": "ledgers/L12-Wren4篇改写台账.md", "更新": "2026-08-31"}, {"id": "L13", "名": "Luna Vale 9 篇改写", "状态": "done", "产出": "9/9 完成，6 条联盟链（3 篇评估后不插）", "文件": "ledgers/L13-Luna9篇改写台账.md", "更新": "2026-08-31"}, {"id": "L14", "名": "Sage Mercer 16 篇改写", "状态": "done", "产出": "16/16 完成 + 联盟卡片（affiliateTopic）架构落地", "文件": "ledgers/L14-Sage16篇改写台账.md", "更新": "2026-08-31"}, {"id": "L15", "名": "Seraphina Cole 9 篇改写", "状态": "done", "产出": "9/9 完成（3 篇缺图待补）", "文件": "ledgers/L15-Seraphina9篇改写台账.md", "更新": "2026-08-31"}], "issues": [{"p": "P2", "标题": "Storyteller 仅 4 篇，作者分布不均", "详情": "Sage 16 / Seraphina 9 / Luna 9 / Iris 5 / Wren 4。Wren 占比最低。", "建议": "后续多写塔罗牌故事 / 梦境叙事补齐。", "台账": "L06"}, {"p": "P2", "标题": "GSC 效果尚未复测", "详情": "基线采集于 2026-08-24，此后的内链 / 加厚 / 结构化改动尚未有对应的 GSC 数据回收。", "建议": "push 后 2–4 周拉一次 GSC 对比（曝光/排名/收录），回填 L01。", "台账": "L01"}], "resolved": [{"日": "2026-09-01", "项": "TL;DR 小标题全站统一", "详情": "实际复核：39 篇已有 `## TL;DR` 小标题 + 4 篇 Storyteller（Wren）豁免 = 43 全清。此前「21/43」为过期审计数据。"}, {"日": "2026-09-01", "项": "AI 禁用词 5 处入白名单", "详情": "crucially→crucial（astrology-101 / carl-jung-shadow）、landscape（energy-body-101 / better-tarot-questions）、research suggests（science-of-intuition）5 处自然语境，用户裁决豁免，audit.py 已加 BANNED_WHITELIST。"}, {"日": "2026-09-01", "项": "联盟 2 处缺口维持现状", "详情": "thinking-fast-slow（9 topic 无一贴合，保 2 软链不挂卡）+ same-type-partner（Oranum 专属政策，换品牌=编造，维持 0 链）——均选 A 维持，改坏比不改更亏。"}, {"日": "2026-09-01", "项": "narcissist-signs 借图删除", "详情": "删 `2026-07-02-attached-01.png`（attached 篇图跨篇复用，文件名泄漏）+ 正文删对应 `![](...)` 行，目录余 01/03 两张。"}, {"日": "2026-09-01", "项": "配图从待办降级", "详情": "评测文（kasamba/oranum/gaia/psychicoz/best-tarot-decks）+ 支柱页无图，用户表态「不用管」，配图不再作为硬性红灯。"}, {"日": "2026-08-31", "项": "正文重复 H1", "详情": "shadow-work-guide 正文含 markdown H1 与模板 H1 重复 → 已删；全站扫描现为 0（含 12-jungian-archetypes-intro 同问题也已消失）"}, {"日": "2026-08-31", "项": "内链不足 34 篇 → 0", "详情": "5 位作者 43 篇逐篇补链，全部 ≥2（多数 3–6 条）"}, {"日": "2026-08-31", "项": "薄文 22 篇 → 0", "详情": "全部 ≥1200 词，无 <800 词"}, {"日": "2026-08-31", "项": "作者联系方式 X → Instagram", "详情": "editorial-team.md + authors.ts + EditorialTeam.astro 三处同步"}, {"日": "2026-08-31", "项": "联盟引擎落地", "详情": "affiliates.ts 单一来源 + affiliateTopic 文末卡片 + 正文软链共存"}], "changelog": [{"日": "2026-08-24", "项": "SEO 诊断 + 内链 18 处 + tags 42→23 + about 合并 + 3 组合并 + 301", "相关": "L01/L02/L03/L04/L08"}, {"日": "2026-08-25", "项": "E-E-A-T 基建 + Major Arcana 区分定位 + dream-meanings slug + attachment-styles 支柱 + 加厚 4 篇", "相关": "L05/L04/L07/L08"}, {"日": "2026-08-29", "项": "Astro 迁移完成（真源切换 mind-astro）+ 43 篇署名分配 + 批次 0/1", "相关": "L09/L06"}, {"日": "2026-08-30", "项": "契约 v1.0 + 总台账 + L01–L10 + 审计脚本 audit.py", "相关": "全部"}, {"日": "2026-08-30", "项": "联盟引擎（affiliates.ts / AffiliateBox）+ 官方 sitemap", "相关": "L10"}, {"日": "2026-08-31", "项": "43 篇逐篇改写完成（Sage16 / Seraphina9 / Luna9 / Iris5 / Wren4）+ 联盟全站补齐 + 联系方式改 Instagram + 重复 H1 修复", "相关": "L04/L05/L06/L07/L11–L15"}, {"日": "2026-09-01", "项": "新增 L11–L15 五份改写台账 + 工作台 v2（build_dashboard.py 可重生成）", "相关": "L11–L15"}, {"日": "2026-09-01", "项": "禁用词白名单 + TL;DR 豁免 + 联盟 2 缺口裁决 + narcissist 借图删除 + commit/push", "相关": "L07/L15/L10"}], "contract": {"tags": [["Tarot", "tarot-for-beginners, tarot-card-meanings, major-arcana, tarot-spreads, tarot-practice, love-tarot, tarot-deck-reviews"], ["Psych", "shadow-work, carl-jung, attachment, narcissism, gaslighting, relationship-patterns, book-insights"], ["Energy", "energy-healing, intuition"], ["Astrology", "astrology-basics, zodiac-compatibility, venus-retrograde, planetary-transits, dream-interpretation, angel-numbers"], ["Reviews", "psychic-site-reviews"]], "authors": [{"笔名": "Luna Vale", "persona": "Intuitive", "声音": "诗意、象征、身体直觉", "锁定": "moon energy / chakra sensing / card symbolism / intuition practice", "联系": "@ismindLunaVale"}, {"笔名": "Sage Mercer", "persona": "Scholar", "声音": "冷静、心理学根基、讲机制", "锁定": "tarot/astrology history / psychological mechanism / why it works", "联系": "@ismindSageMercer"}, {"笔名": "Iris Calder", "persona": "Warm Narrator", "声音": "疗愈、共情、陪伴", "锁定": "shadow work (emotional) / grief / self-compassion / soothing tarot", "联系": "@ismindiriscalder"}, {"笔名": "Wren Hollow", "persona": "Storyteller", "声音": "场景叙事、神话原型", "锁定": "tarot card stories / myth-archetype retellings / dream narratives", "联系": "@ismindwrenhollow"}, {"笔名": "Seraphina Cole", "persona": "Sharp Analyst", "声音": "锐利、戳破自欺", "锁定": "relationship dynamics / self-deception / cognitive bias / gaslighting / NPD", "联系": "@ismindSeraphinaCole"}], "redlines": ["红线 1｜未来向（占星/塔罗预测）→ 只能 Warm Narrator、Intuitive", "红线 2｜心理/过去向（shadow work、relationships、psychology）→ 只能 Sharp Analyst、Scholar", "严禁盗用真实人物（尤其联盟网站占卜师）的照片与姓名；bio 不得虚构临床/学术资质", "编辑政策页必须保留「AI 辅助 + 人工审校」透明说明"], "pillars": [["塔罗入门", "/tarot/tarot-for-beginners/"], ["大阿卡纳与原型", "/tarot/fools-journey-complete-guide/"], ["直觉与身体信号", "/tarot/science-of-intuition/"], ["阴影工作与荣格", "/psych/shadow-work/shadow-work-guide/"], ["关系与依恋", "/psych/relationship/attachment-styles/"], ["能量与脉轮", "/energy/energy-body-101/"], ["占星基础与周期", "/astrology/astrology-101-sun-moon-rising/"], ["梦境", "/astrology/dream-meanings/"], ["工具评测", "/reviews/best-tarot-decks-beginners/"]], "thresholds": [["字数", "≥1200 词（<800 严重偏薄）"], ["内链", "2–4 条同簇 + 1 条支柱"], ["TL;DR", "有（Storyteller 可省，用场景 hook）"], ["FAQ", "有（3–5 组，吃 PAA）"], ["署名", "5 笔名之一"], ["tags", "2–4 个受控词，全小写"], ["联盟位置", ">60% 文章位置；前 400 词零外链；rel=sponsored nofollow noopener"], ["AI 禁用词", "0（5 处已裁决豁免待入白名单）"]], "forbidden": ["禁止 git rm 删 content 子目录（safe-delete 会级联吞整棵树）—— 删单文件用 rm -f 绝对路径，删目录用 mv", "禁止在 mind-astro 之外改内容（Desktop/mind 是废弃的旧 Hugo 目录）", "禁止手改模板已渲染的 disclaimer / 作者 bio", "大改后立即 commit 做 checkpoint，用户确认后再 push", "构建前先 mv node_modules/.vite ./_vite-cache-stale/（否则 safe-delete 中断构建）"]}}};
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const A = D.arts, M = D.meta, AU = D.audit;
+const SEC = {'tarot':['塔罗','#6d4aa8'],'psych':['心理','#c0392b'],'energy':['能量','#2e8b57'],
+             'astrology':['占星','#b8941f'],'reviews':['评测','#2b6cb0']};
+const TL = {ok:['有小标题','p-ok'],soft:['缺小标题','p-warn'],exempt:['豁免(hook)','p-mute'],miss:['缺失','p-bad']};
+
+$('#genBadge').textContent = '审计 ' + D.gen;
+$('#subline').innerHTML = '站点 ' + esc(M.project.站点) + ' · ' + esc(M.project.技术栈) + ' · ' + esc(M.project.内容规模)
+  + ' · 目标：' + esc(M.project.核心目标) + '　|　GSC 基线：' + esc(M.project.SEO基线)
+  + '<br><b style="color:#c8860d">' + esc(M.project.部署状态) + '</b>';
+
+/* ---------- 总览 ---------- */
+const tldrSoft = A.filter(a => a.tldr === 'soft').length;
+const tldrOk = A.filter(a => a.tldr === 'ok').length;
+const noImg = A.filter(a => a.imgs === 0).length;
+const noAff = A.filter(a => a.aff === 0 && !a.topic).length;
+const kpi = [
+  ['文章总数', AU.total, 'info', '43 篇 + 6 政策页'],
+  ['署名覆盖', '100%', 'ok', '5 笔名，越界 0'],
+  ['字数 ≥1200', AU.total - AU.thin + '/' + AU.total, AU.thin ? 'bad' : 'ok', '严重偏薄 ' + AU.thin800 + ' 篇'],
+  ['内链 ≥2', AU.total - AU.lowlink + '/' + AU.total, AU.lowlink ? 'bad' : 'ok', '缺口 ' + AU.lowlink + ' 篇'],
+  ['TL;DR 小标题', tldrOk + '/' + AU.total, tldrOk === AU.total ? 'ok' : 'warn', tldrSoft + ' 篇只有内容无标题'],
+  ['tags 越界', AU.tag_out, AU.tag_out ? 'bad' : 'ok', AU.tag_kinds + ' 个受控词'],
+  ['联盟覆盖', (AU.total - noAff) + '/' + AU.total, noAff > 3 ? 'warn' : 'ok', '零联盟 ' + noAff + ' 篇'],
+  ['配图', (AU.total - noImg) + '/' + AU.total, noImg ? 'warn' : 'ok', '缺图 ' + noImg + ' 篇'],
+];
+$('#kpis').innerHTML = kpi.map(k =>
+  `<div class="metric"><div class="v">${esc(k[1])}</div><div class="l">${esc(k[0])}</div>
+   <div class="t t-${k[2]}">${esc(k[3])}</div></div>`).join('');
+
+const PRI = {P0:'p-bad',P1:'p-warn',P2:'p-mute'};
+const issHtml = arr => arr.map(i =>
+  `<details><summary><span class="pill ${PRI[i.p]}">${esc(i.p)}</span>${esc(i.标题)}</summary>
+   <div class="body"><div style="margin-bottom:8px">${esc(i.详情)}</div>
+   <div><b>建议：</b>${esc(i.建议)}</div>
+   ${i.台账 ? '<div class="small" style="margin-top:6px">相关台账：' + esc(i.台账) + '</div>' : ''}</div></details>`).join('');
+$('#ovIssues').innerHTML = issHtml(M.issues.filter(i => i.p !== 'P2'));
+$('#issues').innerHTML = issHtml(M.issues);
+
+const ac = {}; A.forEach(a => ac[a.a] = (ac[a.a] || 0) + 1);
+$('#authors').innerHTML = Object.entries(ac).sort((x, y) => y[1] - x[1]).map(([k, v]) => {
+  const sub = A.filter(a => a.a === k);
+  const w = Math.round(sub.reduce((s, a) => s + a.w, 0) / sub.length);
+  const lk = (sub.reduce((s, a) => s + a.l, 0) / sub.length).toFixed(1);
+  return `<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px">
+    <b>${esc(k)}</b><span class="small">${v} 篇 · 均 ${w} 词 · 均 ${lk} 内链</span></div>
+    <div class="bar"><i style="width:${(v / 16 * 100).toFixed(0)}%"></i></div></div>`;
+}).join('');
+
+const sc = {}; A.forEach(a => sc[a.sec] = (sc[a.sec] || 0) + 1);
+$('#sections').innerHTML = Object.entries(sc).map(([k, v]) => {
+  const sub = A.filter(a => a.sec === k);
+  const w = Math.round(sub.reduce((s, a) => s + a.w, 0) / sub.length);
+  const c = (SEC[k] || ['其他', '#7d7589']);
+  return `<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px">
+    <b><span class="sec-dot" style="background:${c[1]}"></span>${esc(c[0])} <span class="small">${esc(k)}</span></b>
+    <span class="small">${v} 篇 · 均 ${w} 词</span></div>
+    <div class="bar"><i class="g" style="width:${(v / 16 * 100).toFixed(0)}%;background:${c[1]}"></i></div></div>`;
+}).join('');
+
+$('#pillars').innerHTML = M.contract.pillars.map(p =>
+  `<div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px solid var(--line)">
+   <span>${esc(p[0])}</span><code>${esc(p[1])}</code></div>`).join('')
+  + '<div class="small" style="margin-top:8px">审计判定：' + Object.values(AU.pillars).every(v => v === 'OK') + ' → 9/9 全部 OK</div>';
+
+/* ---------- 文章表 ---------- */
+const uniq = k => [...new Set(A.map(a => a[k]))].sort();
+$('#fa').innerHTML += uniq('a').map(v => `<option>${esc(v)}</option>`).join('');
+$('#fs').innerHTML += uniq('sec').map(v => `<option value="${esc(v)}">${esc((SEC[v] || [v])[0])}</option>`).join('');
+
+let sortK = 't', sortD = 1;
+function render() {
+  const q = $('#q').value.trim().toLowerCase();
+  const fa = $('#fa').value, fs = $('#fs').value, ft = $('#ft').value;
+  let rows = A.filter(a => {
+    if (fa && a.a !== fa) return false;
+    if (fs && a.sec !== fs) return false;
+    if (ft === 'bad' && !(a.tldr === 'miss' || a.banned.length || a.imgs === 0 || a.l < 2 || a.w < 1200)) return false;
+    if (ft === 'tldr-soft' && a.tldr !== 'soft') return false;
+    if (ft === 'banned' && !a.banned.length) return false;
+    if (ft === 'noimg' && a.imgs !== 0) return false;
+    if (ft === 'noaff' && (a.aff || a.topic)) return false;
+    if (ft === 'nofaq' && a.faq) return false;
+    if (q && !(a.t || '').toLowerCase().includes(q) && !a.slug.toLowerCase().includes(q)
+        && !a.tags.join(' ').toLowerCase().includes(q)) return false;
+    return true;
+  });
+  rows.sort((x, y) => {
+    let p = x[sortK], r = y[sortK];
+    if (Array.isArray(p)) p = p.length;
+    if (Array.isArray(r)) r = r.length;
+    if (typeof p === 'boolean') { p = p ? 1 : 0; r = r ? 1 : 0; }
+    return (p > r ? 1 : p < r ? -1 : 0) * sortD;
+  });
+  $('#cnt').textContent = rows.length + ' / ' + A.length + ' 篇';
+  $('#tb').innerHTML = rows.map(a => {
+    const t = TL[a.tldr];
+    return `<tr class="row" data-slug="${esc(a.slug)}">
+      <td><b>${esc((a.t || '').slice(0, 58))}</b><br><span class="small">${esc(a.slug)}</span></td>
+      <td>${esc(a.a)}</td>
+      <td><span class="sec-dot" style="background:${(SEC[a.sec] || ['', '#7d7589'])[1]}"></span>${esc((SEC[a.sec] || [a.sec])[0])}</td>
+      <td class="n">${a.w}</td>
+      <td class="n">${a.l}</td>
+      <td><span class="pill ${t[1]}">${t[0]}</span></td>
+      <td>${a.faq ? '<span class="pill p-ok">有</span>' : '<span class="pill p-mute">无</span>'}</td>
+      <td class="n">${a.aff}${a.topic ? ' <span class="pill p-info">' + esc(a.topic) + '</span>' : (a.aff ? '' : '<span class="pill p-mute">0</span>')}</td>
+      <td class="n">${a.imgs}</td>
+      <td>${a.banned.length ? '<span class="pill p-bad">' + esc(a.banned.join(', ')) + '</span>' : '<span class="pill p-ok">0</span>'}</td>
+      <td class="n small">${esc(a.upd)}</td></tr>
+    <tr class="det" id="d-${esc(a.slug)}" style="display:none;background:#fbf9fe">
+      <td colspan="11" style="padding:10px 14px">
+        <div style="margin-bottom:6px">${a.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('') || '<span class="small">无 tag</span>'}</div>
+        <div class="small">路径：<code>${esc(a.p)}</code>${a.topic ? '　联盟卡片 topic：<code>' + esc(a.topic) + '</code>' : ''}</div>
+      </td></tr>`;
+  }).join('');
+}
+$$('#arts th').forEach(th => th.onclick = () => {
+  const k = th.dataset.k; if (!k) return;
+  sortD = (sortK === k) ? -sortD : 1; sortK = k; render();
+});
+['#q', '#fa', '#fs', '#ft'].forEach(s => { $(s).oninput = render; $(s).onchange = render; });
+document.addEventListener('click', e => {
+  const tr = e.target.closest('tr.row'); if (!tr) return;
+  const det = tr.nextElementSibling;
+  if (det && det.classList.contains('det')) det.style.display = det.style.display === 'none' ? '' : 'none';
+});
+render();
+
+/* ---------- 台账 ---------- */
+const LS = {done:['完成','p-ok'],warn:['进行中','p-warn'],todo:['未开始','p-mute'],block:['阻塞','p-bad']};
+$('#ltbody').innerHTML = M.ledgers.map(l => {
+  const s = LS[l.状态];
+  return `<tr><td><b>${esc(l.id)}</b></td><td>${esc(l.名)}</td>
+   <td><span class="pill ${s[1]}">${s[0]}</span></td><td class="small">${esc(l.产出)}</td>
+   <td><code style="font-size:11px">${esc(l.文件)}</code></td><td class="small">${esc(l.更新)}</td></tr>`;
+}).join('');
+$('#resolved').innerHTML = M.resolved.map(r =>
+  `<div class="card" style="padding:12px 14px;margin-bottom:8px">
+   <div style="display:flex;gap:8px;align-items:center"><span class="pill p-ok">已修复</span>
+   <b style="font-size:13.5px">${esc(r.项)}</b><span class="small" style="margin-left:auto">${esc(r.日)}</span></div>
+   <div class="small" style="margin-top:4px">${esc(r.详情)}</div></div>`).join('');
+
+/* ---------- 契约 ---------- */
+$('#ctTags').innerHTML = M.contract.tags.map(t =>
+  `<div style="margin-bottom:8px"><b style="font-size:12.5px">${esc(t[0])}</b><br>
+   ${t[1].split(', ').map(x => `<span class="tag">${esc(x)}</span>`).join('')}</div>`).join('');
+$('#ctAuthors').innerHTML = '<table><thead><tr><th>笔名</th><th>Persona</th><th>声音</th><th>锁定专栏</th><th>Instagram</th></tr></thead><tbody>'
+  + M.contract.authors.map(a => `<tr><td><b>${esc(a.笔名)}</b></td><td>${esc(a.persona)}</td>
+    <td class="small">${esc(a.声音)}</td><td class="small">${esc(a.锁定)}</td><td><code>${esc(a.联系)}</code></td></tr>`).join('')
+  + '</tbody></table>';
+$('#ctRed').innerHTML = M.contract.redlines.map(r => `<li>${esc(r)}</li>`).join('');
+$('#ctPillars').innerHTML = M.contract.pillars.map(p =>
+  `<div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px solid var(--line)">
+   <span>${esc(p[0])}</span><code>${esc(p[1])}</code></div>`).join('');
+$('#ctTh').innerHTML = '<table><tbody>' + M.contract.thresholds.map(t =>
+  `<tr><td style="width:110px"><b>${esc(t[0])}</b></td><td>${esc(t[1])}</td></tr>`).join('') + '</tbody></table>';
+$('#ctForb').innerHTML = M.contract.forbidden.map(f => `<li>${esc(f)}</li>`).join('');
+
+/* ---------- 日志 ---------- */
+$('#logBody').innerHTML = M.changelog.slice().reverse().map(c =>
+  `<tr><td class="small">${esc(c.日)}</td><td>${esc(c.项)}</td><td class="small">${esc(c.相关)}</td></tr>`).join('');
+
+/* ---------- 导航 ---------- */
+$$('#nav button').forEach(b => b.onclick = () => {
+  $$('#nav button').forEach(x => x.classList.remove('on'));
+  $$('section').forEach(x => x.classList.remove('on'));
+  b.classList.add('on'); $('#' + b.dataset.s).classList.add('on');
+  window.scrollTo(0, 0);
+});
+</script>
+</body>
+</html>

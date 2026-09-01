@@ -69,7 +69,7 @@ Anxious patterns have a particular way of feeling unsolvable. They aren't. They 
 
 The practice isn't about getting it right every time. It's about building the muscle of pausing between the alarm and the action. That pause is the entire leverage point. Most people find that within a few weeks, the gap between alarm and action has widened, and the response inside that gap is calmer, more direct, and easier to live with.
 
-If you'd like a sounding board for what you're noticing in yourself, the [Oranum love category](https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=love&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live advisors who work in this exact territory of love and relationship patterns. Use them as a mirror, not a verdict.
+If you'd like a sounding board for what you're noticing in yourself, the <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=love&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum love category</a> collects live advisors who work in this exact territory of love and relationship patterns. Use them as a mirror, not a verdict.
 
 ## When should you get professional help?
 

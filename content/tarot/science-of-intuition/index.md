@@ -106,7 +106,7 @@ The tarot works the same way: the cards don't predict, they surface the pattern 
 
 Reading about intuition is one thing. Experiencing it in a context where someone else can reflect your patterns back to you is another entirely.
 
-A skilled psychic or tarot reader doesn't tell you your future. They help you see your present more clearly — the patterns, the blind spots, the signals your body has been sending that you've learned to ignore. The [Oranum tarot space](https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live readers who work in this exact territory. Treat what they reflect back as data, not direction — your body's verdict is still yours to make.
+A skilled psychic or tarot reader doesn't tell you your future. They help you see your present more clearly — the patterns, the blind spots, the signals your body has been sending that you've learned to ignore. The <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum tarot space</a> collects live readers who work in this exact territory. Treat what they reflect back as data, not direction — your body's verdict is still yours to make.
 
 **Try it once.** Even if you're skeptical, pay attention to your body during the session. Notice when something lands. That's your intuition, recognizing a truth it already knew.
 

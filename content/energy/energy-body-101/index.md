@@ -132,7 +132,7 @@ You don't need an altar, a teacher, or an hour a day. Four practices, five minut
 
 **An essential oil starter kit.** Lavender for the crown, peppermint for the throat, rose for the heart — four or five oils cover most blockages. Use them during grounding or breathwork.
 
-And when you've done the self-work and still feel stuck — when you know the dial is jammed but can't move it alone — an energy worker or psychic reader can help identify what's blocking the flow. If you want that kind of second pair of eyes, the [Oranum energy and spiritual healer space](https://wmorajmp.com/?pageName=intro&siteId=oranum&subSiteId=about&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live practitioners who work in exactly this territory. Use them to locate the blockage, not to hand over the work of moving it.
+And when you've done the self-work and still feel stuck — when you know the dial is jammed but can't move it alone — an energy worker or psychic reader can help identify what's blocking the flow. If you want that kind of second pair of eyes, <a href="https://wmorajmp.com/?pageName=intro&siteId=oranum&subSiteId=about&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum's live intro space</a> lets you watch energy workers and psychic readers do live demonstration readings before you book anyone. Use them to locate the blockage, not to hand over the work of moving it.
 
 ---
 

@@ -13,6 +13,8 @@ pin_a: "It's not arrogance. It's a self so fragile it can't survive without cons
 pin_b: "The most charming person you've ever met might also be the most dangerous. Here's what the charm is hiding."
 ---
 
+## TL;DR
+
 > Here's the hard truth. You are not actually trying to figure out whether he's a narcissist. You're trying to figure out whether you're allowed to leave. The diagnostic label is just the version of that question you can ask without having to hear the answer. Naming the pattern feels like progress. It isn't. It's the most respectable form of waiting.
 
 > It's not arrogance. It's a self so fragile it can't survive without constant outside validation.
@@ -42,8 +44,6 @@ The core of narcissistic personality isn't loving yourself too much. It's **need
 **6. Your boundaries get eroded systematically.** Not one dramatic violation. A pattern. You accept one unreasonable request today; tomorrow's is worse. **You think you're compromising. You're being conditioned.**
 
 **7. When you finally leave, you wonder if you were the problem.** This is the dangerous one. Long-term exposure to a narcissistic dynamic produces what clinicians call **cognitive fog**. You stop trusting your memory, your feelings, your version of events. "Maybe I was too sensitive" becomes your default setting.
-
-![](2026-07-02-attached-01.png)
 
 ## Why the label is the trap
 
@@ -112,8 +112,6 @@ When you start believing things like "this is just how relationships are," "all 
 If you're looking for a second read on a pattern you're too close to see, <a href="https://psychicoz.com/psychics/love-relationship-psychic-readers?a_aid=3b186vp94x73d&a_bid=5dd1df23" target="_blank" rel="sponsored nofollow noopener">love and relationship readers on PsychicOz</a> will give you an outside perspective. Treat it as exactly that. A stranger's read on your situation is not a diagnosis and not a substitute for a licensed therapist, and anyone who tells you otherwise is selling something.
 
 If the fog has gotten thick enough that you're doubting your own memory, that's the line where a <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=love&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">straight-talking advisor on Oranum</a> is the wrong tool. Find a therapist in your jurisdiction. This article is not a treatment plan.
-
-<a href="https://psychicoz.com/psychics/love-relationship-psychic-readers?a_aid=3b186vp94x73d&a_bid=5dd1df23" target="_blank" rel="sponsored nofollow noopener"><img src="https://psychicoz.com/aimg/3b186vp94x73d/5dd1df23" alt="Love and relationship psychic readings on PsychicOz" width="320" height="250" style="display:block; max-width:100%; height:auto; border:0;" loading="lazy" /></a><img src="https://psychicoz.com/aimg?a_aid=3b186vp94x73d&a_bid=5dd1df23" width="0" height="0" style="position:absolute;visibility:hidden;" border="0" alt="" />
 
 ---
 

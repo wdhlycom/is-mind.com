@@ -74,7 +74,7 @@ A practical note about the *sequence*. The withdrawal of a projection usually ha
 
 The work is not the same for everyone. Some people do well with journaling, some with a long walk and a recorded voice memo, some with a trusted friend who's also doing the work. If the material that surfaces is heavy — old trauma, intrusive thoughts, dissociative episodes — a trauma-informed therapist is the right place to start. Shadow work is a *complement* to good therapy, not a substitute. For the long-form version of this practice, our [shadow work guide](/psych/shadow-work/shadow-work-guide/) walks through it step by step, and the related [childhood trauma piece](/psych/shadow-work/childhood-trauma/) goes deeper on the specific case where the shadow has roots in early life.
 
-If you'd like a sounding board for what you're seeing in yourself, the [Oranum tarot home](https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live advisors who work in symbolic and introspective territory. Use them as a mirror, not a verdict.
+If you'd like a sounding board for what you're seeing in yourself, the <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum tarot home</a> collects live advisors who work in symbolic and introspective territory. Use them as a mirror, not a verdict.
 
 ---
 

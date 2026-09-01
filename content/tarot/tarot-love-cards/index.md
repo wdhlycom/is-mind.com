@@ -16,6 +16,8 @@ pin_a: "The cards that signal new love rarely look the way you expect."
 pin_b: "Have you been pulling love cards — or just cards you want to be about love?"
 ---
 
+## TL;DR
+
 > There's a quiet space here for you. If you've been pulling card after card hoping for news about love, you're not doing anything wrong — you're just longing, and longing has a way of blurring what's actually in front of us. This guide won't promise you a timeline or a person. It'll help you see the difference between a card that speaks about love and a card you've decided must be about love. The truth is usually gentler than the story we're afraid to put down.
 
 ---

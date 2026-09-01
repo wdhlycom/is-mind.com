@@ -29,7 +29,7 @@ He finally made the decision. The numbers stopped.
 
 ![](day02-repeating-numbers-01_cleanup.png)
 
-## 🌪️ TL;DR
+## TL;DR
 
 11:11 on the microwave.
 11:11 on a gas station receipt

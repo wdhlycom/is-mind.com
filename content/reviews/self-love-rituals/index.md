@@ -16,6 +16,8 @@ pin_a: "Healing isn't about proving you're fine. It's about letting yourself not
 pin_b: "Are you actually healing — or just performing recovery for an audience?"
 ---
 
+## TL;DR
+
 > There's a quiet space here for you. Grief after a breakup doesn't follow a timeline. It arrives when you're washing dishes, mid-sentence to a friend, in the shower at 2 a.m. — and it asks for nothing. You don't have to be over it by some deadline. You don't have to be "fine" by next month. These five rituals aren't a recovery plan. They're a way to be with what you feel, slowly, at the pace your body can actually hold. Nothing here is a prescription. Just an invitation to stop performing healing and start letting it happen.
 
 ---

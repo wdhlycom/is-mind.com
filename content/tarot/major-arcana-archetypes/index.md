@@ -154,7 +154,7 @@ The archetypes come alive when you spend time with them. A few tools that make t
 
 **A dedicated journal.** Not a notebook you also use for grocery lists. Something beautiful enough that you want to reach for it. A blank journal invites the cards to speak. Date each entry. Record the card, your first impression, and the one-word answer to "what archetype was active today." After a month, read back through. You'll see your own individuation unfolding in ink.
 
-**A reading to go deeper.** Sometimes the cards you pull for yourself are filtered through your own blind spots — you'll keep drawing the same archetype and miss what it's pointing at. A second pair of eyes can help. The [Oranum tarot space](https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=){rel="sponsored nofollow noopener" target="_blank"} collects live readers who work in symbolic, archetypal territory. Use them as a mirror, not a verdict — the card's meaning is still yours to settle.
+**A reading to go deeper.** Sometimes the cards you pull for yourself are filtered through your own blind spots — you'll keep drawing the same archetype and miss what it's pointing at. A second pair of eyes can help. The <a href="https://wmorajmp.com/?pageName=home&siteId=oranum&subSiteId=tarot&prm[psid]=HuMaster&prm[pstool]=606_1&prm[topic]=Live&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="sponsored nofollow noopener">Oranum tarot space</a> collects live readers who work in symbolic, archetypal territory. Use them as a mirror, not a verdict — the card's meaning is still yours to settle.
 
 ---
 
