@@ -292,5 +292,61 @@ const desc = description ?? 'Decode the Language of Your Soul — ancient wisdom
       }
     })();
     </script>
+    <style>
+      /* ── Image lightbox (click to zoom) ── */
+      .prose img { cursor: zoom-in; }
+      .lb-overlay {
+        position: fixed; inset: 0; z-index: 200;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(8,6,16,.88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        opacity: 0; transition: opacity .22s ease;
+      }
+      .lb-overlay.open { opacity: 1; }
+      .lb-overlay img {
+        max-width: 92vw; max-height: 88vh; width: auto; height: auto;
+        border-radius: 10px; box-shadow: 0 30px 90px -20px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.12);
+        transform: scale(.94); transition: transform .22s ease;
+      }
+      .lb-overlay.open img { transform: scale(1); }
+      .lb-close {
+        position: absolute; top: 18px; right: 22px;
+        width: 40px; height: 40px; border-radius: 50%;
+        border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08);
+        color: #fff; font-size: 22px; line-height: 1; cursor: pointer;
+      }
+      .lb-close:hover { background: rgba(255,255,255,.18); }
+      body.lb-open { overflow: hidden; }
+    </style>
+    <script is:inline>
+    (function () {
+      var overlay = null;
+      function closeLb() {
+        if (!overlay) return;
+        overlay.classList.remove('open');
+        document.body.classList.remove('lb-open');
+        setTimeout(function(){ if (overlay) { overlay.remove(); overlay = null; } }, 220);
+      }
+      document.addEventListener('click', function (e) {
+        var img = e.target && e.target.closest ? e.target.closest('.prose img') : null;
+        if (img) {
+          e.preventDefault();
+          if (overlay) overlay.remove();
+          overlay = document.createElement('div');
+          overlay.className = 'lb-overlay';
+          overlay.innerHTML = '<button class="lb-close" aria-label="Close">&times;</button>';
+          var big = document.createElement('img');
+          big.src = img.currentSrc || img.src;
+          big.alt = img.alt || '';
+          overlay.appendChild(big);
+          document.body.appendChild(overlay);
+          document.body.classList.add('lb-open');
+          requestAnimationFrame(function(){ overlay.classList.add('open'); });
+          return;
+        }
+        if (overlay && (e.target === overlay || (e.target.closest && e.target.closest('.lb-close')))) closeLb();
+      });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+    })();
+    </script>
   </body>
 </html>
