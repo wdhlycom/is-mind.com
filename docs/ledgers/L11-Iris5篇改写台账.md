@@ -111,7 +111,7 @@ NODE_OPTIONS="--use-system-ca" npx astro build
 
 ### ⚠️ 发现的结构问题 → ✅ 已修正（2026-08-31 用户指示）
 本篇正文含 markdown H1（原第 14 行 `# Shadow Work for Beginners: A Complete Guide`），而 Article.astro 模板已在 frontmatter title 后渲染 `<h1>` → 页面双重 H1。**已删除正文中的 markdown H1**，构建验证页面仅剩模板渲染的单个 H1（frontmatter title）。
-> 同目录 `12-jungian-archetypes-intro/index.md`（Sage Mercer 执笔）也有同样问题，**未动**，待用户指示。
+> 同目录 `12-jungian-archetypes-intro/index.md`（Sage Mercer 执笔）同样问题 → **2026-09-01 核验：改写后该文已无正文 H1（以 `## TL;DR` 开头），构建产物单 H1，问题已消**。
 
 ### 未触清单（合规）
 - [x] frontmatter `author: "Iris Calder"` 未改
@@ -354,3 +354,22 @@ NODE_OPTIONS="--use-system-ca" npx astro build
 | 插图核对 | 5/5 全部 100% 对齐 image-placement.md 或在弹窗裁决下移动 |
 | 备份 | 5 个 .bak 在 `_backup-20260829/`，**去留等用户统一裁决** |
 | 构建 | 5/5 通过（69 页） |
+
+---
+
+## 🖥 排版 / 结构问题登记（本台账专用区，2026-09-01 建）
+
+> 本系列执行期间发现的**页面排版类问题**统一记在这里，便于回溯。
+> 判据来源：`scripts/audit.py` + 全站扫描脚本（正文 markdown H1 / TL;DR 小标题）。
+
+| # | 问题 | 影响范围 | 发现日 | 状态 | 处置 |
+|---|---|---|---|---|---|
+| 1 | **双重 H1**：正文含 markdown `# H1`，与 `Article.astro` 由 frontmatter title 渲染的 `<h1>` 重复 | `shadow-work-guide`（本系列 #2） | 2026-08-31 | ✅ 已修复 | 删除正文 H1，构建后页面仅剩 1 个 H1 |
+| 2 | 同类双重 H1（本系列外） | `12-jungian-archetypes-intro`（Sage Mercer 执笔） | 2026-08-31 | ✅ 已修复 | 当时标「待用户指示」；2026-09-01 全站扫描 **正文 H1 命中 0 篇**，问题已消失 |
+| 3 | **TL;DR 只有引用块、无 `## TL;DR` 小标题** | 本系列 5 篇**全部**（childhood-trauma / shadow-work-guide / self-love-rituals / tarot-love-cards / venus-retrograde） | 2026-09-01 | 🔴 未修复 | 内容已写且合规，但页面上没有「TL;DR」标识；`audit.py` 因此把其中 3 篇判为「缺 TL;DR」。属**全站口径问题**（全站仅 21/43 有小标题），已升级为工作台 P0，等统一裁决后批量补 |
+| 4 | 全站正文重复 H1 复检 | 43 篇 | 2026-09-01 | ✅ 0 处 | 扫描脚本：frontmatter 后逐行匹配 `^#\s`，命中 0 |
+
+### 说明
+- #1 / #2 / #4 为**结构性排版 bug**，已闭环。
+- #3 是**格式规范不统一**，不是渲染错误：页面能正常显示引用块，但缺少小标题。是否统一补 `## TL;DR`（Wren 4 篇豁免）需用户拍板，见工作台「待办与风险 → P0」。
+- 若你指的是另一处排版现象（例如 TL;DR 缺专属视觉样式、与 meta/summary 区域重复），请指明页面与位置，我再定位。

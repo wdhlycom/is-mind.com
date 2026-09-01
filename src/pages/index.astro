@@ -290,6 +290,14 @@ const webSiteSchema = {
       background-position: right center;
       box-shadow: 0 0 30px rgba(232,164,176,0.5), 0 0 55px rgba(232,164,194,0.25);
     }
+    /* Mobile: tighten the quote container so cards read compact on phones */
+    @media (max-width: 640px) {
+      .whisper-card { padding: 1.3rem 1.1rem 1.1rem; border-radius: 1rem; }
+      .whisper-emblem { font-size: 1.5rem; top: -6px; right: 12px; }
+      .whisper-text { font-size: 0.95rem; line-height: 1.58; margin-bottom: 0.7rem; }
+      .whisper-author { font-size: 0.76rem; margin-bottom: 0.85rem; }
+      .whisper-cta { font-size: 0.62rem; letter-spacing: 0.12em; padding: 0.6rem 0.8rem; }
+    }
 
     /* ===== Whisper Popup ===== */
     .whisper-popup {
