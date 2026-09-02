@@ -31,6 +31,9 @@ Because Nina could feel it. When her colleague vented for forty minutes, she fel
 
 The subtle energy system isn't a New Age invention. It's one of the oldest maps of human experience on the planet, described independently by traditions from India to China to indigenous cultures everywhere. It has three main parts — and once you understand them, a thousand everyday experiences suddenly make sense.
 
+![A woman at her office desk with her hand on her chest as thin strands of energy drift away toward an empty chair](energy-body-101-01.png)
+
+
 ### 🫀 Your Body Has a Second Anatomy
 
 Western medicine maps the physical body: organs, bones, blood, nerves. The subtle energy traditions map a second anatomy layered over the first — **a field of life force** that flows through and around you.
@@ -57,6 +60,9 @@ The aura is the layer of energy that surrounds your body — like a subtle atmos
 
 **How to feel your own field, right now:** hold your hands a few inches apart, palms facing each other. Slowly move them together and apart. Most people feel a subtle pressure or warmth between the palms — like a very weak magnet. That's your hands reading the edge of your own field.
 
+![A woman and her grandmother sitting in silence, hands clasped, their two energy fields drawn as one steady oval and one filling in](energy-body-101-02.png)
+
+
 ---
 
 ### 🌈 The Seven Chakras: Your Energy Anatomy in One Table
@@ -76,6 +82,9 @@ The chakras are seven energy centers stacked along the spine, each governing a d
 **The fastest self-check:** scan your body root to crown right now. Where does your attention snag? Where is there tension, heaviness, or nothing at all? That's usually where the energy is stuck.
 
 > The chakras aren't just esoteric — they map to real anatomy. The root corresponds to the base of the spine, the solar plexus to the digestive organs, the heart to the chest and upper back. The body stores what the mind won't process, and the chakra map is the address book for finding it.
+
+![A woman standing with her eyes closed scanning her body, seven dials along her spine with the fifth one jammed](energy-body-101-03.png)
+
 
 ---
 
@@ -139,6 +148,9 @@ And when you've done the self-work and still feel stuck — when you know the di
 Nina stopped explaining her one-heavy-conversation rule and started honoring it. She scheduled the heavy talks for mornings, when her energy was full. She grounded for five minutes before the draining meetings. She started saying the things she'd been swallowing — the throat-chakra release that took her months to learn and seconds to feel.
 
 Six months later, she told me the rule was still there — but the drain was gone. "It's not that conversations stopped taking energy," she said. "It's that I finally started putting it back."
+
+![A woman standing barefoot on wet grass at dawn with fine roots running from her feet into the soil](energy-body-101-04.png)
+
 
 Your energy system has been running your whole life. You just haven't been reading the dashboard.
 

@@ -32,6 +32,9 @@ The Fool's Journey is the story of what Marcus went through — told as twenty-t
 
 This guide walks the whole road, card by card. Not as a dictionary — as a map. So you can see where you've been, where you are, and which lesson is waiting next.
 
+![A young man at a kitchen table at midnight with the Tower tarot card face-up in front of him, half laughing](fools-journey-complete-guide-01.png)
+
+
 ### 🗺️ The Three Acts of the Journey
 
 The 22 Major Arcana are numbered 0–21, and they're not random. They tell a story in three acts — the same three-act structure you'll find in every myth, every hero's journey, every meaningful life.
@@ -59,6 +62,9 @@ The Fool is numbered zero because it stands outside the sequence — both the fi
 **The shadow:** Naivety — mistaking recklessness for courage, leaping without looking, refusing to learn from the fall.
 
 *Deeper dive: our [full guide to The Fool Card](/tarot/the-fool-card/).*
+
+![A young man at the edge of a cliff at dawn, a small bag on a stick, a white rose, a dog at his heels](fools-journey-complete-guide-02.png)
+
 
 ---
 
@@ -256,6 +262,9 @@ The Tower is struck by lightning and everything false comes down — the ambitio
 
 **The lesson:** The Tower doesn't destroy what's true. It destroys what's pretending to be true.
 
+![A man in a half-emptied apartment with cardboard boxes, a wedding ring on the counter and an open sky through the window](fools-journey-complete-guide-03.png)
+
+
 **The shadow:** Building your life on borrowed foundations — so the collapse is only a matter of when.
 
 ---
@@ -354,6 +363,9 @@ And when a card keeps returning and you can't see what it's asking — when the 
 ---
 
 Marcus pulled The Tower again last week — ten years after the reading that scared him. This time he didn't laugh nervously. He looked at the burning structure, the crown falling, the sky opening up, and thought: *I know this one. I've survived it before. And I'm stronger now.*
+
+![The same man ten years later at the same kitchen table, holding the Tower card up to the light](fools-journey-complete-guide-04.png)
+
 
 The Tower isn't the end of the story. It never was. It's the lightning that clears the ground for the Star.
 

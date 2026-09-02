@@ -33,6 +33,9 @@ The sun sign you know from your horoscope is real. It's just not the whole story
 
 That's what this guide is: the map that makes astrology make sense.
 
+![Two roommates, both Leos, one curled up with a book and one heading out the door, each under a different moon sign](astrology-101-sun-moon-rising-01.png)
+
+
 ### 🌌 What Astrology Actually Is
 
 Strip away the mystique and astrology is a **language of correspondences** — the ancient idea that the sky above reflects patterns of experience below. The Hermetic principle puts it simply: *as above, so below.*
@@ -44,6 +47,9 @@ Two findings are worth naming before we go further, because both change how you 
 The first is the **Forer effect**. In 1948 the psychologist Bertram Forer handed his students an identical personality sketch assembled from newspaper astrology columns and asked them to rate how accurately it described them. The average rating was 4.26 out of 5. Statements that are vague, flattering, and broadly true feel personal. That is most of the reason horoscopes land, and knowing it makes you a sharper reader of your own chart rather than a more cynical one.
 
 The second is the **evidentiary bar**. Carlson's 1985 study has not been overturned by a better-designed one, and no mechanism has been proposed by which the positions of Mars or Venus at your birth could shape your temperament. Read together, those two findings are a good argument for treating astrology as a language rather than a forecasting instrument.
+
+![A 1948 classroom where every student reads an identical personality sketch and rates how accurately it describes them](astrology-101-sun-moon-rising-02.png)
+
 
 That is not an argument for throwing it out. Like the chakra system or the enneagram, astrology is a **diagnostic framework** — a set of lenses for naming patterns you are already living. It has lasted as long as it has because it hands people a vocabulary for experience they were having anyway, not because it predicts anything.
 
@@ -105,6 +111,9 @@ The moon is how you react before you think. It's the emotion that floods in befo
 
 Your moon sign answers: *What do I need to feel emotionally at home?* It's the key to your comfort, your triggers, and — crucially — your relationships. Sun-sign compatibility is a party trick; **moon-sign compatibility is the real chemistry.** When two people's moons understand each other, the sun signs barely matter. Our [what your zodiac sign needs in a partner](/astrology/zodiac-sign-partner-needs/) piece takes that same idea and breaks it down sign by sign.
 
+![A woman sitting on her bedroom floor at 2 a.m., phone in hand, a text she keeps drafting and deleting](astrology-101-sun-moon-rising-03.png)
+
+
 ---
 
 ### 🕯️ Your Rising Sign — The Mask You Wear
@@ -163,6 +172,9 @@ Sarah looked up her moon sign the night her roommate explained the difference. P
 "I spent twenty years thinking I was a broken Leo," she said. "Turns out I was a perfectly functioning Leo with a Pisces moon."
 
 She still doesn't know her rising sign — her parents don't remember the birth time. But she knows which half of her astrology to ask for next time.
+
+![A woman laughing at her kitchen table over a notebook, with a sun, a moon and an unfinished rising sign floating above it](astrology-101-sun-moon-rising-04.png)
+
 
 You don't need the whole sky to start. You need three signs and the willingness to recognize yourself.
 
